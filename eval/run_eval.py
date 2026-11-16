@@ -59,6 +59,8 @@ def main():
             text, steps = f"CRASH: {e}", 0
         secs = time.perf_counter() - t0
         ok = is_correct(text, expected)
+        if ok and t.get("value") and numbers_in(text):  # "which X" answers: a quoted figure must also be X's real value
+            ok = is_correct(text, eval(t["value"], {"df": df, "pd": pd, "np": np}))
         rows.append({"question": t["question"], "expected": str(expected), "answer": text, "ok": ok, "steps": steps, "seconds": round(secs, 1)})
         print(f"[{i}/{len(tasks)}] {'PASS' if ok else 'FAIL'} {secs:5.1f}s  {t['question']}\n      -> {text[:140]}")
 

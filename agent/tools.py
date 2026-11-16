@@ -285,8 +285,9 @@ def value_counts(df, column, n=10, where=None):
     if counts.empty:
         return ToolResult(f"'{c}' has no values.")
     out = pd.DataFrame({c: counts.index, "count": counts.values, "pct": (counts.values / counts.sum() * 100).round(2)})
-    return ToolResult(f"'{c}' has {len(counts)} distinct values; most common: {out.iloc[0][c]} ({out.iloc[0]['count']}); "
-                      f"least common: {out.iloc[-1][c]} ({out.iloc[-1]['count']}).",
+    top, low = out.iloc[0], out.iloc[-1]
+    return ToolResult(f"'{c}' has {len(counts)} distinct values; most common: {top[c]} ({top['count']}, {top['pct']}%); "
+                      f"least common: {low[c]} ({low['count']}, {low['pct']}%).",
                       table=out.head(int(n)))
 
 

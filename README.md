@@ -19,8 +19,9 @@ question ─► model picks a tool + arguments ─► tested pandas code runs �
                      └──── error message (self-correct) ◄┘     (max 6 steps)
 ```
 
-**No made-up numbers:** every answer shows the table/chart it came from, and if the model answers with
-numbers without calling a tool, the agent rejects it and makes it use one.
+**No made-up numbers:** every number in the model's answer is checked against what the tools actually
+returned (English and Indonesian number formats, "juta"/"miliar"/"billion"). If one doesn't match, the answer
+is replaced by the tool's own verified summary, with a warning. Every answer also shows the table/chart it came from.
 
 ## What it can do
 
@@ -92,7 +93,8 @@ On a stronger machine, use a bigger model: `ollama pull qwen2.5:7b` and type it 
 ## Evaluation
 
 40 questions with known answers (25 sales, 15 HR, 3 in Indonesian) in `eval/tasks.json`.
-Expected answers are pandas expressions, so they're always computed from the actual data.
+Expected answers are pandas expressions, so they're always computed from the actual data. For "which X…"
+questions the name must be right **and** any figure quoted must be X's real value.
 
 ```bash
 python eval/run_eval.py --model qwen2.5:3b
@@ -100,16 +102,27 @@ python eval/run_eval.py --model qwen2.5:3b
 
 | Model | Size | Correct | Avg steps | Avg time / question | Hardware |
 |---|---|---|---|---|---|
-| qwen2.5:3b | 1.9 GB | _run eval_ | | | GTX 1650 4 GB |
+| qwen2.5:3b | 1.9 GB | **87.5%** (35/40) | 1.05 | 3.3 s | GTX 1650 4 GB, i5-9400F, 16 GB RAM |
+
+**How it got there** — each step came from reading the agent's step traces on the failures:
+
+| Version | Correct | What changed |
+|---|---|---|
+| First run (3 questions) | 33% | No tool for a single overall number; model did maths in its head |
+| + `aggregate` tool, number verification, 8k context | 62.5% | Ollama's default 4k context was silently cutting off the tool list |
+| + tolerate small-model slips | 87.5% | Filters carry over between steps; results state highest **and** lowest, filled **and** missing; `column`/`columns` and list-wrapped names accepted; year filters on date columns |
+
+Remaining failures: picking an exact date instead of a whole year, quoting the grand total instead of the
+group's value, and one non-answer.
 
 ## Tests
 
 ```bash
 pytest
 ```
-48 tests: every tool (normal + bad input), dataset versions/undo, the agent loop (with a scripted fake model:
-self-correction, the no-tool-numbers guard, step cap), the code sandbox (blocked imports/file access, timeout),
-the report, the eval answer checker, and the Streamlit app driven headlessly.
+60 tests: every tool (normal + bad input + small-model slips), dataset versions/undo, the agent loop (with a
+scripted fake model: self-correction, number verification, filter carry-over, step cap), the code sandbox
+(blocked imports/file access, timeout), the report, the eval answer checker, and the Streamlit app driven headlessly.
 
 ## Project structure
 
