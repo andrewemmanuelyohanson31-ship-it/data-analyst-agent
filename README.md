@@ -6,7 +6,7 @@ grouping, finding outliers, trends, forecasts and charts — answering questions
 It runs **100% offline on a normal laptop** (tested target: GTX 1650 4 GB / 16 GB RAM, and MacBook) using a
 small local model through [Ollama](https://ollama.com). No API key, no data leaves your machine.
 
-> *“Which city had the highest revenue in 2025?”* → **Jakarta, Rp 1.2 B (31% of total)** + table + bar chart + the steps it took.
+> *“Which city had the highest revenue in 2025?”* → **Jakarta, Rp 811.6 million (38.2% of total)** + table + bar chart + the steps it took.
 
 ## Why it works on a small model
 
