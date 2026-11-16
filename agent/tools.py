@@ -1,7 +1,9 @@
 """Analysis tools the agent can call. Plain pandas functions: tested code does the maths, the model only picks."""
 from __future__ import annotations
 
+import inspect
 import io
+import re
 from dataclasses import dataclass
 from typing import Callable
 
@@ -42,7 +44,9 @@ def load_file(name: str, data: bytes) -> pd.DataFrame:
 
 
 def col(df: pd.DataFrame, name) -> str:
-    if name in df.columns:
+    if isinstance(name, list) and len(name) == 1:  # small models wrap single columns in a list
+        name = name[0]
+    if isinstance(name, str) and name in df.columns:
         return name
     lookup = {str(c).strip().lower(): c for c in df.columns}
     key = str(name).strip().lower()
@@ -73,6 +77,13 @@ def _num(value):
         return value
 
 
+def _date_like(s: pd.Series) -> bool:
+    if pd.api.types.is_datetime64_any_dtype(s):
+        return True
+    sample = s.dropna().astype(str).head(20)
+    return not pd.api.types.is_numeric_dtype(s) and len(sample) > 0 and sample.str.match(r"\d{4}-\d{2}-\d{2}").all()
+
+
 def apply_where(df: pd.DataFrame, where) -> pd.DataFrame:
     if not where:
         return df
@@ -85,6 +96,9 @@ def apply_where(df: pd.DataFrame, where) -> pd.DataFrame:
         except (KeyError, TypeError, AttributeError):
             raise ToolError("Each where condition needs {column, op, value}.")
         s = df[c]
+        if op in ("==", "=") and re.fullmatch(r"\d{4}(-\d{2})?", str(v)) and _date_like(s):
+            mask &= s.astype(str).str.startswith(str(v)).fillna(False)  # "2025" / "2025-03" = whole year / month
+            continue
         if pd.api.types.is_datetime64_any_dtype(s) and op not in ("contains", "in"):
             v = pd.to_datetime(str(v))
         elif pd.api.types.is_numeric_dtype(s) and op not in ("contains", "in"):
@@ -192,7 +206,8 @@ def rename_drop_columns(df, rename=None, drop=None):
 
 def filter_rows(df, where):
     out = apply_where(df, where)
-    return ToolResult(f"{len(out)} of {len(df)} rows match.", table=out)
+    pct = len(out) / len(df) * 100 if len(df) else 0
+    return ToolResult(f"{len(out):,} of {len(df):,} rows match ({pct:.2f}%).", table=out)
 
 
 def sort_top_n(df, column, n=10, ascending=False, where=None):
@@ -205,13 +220,13 @@ def sort_top_n(df, column, n=10, ascending=False, where=None):
 AGGS = ("sum", "mean", "count", "min", "max", "median")
 
 
-def group_aggregate(df, by, column=None, agg="sum", where=None):
+def group_aggregate(df, by=None, column=None, agg="sum", where=None):
+    if not by:  # small models call this for one overall number
+        return aggregate(df, agg, column, where)
     if agg not in AGGS:
         raise ToolError(f"agg must be one of {', '.join(AGGS)}.")
     d = apply_where(df, where)
     keys = _cols(d, by)
-    if not keys:
-        raise ToolError("by needs at least one column.")
     if agg == "count" and column is None:
         out = d.groupby(keys).size().rename("count")
     else:
@@ -225,8 +240,9 @@ def group_aggregate(df, by, column=None, agg="sum", where=None):
         out["share_pct"] = (out[val] / out[val].sum() * 100).round(2)
     if out.empty:
         return ToolResult("No rows match.", table=out)
-    top = out.iloc[0]
-    return ToolResult(f"{len(out)} groups. Highest: {', '.join(str(top[k]) for k in keys)} = {top[val]:,.2f}.", table=out)
+    top, low = out.iloc[0], out.iloc[-1]
+    name = lambda r: ", ".join(str(r[k]) for k in keys)  # noqa: E731
+    return ToolResult(f"{len(out)} groups. Highest: {name(top)} = {top[val]:,.2f}. Lowest: {name(low)} = {low[val]:,.2f}.", table=out)
 
 
 def aggregate(df, agg="count", column=None, where=None):
@@ -234,9 +250,11 @@ def aggregate(df, agg="count", column=None, where=None):
         raise ToolError(f"agg must be one of {', '.join(AGGS)}.")
     d = apply_where(df, where)
     if agg == "count":
-        value = int(d[col(d, column)].count()) if column else len(d)
-        what = f"non-empty values in '{col(d, column)}'" if column else "rows"
-        return ToolResult(f"Count of {what}: {value:,} (out of {len(df):,} rows).")
+        if not column:
+            return ToolResult(f"Count of rows: {len(d):,} (out of {len(df):,} rows).")
+        c = col(d, column)
+        filled = int(d[c].count())
+        return ToolResult(f"Column '{c}' over {len(d):,} rows: {filled:,} filled, {len(d) - filled:,} missing (empty).")
     c = _numeric(d, column) if column else None
     if c is None:
         raise ToolError(f"agg '{agg}' needs a column.")
@@ -267,7 +285,8 @@ def value_counts(df, column, n=10, where=None):
     if counts.empty:
         return ToolResult(f"'{c}' has no values.")
     out = pd.DataFrame({c: counts.index, "count": counts.values, "pct": (counts.values / counts.sum() * 100).round(2)})
-    return ToolResult(f"'{c}' has {len(counts)} distinct values; most common: {out.iloc[0][c]} ({out.iloc[0]['count']}).",
+    return ToolResult(f"'{c}' has {len(counts)} distinct values; most common: {out.iloc[0][c]} ({out.iloc[0]['count']}); "
+                      f"least common: {out.iloc[-1][c]} ({out.iloc[-1]['count']}).",
                       table=out.head(int(n)))
 
 
@@ -385,7 +404,8 @@ def chart(df, kind, x=None, y=None, agg="sum", where=None):
 
 _STR, _INT, _BOOL = {"type": "string"}, {"type": "integer"}, {"type": "boolean"}
 _COLS = {"type": "array", "items": {"type": "string"}}
-_WHERE = {"type": "array", "description": "Optional row filters applied first.",
+_WHERE = {"type": "array", "description": "Optional row filters, ONLY for conditions stated in the question. "
+          "For a year or month on a date column use op '==' with value '2025' or '2025-03'.",
           "items": {"type": "object", "properties": {"column": _STR, "op": {"type": "string", "enum": ["==", "!=", ">", ">=", "<", "<=", "contains", "in"]}, "value": _STR}}}
 _AGG = {"type": "string", "enum": list(AGGS)}
 
@@ -411,9 +431,16 @@ TOOLS: dict[str, tuple[Callable, dict]] = {
     "filter_rows": (filter_rows, _schema("filter_rows", "Show rows matching conditions.", {"where": _WHERE}, ["where"])),
     "sort_top_n": (sort_top_n, _schema("sort_top_n", "Top (or bottom) N rows by a column.",
                    {"column": _STR, "n": _INT, "ascending": _BOOL, "where": _WHERE}, ["column"])),
-    "group_aggregate": (group_aggregate, _schema("group_aggregate", "Group by column(s) and aggregate, e.g. total revenue per city. Sorted highest first, with share %.",
+    "group_aggregate": (group_aggregate, _schema("group_aggregate",
+                        "Compare groups: which city/department/product has the highest or lowest total, average or count. "
+                        "Reports highest and lowest. E.g. 'which city has the most revenue' -> by=['city'], column='revenue', agg='sum'; "
+                        "'which department has the most employees' -> by=['department'], agg='count'.",
                         {"by": _COLS, "column": _STR, "agg": _AGG, "where": _WHERE}, ["by", "agg"])),
-    "aggregate": (aggregate, _schema("aggregate", "One number for the whole table (or filtered rows): total, average, count of rows, min, max, median. E.g. total revenue, number of orders, orders in Bandung.",
+    "aggregate": (aggregate, _schema("aggregate",
+                  "One overall number: total, average, count, min, max, median. "
+                  "E.g. 'total revenue' -> agg='sum', column='revenue'; 'how many orders' -> agg='count'; "
+                  "'how many employees left' -> agg='count', where=[{column:'left_company', op:'==', value:'Yes'}]; "
+                  "'how many missing values in X' -> agg='count', column='X' (reports filled and missing).",
                   {"agg": _AGG, "column": _STR, "where": _WHERE}, ["agg"])),
     "pivot": (pivot, _schema("pivot", "Pivot table: rows = index, columns = columns, cells = agg of values.",
               {"index": _STR, "columns": _STR, "values": _STR, "agg": _AGG, "where": _WHERE}, ["index", "columns", "values"])),
@@ -451,9 +478,17 @@ def tool_schemas() -> list[dict]:
 def run_tool(name: str, df: pd.DataFrame, args: dict | None) -> ToolResult:
     if name not in TOOLS:
         raise ToolError(f"Unknown tool '{name}'. Available: {', '.join(TOOLS)}.")
-    args = {k: v for k, v in (args or {}).items() if v not in (None, "", [], {})}  # small models send empty optionals
+    fn = TOOLS[name][0]
+    params = inspect.signature(fn).parameters
+    clean = {}
+    for k, v in (args or {}).items():
+        if v in (None, "", [], {}):  # small models send empty optionals
+            continue
+        if k not in params:  # "column" vs "columns" slips
+            k = next((p for p in (k + "s", k[:-1]) if p in params), k)
+        clean[k] = v
     try:
-        return TOOLS[name][0](df, **args)
+        return fn(df, **clean)
     except ToolError:
         raise
     except TypeError as e:

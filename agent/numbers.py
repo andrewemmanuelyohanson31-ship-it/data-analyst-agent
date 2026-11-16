@@ -12,14 +12,15 @@ NUM = re.compile(r"(\d{1,3}(?:,\d{3})+(?:\.\d+)?(?!\d)|\d{1,3}(?:\.\d{3})+(?:,\d
 def numbers_in(text: str) -> list[float]:
     """All plausible readings of each number in the text (both decimal styles, scaled)."""
     out = []
-    for token, scale in NUM.findall(text):
-        token = token.rstrip(".,")
+    for t, scale in NUM.findall(text):
         mult = SCALES.get(scale.lower(), 1) if scale else 1
-        for cand in (token.replace(",", ""), token.replace(".", "").replace(",", ".")):
-            try:
-                out.append(float(cand) * mult)
-            except ValueError:
-                pass
+        if re.fullmatch(r"\d{1,3}(?:,\d{3})+(?:\.\d+)?", t):  # English thousands: 1,234,567.8
+            cands = [t.replace(",", "")] + ([t.replace(",", ".")] if t.count(",") == 1 and "." not in t else [])
+        elif re.fullmatch(r"\d{1,3}(?:\.\d{3})+(?:,\d+)?", t):  # Indonesian thousands: 1.234.567,8
+            cands = [t.replace(".", "").replace(",", ".")] + ([t] if t.count(".") == 1 and "," not in t else [])
+        else:  # plain: 12.5 or Indonesian decimal comma 12,5
+            cands = [t.replace(",", ".")]
+        out += [float(c) * mult for c in cands]
     return out
 
 

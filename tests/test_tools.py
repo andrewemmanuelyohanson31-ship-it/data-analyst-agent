@@ -85,6 +85,28 @@ def test_aggregate_total_count_and_filter(df):
         run_tool("aggregate", df, {"agg": "mean"})
 
 
+def test_small_model_slips_are_tolerated(df):
+    assert "Count of rows: 6" in run_tool("group_aggregate", df, {"agg": "count"}).text  # no `by` -> overall number
+    assert "filled" in run_tool("aggregate", df, {"agg": "count", "column": ["city"]}).text  # list-wrapped column
+    assert len(run_tool("describe", df, {"column": ["qty"]}).table) == 1  # column vs columns
+
+
+def test_count_column_reports_missing(df):
+    assert "5 filled, 1 missing" in run_tool("aggregate", df, {"agg": "count", "column": "revenue"}).text
+
+
+def test_group_reports_lowest_and_filter_reports_pct(df):
+    assert "Lowest: Surabaya = 30.00" in run_tool("group_aggregate", df, {"by": ["city"], "column": "revenue"}).text
+    assert "(50.00%)" in run_tool("filter_rows", df, {"where": [{"column": "city", "op": "==", "value": "Jakarta"}]}).text
+
+
+def test_year_and_month_filters_on_date_columns(df):
+    text_dates = df.assign(date=df["date"].dt.strftime("%Y-%m-%d"))
+    for d in (df, text_dates):
+        assert len(apply_where(d, [{"column": "date", "op": "==", "value": "2025"}])) == 6
+        assert len(apply_where(d, [{"column": "date", "op": "==", "value": "2025-02"}])) == 2
+
+
 def test_group_count_without_column(df):
     r = run_tool("group_aggregate", df, {"by": "city", "agg": "count"})
     assert r.table.iloc[0]["count"] == 3

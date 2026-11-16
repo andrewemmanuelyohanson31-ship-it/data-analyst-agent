@@ -38,6 +38,12 @@ def test_ungrounded_numbers():
     assert ungrounded_numbers("Total is $11,486,290.00 over 3,025 rows.", ev) == ["11,486,290.00"]
 
 
+def test_plain_decimal_is_not_read_as_indonesian_thousands():
+    from agent.numbers import ungrounded_numbers
+    assert 4733435400.0 not in numbers_in("Bandung,473343540.0,100.0")
+    assert ungrounded_numbers("Revenue is Rp 4,733,435,400.00.", "Bandung,473343540.0,100.0") == ["4,733,435,400.00"]
+
+
 def test_csv_row_splits_into_numbers():
     assert {20.0, 14.142135623730951, 10.0} <= set(numbers_in("revenue,2.0,,,,20.0,14.142135623730951,10.0"))
 

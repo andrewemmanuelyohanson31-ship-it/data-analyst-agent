@@ -12,7 +12,7 @@ import pandas as pd
 
 from agent.numbers import ungrounded_numbers
 from agent.state import DatasetState
-from agent.tools import ToolError, ToolResult, run_tool, tool_schemas
+from agent.tools import TOOLS, ToolError, ToolResult, run_tool, tool_schemas
 
 DEFAULT_MODEL = "qwen2.5:3b"
 MAX_ROWS_TO_MODEL = 20
@@ -22,6 +22,8 @@ Answer the user's question by calling tools. Rules:
 - Every number in your answer must come from a tool result. Never guess or compute numbers yourself.
 - Copy numbers exactly as the tool wrote them. Do not add currency symbols that are not in the data.
 - For one overall number (total, average, how many rows/orders) use the aggregate tool.
+- Only add `where` filters for conditions written in the question. Never filter on a value you are guessing.
+- If the question asks for the lowest / fewest / smallest, use the "Lowest" part of the result.
 - Use exact column names from the schema.
 - Use one tool call when one is enough. Use `where` filters instead of separate filter steps.
 - Use run_python only if no other tool can do it.
@@ -46,7 +48,9 @@ class OllamaModel:
         self.client = ollama.Client(host=host or os.getenv("OLLAMA_HOST"))
 
     def chat(self, messages, tools):
-        msg = self.client.chat(model=self.model, messages=messages, tools=tools, options={"temperature": 0}).message
+        # num_ctx: Ollama defaults to 4096 and silently truncates; prompt + tool schemas alone are ~3.6k tokens.
+        msg = self.client.chat(model=self.model, messages=messages, tools=tools,
+                               options={"temperature": 0, "num_ctx": 8192}).message
         calls = [{"name": c.function.name, "arguments": dict(c.function.arguments or {})} for c in (msg.tool_calls or [])]
         return {"content": msg.content or "", "tool_calls": calls}
 
@@ -65,6 +69,10 @@ class AgentAnswer:
     text: str
     steps: list[Step] = field(default_factory=list)
     note: str = ""  # set when the model's own wording was replaced by the tools' verified summary
+
+
+def _params(tool: str) -> dict:
+    return TOOLS[tool][1]["function"]["parameters"]["properties"] if tool in TOOLS else {}
 
 
 def schema_summary(df: pd.DataFrame) -> str:
@@ -103,6 +111,7 @@ def run_agent(question: str, state: DatasetState, model: ChatModel, history: lis
     nudged = False
     tools = tool_schemas()
     evidence = question  # everything the model was shown; answer numbers must appear here
+    active_where = None
     while len(steps) < max_steps:
         reply = model.chat(messages, tools)
         calls = reply["tool_calls"] or ([c] if (c := _text_tool_call(reply["content"])) else [])
@@ -123,10 +132,16 @@ def run_agent(question: str, state: DatasetState, model: ChatModel, history: lis
         messages.append({"role": "assistant", "content": reply["content"],
                          "tool_calls": [{"function": {"name": c["name"], "arguments": c["arguments"]}} for c in calls]})
         for call in calls:
-            step = Step(call["name"], call["arguments"])
+            args = dict(call["arguments"])
+            # Small models filter in one step and forget the filter in the next: carry it over.
+            if call["name"] == "filter_rows":
+                active_where = args.get("where") or active_where
+            elif active_where and not args.get("where") and "where" in _params(call["name"]):
+                args["where"] = active_where
+            step = Step(call["name"], args)
             t0 = time.perf_counter()
             try:
-                step.result = run_tool(call["name"], state.current, call["arguments"])
+                step.result = run_tool(call["name"], state.current, args)
                 if step.result.new_df is not None:
                     state.apply(call["name"], step.result.new_df)
                 content = _for_model(step.result)

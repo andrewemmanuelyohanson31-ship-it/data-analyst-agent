@@ -84,6 +84,13 @@ def test_empty_answer_after_tool_uses_tool_text():
     assert run_agent("how many rows?", state(), m).text.startswith("Count of rows: 3")
 
 
+def test_filter_carries_over_to_next_tool():
+    m = FakeModel(call("filter_rows", where=[{"column": "city", "op": "==", "value": "Jakarta"}]),
+                  call("aggregate", agg="sum", column="revenue"), say("Jakarta revenue is 40."))
+    ans = run_agent("Jakarta revenue?", state(), m)
+    assert "over 2 rows: 40.00" in ans.steps[1].result.text and ans.steps[1].args["where"][0]["value"] == "Jakarta"
+
+
 def test_schema_summary_lists_columns():
     s = schema_summary(state().current)
     assert "city" in s and "1 missing" in s
