@@ -416,6 +416,17 @@ TOOLS: dict[str, tuple[Callable, dict]] = {
 }
 
 
+def _run_python(df, code):
+    from agent.sandbox import run_python  # local import: sandbox imports this module
+
+    return run_python(df, code)
+
+
+TOOLS["run_python"] = (_run_python, _schema(
+    "run_python", "LAST RESORT when no other tool fits. Pandas code using `df`, `pd`, `np`; assign the answer to `result`.",
+    {"code": _STR}, ["code"]))
+
+
 def tool_schemas() -> list[dict]:
     return [schema for _, schema in TOOLS.values()]
 
