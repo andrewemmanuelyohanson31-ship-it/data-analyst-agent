@@ -77,6 +77,14 @@ def test_group_aggregate_top_and_share(df):
     assert "Jakarta = 300.00" in r.text
 
 
+def test_aggregate_total_count_and_filter(df):
+    assert "300.00" in run_tool("aggregate", df, {"agg": "sum", "column": "revenue", "where": [{"column": "city", "op": "==", "value": "Jakarta"}]}).text
+    assert "Count of rows: 6" in run_tool("aggregate", df, {}).text
+    assert "Count of rows: 2" in run_tool("aggregate", df, {"where": [{"column": "city", "op": "==", "value": "bandung"}]}).text
+    with pytest.raises(ToolError, match="needs a column"):
+        run_tool("aggregate", df, {"agg": "mean"})
+
+
 def test_group_count_without_column(df):
     r = run_tool("group_aggregate", df, {"by": "city", "agg": "count"})
     assert r.table.iloc[0]["count"] == 3

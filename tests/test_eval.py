@@ -5,7 +5,8 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from eval.run_eval import is_correct, numbers_in
+from agent.numbers import numbers_in
+from eval.run_eval import is_correct
 
 ROOT = Path(__file__).resolve().parent.parent
 
@@ -28,6 +29,17 @@ def test_wrong_number_and_text():
     assert is_correct("Jakarta has the highest revenue", "Jakarta")
     assert is_correct("It was June 2026.", ["2026-06", "June 2026"])
     assert not is_correct("Bandung", "Jakarta")
+
+
+def test_ungrounded_numbers():
+    from agent.numbers import ungrounded_numbers
+    ev = "sum of 'revenue' over 3,025 rows: 3,474,602,910.00. share_pct 38.2"
+    assert ungrounded_numbers("Total is Rp 3.47 billion (38.2%), top 3 cities.", ev) == []
+    assert ungrounded_numbers("Total is $11,486,290.00 over 3,025 rows.", ev) == ["11,486,290.00"]
+
+
+def test_csv_row_splits_into_numbers():
+    assert {20.0, 14.142135623730951, 10.0} <= set(numbers_in("revenue,2.0,,,,20.0,14.142135623730951,10.0"))
 
 
 def test_numbers_in_handles_sentence_end():

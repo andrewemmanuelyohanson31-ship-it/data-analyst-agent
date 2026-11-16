@@ -24,6 +24,8 @@ def load(name: str, data: bytes):
 
 def show_answer(ans: AgentAnswer):
     st.markdown(ans.text)
+    if ans.note:
+        st.caption(f"⚠️ {ans.note}")
     for s in ans.steps:
         if s.result is not None and s.result.table is not None and s.result.new_df is None:
             st.dataframe(s.result.table.head(200), hide_index=True)

@@ -7,7 +7,6 @@ from __future__ import annotations
 
 import argparse
 import json
-import re
 import sys
 import time
 from pathlib import Path
@@ -18,31 +17,14 @@ import pandas as pd
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
-SCALES = {"ribu": 1e3, "thousand": 1e3, "k": 1e3, "juta": 1e6, "million": 1e6, "m": 1e6,
-          "miliar": 1e9, "milyar": 1e9, "billion": 1e9, "bn": 1e9, "b": 1e9}
-NUM = re.compile(r"(\d[\d.,]*)\s*(ribu|thousand|juta|million|miliar|milyar|billion|bn|[kmb])?(?![a-z])", re.I)
-
-
-def numbers_in(text: str) -> list[float]:
-    """All plausible readings of each number: '1,234.5' (English) and '1.234,5' (Indonesian), with scale words."""
-    out = []
-    for token, scale in NUM.findall(text):
-        token = token.rstrip(".,")
-        mult = SCALES.get(scale.lower(), 1) if scale else 1
-        for cand in (token.replace(",", ""), token.replace(".", "").replace(",", ".")):
-            try:
-                out.append(float(cand) * mult)
-            except ValueError:
-                pass
-    return out
+from agent.numbers import close, numbers_in  # noqa: E402  (needs ROOT on sys.path)
 
 
 def is_correct(answer: str, expected) -> bool:
     options = expected if isinstance(expected, list) else [expected]
     for exp in options:
         if isinstance(exp, (int, float, np.integer, np.floating)) and not isinstance(exp, bool):
-            exp = float(exp)
-            if any(abs(n - exp) <= max(abs(exp) * 0.01, 1e-9) for n in numbers_in(answer)):
+            if any(close(n, float(exp)) for n in numbers_in(answer)):
                 return True
         elif str(exp).lower() in answer.lower():
             return True
@@ -61,6 +43,7 @@ def main():
     tasks = json.loads((ROOT / "eval" / "tasks.json").read_text(encoding="utf-8"))
     tasks = tasks[: args.limit] if args.limit else tasks
     model = OllamaModel(args.model)
+    model.chat([{"role": "user", "content": "hi"}], [])  # warm-up: loading the model into memory isn't answer time
     data = {}
     rows = []
     for i, t in enumerate(tasks, 1):

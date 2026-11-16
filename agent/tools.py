@@ -229,6 +229,21 @@ def group_aggregate(df, by, column=None, agg="sum", where=None):
     return ToolResult(f"{len(out)} groups. Highest: {', '.join(str(top[k]) for k in keys)} = {top[val]:,.2f}.", table=out)
 
 
+def aggregate(df, agg="count", column=None, where=None):
+    if agg not in AGGS:
+        raise ToolError(f"agg must be one of {', '.join(AGGS)}.")
+    d = apply_where(df, where)
+    if agg == "count":
+        value = int(d[col(d, column)].count()) if column else len(d)
+        what = f"non-empty values in '{col(d, column)}'" if column else "rows"
+        return ToolResult(f"Count of {what}: {value:,} (out of {len(df):,} rows).")
+    c = _numeric(d, column) if column else None
+    if c is None:
+        raise ToolError(f"agg '{agg}' needs a column.")
+    value = d[c].agg(agg)
+    return ToolResult(f"{agg} of '{c}' over {len(d):,} rows: {value:,.2f}.")
+
+
 def pivot(df, index, columns, values, agg="sum", where=None):
     if agg not in AGGS:
         raise ToolError(f"agg must be one of {', '.join(AGGS)}.")
@@ -398,6 +413,8 @@ TOOLS: dict[str, tuple[Callable, dict]] = {
                    {"column": _STR, "n": _INT, "ascending": _BOOL, "where": _WHERE}, ["column"])),
     "group_aggregate": (group_aggregate, _schema("group_aggregate", "Group by column(s) and aggregate, e.g. total revenue per city. Sorted highest first, with share %.",
                         {"by": _COLS, "column": _STR, "agg": _AGG, "where": _WHERE}, ["by", "agg"])),
+    "aggregate": (aggregate, _schema("aggregate", "One number for the whole table (or filtered rows): total, average, count of rows, min, max, median. E.g. total revenue, number of orders, orders in Bandung.",
+                  {"agg": _AGG, "column": _STR, "where": _WHERE}, ["agg"])),
     "pivot": (pivot, _schema("pivot", "Pivot table: rows = index, columns = columns, cells = agg of values.",
               {"index": _STR, "columns": _STR, "values": _STR, "agg": _AGG, "where": _WHERE}, ["index", "columns", "values"])),
     "describe": (describe, _schema("describe", "Summary statistics (count, mean, std, min, quartiles, max).", {"columns": _COLS, "where": _WHERE})),

@@ -68,6 +68,22 @@ def test_step_cap():
     assert ans.text.startswith("(Stopped after 6 steps.)")
 
 
+def test_garbled_number_replaced_by_tool_summary():
+    m = FakeModel(call("aggregate", agg="sum", column="revenue"), say("Total revenue is $11,486,290.00."))
+    ans = run_agent("total revenue?", state(), m)
+    assert ans.text == "sum of 'revenue' over 3 rows: 40.00." and "11,486,290.00" in ans.note
+
+
+def test_rounded_number_is_accepted():
+    m = FakeModel(call("aggregate", agg="sum", column="revenue"), say("Total revenue is about 40."))
+    assert run_agent("total revenue?", state(), m).text == "Total revenue is about 40."
+
+
+def test_empty_answer_after_tool_uses_tool_text():
+    m = FakeModel(call("aggregate"), say(""))
+    assert run_agent("how many rows?", state(), m).text.startswith("Count of rows: 3")
+
+
 def test_schema_summary_lists_columns():
     s = schema_summary(state().current)
     assert "city" in s and "1 missing" in s

@@ -10,6 +10,7 @@ from typing import Protocol
 
 import pandas as pd
 
+from agent.numbers import ungrounded_numbers
 from agent.state import DatasetState
 from agent.tools import ToolError, ToolResult, run_tool, tool_schemas
 
@@ -19,6 +20,8 @@ MAX_ROWS_TO_MODEL = 20
 SYSTEM = """You are a careful data analyst. A pandas DataFrame is loaded; its schema is below.
 Answer the user's question by calling tools. Rules:
 - Every number in your answer must come from a tool result. Never guess or compute numbers yourself.
+- Copy numbers exactly as the tool wrote them. Do not add currency symbols that are not in the data.
+- For one overall number (total, average, how many rows/orders) use the aggregate tool.
 - Use exact column names from the schema.
 - Use one tool call when one is enough. Use `where` filters instead of separate filter steps.
 - Use run_python only if no other tool can do it.
@@ -61,6 +64,7 @@ class Step:
 class AgentAnswer:
     text: str
     steps: list[Step] = field(default_factory=list)
+    note: str = ""  # set when the model's own wording was replaced by the tools' verified summary
 
 
 def schema_summary(df: pd.DataFrame) -> str:
@@ -98,16 +102,24 @@ def run_agent(question: str, state: DatasetState, model: ChatModel, history: lis
     steps: list[Step] = []
     nudged = False
     tools = tool_schemas()
+    evidence = question  # everything the model was shown; answer numbers must appear here
     while len(steps) < max_steps:
         reply = model.chat(messages, tools)
         calls = reply["tool_calls"] or ([c] if (c := _text_tool_call(reply["content"])) else [])
         if not calls:
+            text = reply["content"].strip()
             ok_steps = [s for s in steps if s.error is None]
-            if not ok_steps and re.search(r"\d", reply["content"]) and not nudged:
+            bad = ungrounded_numbers(text, evidence)
+            if (not text or bad) and not ok_steps and not nudged:
                 nudged = True
-                messages += [{"role": "assistant", "content": reply["content"]}, {"role": "user", "content": NUDGE}]
+                messages += [{"role": "assistant", "content": text}, {"role": "user", "content": NUDGE}]
                 continue
-            return AgentAnswer(reply["content"].strip(), steps)
+            if ok_steps and (not text or bad):
+                note = f"The model's wording had numbers not found in the results ({', '.join(bad)}); showing the verified tool output instead." if bad else ""
+                return AgentAnswer(" ".join(s.result.text for s in ok_steps[-2:]), steps, note)
+            if bad or not text:
+                return AgentAnswer("I couldn't get a verified answer. Try rephrasing the question or naming the column.", steps)
+            return AgentAnswer(text, steps)
         messages.append({"role": "assistant", "content": reply["content"],
                          "tool_calls": [{"function": {"name": c["name"], "arguments": c["arguments"]}} for c in calls]})
         for call in calls:
@@ -123,6 +135,7 @@ def run_agent(question: str, state: DatasetState, model: ChatModel, history: lis
                 content = f"ERROR: {e} Fix the arguments and try again."
             step.seconds = time.perf_counter() - t0
             steps.append(step)
+            evidence += "\n" + content
             messages.append({"role": "tool", "content": content, "tool_name": call["name"]})
     last = next((s.result.text for s in reversed(steps) if s.result), "I could not finish this question.")
     return AgentAnswer(f"(Stopped after {max_steps} steps.) {last}", steps)
