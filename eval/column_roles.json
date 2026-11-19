@@ -1,0 +1,24 @@
+{
+  "_about": "Correct role of every column, for scoring column-role detection (python eval/score_roles.py). A list means any of those roles is acceptable; 'other' means the column needs no role. Files under 'real' are public datasets kept outside the repo (pass --real-dir).",
+  "samples": {
+    "toko_sembako.csv": {"tanggal": "date", "produk": "product", "kategori": "category", "terjual": "quantity", "harga_modal": "cost", "harga_jual": "price", "pendapatan": "revenue", "laba": "profit", "stok_akhir": "stock"},
+    "sales_id.csv": {"order_id": "transaction_id", "order_date": "date", "city": "city", "channel": "channel", "category": "category", "product": "product", "quantity": "quantity", "unit_price": "price", "discount_pct": "discount", "revenue": "revenue", "payment_method": "payment", "customer_age": "age"},
+    "employees.csv": {"employee_id": "employee_id", "department": "department", "city": "city", "hire_date": "hire_date", "years_experience": "experience", "monthly_salary_idr": "salary", "performance_score": "performance", "training_hours": "training", "left_company": "attrition"}
+  },
+  "messy": {
+    "pos_kasir_export.csv": {"Tanggal": "date", "Jam": "other", "No. Struk": "transaction_id", "Outlet": "store", "Kategori": "category", "Nama Item": "product", "Varian": "other", "Qty": "quantity", "Harga Satuan": "price", "Diskon": "discount", "Subtotal": "revenue", "Metode Pembayaran": "payment", "Kasir": "cashier"},
+    "pesanan_marketplace.csv": {"No. Pesanan": "transaction_id", "Status Pesanan": "status", "Waktu Pesanan Dibuat": "date", "Nama Produk": "product", "SKU": "sku", "Jumlah": "quantity", "Harga Awal": ["other", "price"], "Harga Setelah Diskon": "price", "Total Harga Produk": "revenue", "Ongkos Kirim": "shipping", "Total Pembayaran": ["other", "revenue"], "Kota/Kabupaten": "city", "Provinsi": ["city", "other"], "Metode Pembayaran": "payment", "Username Pembeli": "customer"},
+    "laporan_stok.csv": {"Tanggal": "date", "Kode Barang": "sku", "Nama Barang": "product", "Satuan": "unit", "Stok Awal": "opening_stock", "Masuk": "stock_in", "Keluar": "quantity", "Stok Akhir": "stock", "Keterangan": "other"},
+    "pembelian_supplier.csv": {"Tgl Beli": "date", "No. Faktur": "transaction_id", "Supplier": "supplier", "Nama Barang": "product", "Qty": "quantity", "Satuan": "unit", "Harga Beli": "cost", "Total": "other", "Status Bayar": "status", "Jatuh Tempo": "other"},
+    "buku_penjualan_manual.xlsx": {"No": "other", "Tgl": "date", "Nama Barang": "product", "Jml": "quantity", "Harga": "price", "Total": "revenue", "Ket": "other"}
+  },
+  "heldout": {
+    "kasir_v2.csv": {"Tgl Transaksi": "date", "Kode Struk": "transaction_id", "Lokasi": "store", "Produk": "product", "Jumlah Item": "quantity", "Harga": "price", "Total Bayar": "revenue", "Pembayaran": "payment", "Pelanggan": "customer"},
+    "orders_en.csv": {"OrderID": "transaction_id", "OrderDate": "date", "ProductName": "product", "Units": "quantity", "UnitPrice": "price", "LineTotal": "revenue", "Region": "city", "SalesRep": "cashier", "ShipMode": ["channel", "other"]}
+  },
+  "real": {
+    "dirty_cafe_sales.csv": {"Transaction ID": "transaction_id", "Item": "product", "Quantity": "quantity", "Price Per Unit": "price", "Total Spent": "revenue", "Payment Method": "payment", "Location": "channel", "Transaction Date": "date"},
+    "retail_store_sales.csv": {"Transaction ID": "transaction_id", "Customer ID": "customer", "Category": "category", "Item": "product", "Price Per Unit": "price", "Quantity": "quantity", "Total Spent": "revenue", "Payment Method": "payment", "Location": "channel", "Transaction Date": "date", "Discount Applied": "discount"},
+    "sales_data_sample.csv": {"ORDERNUMBER": "transaction_id", "QUANTITYORDERED": "quantity", "PRICEEACH": "price", "ORDERLINENUMBER": "other", "SALES": "revenue", "ORDERDATE": "date", "STATUS": "status", "QTR_ID": "other", "MONTH_ID": "month", "YEAR_ID": "year", "PRODUCTLINE": "category", "MSRP": "other", "PRODUCTCODE": "sku", "CUSTOMERNAME": "customer", "PHONE": "other", "ADDRESSLINE1": "other", "ADDRESSLINE2": "other", "CITY": "city", "STATE": ["city", "other"], "POSTALCODE": "other", "COUNTRY": "country", "TERRITORY": "other", "CONTACTLASTNAME": "other", "CONTACTFIRSTNAME": "other", "DEALSIZE": "other"}
+  }
+}

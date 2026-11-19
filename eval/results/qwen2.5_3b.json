@@ -7,7 +7,7 @@
     "core_heldout": "17/17",
     "other": "16/18",
     "avg_steps": 0.99,
-    "avg_seconds": 1.2
+    "avg_seconds": 1.1
   },
   "rows": [
     {
@@ -76,7 +76,7 @@
       "answer": "There are 46 missing values in the unit_price column.",
       "ok": true,
       "steps": 1,
-      "seconds": 23.6,
+      "seconds": 23.8,
       "core": false,
       "heldout": false
     },
@@ -86,7 +86,7 @@
       "answer": "There are 25 duplicate rows in the dataset. After removing them, the dataset now has 3000 rows.",
       "ok": true,
       "steps": 1,
-      "seconds": 1.6,
+      "seconds": 1.7,
       "core": false,
       "heldout": false
     },
@@ -136,17 +136,17 @@
       "answer": "There are 6 outliers in the 'quantity' column using the IQR method. The outlier values are: 250, 250, 250, 250, 250, and 250. The normal range for the 'quantity' column is -1.00 to 7.00.",
       "ok": true,
       "steps": 1,
-      "seconds": 5.8,
+      "seconds": 6.0,
       "core": false,
       "heldout": false
     },
     {
       "question": "What is the correlation between quantity and revenue?",
       "expected": "0.73",
-      "answer": "The strongest correlation is between 'quantity' and 'revenue', with a correlation coefficient of 0.728.",
+      "answer": "The strongest correlation is between 'quantity' and 'revenue' with a correlation coefficient of 0.728.",
       "ok": true,
       "steps": 1,
-      "seconds": 1.9,
+      "seconds": 2.1,
       "core": false,
       "heldout": false
     },
@@ -173,10 +173,10 @@
     {
       "question": "What percentage of orders were paid with QRIS?",
       "expected": "20.297520661157026",
-      "answer": "20.3% of the orders were paid with QRIS.",
-      "ok": true,
+      "answer": "100.0% of orders were paid with QRIS.",
+      "ok": false,
       "steps": 1,
-      "seconds": 2.0,
+      "seconds": 2.6,
       "core": false,
       "heldout": false
     },
@@ -186,7 +186,7 @@
       "answer": "The median unit price for Electronics products is 353,700.00.",
       "ok": true,
       "steps": 1,
-      "seconds": 2.2,
+      "seconds": 2.4,
       "core": false,
       "heldout": false
     },
@@ -206,7 +206,7 @@
       "answer": "There were 1,484 orders that had a discount.",
       "ok": true,
       "steps": 1,
-      "seconds": 11.8,
+      "seconds": 2.3,
       "core": false,
       "heldout": false
     },
@@ -233,10 +233,10 @@
     {
       "question": "Which channel has the higher average revenue per order, Online or Store?",
       "expected": "Store",
-      "answer": "The Store channel has a higher average revenue per order with an average of approximately 1,195,297 compared to the Online channel's average of approximately 1,117,389.",
+      "answer": "The Store channel has a higher average revenue per order with an average of Rp 1,195,296.57 compared to the Online channel's average of Rp 1,117,388.62.",
       "ok": true,
       "steps": 1,
-      "seconds": 2.9,
+      "seconds": 3.2,
       "core": false,
       "heldout": false
     },
@@ -246,7 +246,7 @@
       "answer": "The largest quantity in a single order is 250.00.",
       "ok": true,
       "steps": 1,
-      "seconds": 1.7,
+      "seconds": 1.8,
       "core": false,
       "heldout": false
     },
@@ -276,7 +276,7 @@
       "answer": "57 employees left the company.",
       "ok": true,
       "steps": 1,
-      "seconds": 21.2,
+      "seconds": 21.8,
       "core": true,
       "heldout": false
     },
@@ -306,7 +306,7 @@
       "answer": "The correlation between years of experience and monthly salary is 0.874, indicating a strong positive relationship.",
       "ok": true,
       "steps": 1,
-      "seconds": 2.0,
+      "seconds": 2.1,
       "core": false,
       "heldout": false
     },
@@ -326,7 +326,7 @@
       "answer": "There are 71 employees working remotely.",
       "ok": true,
       "steps": 1,
-      "seconds": 7.8,
+      "seconds": 7.9,
       "core": false,
       "heldout": false
     },
@@ -336,7 +336,7 @@
       "answer": "I couldn't get a verified answer. Try rephrasing the question or naming the column.",
       "ok": false,
       "steps": 0,
-      "seconds": 2.7,
+      "seconds": 2.8,
       "core": false,
       "heldout": false
     },
@@ -346,17 +346,17 @@
       "answer": "The median years of experience for employees in the Engineering department is 4.2 years.",
       "ok": true,
       "steps": 1,
-      "seconds": 2.2,
+      "seconds": 2.3,
       "core": false,
       "heldout": false
     },
     {
       "question": "How many employees have a missing performance score?",
       "expected": "18",
-      "answer": "There are 18 missing performance scores in the dataset.",
+      "answer": "There are 18 employees with a missing performance score.",
       "ok": true,
       "steps": 1,
-      "seconds": 1.4,
+      "seconds": 1.5,
       "core": false,
       "heldout": false
     },
@@ -393,10 +393,10 @@
     {
       "question": "How many employees have more than 10 years of experience?",
       "expected": "24",
-      "answer": "There are 20 employees with more than 10 years of experience. The highest number of employees with such experience is 3.00 years, which includes 3 employees. The lowest number is 1.00 year, with 1 employee having exactly 1 year of experience.",
-      "ok": false,
+      "answer": "There are 24 employees with more than 10 years of experience.",
+      "ok": true,
       "steps": 1,
-      "seconds": 4.9,
+      "seconds": 8.2,
       "core": false,
       "heldout": false
     },

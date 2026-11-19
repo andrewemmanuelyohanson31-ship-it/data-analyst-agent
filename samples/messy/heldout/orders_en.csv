@@ -1,0 +1,301 @@
+OrderID,OrderDate,ProductName,Units,UnitPrice,LineTotal,Region,SalesRep,ShipMode
+SO-50000,05/28/2026,Notebook A5,10,3.25,32.5,North,Rep 1,Express
+SO-50001,05/19/2026,Backpack,5,39.9,199.5,East,Rep 2,Standard
+SO-50002,05/09/2026,USB Cable,7,6.0,42.0,South,Rep 2,Standard
+SO-50003,05/26/2026,USB Cable,9,6.0,54.0,East,Rep 1,Express
+SO-50004,06/17/2026,Notebook A5,10,3.25,32.5,West,Rep 2,Express
+SO-50005,05/30/2026,Desk Lamp,5,24.5,122.5,West,Rep 3,Standard
+SO-50006,06/10/2026,USB Cable,1,6.0,6.0,South,Rep 1,Standard
+SO-50007,06/29/2026,Notebook A5,5,3.25,16.25,North,Rep 1,Standard
+SO-50008,05/05/2026,Notebook A5,7,3.25,22.75,North,Rep 2,Express
+SO-50009,05/17/2026,Desk Lamp,11,24.5,269.5,East,Rep 3,Standard
+SO-50010,05/26/2026,Notebook A5,10,3.25,32.5,West,Rep 1,Express
+SO-50011,05/17/2026,USB Cable,5,6.0,30.0,West,Rep 2,Standard
+SO-50012,06/15/2026,Notebook A5,10,3.25,32.5,North,Rep 1,Standard
+SO-50013,06/04/2026,Desk Lamp,7,24.5,171.5,East,Rep 2,Standard
+SO-50014,05/10/2026,Desk Lamp,5,24.5,122.5,West,Rep 2,Standard
+SO-50015,06/25/2026,USB Cable,8,6.0,48.0,South,Rep 2,Standard
+SO-50016,06/01/2026,Desk Lamp,1,24.5,24.5,East,Rep 3,Standard
+SO-50017,05/27/2026,Notebook A5,3,3.25,9.75,South,Rep 3,Standard
+SO-50018,06/11/2026,Notebook A5,10,3.25,32.5,West,Rep 1,Standard
+SO-50019,05/09/2026,USB Cable,8,6.0,48.0,North,Rep 1,Standard
+SO-50020,05/19/2026,Backpack,4,39.9,159.6,West,Rep 2,Standard
+SO-50021,06/12/2026,Desk Lamp,10,24.5,245.0,East,Rep 1,Standard
+SO-50022,06/22/2026,Desk Lamp,9,24.5,220.5,North,Rep 2,Express
+SO-50023,06/28/2026,USB Cable,10,6.0,60.0,West,Rep 3,Express
+SO-50024,05/24/2026,USB Cable,9,6.0,54.0,North,Rep 2,Express
+SO-50025,05/11/2026,Desk Lamp,1,24.5,24.5,West,Rep 2,Standard
+SO-50026,05/18/2026,Notebook A5,5,3.25,16.25,West,Rep 1,Express
+SO-50027,06/11/2026,USB Cable,4,6.0,24.0,West,Rep 3,Standard
+SO-50028,05/28/2026,Desk Lamp,11,24.5,269.5,North,Rep 3,Express
+SO-50029,06/02/2026,Notebook A5,4,3.25,13.0,West,Rep 3,Express
+SO-50030,06/03/2026,Backpack,8,39.9,319.2,West,Rep 1,Express
+SO-50031,06/26/2026,Desk Lamp,3,24.5,73.5,West,Rep 3,Express
+SO-50032,05/06/2026,USB Cable,2,6.0,12.0,West,Rep 1,Express
+SO-50033,06/05/2026,Backpack,8,39.9,319.2,East,Rep 2,Express
+SO-50034,05/14/2026,Notebook A5,2,3.25,6.5,West,Rep 2,Express
+SO-50035,05/31/2026,Desk Lamp,9,24.5,220.5,North,Rep 1,Standard
+SO-50036,05/18/2026,Desk Lamp,6,24.5,147.0,North,Rep 3,Standard
+SO-50037,05/23/2026,Desk Lamp,8,24.5,196.0,East,Rep 3,Express
+SO-50038,06/26/2026,Backpack,11,39.9,438.9,East,Rep 3,Express
+SO-50039,06/29/2026,Notebook A5,3,3.25,9.75,East,Rep 1,Express
+SO-50040,05/20/2026,USB Cable,8,6.0,48.0,North,Rep 3,Standard
+SO-50041,06/14/2026,Desk Lamp,3,24.5,73.5,South,Rep 3,Express
+SO-50042,06/11/2026,USB Cable,11,6.0,66.0,West,Rep 3,Express
+SO-50043,06/05/2026,USB Cable,9,6.0,54.0,West,Rep 1,Express
+SO-50044,06/16/2026,Backpack,2,39.9,79.8,West,Rep 2,Express
+SO-50045,06/21/2026,Notebook A5,2,3.25,6.5,North,Rep 1,Express
+SO-50046,06/01/2026,USB Cable,6,6.0,36.0,North,Rep 1,Standard
+SO-50047,06/23/2026,Backpack,2,39.9,79.8,East,Rep 1,Standard
+SO-50048,05/07/2026,Notebook A5,1,3.25,3.25,East,Rep 3,Standard
+SO-50049,05/16/2026,Desk Lamp,5,24.5,122.5,South,Rep 2,Express
+SO-50050,05/11/2026,Backpack,10,39.9,399.0,North,Rep 2,Express
+SO-50051,06/16/2026,Desk Lamp,4,24.5,98.0,South,Rep 1,Standard
+SO-50052,05/31/2026,USB Cable,2,6.0,12.0,North,Rep 1,Express
+SO-50053,05/21/2026,Backpack,10,39.9,399.0,East,Rep 1,Express
+SO-50054,05/24/2026,Desk Lamp,2,24.5,49.0,West,Rep 2,Express
+SO-50055,06/02/2026,USB Cable,4,6.0,24.0,West,Rep 3,Standard
+SO-50056,05/19/2026,Desk Lamp,5,24.5,122.5,West,Rep 3,Standard
+SO-50057,06/17/2026,Desk Lamp,10,24.5,245.0,North,Rep 2,Express
+SO-50058,06/13/2026,Desk Lamp,8,24.5,196.0,South,Rep 2,Standard
+SO-50059,05/27/2026,Desk Lamp,1,24.5,24.5,West,Rep 3,Express
+SO-50060,06/05/2026,Notebook A5,7,3.25,22.75,South,Rep 1,Express
+SO-50061,06/25/2026,Desk Lamp,3,24.5,73.5,North,Rep 3,Express
+SO-50062,06/02/2026,Desk Lamp,11,24.5,269.5,North,Rep 3,Express
+SO-50063,05/06/2026,USB Cable,1,6.0,6.0,East,Rep 3,Standard
+SO-50064,06/23/2026,USB Cable,4,6.0,24.0,East,Rep 1,Standard
+SO-50065,05/19/2026,USB Cable,3,6.0,18.0,South,Rep 2,Standard
+SO-50066,06/15/2026,Notebook A5,10,3.25,32.5,North,Rep 3,Standard
+SO-50067,06/13/2026,Notebook A5,5,3.25,16.25,North,Rep 1,Express
+SO-50068,05/29/2026,Backpack,7,39.9,279.3,North,Rep 1,Standard
+SO-50069,06/24/2026,Notebook A5,2,3.25,6.5,East,Rep 1,Standard
+SO-50070,06/28/2026,Notebook A5,8,3.25,26.0,South,Rep 1,Standard
+SO-50071,06/29/2026,Notebook A5,5,3.25,16.25,North,Rep 2,Express
+SO-50072,05/31/2026,Backpack,4,39.9,159.6,North,Rep 1,Standard
+SO-50073,06/15/2026,Notebook A5,4,3.25,13.0,North,Rep 1,Express
+SO-50074,06/19/2026,USB Cable,3,6.0,18.0,East,Rep 3,Express
+SO-50075,06/19/2026,Notebook A5,9,3.25,29.25,North,Rep 3,Standard
+SO-50076,06/08/2026,Desk Lamp,4,24.5,98.0,East,Rep 1,Standard
+SO-50077,05/03/2026,Notebook A5,11,3.25,35.75,East,Rep 3,Express
+SO-50078,05/12/2026,Notebook A5,11,3.25,35.75,South,Rep 3,Standard
+SO-50079,05/28/2026,Notebook A5,11,3.25,35.75,North,Rep 1,Express
+SO-50080,05/27/2026,USB Cable,10,6.0,60.0,East,Rep 3,Standard
+SO-50081,05/23/2026,Notebook A5,8,3.25,26.0,North,Rep 1,Standard
+SO-50082,06/09/2026,Backpack,9,39.9,359.1,North,Rep 3,Express
+SO-50083,05/12/2026,Backpack,5,39.9,199.5,North,Rep 2,Express
+SO-50084,05/03/2026,Notebook A5,6,3.25,19.5,West,Rep 1,Standard
+SO-50085,05/02/2026,Desk Lamp,11,24.5,269.5,North,Rep 1,Standard
+SO-50086,05/09/2026,USB Cable,4,6.0,24.0,West,Rep 2,Express
+SO-50087,06/10/2026,Notebook A5,11,3.25,35.75,North,Rep 1,Express
+SO-50088,06/13/2026,Notebook A5,2,3.25,6.5,East,Rep 1,Standard
+SO-50089,06/21/2026,Desk Lamp,1,24.5,24.5,West,Rep 2,Standard
+SO-50090,05/01/2026,Notebook A5,3,3.25,9.75,West,Rep 2,Express
+SO-50091,05/08/2026,Notebook A5,3,3.25,9.75,South,Rep 3,Standard
+SO-50092,06/14/2026,USB Cable,4,6.0,24.0,North,Rep 3,Express
+SO-50093,05/01/2026,Backpack,1,39.9,39.9,South,Rep 3,Express
+SO-50094,05/04/2026,USB Cable,9,6.0,54.0,North,Rep 1,Express
+SO-50095,05/19/2026,Backpack,6,39.9,239.4,North,Rep 2,Express
+SO-50096,06/13/2026,USB Cable,1,6.0,6.0,North,Rep 1,Standard
+SO-50097,05/03/2026,USB Cable,8,6.0,48.0,East,Rep 1,Express
+SO-50098,06/07/2026,Backpack,5,39.9,199.5,East,Rep 2,Standard
+SO-50099,06/20/2026,Desk Lamp,2,24.5,49.0,West,Rep 2,Standard
+SO-50100,05/21/2026,Desk Lamp,4,24.5,98.0,East,Rep 2,Standard
+SO-50101,05/23/2026,Backpack,6,39.9,239.4,South,Rep 1,Express
+SO-50102,06/09/2026,Desk Lamp,11,24.5,269.5,West,Rep 1,Express
+SO-50103,06/18/2026,Notebook A5,8,3.25,26.0,East,Rep 3,Standard
+SO-50104,06/29/2026,Notebook A5,3,3.25,9.75,West,Rep 2,Standard
+SO-50105,05/08/2026,Notebook A5,3,3.25,9.75,North,Rep 1,Standard
+SO-50106,06/09/2026,USB Cable,9,6.0,54.0,West,Rep 2,Standard
+SO-50107,06/22/2026,Backpack,1,39.9,39.9,North,Rep 2,Express
+SO-50108,06/25/2026,Desk Lamp,5,24.5,122.5,South,Rep 3,Standard
+SO-50109,05/16/2026,Notebook A5,8,3.25,26.0,North,Rep 2,Express
+SO-50110,05/30/2026,Desk Lamp,8,24.5,196.0,North,Rep 2,Express
+SO-50111,05/18/2026,Notebook A5,9,3.25,29.25,South,Rep 3,Standard
+SO-50112,05/09/2026,USB Cable,6,6.0,36.0,West,Rep 3,Express
+SO-50113,06/03/2026,Desk Lamp,10,24.5,245.0,East,Rep 2,Standard
+SO-50114,06/18/2026,Notebook A5,3,3.25,9.75,South,Rep 3,Standard
+SO-50115,05/11/2026,Desk Lamp,6,24.5,147.0,North,Rep 3,Standard
+SO-50116,06/06/2026,Notebook A5,6,3.25,19.5,South,Rep 1,Standard
+SO-50117,05/11/2026,Backpack,3,39.9,119.7,South,Rep 3,Express
+SO-50118,06/02/2026,Notebook A5,7,3.25,22.75,East,Rep 2,Express
+SO-50119,06/18/2026,USB Cable,9,6.0,54.0,West,Rep 1,Standard
+SO-50120,05/27/2026,Backpack,5,39.9,199.5,West,Rep 3,Express
+SO-50121,05/11/2026,Desk Lamp,3,24.5,73.5,West,Rep 1,Express
+SO-50122,06/10/2026,USB Cable,5,6.0,30.0,South,Rep 3,Express
+SO-50123,05/14/2026,Desk Lamp,2,24.5,49.0,West,Rep 1,Express
+SO-50124,05/02/2026,Notebook A5,7,3.25,22.75,North,Rep 2,Standard
+SO-50125,06/04/2026,USB Cable,1,6.0,6.0,South,Rep 1,Express
+SO-50126,06/13/2026,Backpack,1,39.9,39.9,East,Rep 2,Express
+SO-50127,06/18/2026,Backpack,5,39.9,199.5,South,Rep 1,Express
+SO-50128,05/13/2026,USB Cable,1,6.0,6.0,North,Rep 1,Express
+SO-50129,06/26/2026,Notebook A5,11,3.25,35.75,West,Rep 3,Express
+SO-50130,06/04/2026,Notebook A5,1,3.25,3.25,North,Rep 1,Standard
+SO-50131,06/19/2026,Desk Lamp,2,24.5,49.0,East,Rep 1,Express
+SO-50132,05/29/2026,Notebook A5,9,3.25,29.25,West,Rep 1,Standard
+SO-50133,06/18/2026,Desk Lamp,8,24.5,196.0,East,Rep 2,Express
+SO-50134,06/05/2026,USB Cable,3,6.0,18.0,West,Rep 3,Express
+SO-50135,05/16/2026,USB Cable,5,6.0,30.0,North,Rep 2,Standard
+SO-50136,06/02/2026,Desk Lamp,4,24.5,98.0,South,Rep 3,Express
+SO-50137,06/11/2026,Notebook A5,11,3.25,35.75,North,Rep 1,Standard
+SO-50138,06/10/2026,Desk Lamp,9,24.5,220.5,East,Rep 3,Standard
+SO-50139,06/02/2026,Notebook A5,7,3.25,22.75,North,Rep 2,Standard
+SO-50140,05/16/2026,Desk Lamp,4,24.5,98.0,South,Rep 2,Standard
+SO-50141,06/05/2026,Desk Lamp,1,24.5,24.5,West,Rep 2,Express
+SO-50142,05/17/2026,USB Cable,4,6.0,24.0,West,Rep 3,Express
+SO-50143,05/06/2026,Notebook A5,5,3.25,16.25,North,Rep 1,Express
+SO-50144,05/05/2026,Notebook A5,1,3.25,3.25,South,Rep 1,Standard
+SO-50145,05/16/2026,Backpack,9,39.9,359.1,East,Rep 1,Express
+SO-50146,06/26/2026,USB Cable,3,6.0,18.0,South,Rep 2,Express
+SO-50147,05/10/2026,USB Cable,7,6.0,42.0,North,Rep 2,Express
+SO-50148,05/09/2026,Notebook A5,10,3.25,32.5,South,Rep 3,Standard
+SO-50149,06/23/2026,USB Cable,3,6.0,18.0,West,Rep 2,Express
+SO-50150,06/14/2026,Desk Lamp,2,24.5,49.0,North,Rep 1,Express
+SO-50151,06/18/2026,Backpack,7,39.9,279.3,South,Rep 2,Standard
+SO-50152,06/21/2026,USB Cable,4,6.0,24.0,North,Rep 3,Express
+SO-50153,05/08/2026,Desk Lamp,6,24.5,147.0,West,Rep 1,Express
+SO-50154,05/14/2026,Desk Lamp,5,24.5,122.5,North,Rep 2,Standard
+SO-50155,05/21/2026,USB Cable,2,6.0,12.0,West,Rep 2,Standard
+SO-50156,05/27/2026,Notebook A5,1,3.25,3.25,West,Rep 2,Standard
+SO-50157,05/18/2026,Desk Lamp,2,24.5,49.0,West,Rep 2,Express
+SO-50158,05/23/2026,Desk Lamp,3,24.5,73.5,South,Rep 3,Express
+SO-50159,06/16/2026,Notebook A5,3,3.25,9.75,West,Rep 1,Standard
+SO-50160,05/12/2026,Desk Lamp,8,24.5,196.0,North,Rep 3,Express
+SO-50161,05/08/2026,Notebook A5,7,3.25,22.75,South,Rep 2,Express
+SO-50162,05/09/2026,Backpack,11,39.9,438.9,East,Rep 3,Express
+SO-50163,06/18/2026,USB Cable,1,6.0,6.0,West,Rep 1,Standard
+SO-50164,05/02/2026,Desk Lamp,3,24.5,73.5,West,Rep 3,Express
+SO-50165,06/10/2026,Desk Lamp,8,24.5,196.0,East,Rep 3,Express
+SO-50166,05/29/2026,USB Cable,10,6.0,60.0,East,Rep 2,Express
+SO-50167,05/25/2026,Backpack,8,39.9,319.2,East,Rep 3,Express
+SO-50168,05/20/2026,Desk Lamp,7,24.5,171.5,East,Rep 3,Standard
+SO-50169,06/12/2026,Desk Lamp,1,24.5,24.5,South,Rep 2,Standard
+SO-50170,05/30/2026,Notebook A5,5,3.25,16.25,East,Rep 3,Express
+SO-50171,06/12/2026,Backpack,7,39.9,279.3,South,Rep 3,Standard
+SO-50172,05/19/2026,Notebook A5,7,3.25,22.75,East,Rep 2,Standard
+SO-50173,05/01/2026,Notebook A5,4,3.25,13.0,West,Rep 3,Express
+SO-50174,05/24/2026,Backpack,7,39.9,279.3,South,Rep 3,Express
+SO-50175,05/09/2026,USB Cable,9,6.0,54.0,North,Rep 3,Express
+SO-50176,05/25/2026,Backpack,3,39.9,119.7,East,Rep 1,Standard
+SO-50177,06/17/2026,Desk Lamp,8,24.5,196.0,South,Rep 1,Express
+SO-50178,05/28/2026,Notebook A5,8,3.25,26.0,West,Rep 2,Standard
+SO-50179,05/20/2026,Backpack,5,39.9,199.5,South,Rep 2,Express
+SO-50180,05/17/2026,Desk Lamp,3,24.5,73.5,North,Rep 2,Standard
+SO-50181,06/18/2026,Backpack,7,39.9,279.3,East,Rep 2,Express
+SO-50182,05/11/2026,Notebook A5,5,3.25,16.25,North,Rep 2,Standard
+SO-50183,05/22/2026,USB Cable,11,6.0,66.0,West,Rep 3,Express
+SO-50184,06/11/2026,Notebook A5,6,3.25,19.5,East,Rep 1,Standard
+SO-50185,05/21/2026,USB Cable,2,6.0,12.0,North,Rep 2,Express
+SO-50186,06/01/2026,Desk Lamp,1,24.5,24.5,East,Rep 3,Express
+SO-50187,06/22/2026,Desk Lamp,3,24.5,73.5,East,Rep 1,Express
+SO-50188,06/22/2026,Backpack,6,39.9,239.4,East,Rep 3,Express
+SO-50189,06/09/2026,Backpack,5,39.9,199.5,East,Rep 3,Standard
+SO-50190,05/20/2026,Backpack,1,39.9,39.9,East,Rep 2,Express
+SO-50191,05/30/2026,Notebook A5,2,3.25,6.5,West,Rep 1,Express
+SO-50192,05/12/2026,USB Cable,4,6.0,24.0,West,Rep 3,Standard
+SO-50193,06/03/2026,Backpack,8,39.9,319.2,East,Rep 3,Standard
+SO-50194,05/09/2026,Notebook A5,9,3.25,29.25,North,Rep 3,Express
+SO-50195,05/07/2026,USB Cable,6,6.0,36.0,West,Rep 3,Standard
+SO-50196,06/24/2026,Desk Lamp,8,24.5,196.0,South,Rep 3,Standard
+SO-50197,06/21/2026,Notebook A5,3,3.25,9.75,West,Rep 1,Express
+SO-50198,05/20/2026,Notebook A5,1,3.25,3.25,North,Rep 1,Express
+SO-50199,06/28/2026,USB Cable,1,6.0,6.0,West,Rep 1,Standard
+SO-50200,06/12/2026,Notebook A5,10,3.25,32.5,West,Rep 1,Express
+SO-50201,06/14/2026,Backpack,7,39.9,279.3,South,Rep 2,Standard
+SO-50202,05/01/2026,Notebook A5,11,3.25,35.75,West,Rep 3,Express
+SO-50203,05/30/2026,Desk Lamp,3,24.5,73.5,South,Rep 1,Standard
+SO-50204,06/21/2026,Notebook A5,9,3.25,29.25,North,Rep 3,Express
+SO-50205,05/04/2026,USB Cable,6,6.0,36.0,North,Rep 3,Express
+SO-50206,06/15/2026,USB Cable,11,6.0,66.0,East,Rep 2,Standard
+SO-50207,05/07/2026,Notebook A5,7,3.25,22.75,West,Rep 3,Standard
+SO-50208,05/21/2026,Backpack,9,39.9,359.1,North,Rep 3,Standard
+SO-50209,05/27/2026,USB Cable,9,6.0,54.0,North,Rep 3,Express
+SO-50210,05/20/2026,Notebook A5,6,3.25,19.5,South,Rep 1,Standard
+SO-50211,05/17/2026,Notebook A5,2,3.25,6.5,West,Rep 3,Standard
+SO-50212,06/09/2026,Desk Lamp,7,24.5,171.5,East,Rep 3,Express
+SO-50213,06/16/2026,Desk Lamp,10,24.5,245.0,East,Rep 1,Express
+SO-50214,06/15/2026,Backpack,6,39.9,239.4,East,Rep 1,Express
+SO-50215,05/31/2026,USB Cable,2,6.0,12.0,South,Rep 2,Express
+SO-50216,06/26/2026,Desk Lamp,6,24.5,147.0,East,Rep 2,Express
+SO-50217,06/03/2026,USB Cable,7,6.0,42.0,South,Rep 1,Standard
+SO-50218,05/10/2026,Desk Lamp,2,24.5,49.0,West,Rep 2,Standard
+SO-50219,06/04/2026,Backpack,2,39.9,79.8,East,Rep 2,Standard
+SO-50220,06/29/2026,Backpack,4,39.9,159.6,West,Rep 1,Standard
+SO-50221,06/14/2026,USB Cable,9,6.0,54.0,East,Rep 3,Express
+SO-50222,06/24/2026,USB Cable,5,6.0,30.0,West,Rep 2,Standard
+SO-50223,05/15/2026,Notebook A5,10,3.25,32.5,North,Rep 1,Express
+SO-50224,06/01/2026,Backpack,11,39.9,438.9,East,Rep 1,Standard
+SO-50225,06/10/2026,Desk Lamp,1,24.5,24.5,South,Rep 2,Standard
+SO-50226,05/26/2026,Backpack,3,39.9,119.7,North,Rep 3,Standard
+SO-50227,05/18/2026,Backpack,11,39.9,438.9,West,Rep 3,Standard
+SO-50228,05/13/2026,Desk Lamp,11,24.5,269.5,South,Rep 2,Express
+SO-50229,06/25/2026,Backpack,2,39.9,79.8,East,Rep 1,Express
+SO-50230,06/08/2026,Backpack,4,39.9,159.6,West,Rep 1,Standard
+SO-50231,06/12/2026,Notebook A5,4,3.25,13.0,East,Rep 3,Standard
+SO-50232,05/31/2026,Backpack,5,39.9,199.5,North,Rep 1,Express
+SO-50233,05/01/2026,Desk Lamp,3,24.5,73.5,North,Rep 2,Standard
+SO-50234,06/19/2026,Notebook A5,3,3.25,9.75,North,Rep 2,Express
+SO-50235,05/08/2026,Notebook A5,11,3.25,35.75,East,Rep 3,Express
+SO-50236,05/16/2026,Backpack,3,39.9,119.7,West,Rep 3,Standard
+SO-50237,05/02/2026,Backpack,10,39.9,399.0,North,Rep 1,Express
+SO-50238,06/23/2026,USB Cable,8,6.0,48.0,South,Rep 3,Standard
+SO-50239,05/31/2026,USB Cable,3,6.0,18.0,West,Rep 2,Express
+SO-50240,05/26/2026,Backpack,2,39.9,79.8,West,Rep 1,Express
+SO-50241,05/11/2026,Notebook A5,9,3.25,29.25,South,Rep 3,Standard
+SO-50242,06/14/2026,USB Cable,9,6.0,54.0,East,Rep 2,Standard
+SO-50243,06/02/2026,USB Cable,6,6.0,36.0,East,Rep 2,Standard
+SO-50244,06/24/2026,Backpack,3,39.9,119.7,West,Rep 2,Standard
+SO-50245,06/28/2026,Notebook A5,7,3.25,22.75,West,Rep 2,Express
+SO-50246,06/23/2026,USB Cable,7,6.0,42.0,South,Rep 3,Express
+SO-50247,06/28/2026,Desk Lamp,7,24.5,171.5,North,Rep 2,Express
+SO-50248,06/14/2026,Notebook A5,6,3.25,19.5,East,Rep 1,Express
+SO-50249,06/12/2026,Desk Lamp,5,24.5,122.5,West,Rep 2,Standard
+SO-50250,05/26/2026,Backpack,5,39.9,199.5,North,Rep 2,Standard
+SO-50251,05/17/2026,USB Cable,2,6.0,12.0,North,Rep 1,Express
+SO-50252,05/30/2026,Backpack,2,39.9,79.8,West,Rep 3,Express
+SO-50253,06/07/2026,Notebook A5,4,3.25,13.0,South,Rep 1,Standard
+SO-50254,06/05/2026,Backpack,5,39.9,199.5,North,Rep 2,Express
+SO-50255,06/13/2026,USB Cable,7,6.0,42.0,North,Rep 3,Standard
+SO-50256,05/28/2026,USB Cable,9,6.0,54.0,West,Rep 3,Standard
+SO-50257,05/12/2026,USB Cable,1,6.0,6.0,West,Rep 1,Standard
+SO-50258,05/19/2026,Backpack,9,39.9,359.1,South,Rep 3,Express
+SO-50259,06/19/2026,USB Cable,4,6.0,24.0,East,Rep 1,Standard
+SO-50260,06/08/2026,Backpack,10,39.9,399.0,North,Rep 3,Standard
+SO-50261,05/10/2026,USB Cable,11,6.0,66.0,East,Rep 2,Express
+SO-50262,06/07/2026,USB Cable,3,6.0,18.0,West,Rep 3,Standard
+SO-50263,06/19/2026,Backpack,7,39.9,279.3,East,Rep 2,Express
+SO-50264,05/20/2026,Desk Lamp,2,24.5,49.0,West,Rep 2,Express
+SO-50265,05/10/2026,Notebook A5,3,3.25,9.75,North,Rep 1,Standard
+SO-50266,05/22/2026,USB Cable,8,6.0,48.0,South,Rep 1,Standard
+SO-50267,05/02/2026,Notebook A5,5,3.25,16.25,East,Rep 3,Express
+SO-50268,06/26/2026,USB Cable,8,6.0,48.0,North,Rep 1,Express
+SO-50269,06/07/2026,Notebook A5,1,3.25,3.25,West,Rep 1,Express
+SO-50270,05/03/2026,Desk Lamp,2,24.5,49.0,South,Rep 1,Standard
+SO-50271,06/26/2026,Backpack,5,39.9,199.5,East,Rep 3,Standard
+SO-50272,06/02/2026,USB Cable,4,6.0,24.0,West,Rep 1,Express
+SO-50273,05/22/2026,USB Cable,7,6.0,42.0,West,Rep 2,Standard
+SO-50274,06/10/2026,Desk Lamp,4,24.5,98.0,West,Rep 1,Express
+SO-50275,05/19/2026,Notebook A5,3,3.25,9.75,East,Rep 1,Standard
+SO-50276,06/07/2026,Backpack,11,39.9,438.9,West,Rep 2,Express
+SO-50277,05/17/2026,Backpack,2,39.9,79.8,East,Rep 2,Express
+SO-50278,05/05/2026,Backpack,10,39.9,399.0,East,Rep 2,Standard
+SO-50279,06/21/2026,Notebook A5,3,3.25,9.75,South,Rep 1,Standard
+SO-50280,05/11/2026,Notebook A5,1,3.25,3.25,West,Rep 2,Standard
+SO-50281,06/22/2026,Desk Lamp,10,24.5,245.0,South,Rep 1,Express
+SO-50282,06/22/2026,Backpack,10,39.9,399.0,South,Rep 1,Standard
+SO-50283,05/31/2026,Backpack,2,39.9,79.8,North,Rep 1,Standard
+SO-50284,05/15/2026,Notebook A5,9,3.25,29.25,South,Rep 1,Standard
+SO-50285,06/26/2026,Backpack,11,39.9,438.9,North,Rep 3,Express
+SO-50286,06/17/2026,USB Cable,9,6.0,54.0,North,Rep 1,Standard
+SO-50287,06/13/2026,Notebook A5,5,3.25,16.25,West,Rep 3,Express
+SO-50288,05/17/2026,Desk Lamp,5,24.5,122.5,North,Rep 3,Express
+SO-50289,05/25/2026,Notebook A5,7,3.25,22.75,South,Rep 2,Standard
+SO-50290,06/11/2026,Desk Lamp,1,24.5,24.5,West,Rep 2,Standard
+SO-50291,06/14/2026,USB Cable,4,6.0,24.0,South,Rep 3,Standard
+SO-50292,06/25/2026,Desk Lamp,5,24.5,122.5,South,Rep 1,Express
+SO-50293,06/18/2026,Desk Lamp,4,24.5,98.0,West,Rep 2,Express
+SO-50294,05/02/2026,Notebook A5,4,3.25,13.0,East,Rep 2,Standard
+SO-50295,06/10/2026,Backpack,9,39.9,359.1,North,Rep 1,Standard
+SO-50296,06/09/2026,USB Cable,9,6.0,54.0,East,Rep 2,Standard
+SO-50297,06/10/2026,Notebook A5,2,3.25,6.5,West,Rep 1,Express
+SO-50298,05/27/2026,Backpack,9,39.9,359.1,North,Rep 1,Standard
+SO-50299,05/15/2026,Backpack,6,39.9,239.4,North,Rep 2,Express

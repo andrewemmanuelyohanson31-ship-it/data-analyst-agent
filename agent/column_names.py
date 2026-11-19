@@ -15,7 +15,7 @@ ROLES: dict[str, dict] = {
         "invoice_date", "purchase_date", "created_at", "created_date", "datetime", "timestamp", "waktu",
         "tanggal_transaksi", "tgl_transaksi", "tanggal_order", "tanggal_pesanan", "tgl_pesanan", "tanggal_penjualan",
         "tgl_penjualan", "tanggal_invoice", "tanggal_faktur", "periode", "period"]},
-    "month": {"type": "text", "desc": "month label", "names": ["month", "bulan", "month_name", "nama_bulan"]},
+    "month": {"type": "label", "desc": "month: a name (Mei) or a number (5)", "names": ["month", "bulan", "month_name", "nama_bulan"]},
     "year": {"type": "number", "desc": "year", "names": ["year", "tahun"]},
 
     # ---- what was sold ----
@@ -26,14 +26,14 @@ ROLES: dict[str, dict] = {
         "no_pesanan", "nomor_pesanan", "id_pesanan"]},
     "product": {"type": "text", "desc": "product / item / menu name", "names": [
         "product", "product_name", "item", "item_name", "item_description", "menu", "menu_name", "produk",
-        "nama_produk", "barang", "nama_barang", "nama_item", "nama_menu", "variant", "varian", "nama_varian"]},
+        "nama_produk", "barang", "nama_barang", "nama_item", "nama_menu"]},
     "sku": {"type": "id", "desc": "product code", "names": [
         "sku", "product_code", "item_code", "product_id", "item_id", "barcode", "plu", "kode_produk", "kode_barang",
         "kode_item", "id_produk", "id_barang"]},
     "category": {"type": "text", "desc": "product group", "names": [
         "category", "product_category", "item_category", "sub_category", "subcategory", "kategori",
         "kategori_produk", "kategori_barang", "sub_kategori", "subkategori", "jenis", "jenis_barang", "jenis_produk",
-        "golongan", "kelompok", "kelompok_barang"]},
+        "golongan", "kelompok", "kelompok_barang", "product_line", "lini_produk"]},
     "brand": {"type": "text", "desc": "brand", "names": ["brand", "brand_name", "merek", "merk", "nama_merek"]},
 
     # ---- how many / how much ----
@@ -80,9 +80,10 @@ ROLES: dict[str, dict] = {
     "customer": {"type": "text", "desc": "customer", "names": [
         "customer", "customer_name", "customer_id", "client", "buyer", "member", "member_name", "pelanggan",
         "nama_pelanggan", "id_pelanggan", "pembeli", "nama_pembeli", "konsumen"]},
-    "city": {"type": "text", "desc": "city / area", "names": [
-        "city", "region", "area", "province", "state", "kota", "kabupaten", "kota_kabupaten", "provinsi",
-        "wilayah", "daerah", "kecamatan"]},
+    "city": {"type": "text", "desc": "city / area (earlier names win when two columns match)", "names": [
+        "city", "kota", "kota_kabupaten", "kabupaten", "kecamatan", "region", "area", "wilayah", "daerah",
+        "province", "provinsi", "state"]},
+    "country": {"type": "text", "desc": "country", "names": ["country", "negara", "country_name"]},
     "store": {"type": "text", "desc": "outlet / branch", "names": [
         "store", "store_name", "outlet", "outlet_name", "branch", "branch_name", "location", "shop", "cabang",
         "nama_outlet", "nama_toko", "nama_cabang", "lokasi", "gerai"]},
@@ -92,6 +93,9 @@ ROLES: dict[str, dict] = {
     "payment": {"type": "text", "desc": "how it was paid", "names": [
         "payment", "payment_method", "payment_type", "payment_mode", "pembayaran", "metode_pembayaran",
         "cara_bayar", "jenis_pembayaran", "tipe_pembayaran", "metode_bayar"]},
+    "supplier": {"type": "text", "desc": "who the goods were bought from", "names": [
+        "supplier", "supplier_name", "vendor", "vendor_name", "pemasok", "nama_supplier", "nama_pemasok",
+        "distributor"]},
     "cashier": {"type": "text", "desc": "who made the sale", "names": [
         "cashier", "cashier_name", "salesperson", "sales_person", "sales_rep", "served_by", "kasir", "nama_kasir",
         "sales_name", "nama_sales"]},

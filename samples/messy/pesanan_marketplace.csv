@@ -1,0 +1,601 @@
+No. Pesanan;Status Pesanan;Waktu Pesanan Dibuat;Nama Produk;SKU;Jumlah;Harga Awal;Harga Setelah Diskon;Total Harga Produk;Ongkos Kirim;Total Pembayaran;Kota/Kabupaten;Provinsi;Metode Pembayaran;Username Pembeli
+26053416608137;Selesai;2026-05-04 11:28;Tas Selempang;TSL-05;3;120000;120000;360000;0;360000;Kota Makassar;Sulawesi Selatan;Transfer Bank;pembeli_0247
+26051853447917;Selesai;2026-05-31 21:36;Kemeja Flanel;KMF-02;3;145000;123250;369750;24000;393750;Kota Surabaya;Jawa Timur;COD;pembeli_0290
+26057662539046;Selesai;2026-05-13 08:32;Kaos Kaki 3 Pasang;KKK-06;3;35000;29750;89250;0;89250;Kota Makassar;Sulawesi Selatan;Kartu Kredit;pembeli_0197
+26057163427970;Dikirim;2026-05-18 08:34;Kaos Kaki 3 Pasang;KKK-06;1;35000;31500;31500;18000;49500;Kota Medan;Sumatera Utara;Transfer Bank;pembeli_0052
+26056890332799;Dibatalkan;2026-05-26 05:07;Tas Selempang;TSL-05;3;120000;108000;324000;9000;333000;Kota Jakarta Selatan;DKI Jakarta;Dompet Digital;pembeli_0243
+26057667779188;Selesai;2026-05-28 22:03;Kaos Kaki 3 Pasang;KKK-06;1;35000;29750;29750;12000;41750;Kota Surabaya;Jawa Timur;Dompet Digital;pembeli_0128
+26055822350248;Belum Bayar;2026-06-02 22:41;Kaos Polos Hitam;KPH-01;1;65000;58500;58500;0;58500;Kota Makassar;Sulawesi Selatan;Dompet Digital;pembeli_0126
+26055364713004;Selesai;2026-06-20 12:17;Kaos Polos Hitam;KPH-01;2;65000;58500;117000;24000;141000;Kota Surabaya;Jawa Timur;Transfer Bank;pembeli_0104
+26053920429851;Dibatalkan;2026-06-13 01:18;Topi Baseball;TPB-04;1;45000;45000;45000;24000;69000;Kota Makassar;Sulawesi Selatan;Transfer Bank;pembeli_0143
+26055808444058;Selesai;2026-05-23 21:16;Kaos Kaki 3 Pasang;KKK-06;1;35000;31500;31500;0;31500;Kota Jakarta Selatan;DKI Jakarta;Dompet Digital;pembeli_0143
+26054777421766;Dibatalkan;2026-05-31 10:27;Tas Selempang;TSL-05;3;120000;108000;324000;9000;333000;Kab. Sleman;DI Yogyakarta;COD;pembeli_0166
+26058759253165;Selesai;2026-06-30 01:56;Celana Chino;CCN-03;1;175000;175000;175000;24000;199000;Kota Jakarta Selatan;DKI Jakarta;Dompet Digital;pembeli_0249
+26051829636904;Selesai;2026-05-25 23:31;Kaos Kaki 3 Pasang;KKK-06;1;35000;29750;29750;24000;53750;Kota Bandung;Jawa Barat;Dompet Digital;pembeli_0216
+26057679591904;Dibatalkan;2026-06-23 16:59;Kemeja Flanel;KMF-02;1;145000;130500;130500;18000;148500;Kota Medan;Sumatera Utara;COD;pembeli_0370
+26055015278251;Dibatalkan;2026-05-31 00:50;Kaos Kaki 3 Pasang;KKK-06;1;35000;35000;35000;18000;53000;Kota Bandung;Jawa Barat;Dompet Digital;pembeli_0291
+26058752080732;Selesai;2026-05-21 13:33;Kemeja Flanel;KMF-02;1;145000;123250;123250;24000;147250;Kota Jakarta Selatan;DKI Jakarta;Transfer Bank;pembeli_0153
+26059418851464;Selesai;2026-05-11 20:33;Kemeja Flanel;KMF-02;1;145000;130500;130500;0;130500;Kota Bandung;Jawa Barat;Dompet Digital;pembeli_0094
+26053383817295;Dibatalkan;2026-06-14 13:23;Kaos Kaki 3 Pasang;KKK-06;1;35000;35000;35000;12000;47000;Kota Makassar;Sulawesi Selatan;Dompet Digital;pembeli_0378
+26052963620205;Selesai;2026-06-15 00:52;Celana Chino;CCN-03;1;175000;175000;175000;12000;187000;Kota Surabaya;Jawa Timur;Kartu Kredit;pembeli_0091
+26051833642847;Selesai;2026-05-26 18:03;Kemeja Flanel;KMF-02;1;145000;145000;145000;0;145000;Kota Surabaya;Jawa Timur;Transfer Bank;pembeli_0223
+26054816242146;Selesai;2026-06-19 15:16;Kaos Kaki 3 Pasang;KKK-06;1;35000;35000;35000;18000;53000;Kab. Sleman;DI Yogyakarta;Kartu Kredit;pembeli_0309
+26053949506901;Dikirim;2026-05-10 06:03;Kemeja Flanel;KMF-02;2;145000;123250;246500;24000;270500;Kab. Sleman;DI Yogyakarta;Dompet Digital;pembeli_0216
+26051721917849;Selesai;2026-05-25 08:50;Topi Baseball;TPB-04;2;45000;45000;90000;12000;102000;Kota Surabaya;Jawa Timur;Dompet Digital;pembeli_0026
+26054860311975;Belum Bayar;2026-06-28 10:18;Celana Chino;CCN-03;3;175000;175000;525000;9000;534000;Kota Makassar;Sulawesi Selatan;Dompet Digital;pembeli_0190
+26056169663393;Dikirim;2026-05-31 23:00;Celana Chino;CCN-03;1;175000;175000;175000;24000;199000;Kota Medan;Sumatera Utara;Dompet Digital;pembeli_0205
+26058817161484;Belum Bayar;2026-06-29 01:17;Tas Selempang;TSL-05;2;120000;120000;240000;12000;252000;Kota Makassar;Sulawesi Selatan;Kartu Kredit;pembeli_0152
+26059843739224;Selesai;2026-06-27 12:33;Tas Selempang;TSL-05;1;120000;108000;108000;18000;126000;Kota Jakarta Selatan;DKI Jakarta;Transfer Bank;pembeli_0156
+26053388806813;Dibatalkan;2026-06-12 17:47;Kaos Polos Hitam;KPH-01;2;65000;58500;117000;9000;126000;Kota Jakarta Selatan;DKI Jakarta;Dompet Digital;pembeli_0188
+26051698655500;Selesai;2026-05-20 09:22;Kemeja Flanel;KMF-02;3;145000;145000;435000;24000;459000;Kota Surabaya;Jawa Timur;Dompet Digital;pembeli_0249
+26057897921692;Selesai;2026-06-12 06:35;Topi Baseball;TPB-04;1;45000;40500;40500;12000;52500;Kab. Sleman;DI Yogyakarta;Dompet Digital;pembeli_0175
+26059130387040;Selesai;2026-05-30 05:14;Topi Baseball;TPB-04;1;45000;45000;45000;9000;54000;Kota Makassar;Sulawesi Selatan;Dompet Digital;pembeli_0346
+26055734036277;Dibatalkan;2026-05-08 10:20;Tas Selempang;TSL-05;2;120000;108000;216000;24000;240000;Kota Bandung;Jawa Barat;Dompet Digital;pembeli_0396
+26057839196289;Belum Bayar;2026-06-10 02:59;Celana Chino;CCN-03;3;175000;175000;525000;18000;543000;Kota Surabaya;Jawa Timur;COD;pembeli_0213
+26053148014264;Dikirim;2026-06-05 22:16;Kemeja Flanel;KMF-02;1;145000;123250;123250;12000;135250;Kota Jakarta Selatan;DKI Jakarta;Dompet Digital;pembeli_0260
+26056620393655;Belum Bayar;2026-05-26 05:38;Celana Chino;CCN-03;1;175000;175000;175000;24000;199000;Kota Makassar;Sulawesi Selatan;Transfer Bank;pembeli_0204
+26053630048818;Selesai;2026-06-06 07:54;Kaos Polos Hitam;KPH-01;2;65000;58500;117000;0;117000;Kota Makassar;Sulawesi Selatan;COD;pembeli_0316
+26059797641433;Dibatalkan;2026-06-03 18:13;Kaos Kaki 3 Pasang;KKK-06;1;35000;31500;31500;9000;40500;Kota Medan;Sumatera Utara;COD;pembeli_0016
+26056748719231;Selesai;2026-05-04 00:13;Kaos Polos Hitam;KPH-01;2;65000;55250;110500;24000;134500;Kota Jakarta Selatan;DKI Jakarta;Dompet Digital;pembeli_0254
+26056539249685;Dibatalkan;2026-06-18 17:36;Kaos Polos Hitam;KPH-01;1;65000;65000;65000;9000;74000;Kota Medan;Sumatera Utara;COD;pembeli_0041
+26052263358927;Selesai;2026-06-22 00:41;Kaos Kaki 3 Pasang;KKK-06;1;35000;35000;35000;0;35000;Kota Surabaya;Jawa Timur;COD;pembeli_0397
+26058057483062;Dibatalkan;2026-06-16 04:49;Topi Baseball;TPB-04;1;45000;45000;45000;24000;69000;Kota Jakarta Selatan;DKI Jakarta;Dompet Digital;pembeli_0215
+26053376295396;Selesai;2026-05-17 08:35;Celana Chino;CCN-03;2;175000;175000;350000;18000;368000;Kab. Sleman;DI Yogyakarta;Kartu Kredit;pembeli_0277
+26053410141384;Dikirim;2026-05-06 17:07;Kaos Polos Hitam;KPH-01;2;65000;65000;130000;0;130000;Kota Medan;Sumatera Utara;COD;pembeli_0302
+26059008757005;Belum Bayar;2026-06-11 14:30;Kaos Polos Hitam;KPH-01;3;65000;65000;195000;0;195000;Kota Jakarta Selatan;DKI Jakarta;Kartu Kredit;pembeli_0019
+26051382304776;Dibatalkan;2026-06-22 09:03;Tas Selempang;TSL-05;3;120000;108000;324000;24000;348000;Kota Bandung;Jawa Barat;Transfer Bank;pembeli_0316
+26053084418098;Dikirim;2026-05-28 09:37;Kemeja Flanel;KMF-02;1;145000;123250;123250;18000;141250;Kota Medan;Sumatera Utara;Dompet Digital;pembeli_0070
+26055192081491;Belum Bayar;2026-05-10 13:25;Kaos Polos Hitam;KPH-01;3;65000;65000;195000;24000;219000;Kota Bandung;Jawa Barat;COD;pembeli_0054
+26056513320461;Selesai;2026-06-02 00:01;Tas Selempang;TSL-05;3;120000;102000;306000;24000;330000;Kota Jakarta Selatan;DKI Jakarta;Kartu Kredit;pembeli_0208
+26054524569444;Selesai;2026-06-14 12:50;Celana Chino;CCN-03;3;175000;175000;525000;12000;537000;Kota Makassar;Sulawesi Selatan;Kartu Kredit;pembeli_0170
+26052657011600;Selesai;2026-06-05 07:37;Topi Baseball;TPB-04;3;45000;45000;135000;0;135000;Kota Makassar;Sulawesi Selatan;COD;pembeli_0248
+26059123473876;Selesai;2026-05-10 04:38;Kemeja Flanel;KMF-02;2;145000;145000;290000;24000;314000;Kab. Sleman;DI Yogyakarta;COD;pembeli_0123
+26054890194047;Dibatalkan;2026-06-20 04:44;Topi Baseball;TPB-04;2;45000;45000;90000;18000;108000;Kota Surabaya;Jawa Timur;Transfer Bank;pembeli_0052
+26059183504856;Dibatalkan;2026-06-03 11:52;Kaos Polos Hitam;KPH-01;3;65000;58500;175500;0;175500;Kota Medan;Sumatera Utara;Dompet Digital;pembeli_0057
+26053374919740;Selesai;2026-06-30 18:20;Celana Chino;CCN-03;3;175000;148750;446250;12000;458250;Kota Jakarta Selatan;DKI Jakarta;Dompet Digital;pembeli_0022
+26053662662126;Selesai;2026-06-30 11:01;Kaos Polos Hitam;KPH-01;1;65000;58500;58500;0;58500;Kota Surabaya;Jawa Timur;COD;pembeli_0066
+26054710430988;Belum Bayar;2026-06-29 04:14;Kaos Polos Hitam;KPH-01;1;65000;55250;55250;9000;64250;Kota Surabaya;Jawa Timur;Transfer Bank;pembeli_0330
+26054410857471;Selesai;2026-06-24 19:24;Kaos Kaki 3 Pasang;KKK-06;2;35000;35000;70000;9000;79000;Kota Makassar;Sulawesi Selatan;Kartu Kredit;pembeli_0172
+26053349002706;Selesai;2026-05-19 07:17;Kaos Kaki 3 Pasang;KKK-06;1;35000;35000;35000;9000;44000;Kota Surabaya;Jawa Timur;Dompet Digital;pembeli_0025
+26053441140893;Selesai;2026-05-16 01:46;Kaos Polos Hitam;KPH-01;2;65000;55250;110500;9000;119500;Kota Surabaya;Jawa Timur;Dompet Digital;pembeli_0086
+26056790946002;Dikirim;2026-06-12 20:08;Celana Chino;CCN-03;1;175000;148750;148750;9000;157750;Kota Surabaya;Jawa Timur;Kartu Kredit;pembeli_0184
+26056573641665;Dikirim;2026-06-27 12:29;Topi Baseball;TPB-04;2;45000;45000;90000;18000;108000;Kota Medan;Sumatera Utara;Dompet Digital;pembeli_0014
+26053970530965;Selesai;2026-06-25 09:44;Kemeja Flanel;KMF-02;1;145000;145000;145000;24000;169000;Kab. Sleman;DI Yogyakarta;Kartu Kredit;pembeli_0340
+26051590677866;Dibatalkan;2026-05-05 13:56;Topi Baseball;TPB-04;1;45000;38250;38250;12000;50250;Kota Bandung;Jawa Barat;COD;pembeli_0364
+26053873290626;Selesai;2026-05-05 16:04;Celana Chino;CCN-03;3;175000;148750;446250;24000;470250;Kota Bandung;Jawa Barat;Dompet Digital;pembeli_0345
+26052665905769;Selesai;2026-06-19 09:46;Kaos Kaki 3 Pasang;KKK-06;2;35000;31500;63000;0;63000;Kota Surabaya;Jawa Timur;Transfer Bank;pembeli_0318
+26056094493006;Selesai;2026-06-27 23:28;Kemeja Flanel;KMF-02;1;145000;145000;145000;0;145000;Kota Medan;Sumatera Utara;Transfer Bank;pembeli_0144
+26051468262788;Selesai;2026-06-15 22:14;Kemeja Flanel;KMF-02;3;145000;145000;435000;9000;444000;Kab. Sleman;DI Yogyakarta;Kartu Kredit;pembeli_0030
+26051819935343;Selesai;2026-05-23 13:31;Kemeja Flanel;KMF-02;2;145000;145000;290000;9000;299000;Kota Bandung;Jawa Barat;COD;pembeli_0030
+26059493120458;Dikirim;2026-06-12 09:59;Tas Selempang;TSL-05;1;120000;102000;102000;9000;111000;Kota Makassar;Sulawesi Selatan;Kartu Kredit;pembeli_0102
+26052273486801;Selesai;2026-06-09 09:45;Tas Selempang;TSL-05;1;120000;120000;120000;12000;132000;Kota Medan;Sumatera Utara;Transfer Bank;pembeli_0252
+26055791074830;Dibatalkan;2026-05-26 08:52;Celana Chino;CCN-03;1;175000;157500;157500;18000;175500;Kota Bandung;Jawa Barat;Transfer Bank;pembeli_0089
+26051792165726;Selesai;2026-06-21 04:29;Kaos Kaki 3 Pasang;KKK-06;3;35000;29750;89250;9000;98250;Kota Medan;Sumatera Utara;Kartu Kredit;pembeli_0299
+26059365752913;Selesai;2026-05-06 22:44;Kemeja Flanel;KMF-02;1;145000;123250;123250;0;123250;Kab. Sleman;DI Yogyakarta;Dompet Digital;pembeli_0167
+26054525910870;Dikirim;2026-05-14 00:00;Celana Chino;CCN-03;2;175000;157500;315000;9000;324000;Kota Bandung;Jawa Barat;Transfer Bank;pembeli_0158
+26051254181467;Selesai;2026-06-04 10:02;Kaos Polos Hitam;KPH-01;1;65000;55250;55250;12000;67250;Kota Bandung;Jawa Barat;Dompet Digital;pembeli_0008
+26059930712971;Selesai;2026-06-28 02:02;Celana Chino;CCN-03;1;175000;175000;175000;9000;184000;Kota Bandung;Jawa Barat;Dompet Digital;pembeli_0015
+26058637225697;Dibatalkan;2026-06-17 18:47;Kaos Polos Hitam;KPH-01;2;65000;58500;117000;24000;141000;Kota Bandung;Jawa Barat;Kartu Kredit;pembeli_0139
+26052829053330;Belum Bayar;2026-05-11 23:03;Kemeja Flanel;KMF-02;2;145000;145000;290000;24000;314000;Kota Medan;Sumatera Utara;Kartu Kredit;pembeli_0200
+26054391908963;Selesai;2026-06-10 16:58;Kemeja Flanel;KMF-02;1;145000;145000;145000;12000;157000;Kota Bandung;Jawa Barat;Transfer Bank;pembeli_0290
+26052041373899;Selesai;2026-05-14 07:50;Kaos Kaki 3 Pasang;KKK-06;1;35000;35000;35000;18000;53000;Kota Jakarta Selatan;DKI Jakarta;Kartu Kredit;pembeli_0282
+26052812136012;Dibatalkan;2026-05-31 19:00;Kaos Polos Hitam;KPH-01;1;65000;65000;65000;12000;77000;Kota Makassar;Sulawesi Selatan;COD;pembeli_0366
+26057197494890;Selesai;2026-06-17 15:57;Kaos Kaki 3 Pasang;KKK-06;1;35000;29750;29750;9000;38750;Kota Jakarta Selatan;DKI Jakarta;Transfer Bank;pembeli_0144
+26057929791914;Belum Bayar;2026-05-12 03:31;Celana Chino;CCN-03;3;175000;157500;472500;9000;481500;Kota Medan;Sumatera Utara;Kartu Kredit;pembeli_0221
+26055196569338;Dikirim;2026-06-25 00:56;Kaos Kaki 3 Pasang;KKK-06;2;35000;29750;59500;0;59500;Kota Makassar;Sulawesi Selatan;Dompet Digital;pembeli_0220
+26059672339972;Belum Bayar;2026-05-27 15:36;Celana Chino;CCN-03;1;175000;175000;175000;24000;199000;Kota Bandung;Jawa Barat;Dompet Digital;pembeli_0103
+26052238512552;Selesai;2026-06-08 13:26;Celana Chino;CCN-03;1;175000;175000;175000;18000;193000;Kab. Sleman;DI Yogyakarta;Kartu Kredit;pembeli_0205
+26057512418504;Dikirim;2026-06-27 07:25;Topi Baseball;TPB-04;2;45000;38250;76500;0;76500;Kota Surabaya;Jawa Timur;Kartu Kredit;pembeli_0134
+26056069332658;Selesai;2026-06-08 04:49;Tas Selempang;TSL-05;1;120000;108000;108000;12000;120000;Kota Medan;Sumatera Utara;Kartu Kredit;pembeli_0089
+26056756955134;Selesai;2026-05-18 23:08;Kemeja Flanel;KMF-02;3;145000;130500;391500;12000;403500;Kota Surabaya;Jawa Timur;Dompet Digital;pembeli_0286
+26055822899657;Dikirim;2026-06-22 11:04;Kaos Polos Hitam;KPH-01;1;65000;55250;55250;18000;73250;Kota Jakarta Selatan;DKI Jakarta;COD;pembeli_0100
+26055995437726;Selesai;2026-05-17 23:43;Topi Baseball;TPB-04;1;45000;45000;45000;24000;69000;Kab. Sleman;DI Yogyakarta;Kartu Kredit;pembeli_0167
+26054487114938;Dikirim;2026-06-05 08:46;Kaos Polos Hitam;KPH-01;3;65000;65000;195000;18000;213000;Kota Jakarta Selatan;DKI Jakarta;Kartu Kredit;pembeli_0065
+26051764291433;Belum Bayar;2026-06-26 23:02;Kemeja Flanel;KMF-02;2;145000;130500;261000;24000;285000;Kota Medan;Sumatera Utara;Kartu Kredit;pembeli_0001
+26053640944122;Dibatalkan;2026-05-14 20:11;Celana Chino;CCN-03;2;175000;157500;315000;0;315000;Kota Surabaya;Jawa Timur;COD;pembeli_0150
+26057667939155;Selesai;2026-06-07 11:08;Topi Baseball;TPB-04;1;45000;40500;40500;18000;58500;Kota Surabaya;Jawa Timur;COD;pembeli_0350
+26059659463657;Selesai;2026-06-11 13:12;Kaos Kaki 3 Pasang;KKK-06;2;35000;31500;63000;24000;87000;Kota Makassar;Sulawesi Selatan;Kartu Kredit;pembeli_0049
+26055047666880;Selesai;2026-06-05 23:36;Topi Baseball;TPB-04;1;45000;45000;45000;18000;63000;Kab. Sleman;DI Yogyakarta;Kartu Kredit;pembeli_0096
+26058368519335;Dikirim;2026-05-28 10:30;Tas Selempang;TSL-05;2;120000;120000;240000;0;240000;Kota Jakarta Selatan;DKI Jakarta;COD;pembeli_0169
+26057421685388;Selesai;2026-05-25 03:09;Kemeja Flanel;KMF-02;3;145000;145000;435000;18000;453000;Kota Medan;Sumatera Utara;COD;pembeli_0185
+26053348106634;Dibatalkan;2026-05-25 07:38;Kaos Kaki 3 Pasang;KKK-06;1;35000;31500;31500;24000;55500;Kab. Sleman;DI Yogyakarta;Transfer Bank;pembeli_0095
+26055441244049;Belum Bayar;2026-05-06 12:44;Celana Chino;CCN-03;2;175000;157500;315000;18000;333000;Kota Surabaya;Jawa Timur;Transfer Bank;pembeli_0105
+26051310079761;Belum Bayar;2026-05-17 01:55;Kemeja Flanel;KMF-02;2;145000;123250;246500;18000;264500;Kota Jakarta Selatan;DKI Jakarta;Dompet Digital;pembeli_0056
+26052824567508;Selesai;2026-06-24 01:37;Tas Selempang;TSL-05;3;120000;120000;360000;12000;372000;Kota Makassar;Sulawesi Selatan;Dompet Digital;pembeli_0181
+26059952790750;Dibatalkan;2026-06-15 06:02;Topi Baseball;TPB-04;2;45000;38250;76500;24000;100500;Kab. Sleman;DI Yogyakarta;COD;pembeli_0142
+26055832317996;Selesai;2026-06-01 06:13;Kaos Polos Hitam;KPH-01;3;65000;58500;175500;24000;199500;Kota Surabaya;Jawa Timur;Kartu Kredit;pembeli_0090
+26056754947719;Dikirim;2026-05-29 18:46;Tas Selempang;TSL-05;1;120000;120000;120000;0;120000;Kota Jakarta Selatan;DKI Jakarta;COD;pembeli_0084
+26056827082074;Selesai;2026-06-29 20:54;Kaos Polos Hitam;KPH-01;2;65000;65000;130000;24000;154000;Kota Jakarta Selatan;DKI Jakarta;COD;pembeli_0159
+26057699542581;Selesai;2026-05-04 20:11;Tas Selempang;TSL-05;3;120000;120000;360000;24000;384000;Kota Surabaya;Jawa Timur;COD;pembeli_0314
+26055549889799;Belum Bayar;2026-05-16 15:30;Kaos Polos Hitam;KPH-01;3;65000;58500;175500;24000;199500;Kota Bandung;Jawa Barat;Kartu Kredit;pembeli_0345
+26055471816618;Selesai;2026-05-29 19:25;Tas Selempang;TSL-05;2;120000;120000;240000;0;240000;Kota Makassar;Sulawesi Selatan;Dompet Digital;pembeli_0223
+26051040874507;Selesai;2026-06-30 02:26;Kaos Kaki 3 Pasang;KKK-06;1;35000;35000;35000;12000;47000;Kota Surabaya;Jawa Timur;COD;pembeli_0135
+26051926747426;Dibatalkan;2026-06-27 01:31;Kaos Polos Hitam;KPH-01;3;65000;55250;165750;0;165750;Kota Medan;Sumatera Utara;Transfer Bank;pembeli_0150
+26057502029345;Belum Bayar;2026-05-02 21:44;Tas Selempang;TSL-05;1;120000;108000;108000;9000;117000;Kota Medan;Sumatera Utara;Dompet Digital;pembeli_0076
+26058078027662;Selesai;2026-06-09 17:02;Celana Chino;CCN-03;1;175000;175000;175000;12000;187000;Kota Jakarta Selatan;DKI Jakarta;Kartu Kredit;pembeli_0050
+26056842395345;Belum Bayar;2026-06-20 10:12;Celana Chino;CCN-03;2;175000;175000;350000;18000;368000;Kota Makassar;Sulawesi Selatan;Kartu Kredit;pembeli_0067
+26059309653702;Selesai;2026-06-28 21:39;Kemeja Flanel;KMF-02;2;145000;145000;290000;9000;299000;Kota Jakarta Selatan;DKI Jakarta;Kartu Kredit;pembeli_0112
+26056342836684;Selesai;2026-06-16 23:06;Celana Chino;CCN-03;1;175000;157500;157500;9000;166500;Kota Surabaya;Jawa Timur;Transfer Bank;pembeli_0254
+26053913702918;Selesai;2026-06-11 18:31;Tas Selempang;TSL-05;3;120000;120000;360000;12000;372000;Kota Surabaya;Jawa Timur;COD;pembeli_0301
+26058240376836;Dibatalkan;2026-06-30 02:01;Tas Selempang;TSL-05;2;120000;108000;216000;24000;240000;Kab. Sleman;DI Yogyakarta;Dompet Digital;pembeli_0052
+26053633958719;Selesai;2026-06-29 13:23;Topi Baseball;TPB-04;1;45000;40500;40500;18000;58500;Kota Bandung;Jawa Barat;Transfer Bank;pembeli_0328
+26053711034195;Belum Bayar;2026-05-21 04:11;Topi Baseball;TPB-04;1;45000;40500;40500;24000;64500;Kota Surabaya;Jawa Timur;Kartu Kredit;pembeli_0090
+26058779125837;Dikirim;2026-05-23 14:12;Celana Chino;CCN-03;2;175000;157500;315000;9000;324000;Kota Makassar;Sulawesi Selatan;Dompet Digital;pembeli_0218
+26055156528503;Selesai;2026-05-05 06:00;Kemeja Flanel;KMF-02;3;145000;123250;369750;18000;387750;Kota Makassar;Sulawesi Selatan;Dompet Digital;pembeli_0239
+26052396606952;Belum Bayar;2026-06-22 18:28;Topi Baseball;TPB-04;2;45000;45000;90000;24000;114000;Kota Bandung;Jawa Barat;Transfer Bank;pembeli_0100
+26058649238288;Dibatalkan;2026-06-03 21:10;Kaos Polos Hitam;KPH-01;2;65000;65000;130000;18000;148000;Kota Makassar;Sulawesi Selatan;Transfer Bank;pembeli_0096
+26055951845175;Dibatalkan;2026-05-17 04:35;Kaos Polos Hitam;KPH-01;1;65000;58500;58500;12000;70500;Kota Makassar;Sulawesi Selatan;COD;pembeli_0340
+26055421514669;Dikirim;2026-06-15 15:56;Celana Chino;CCN-03;3;175000;148750;446250;24000;470250;Kota Makassar;Sulawesi Selatan;Kartu Kredit;pembeli_0078
+26055144774013;Belum Bayar;2026-05-13 05:29;Kemeja Flanel;KMF-02;1;145000;145000;145000;0;145000;Kab. Sleman;DI Yogyakarta;Dompet Digital;pembeli_0030
+26054790314644;Belum Bayar;2026-05-05 10:07;Kaos Kaki 3 Pasang;KKK-06;2;35000;35000;70000;24000;94000;Kota Bandung;Jawa Barat;Dompet Digital;pembeli_0015
+26056364873915;Selesai;2026-05-31 17:43;Kaos Kaki 3 Pasang;KKK-06;1;35000;35000;35000;0;35000;Kota Makassar;Sulawesi Selatan;Dompet Digital;pembeli_0044
+26058147496863;Belum Bayar;2026-06-22 04:09;Topi Baseball;TPB-04;2;45000;38250;76500;0;76500;Kota Jakarta Selatan;DKI Jakarta;Kartu Kredit;pembeli_0341
+26054571087558;Belum Bayar;2026-06-06 22:23;Kaos Kaki 3 Pasang;KKK-06;2;35000;35000;70000;0;70000;Kota Surabaya;Jawa Timur;Transfer Bank;pembeli_0343
+26059342780141;Selesai;2026-06-21 07:50;Kemeja Flanel;KMF-02;2;145000;123250;246500;0;246500;Kota Bandung;Jawa Barat;Kartu Kredit;pembeli_0242
+26051619577734;Selesai;2026-05-02 22:22;Kaos Kaki 3 Pasang;KKK-06;2;35000;35000;70000;18000;88000;Kota Surabaya;Jawa Timur;COD;pembeli_0218
+26056261189427;Selesai;2026-05-27 17:43;Kaos Polos Hitam;KPH-01;2;65000;65000;130000;12000;142000;Kab. Sleman;DI Yogyakarta;COD;pembeli_0271
+26051625374963;Dibatalkan;2026-06-03 23:38;Kemeja Flanel;KMF-02;2;145000;145000;290000;18000;308000;Kota Bandung;Jawa Barat;Dompet Digital;pembeli_0076
+26052309918791;Dikirim;2026-05-31 02:58;Celana Chino;CCN-03;1;175000;175000;175000;12000;187000;Kota Jakarta Selatan;DKI Jakarta;COD;pembeli_0337
+26052734390167;Belum Bayar;2026-06-13 09:18;Kaos Polos Hitam;KPH-01;1;65000;55250;55250;12000;67250;Kota Surabaya;Jawa Timur;Kartu Kredit;pembeli_0234
+26059531102548;Selesai;2026-06-25 22:43;Kaos Polos Hitam;KPH-01;1;65000;58500;58500;18000;76500;Kota Jakarta Selatan;DKI Jakarta;COD;pembeli_0195
+26058951494672;Belum Bayar;2026-05-27 11:51;Kaos Kaki 3 Pasang;KKK-06;2;35000;29750;59500;12000;71500;Kota Medan;Sumatera Utara;Kartu Kredit;pembeli_0191
+26054773258567;Belum Bayar;2026-06-12 17:42;Topi Baseball;TPB-04;3;45000;45000;135000;18000;153000;Kota Makassar;Sulawesi Selatan;COD;pembeli_0037
+26051180894240;Selesai;2026-06-22 09:38;Kaos Polos Hitam;KPH-01;2;65000;55250;110500;12000;122500;Kab. Sleman;DI Yogyakarta;Dompet Digital;pembeli_0145
+26052049346835;Dibatalkan;2026-05-23 13:03;Topi Baseball;TPB-04;2;45000;38250;76500;12000;88500;Kota Surabaya;Jawa Timur;COD;pembeli_0195
+26058132615751;Dibatalkan;2026-05-15 23:32;Tas Selempang;TSL-05;2;120000;120000;240000;24000;264000;Kota Bandung;Jawa Barat;COD;pembeli_0335
+26052192344534;Dibatalkan;2026-06-20 15:15;Kaos Kaki 3 Pasang;KKK-06;2;35000;31500;63000;24000;87000;Kota Medan;Sumatera Utara;Dompet Digital;pembeli_0396
+26055632926943;Selesai;2026-06-18 08:35;Kaos Kaki 3 Pasang;KKK-06;3;35000;35000;105000;24000;129000;Kota Makassar;Sulawesi Selatan;Transfer Bank;pembeli_0023
+26052447452442;Belum Bayar;2026-05-26 22:38;Kaos Kaki 3 Pasang;KKK-06;1;35000;29750;29750;12000;41750;Kota Bandung;Jawa Barat;COD;pembeli_0187
+26056993231261;Selesai;2026-05-19 14:11;Kaos Kaki 3 Pasang;KKK-06;1;35000;35000;35000;24000;59000;Kota Bandung;Jawa Barat;Kartu Kredit;pembeli_0116
+26053276299195;Dikirim;2026-05-26 07:35;Tas Selempang;TSL-05;1;120000;102000;102000;0;102000;Kota Bandung;Jawa Barat;Dompet Digital;pembeli_0087
+26052785615118;Dikirim;2026-06-04 11:14;Topi Baseball;TPB-04;2;45000;38250;76500;0;76500;Kota Surabaya;Jawa Timur;Kartu Kredit;pembeli_0012
+26052877886898;Dibatalkan;2026-05-25 23:55;Kaos Polos Hitam;KPH-01;1;65000;65000;65000;9000;74000;Kota Surabaya;Jawa Timur;Kartu Kredit;pembeli_0264
+26051287965915;Dikirim;2026-06-09 13:17;Kaos Kaki 3 Pasang;KKK-06;1;35000;35000;35000;9000;44000;Kota Bandung;Jawa Barat;Transfer Bank;pembeli_0095
+26054472368686;Selesai;2026-05-17 18:31;Kaos Polos Hitam;KPH-01;1;65000;65000;65000;9000;74000;Kota Makassar;Sulawesi Selatan;Dompet Digital;pembeli_0024
+26053576687793;Dibatalkan;2026-06-04 19:01;Kemeja Flanel;KMF-02;1;145000;130500;130500;9000;139500;Kota Jakarta Selatan;DKI Jakarta;Transfer Bank;pembeli_0250
+26058742331386;Selesai;2026-06-22 20:34;Kaos Kaki 3 Pasang;KKK-06;1;35000;31500;31500;12000;43500;Kota Surabaya;Jawa Timur;Dompet Digital;pembeli_0248
+26053332080827;Selesai;2026-05-23 20:37;Kaos Polos Hitam;KPH-01;1;65000;55250;55250;18000;73250;Kota Jakarta Selatan;DKI Jakarta;Dompet Digital;pembeli_0248
+26056708190139;Selesai;2026-05-29 11:23;Kaos Kaki 3 Pasang;KKK-06;3;35000;35000;105000;12000;117000;Kab. Sleman;DI Yogyakarta;Dompet Digital;pembeli_0118
+26053278044338;Selesai;2026-06-10 14:04;Topi Baseball;TPB-04;3;45000;38250;114750;12000;126750;Kab. Sleman;DI Yogyakarta;Dompet Digital;pembeli_0313
+26053962515014;Dibatalkan;2026-05-28 13:36;Kemeja Flanel;KMF-02;2;145000;130500;261000;0;261000;Kab. Sleman;DI Yogyakarta;COD;pembeli_0360
+26054640164848;Dikirim;2026-05-14 05:05;Tas Selempang;TSL-05;1;120000;102000;102000;24000;126000;Kota Jakarta Selatan;DKI Jakarta;Transfer Bank;pembeli_0043
+26057112453885;Dikirim;2026-06-21 00:49;Celana Chino;CCN-03;1;175000;157500;157500;18000;175500;Kota Jakarta Selatan;DKI Jakarta;Dompet Digital;pembeli_0254
+26059597655806;Selesai;2026-05-22 14:01;Topi Baseball;TPB-04;1;45000;45000;45000;24000;69000;Kab. Sleman;DI Yogyakarta;Dompet Digital;pembeli_0310
+26056538294968;Dikirim;2026-06-06 05:21;Kaos Kaki 3 Pasang;KKK-06;2;35000;35000;70000;9000;79000;Kab. Sleman;DI Yogyakarta;Dompet Digital;pembeli_0239
+26051957027252;Selesai;2026-06-19 11:22;Kaos Kaki 3 Pasang;KKK-06;3;35000;35000;105000;18000;123000;Kota Surabaya;Jawa Timur;Kartu Kredit;pembeli_0263
+26056218738812;Selesai;2026-06-29 14:09;Kemeja Flanel;KMF-02;1;145000;130500;130500;9000;139500;Kab. Sleman;DI Yogyakarta;Kartu Kredit;pembeli_0173
+26053329728290;Belum Bayar;2026-06-30 10:04;Topi Baseball;TPB-04;1;45000;45000;45000;24000;69000;Kab. Sleman;DI Yogyakarta;Transfer Bank;pembeli_0082
+26052852644318;Dibatalkan;2026-06-14 01:23;Celana Chino;CCN-03;1;175000;157500;157500;9000;166500;Kab. Sleman;DI Yogyakarta;Transfer Bank;pembeli_0228
+26052741123363;Dikirim;2026-06-13 21:40;Kaos Polos Hitam;KPH-01;2;65000;58500;117000;9000;126000;Kota Jakarta Selatan;DKI Jakarta;Transfer Bank;pembeli_0146
+26059208402046;Dibatalkan;2026-05-19 09:05;Topi Baseball;TPB-04;3;45000;45000;135000;9000;144000;Kota Medan;Sumatera Utara;Dompet Digital;pembeli_0014
+26059048966062;Dibatalkan;2026-05-21 02:18;Topi Baseball;TPB-04;1;45000;45000;45000;0;45000;Kota Bandung;Jawa Barat;Kartu Kredit;pembeli_0179
+26056564738080;Selesai;2026-06-16 18:12;Celana Chino;CCN-03;3;175000;175000;525000;12000;537000;Kota Makassar;Sulawesi Selatan;Dompet Digital;pembeli_0072
+26057013590687;Dibatalkan;2026-06-06 03:47;Tas Selempang;TSL-05;2;120000;108000;216000;24000;240000;Kota Makassar;Sulawesi Selatan;COD;pembeli_0182
+26059220782046;Dibatalkan;2026-06-10 02:08;Kaos Kaki 3 Pasang;KKK-06;1;35000;35000;35000;24000;59000;Kab. Sleman;DI Yogyakarta;Transfer Bank;pembeli_0396
+26051910136670;Selesai;2026-05-28 05:58;Tas Selempang;TSL-05;3;120000;120000;360000;9000;369000;Kota Jakarta Selatan;DKI Jakarta;Transfer Bank;pembeli_0308
+26058408558898;Dibatalkan;2026-05-18 10:02;Topi Baseball;TPB-04;1;45000;40500;40500;0;40500;Kab. Sleman;DI Yogyakarta;Kartu Kredit;pembeli_0048
+26053681421237;Selesai;2026-05-16 16:08;Kemeja Flanel;KMF-02;1;145000;145000;145000;24000;169000;Kab. Sleman;DI Yogyakarta;COD;pembeli_0330
+26058699789166;Belum Bayar;2026-06-03 00:24;Kaos Kaki 3 Pasang;KKK-06;3;35000;31500;94500;12000;106500;Kota Medan;Sumatera Utara;Dompet Digital;pembeli_0080
+26057484490355;Selesai;2026-06-18 12:42;Kaos Polos Hitam;KPH-01;3;65000;58500;175500;18000;193500;Kab. Sleman;DI Yogyakarta;Kartu Kredit;pembeli_0069
+26054146403978;Selesai;2026-06-22 10:28;Kemeja Flanel;KMF-02;1;145000;145000;145000;18000;163000;Kota Makassar;Sulawesi Selatan;Dompet Digital;pembeli_0168
+26051543563018;Belum Bayar;2026-06-11 00:56;Tas Selempang;TSL-05;1;120000;120000;120000;0;120000;Kota Surabaya;Jawa Timur;Dompet Digital;pembeli_0124
+26057526687636;Dibatalkan;2026-06-29 15:24;Kemeja Flanel;KMF-02;1;145000;145000;145000;0;145000;Kota Jakarta Selatan;DKI Jakarta;Transfer Bank;pembeli_0310
+26058180589071;Selesai;2026-05-10 20:31;Kemeja Flanel;KMF-02;2;145000;123250;246500;24000;270500;Kota Bandung;Jawa Barat;COD;pembeli_0035
+26055730003809;Selesai;2026-05-25 13:48;Kaos Polos Hitam;KPH-01;2;65000;55250;110500;24000;134500;Kota Makassar;Sulawesi Selatan;COD;pembeli_0298
+26054397174933;Selesai;2026-05-14 12:36;Topi Baseball;TPB-04;2;45000;40500;81000;9000;90000;Kab. Sleman;DI Yogyakarta;Dompet Digital;pembeli_0013
+26055386004479;Dibatalkan;2026-05-14 05:02;Kaos Kaki 3 Pasang;KKK-06;3;35000;35000;105000;0;105000;Kota Surabaya;Jawa Timur;COD;pembeli_0304
+26055211197360;Dikirim;2026-05-24 01:51;Celana Chino;CCN-03;1;175000;148750;148750;18000;166750;Kota Bandung;Jawa Barat;Kartu Kredit;pembeli_0211
+26058081385528;Selesai;2026-05-14 13:54;Tas Selempang;TSL-05;1;120000;108000;108000;0;108000;Kota Surabaya;Jawa Timur;Kartu Kredit;pembeli_0354
+26054513242843;Dibatalkan;2026-06-14 18:48;Topi Baseball;TPB-04;3;45000;45000;135000;18000;153000;Kota Bandung;Jawa Barat;COD;pembeli_0357
+26052479638400;Selesai;2026-06-23 08:08;Kemeja Flanel;KMF-02;3;145000;145000;435000;24000;459000;Kota Jakarta Selatan;DKI Jakarta;Transfer Bank;pembeli_0081
+26058839315890;Dikirim;2026-05-18 16:09;Kaos Kaki 3 Pasang;KKK-06;2;35000;31500;63000;0;63000;Kota Medan;Sumatera Utara;COD;pembeli_0005
+26056683282987;Selesai;2026-06-19 01:50;Tas Selempang;TSL-05;2;120000;120000;240000;18000;258000;Kota Medan;Sumatera Utara;Dompet Digital;pembeli_0093
+26058341752969;Selesai;2026-06-14 10:39;Celana Chino;CCN-03;2;175000;175000;350000;24000;374000;Kab. Sleman;DI Yogyakarta;Transfer Bank;pembeli_0024
+26059440370697;Selesai;2026-05-12 15:04;Tas Selempang;TSL-05;3;120000;108000;324000;24000;348000;Kota Bandung;Jawa Barat;COD;pembeli_0378
+26059378313531;Belum Bayar;2026-06-18 10:08;Kemeja Flanel;KMF-02;2;145000;145000;290000;18000;308000;Kota Surabaya;Jawa Timur;COD;pembeli_0234
+26052180732620;Selesai;2026-05-31 19:09;Celana Chino;CCN-03;2;175000;175000;350000;9000;359000;Kota Jakarta Selatan;DKI Jakarta;Kartu Kredit;pembeli_0388
+26054524397366;Belum Bayar;2026-05-10 10:18;Kaos Kaki 3 Pasang;KKK-06;2;35000;31500;63000;12000;75000;Kota Surabaya;Jawa Timur;COD;pembeli_0011
+26053687947618;Belum Bayar;2026-05-17 09:34;Kemeja Flanel;KMF-02;1;145000;145000;145000;9000;154000;Kota Surabaya;Jawa Timur;Transfer Bank;pembeli_0315
+26057271251849;Selesai;2026-06-02 16:48;Celana Chino;CCN-03;2;175000;157500;315000;9000;324000;Kota Jakarta Selatan;DKI Jakarta;Kartu Kredit;pembeli_0154
+26058442314007;Selesai;2026-06-03 23:29;Tas Selempang;TSL-05;1;120000;102000;102000;18000;120000;Kab. Sleman;DI Yogyakarta;COD;pembeli_0341
+26055447417606;Selesai;2026-06-29 08:01;Topi Baseball;TPB-04;1;45000;38250;38250;12000;50250;Kab. Sleman;DI Yogyakarta;Transfer Bank;pembeli_0392
+26058551859851;Selesai;2026-06-13 09:23;Kaos Polos Hitam;KPH-01;1;65000;65000;65000;9000;74000;Kota Medan;Sumatera Utara;Dompet Digital;pembeli_0329
+26055437361087;Dibatalkan;2026-06-18 02:55;Celana Chino;CCN-03;3;175000;175000;525000;0;525000;Kab. Sleman;DI Yogyakarta;Dompet Digital;pembeli_0211
+26051889976093;Selesai;2026-06-26 04:22;Kaos Polos Hitam;KPH-01;2;65000;55250;110500;12000;122500;Kota Makassar;Sulawesi Selatan;Transfer Bank;pembeli_0303
+26056929718879;Selesai;2026-05-30 22:34;Topi Baseball;TPB-04;1;45000;38250;38250;24000;62250;Kota Makassar;Sulawesi Selatan;Dompet Digital;pembeli_0378
+26054720340649;Selesai;2026-06-20 15:52;Kaos Kaki 3 Pasang;KKK-06;1;35000;29750;29750;12000;41750;Kota Jakarta Selatan;DKI Jakarta;COD;pembeli_0168
+26055655913432;Selesai;2026-05-07 06:23;Tas Selempang;TSL-05;1;120000;120000;120000;18000;138000;Kota Makassar;Sulawesi Selatan;Transfer Bank;pembeli_0042
+26057422811346;Belum Bayar;2026-05-20 20:52;Tas Selempang;TSL-05;2;120000;108000;216000;0;216000;Kota Makassar;Sulawesi Selatan;Kartu Kredit;pembeli_0200
+26052162593827;Dibatalkan;2026-05-19 03:43;Kaos Kaki 3 Pasang;KKK-06;2;35000;35000;70000;18000;88000;Kab. Sleman;DI Yogyakarta;Transfer Bank;pembeli_0393
+26053496093304;Selesai;2026-05-18 19:49;Celana Chino;CCN-03;1;175000;157500;157500;24000;181500;Kota Bandung;Jawa Barat;COD;pembeli_0151
+26056593083758;Dikirim;2026-05-28 20:19;Kaos Kaki 3 Pasang;KKK-06;1;35000;35000;35000;12000;47000;Kota Jakarta Selatan;DKI Jakarta;Kartu Kredit;pembeli_0196
+26052246549899;Selesai;2026-06-28 14:44;Kaos Polos Hitam;KPH-01;2;65000;55250;110500;18000;128500;Kota Surabaya;Jawa Timur;Kartu Kredit;pembeli_0338
+26052184201443;Belum Bayar;2026-06-02 12:28;Kaos Kaki 3 Pasang;KKK-06;2;35000;31500;63000;0;63000;Kota Medan;Sumatera Utara;Kartu Kredit;pembeli_0285
+26052152424974;Selesai;2026-05-06 17:39;Topi Baseball;TPB-04;2;45000;45000;90000;9000;99000;Kota Makassar;Sulawesi Selatan;Transfer Bank;pembeli_0389
+26056267453421;Selesai;2026-05-07 15:39;Kaos Kaki 3 Pasang;KKK-06;1;35000;35000;35000;18000;53000;Kota Surabaya;Jawa Timur;Kartu Kredit;pembeli_0232
+26059827844711;Dibatalkan;2026-06-07 06:04;Kemeja Flanel;KMF-02;2;145000;145000;290000;0;290000;Kota Surabaya;Jawa Timur;Dompet Digital;pembeli_0293
+26053560221325;Dikirim;2026-05-10 16:55;Kaos Kaki 3 Pasang;KKK-06;1;35000;29750;29750;12000;41750;Kota Bandung;Jawa Barat;Dompet Digital;pembeli_0367
+26054350261581;Belum Bayar;2026-05-09 17:53;Kaos Polos Hitam;KPH-01;1;65000;55250;55250;24000;79250;Kota Jakarta Selatan;DKI Jakarta;COD;pembeli_0286
+26059290391830;Selesai;2026-06-15 00:49;Celana Chino;CCN-03;2;175000;175000;350000;24000;374000;Kota Makassar;Sulawesi Selatan;COD;pembeli_0270
+26052744514665;Dibatalkan;2026-06-24 11:29;Tas Selempang;TSL-05;2;120000;108000;216000;12000;228000;Kota Jakarta Selatan;DKI Jakarta;Transfer Bank;pembeli_0013
+26057466321714;Selesai;2026-05-21 00:10;Tas Selempang;TSL-05;1;120000;102000;102000;12000;114000;Kota Surabaya;Jawa Timur;Dompet Digital;pembeli_0063
+26058886808717;Belum Bayar;2026-06-10 04:05;Kaos Polos Hitam;KPH-01;2;65000;55250;110500;0;110500;Kota Medan;Sumatera Utara;COD;pembeli_0238
+26055281053464;Selesai;2026-06-15 15:08;Kaos Polos Hitam;KPH-01;1;65000;65000;65000;9000;74000;Kab. Sleman;DI Yogyakarta;COD;pembeli_0376
+26052278853544;Selesai;2026-06-26 23:43;Topi Baseball;TPB-04;1;45000;38250;38250;24000;62250;Kab. Sleman;DI Yogyakarta;Dompet Digital;pembeli_0053
+26051505256428;Belum Bayar;2026-06-22 01:03;Kemeja Flanel;KMF-02;2;145000;123250;246500;0;246500;Kota Surabaya;Jawa Timur;Kartu Kredit;pembeli_0144
+26058405259682;Dibatalkan;2026-06-11 23:45;Celana Chino;CCN-03;1;175000;157500;157500;9000;166500;Kab. Sleman;DI Yogyakarta;Kartu Kredit;pembeli_0268
+26052446404496;Selesai;2026-06-26 15:04;Kaos Polos Hitam;KPH-01;3;65000;55250;165750;18000;183750;Kota Jakarta Selatan;DKI Jakarta;Kartu Kredit;pembeli_0260
+26059051233536;Selesai;2026-06-28 16:42;Kaos Kaki 3 Pasang;KKK-06;1;35000;31500;31500;0;31500;Kab. Sleman;DI Yogyakarta;COD;pembeli_0347
+26053918241580;Dibatalkan;2026-06-20 03:56;Topi Baseball;TPB-04;2;45000;45000;90000;24000;114000;Kota Bandung;Jawa Barat;Dompet Digital;pembeli_0200
+26055487048188;Selesai;2026-05-03 18:32;Kaos Polos Hitam;KPH-01;2;65000;58500;117000;0;117000;Kota Surabaya;Jawa Timur;Dompet Digital;pembeli_0241
+26051182318539;Dikirim;2026-05-23 20:20;Kaos Kaki 3 Pasang;KKK-06;1;35000;35000;35000;18000;53000;Kota Makassar;Sulawesi Selatan;Dompet Digital;pembeli_0313
+26055083000404;Dibatalkan;2026-06-22 05:56;Kaos Kaki 3 Pasang;KKK-06;1;35000;31500;31500;9000;40500;Kota Medan;Sumatera Utara;COD;pembeli_0239
+26057885847367;Dibatalkan;2026-05-22 09:25;Kemeja Flanel;KMF-02;2;145000;145000;290000;12000;302000;Kota Medan;Sumatera Utara;COD;pembeli_0045
+26054748643480;Dibatalkan;2026-06-02 14:38;Kaos Kaki 3 Pasang;KKK-06;3;35000;29750;89250;0;89250;Kota Bandung;Jawa Barat;Transfer Bank;pembeli_0170
+26052998840407;Dibatalkan;2026-05-20 02:59;Kemeja Flanel;KMF-02;3;145000;123250;369750;12000;381750;Kota Surabaya;Jawa Timur;COD;pembeli_0340
+26056739208291;Belum Bayar;2026-05-07 18:33;Topi Baseball;TPB-04;2;45000;38250;76500;9000;85500;Kota Makassar;Sulawesi Selatan;Kartu Kredit;pembeli_0015
+26055123960641;Dikirim;2026-06-18 12:24;Tas Selempang;TSL-05;2;120000;102000;204000;12000;216000;Kota Bandung;Jawa Barat;Dompet Digital;pembeli_0190
+26056436992136;Dibatalkan;2026-05-06 19:16;Kemeja Flanel;KMF-02;1;145000;145000;145000;24000;169000;Kab. Sleman;DI Yogyakarta;Dompet Digital;pembeli_0137
+26055487375083;Selesai;2026-05-21 20:52;Tas Selempang;TSL-05;2;120000;120000;240000;9000;249000;Kota Bandung;Jawa Barat;Kartu Kredit;pembeli_0217
+26053689074919;Dibatalkan;2026-05-28 19:50;Kaos Polos Hitam;KPH-01;1;65000;55250;55250;24000;79250;Kota Surabaya;Jawa Timur;Dompet Digital;pembeli_0303
+26056000696501;Belum Bayar;2026-05-07 03:19;Kemeja Flanel;KMF-02;2;145000;145000;290000;18000;308000;Kota Jakarta Selatan;DKI Jakarta;Transfer Bank;pembeli_0145
+26053300909308;Selesai;2026-05-20 17:53;Kemeja Flanel;KMF-02;1;145000;145000;145000;24000;169000;Kota Bandung;Jawa Barat;Kartu Kredit;pembeli_0303
+26059978965723;Selesai;2026-06-24 15:41;Topi Baseball;TPB-04;1;45000;40500;40500;12000;52500;Kab. Sleman;DI Yogyakarta;Dompet Digital;pembeli_0339
+26054853109928;Dikirim;2026-05-23 22:33;Kaos Kaki 3 Pasang;KKK-06;3;35000;35000;105000;0;105000;Kab. Sleman;DI Yogyakarta;Dompet Digital;pembeli_0298
+26058709573565;Selesai;2026-05-09 13:39;Tas Selempang;TSL-05;2;120000;108000;216000;0;216000;Kota Jakarta Selatan;DKI Jakarta;Kartu Kredit;pembeli_0353
+26053750157943;Belum Bayar;2026-06-21 23:27;Kaos Polos Hitam;KPH-01;1;65000;55250;55250;18000;73250;Kota Surabaya;Jawa Timur;Transfer Bank;pembeli_0342
+26058836744697;Dikirim;2026-05-03 06:42;Kemeja Flanel;KMF-02;1;145000;145000;145000;24000;169000;Kab. Sleman;DI Yogyakarta;Dompet Digital;pembeli_0386
+26058345322977;Selesai;2026-06-11 03:22;Kaos Kaki 3 Pasang;KKK-06;1;35000;31500;31500;12000;43500;Kota Medan;Sumatera Utara;Dompet Digital;pembeli_0054
+26055183520319;Selesai;2026-05-29 23:00;Kaos Polos Hitam;KPH-01;1;65000;55250;55250;12000;67250;Kota Medan;Sumatera Utara;COD;pembeli_0323
+26054910609584;Selesai;2026-05-06 07:29;Kemeja Flanel;KMF-02;2;145000;145000;290000;12000;302000;Kota Makassar;Sulawesi Selatan;Transfer Bank;pembeli_0351
+26052612527265;Belum Bayar;2026-06-06 23:31;Celana Chino;CCN-03;2;175000;175000;350000;0;350000;Kota Makassar;Sulawesi Selatan;Transfer Bank;pembeli_0027
+26057127164135;Selesai;2026-06-02 15:21;Tas Selempang;TSL-05;1;120000;102000;102000;24000;126000;Kota Bandung;Jawa Barat;Kartu Kredit;pembeli_0289
+26052478891394;Selesai;2026-06-05 00:01;Kaos Polos Hitam;KPH-01;1;65000;55250;55250;0;55250;Kota Medan;Sumatera Utara;Transfer Bank;pembeli_0226
+26055309082730;Dikirim;2026-05-13 20:55;Kaos Kaki 3 Pasang;KKK-06;3;35000;29750;89250;0;89250;Kota Bandung;Jawa Barat;Transfer Bank;pembeli_0361
+26057756247836;Dikirim;2026-05-28 12:54;Celana Chino;CCN-03;1;175000;148750;148750;24000;172750;Kab. Sleman;DI Yogyakarta;Transfer Bank;pembeli_0113
+26056846358914;Dibatalkan;2026-06-23 08:07;Kaos Polos Hitam;KPH-01;2;65000;55250;110500;24000;134500;Kab. Sleman;DI Yogyakarta;Kartu Kredit;pembeli_0104
+26058589478537;Selesai;2026-06-22 03:05;Tas Selempang;TSL-05;2;120000;102000;204000;12000;216000;Kab. Sleman;DI Yogyakarta;COD;pembeli_0206
+26056818933490;Dibatalkan;2026-06-08 18:34;Celana Chino;CCN-03;1;175000;175000;175000;24000;199000;Kota Bandung;Jawa Barat;Dompet Digital;pembeli_0237
+26052013551275;Selesai;2026-06-18 19:24;Celana Chino;CCN-03;1;175000;157500;157500;0;157500;Kab. Sleman;DI Yogyakarta;Transfer Bank;pembeli_0115
+26058762010874;Selesai;2026-06-09 04:52;Kaos Kaki 3 Pasang;KKK-06;2;35000;35000;70000;24000;94000;Kota Jakarta Selatan;DKI Jakarta;Transfer Bank;pembeli_0295
+26057324450608;Selesai;2026-05-01 22:39;Tas Selempang;TSL-05;2;120000;102000;204000;9000;213000;Kab. Sleman;DI Yogyakarta;Transfer Bank;pembeli_0159
+26057215889254;Selesai;2026-05-08 15:09;Kaos Polos Hitam;KPH-01;2;65000;65000;130000;24000;154000;Kota Medan;Sumatera Utara;Transfer Bank;pembeli_0322
+26055087735673;Belum Bayar;2026-05-22 01:52;Kaos Polos Hitam;KPH-01;2;65000;65000;130000;24000;154000;Kab. Sleman;DI Yogyakarta;Kartu Kredit;pembeli_0335
+26056814412842;Selesai;2026-06-21 15:51;Kaos Kaki 3 Pasang;KKK-06;1;35000;35000;35000;18000;53000;Kota Bandung;Jawa Barat;COD;pembeli_0337
+26051869032117;Selesai;2026-05-07 13:37;Kaos Polos Hitam;KPH-01;3;65000;55250;165750;9000;174750;Kota Medan;Sumatera Utara;Dompet Digital;pembeli_0113
+26054572121989;Selesai;2026-05-17 09:42;Tas Selempang;TSL-05;1;120000;120000;120000;12000;132000;Kota Bandung;Jawa Barat;COD;pembeli_0184
+26059996095320;Selesai;2026-06-01 15:38;Kemeja Flanel;KMF-02;2;145000;145000;290000;9000;299000;Kota Makassar;Sulawesi Selatan;Transfer Bank;pembeli_0063
+26051219928426;Selesai;2026-05-09 19:01;Topi Baseball;TPB-04;2;45000;45000;90000;12000;102000;Kota Medan;Sumatera Utara;Transfer Bank;pembeli_0096
+26054538874096;Dikirim;2026-05-17 08:47;Celana Chino;CCN-03;1;175000;157500;157500;18000;175500;Kab. Sleman;DI Yogyakarta;Kartu Kredit;pembeli_0286
+26056896747502;Selesai;2026-06-23 06:05;Celana Chino;CCN-03;3;175000;157500;472500;0;472500;Kota Medan;Sumatera Utara;Kartu Kredit;pembeli_0172
+26058165054377;Dibatalkan;2026-06-13 03:11;Topi Baseball;TPB-04;1;45000;40500;40500;18000;58500;Kota Makassar;Sulawesi Selatan;Transfer Bank;pembeli_0071
+26059850067427;Selesai;2026-06-30 10:49;Tas Selempang;TSL-05;1;120000;120000;120000;24000;144000;Kab. Sleman;DI Yogyakarta;Transfer Bank;pembeli_0394
+26053600406754;Belum Bayar;2026-05-14 06:46;Topi Baseball;TPB-04;3;45000;45000;135000;0;135000;Kota Jakarta Selatan;DKI Jakarta;Transfer Bank;pembeli_0195
+26057347910925;Selesai;2026-06-20 07:07;Topi Baseball;TPB-04;2;45000;45000;90000;0;90000;Kab. Sleman;DI Yogyakarta;Transfer Bank;pembeli_0342
+26055615074291;Selesai;2026-06-12 15:02;Kemeja Flanel;KMF-02;1;145000;145000;145000;18000;163000;Kota Medan;Sumatera Utara;COD;pembeli_0163
+26051233717839;Belum Bayar;2026-06-10 07:28;Kemeja Flanel;KMF-02;2;145000;145000;290000;12000;302000;Kab. Sleman;DI Yogyakarta;Transfer Bank;pembeli_0164
+26055186062835;Selesai;2026-06-10 23:47;Kaos Kaki 3 Pasang;KKK-06;1;35000;29750;29750;24000;53750;Kota Medan;Sumatera Utara;Dompet Digital;pembeli_0029
+26058473677584;Dibatalkan;2026-05-14 19:24;Celana Chino;CCN-03;1;175000;175000;175000;18000;193000;Kota Surabaya;Jawa Timur;Transfer Bank;pembeli_0232
+26052497581962;Dibatalkan;2026-06-02 12:37;Kemeja Flanel;KMF-02;2;145000;130500;261000;12000;273000;Kota Makassar;Sulawesi Selatan;Kartu Kredit;pembeli_0077
+26056566893316;Selesai;2026-06-19 22:53;Celana Chino;CCN-03;1;175000;175000;175000;24000;199000;Kota Bandung;Jawa Barat;Kartu Kredit;pembeli_0279
+26057008149180;Dibatalkan;2026-05-24 11:26;Topi Baseball;TPB-04;1;45000;45000;45000;18000;63000;Kab. Sleman;DI Yogyakarta;COD;pembeli_0236
+26053309086696;Selesai;2026-06-02 14:46;Kaos Kaki 3 Pasang;KKK-06;2;35000;35000;70000;0;70000;Kota Medan;Sumatera Utara;Kartu Kredit;pembeli_0187
+26051409134667;Selesai;2026-06-23 18:11;Celana Chino;CCN-03;1;175000;157500;157500;24000;181500;Kota Surabaya;Jawa Timur;Dompet Digital;pembeli_0208
+26052338692252;Selesai;2026-05-20 20:57;Kaos Polos Hitam;KPH-01;1;65000;65000;65000;9000;74000;Kota Makassar;Sulawesi Selatan;Dompet Digital;pembeli_0202
+26059686701100;Selesai;2026-05-10 04:25;Celana Chino;CCN-03;3;175000;148750;446250;0;446250;Kota Surabaya;Jawa Timur;COD;pembeli_0310
+26052965752482;Dikirim;2026-06-18 11:37;Topi Baseball;TPB-04;1;45000;40500;40500;12000;52500;Kota Surabaya;Jawa Timur;Dompet Digital;pembeli_0143
+26054110130275;Belum Bayar;2026-06-15 14:05;Topi Baseball;TPB-04;2;45000;40500;81000;12000;93000;Kab. Sleman;DI Yogyakarta;Dompet Digital;pembeli_0393
+26058059583224;Belum Bayar;2026-05-14 14:24;Tas Selempang;TSL-05;1;120000;108000;108000;0;108000;Kota Jakarta Selatan;DKI Jakarta;Dompet Digital;pembeli_0345
+26053602300123;Dikirim;2026-06-04 19:49;Kaos Polos Hitam;KPH-01;1;65000;58500;58500;9000;67500;Kota Surabaya;Jawa Timur;COD;pembeli_0305
+26051366667331;Dibatalkan;2026-05-16 19:01;Kaos Polos Hitam;KPH-01;1;65000;65000;65000;12000;77000;Kota Makassar;Sulawesi Selatan;Dompet Digital;pembeli_0349
+26057792179679;Selesai;2026-06-25 13:09;Tas Selempang;TSL-05;1;120000;102000;102000;0;102000;Kab. Sleman;DI Yogyakarta;Transfer Bank;pembeli_0120
+26051217937479;Selesai;2026-05-22 21:00;Kemeja Flanel;KMF-02;3;145000;123250;369750;18000;387750;Kota Bandung;Jawa Barat;Kartu Kredit;pembeli_0259
+26058009960819;Belum Bayar;2026-06-14 07:51;Kaos Polos Hitam;KPH-01;1;65000;58500;58500;12000;70500;Kota Jakarta Selatan;DKI Jakarta;Transfer Bank;pembeli_0152
+26059228553632;Dikirim;2026-06-20 19:34;Kaos Kaki 3 Pasang;KKK-06;2;35000;35000;70000;12000;82000;Kab. Sleman;DI Yogyakarta;COD;pembeli_0044
+26056309112351;Selesai;2026-06-02 06:40;Kaos Polos Hitam;KPH-01;2;65000;65000;130000;18000;148000;Kota Medan;Sumatera Utara;COD;pembeli_0295
+26057373698547;Selesai;2026-06-03 08:43;Kemeja Flanel;KMF-02;2;145000;145000;290000;0;290000;Kota Surabaya;Jawa Timur;Kartu Kredit;pembeli_0272
+26054821648453;Dibatalkan;2026-06-02 11:09;Celana Chino;CCN-03;2;175000;148750;297500;0;297500;Kota Surabaya;Jawa Timur;COD;pembeli_0080
+26053000017034;Dibatalkan;2026-05-28 21:16;Tas Selempang;TSL-05;1;120000;108000;108000;18000;126000;Kota Makassar;Sulawesi Selatan;COD;pembeli_0054
+26053778725825;Dikirim;2026-06-18 17:53;Kaos Kaki 3 Pasang;KKK-06;1;35000;35000;35000;18000;53000;Kota Makassar;Sulawesi Selatan;Dompet Digital;pembeli_0175
+26057524461537;Selesai;2026-05-17 07:04;Kaos Kaki 3 Pasang;KKK-06;1;35000;35000;35000;18000;53000;Kota Jakarta Selatan;DKI Jakarta;Dompet Digital;pembeli_0039
+26058238980827;Dikirim;2026-05-12 08:58;Celana Chino;CCN-03;2;175000;175000;350000;12000;362000;Kota Surabaya;Jawa Timur;Kartu Kredit;pembeli_0038
+26057212137109;Dibatalkan;2026-06-27 13:38;Kemeja Flanel;KMF-02;1;145000;123250;123250;9000;132250;Kab. Sleman;DI Yogyakarta;COD;pembeli_0196
+26053782787108;Selesai;2026-06-14 20:38;Kaos Polos Hitam;KPH-01;2;65000;65000;130000;18000;148000;Kota Surabaya;Jawa Timur;Transfer Bank;pembeli_0270
+26053449936998;Selesai;2026-06-18 10:01;Kaos Kaki 3 Pasang;KKK-06;2;35000;35000;70000;24000;94000;Kota Medan;Sumatera Utara;COD;pembeli_0144
+26053539636230;Selesai;2026-06-27 23:38;Topi Baseball;TPB-04;1;45000;45000;45000;9000;54000;Kota Surabaya;Jawa Timur;COD;pembeli_0366
+26054605543927;Belum Bayar;2026-05-15 05:58;Tas Selempang;TSL-05;2;120000;102000;204000;12000;216000;Kota Jakarta Selatan;DKI Jakarta;Kartu Kredit;pembeli_0253
+26051665193425;Dibatalkan;2026-05-18 23:19;Kemeja Flanel;KMF-02;1;145000;145000;145000;12000;157000;Kab. Sleman;DI Yogyakarta;Transfer Bank;pembeli_0137
+26059499714405;Belum Bayar;2026-05-04 19:44;Kaos Polos Hitam;KPH-01;1;65000;65000;65000;18000;83000;Kota Surabaya;Jawa Timur;Dompet Digital;pembeli_0019
+26059118727599;Belum Bayar;2026-06-25 18:33;Celana Chino;CCN-03;2;175000;175000;350000;12000;362000;Kota Makassar;Sulawesi Selatan;Transfer Bank;pembeli_0075
+26054656174353;Dikirim;2026-06-23 15:02;Topi Baseball;TPB-04;1;45000;45000;45000;0;45000;Kota Makassar;Sulawesi Selatan;COD;pembeli_0182
+26059726518515;Dikirim;2026-05-31 06:28;Kemeja Flanel;KMF-02;3;145000;123250;369750;24000;393750;Kota Medan;Sumatera Utara;COD;pembeli_0270
+26051143784901;Belum Bayar;2026-06-29 05:52;Topi Baseball;TPB-04;1;45000;40500;40500;18000;58500;Kota Bandung;Jawa Barat;COD;pembeli_0113
+26058053756760;Selesai;2026-05-10 02:50;Kaos Kaki 3 Pasang;KKK-06;2;35000;31500;63000;24000;87000;Kota Makassar;Sulawesi Selatan;Kartu Kredit;pembeli_0222
+26056122194091;Selesai;2026-06-02 22:53;Kaos Kaki 3 Pasang;KKK-06;1;35000;29750;29750;12000;41750;Kota Jakarta Selatan;DKI Jakarta;Dompet Digital;pembeli_0089
+26057772921952;Selesai;2026-05-13 16:09;Tas Selempang;TSL-05;2;120000;120000;240000;9000;249000;Kota Bandung;Jawa Barat;Kartu Kredit;pembeli_0287
+26054873368552;Selesai;2026-06-05 23:44;Celana Chino;CCN-03;3;175000;175000;525000;9000;534000;Kota Bandung;Jawa Barat;Dompet Digital;pembeli_0275
+26057677650557;Selesai;2026-06-23 09:27;Kaos Kaki 3 Pasang;KKK-06;3;35000;35000;105000;18000;123000;Kota Surabaya;Jawa Timur;Transfer Bank;pembeli_0318
+26052232876099;Selesai;2026-06-02 18:36;Topi Baseball;TPB-04;3;45000;45000;135000;12000;147000;Kota Surabaya;Jawa Timur;COD;pembeli_0106
+26051751314110;Selesai;2026-06-25 00:12;Kaos Kaki 3 Pasang;KKK-06;1;35000;35000;35000;9000;44000;Kab. Sleman;DI Yogyakarta;Transfer Bank;pembeli_0012
+26051232524353;Selesai;2026-05-20 04:46;Kemeja Flanel;KMF-02;1;145000;130500;130500;24000;154500;Kota Surabaya;Jawa Timur;Transfer Bank;pembeli_0154
+26057067727370;Selesai;2026-06-12 08:40;Kemeja Flanel;KMF-02;1;145000;145000;145000;24000;169000;Kota Bandung;Jawa Barat;COD;pembeli_0318
+26051434571724;Belum Bayar;2026-05-06 12:09;Topi Baseball;TPB-04;2;45000;45000;90000;12000;102000;Kota Jakarta Selatan;DKI Jakarta;Kartu Kredit;pembeli_0144
+26058648441653;Belum Bayar;2026-05-16 21:05;Kaos Kaki 3 Pasang;KKK-06;3;35000;29750;89250;9000;98250;Kota Medan;Sumatera Utara;Kartu Kredit;pembeli_0264
+26058274055173;Selesai;2026-06-08 13:57;Kaos Kaki 3 Pasang;KKK-06;3;35000;35000;105000;9000;114000;Kab. Sleman;DI Yogyakarta;Kartu Kredit;pembeli_0177
+26057201506068;Selesai;2026-05-09 15:20;Kemeja Flanel;KMF-02;3;145000;145000;435000;0;435000;Kab. Sleman;DI Yogyakarta;Dompet Digital;pembeli_0369
+26057099413893;Dibatalkan;2026-05-21 06:19;Kemeja Flanel;KMF-02;3;145000;145000;435000;12000;447000;Kota Medan;Sumatera Utara;Transfer Bank;pembeli_0133
+26055880668129;Belum Bayar;2026-05-26 16:58;Kemeja Flanel;KMF-02;1;145000;123250;123250;24000;147250;Kab. Sleman;DI Yogyakarta;COD;pembeli_0130
+26051871211409;Selesai;2026-06-01 00:48;Topi Baseball;TPB-04;1;45000;45000;45000;0;45000;Kota Jakarta Selatan;DKI Jakarta;Transfer Bank;pembeli_0396
+26055755147938;Belum Bayar;2026-06-30 07:31;Kaos Kaki 3 Pasang;KKK-06;1;35000;35000;35000;24000;59000;Kota Makassar;Sulawesi Selatan;Transfer Bank;pembeli_0278
+26052543296794;Selesai;2026-06-27 13:24;Kemeja Flanel;KMF-02;2;145000;145000;290000;9000;299000;Kota Jakarta Selatan;DKI Jakarta;COD;pembeli_0208
+26058417717344;Dibatalkan;2026-06-20 19:46;Kemeja Flanel;KMF-02;2;145000;145000;290000;9000;299000;Kota Medan;Sumatera Utara;Dompet Digital;pembeli_0378
+26051031472561;Belum Bayar;2026-05-26 17:11;Kemeja Flanel;KMF-02;1;145000;130500;130500;9000;139500;Kota Surabaya;Jawa Timur;Transfer Bank;pembeli_0047
+26058949386245;Dibatalkan;2026-05-12 17:30;Topi Baseball;TPB-04;2;45000;45000;90000;24000;114000;Kab. Sleman;DI Yogyakarta;Transfer Bank;pembeli_0195
+26053009586336;Selesai;2026-05-27 20:57;Kemeja Flanel;KMF-02;1;145000;145000;145000;18000;163000;Kota Bandung;Jawa Barat;Transfer Bank;pembeli_0295
+26057697237927;Selesai;2026-05-26 09:52;Topi Baseball;TPB-04;3;45000;38250;114750;24000;138750;Kota Surabaya;Jawa Timur;Dompet Digital;pembeli_0075
+26058880226017;Dikirim;2026-06-04 09:49;Kemeja Flanel;KMF-02;2;145000;130500;261000;18000;279000;Kota Medan;Sumatera Utara;Transfer Bank;pembeli_0253
+26055870682037;Belum Bayar;2026-06-29 12:31;Celana Chino;CCN-03;1;175000;148750;148750;18000;166750;Kota Surabaya;Jawa Timur;Dompet Digital;pembeli_0096
+26052790905882;Selesai;2026-05-28 11:03;Kaos Polos Hitam;KPH-01;3;65000;65000;195000;12000;207000;Kota Medan;Sumatera Utara;Dompet Digital;pembeli_0123
+26053711428828;Dibatalkan;2026-06-26 06:41;Kemeja Flanel;KMF-02;2;145000;130500;261000;18000;279000;Kota Bandung;Jawa Barat;COD;pembeli_0040
+26055122392343;Dibatalkan;2026-06-15 03:48;Kaos Polos Hitam;KPH-01;1;65000;55250;55250;24000;79250;Kota Bandung;Jawa Barat;COD;pembeli_0360
+26059603648004;Selesai;2026-06-25 09:46;Kaos Polos Hitam;KPH-01;3;65000;65000;195000;18000;213000;Kota Makassar;Sulawesi Selatan;Dompet Digital;pembeli_0040
+26053224573994;Belum Bayar;2026-05-28 13:35;Tas Selempang;TSL-05;1;120000;120000;120000;12000;132000;Kota Jakarta Selatan;DKI Jakarta;Dompet Digital;pembeli_0302
+26055599313708;Belum Bayar;2026-06-28 20:32;Celana Chino;CCN-03;1;175000;148750;148750;9000;157750;Kota Bandung;Jawa Barat;Dompet Digital;pembeli_0079
+26054335597364;Belum Bayar;2026-05-02 13:46;Tas Selempang;TSL-05;2;120000;102000;204000;12000;216000;Kab. Sleman;DI Yogyakarta;Kartu Kredit;pembeli_0219
+26056142999354;Dikirim;2026-06-11 00:39;Kaos Kaki 3 Pasang;KKK-06;3;35000;35000;105000;12000;117000;Kota Makassar;Sulawesi Selatan;Transfer Bank;pembeli_0198
+26053485021358;Dibatalkan;2026-06-09 21:21;Topi Baseball;TPB-04;2;45000;45000;90000;0;90000;Kab. Sleman;DI Yogyakarta;COD;pembeli_0180
+26058190786717;Dikirim;2026-06-23 19:44;Kaos Kaki 3 Pasang;KKK-06;2;35000;31500;63000;18000;81000;Kota Jakarta Selatan;DKI Jakarta;Transfer Bank;pembeli_0215
+26059763999043;Selesai;2026-06-07 08:03;Kaos Polos Hitam;KPH-01;2;65000;65000;130000;9000;139000;Kota Bandung;Jawa Barat;Dompet Digital;pembeli_0196
+26059950404477;Dikirim;2026-05-17 08:23;Kaos Kaki 3 Pasang;KKK-06;3;35000;29750;89250;24000;113250;Kota Bandung;Jawa Barat;Dompet Digital;pembeli_0010
+26059314554878;Dikirim;2026-05-20 05:43;Kaos Kaki 3 Pasang;KKK-06;1;35000;35000;35000;24000;59000;Kab. Sleman;DI Yogyakarta;Dompet Digital;pembeli_0248
+26055075265323;Selesai;2026-06-03 03:40;Kemeja Flanel;KMF-02;2;145000;123250;246500;18000;264500;Kota Medan;Sumatera Utara;Kartu Kredit;pembeli_0377
+26055589503612;Dikirim;2026-06-06 19:05;Kaos Kaki 3 Pasang;KKK-06;1;35000;35000;35000;18000;53000;Kota Bandung;Jawa Barat;Dompet Digital;pembeli_0331
+26056453489528;Selesai;2026-05-09 21:22;Kaos Kaki 3 Pasang;KKK-06;3;35000;31500;94500;12000;106500;Kota Makassar;Sulawesi Selatan;COD;pembeli_0298
+26059967983513;Selesai;2026-06-08 05:26;Tas Selempang;TSL-05;1;120000;102000;102000;18000;120000;Kota Medan;Sumatera Utara;Dompet Digital;pembeli_0066
+26057428856028;Selesai;2026-05-27 11:28;Kaos Kaki 3 Pasang;KKK-06;2;35000;35000;70000;18000;88000;Kota Bandung;Jawa Barat;Dompet Digital;pembeli_0373
+26054906683317;Dikirim;2026-06-09 11:15;Celana Chino;CCN-03;2;175000;175000;350000;0;350000;Kota Surabaya;Jawa Timur;Dompet Digital;pembeli_0380
+26059680562271;Dibatalkan;2026-05-27 14:42;Kaos Polos Hitam;KPH-01;2;65000;55250;110500;0;110500;Kota Bandung;Jawa Barat;Kartu Kredit;pembeli_0348
+26059899690561;Selesai;2026-06-24 21:25;Kemeja Flanel;KMF-02;1;145000;123250;123250;12000;135250;Kota Jakarta Selatan;DKI Jakarta;Kartu Kredit;pembeli_0039
+26057736248727;Selesai;2026-05-22 04:22;Kaos Polos Hitam;KPH-01;1;65000;58500;58500;18000;76500;Kab. Sleman;DI Yogyakarta;Kartu Kredit;pembeli_0060
+26053515714223;Dibatalkan;2026-05-03 06:58;Kemeja Flanel;KMF-02;2;145000;145000;290000;9000;299000;Kota Surabaya;Jawa Timur;Transfer Bank;pembeli_0316
+26057743917570;Dikirim;2026-06-16 04:58;Kaos Polos Hitam;KPH-01;2;65000;58500;117000;12000;129000;Kota Medan;Sumatera Utara;Transfer Bank;pembeli_0333
+26054254478881;Dikirim;2026-06-17 16:33;Topi Baseball;TPB-04;1;45000;38250;38250;9000;47250;Kab. Sleman;DI Yogyakarta;Dompet Digital;pembeli_0268
+26055893562857;Selesai;2026-06-28 09:16;Kaos Polos Hitam;KPH-01;2;65000;58500;117000;12000;129000;Kota Bandung;Jawa Barat;Kartu Kredit;pembeli_0312
+26056593882264;Selesai;2026-05-24 15:25;Kaos Kaki 3 Pasang;KKK-06;1;35000;29750;29750;9000;38750;Kota Jakarta Selatan;DKI Jakarta;COD;pembeli_0158
+26058591499091;Selesai;2026-06-01 05:11;Tas Selempang;TSL-05;2;120000;108000;216000;9000;225000;Kota Medan;Sumatera Utara;Transfer Bank;pembeli_0399
+26057929047733;Selesai;2026-06-09 19:24;Topi Baseball;TPB-04;1;45000;38250;38250;18000;56250;Kab. Sleman;DI Yogyakarta;COD;pembeli_0052
+26059493777976;Dikirim;2026-06-25 20:31;Kaos Kaki 3 Pasang;KKK-06;1;35000;35000;35000;18000;53000;Kota Surabaya;Jawa Timur;Dompet Digital;pembeli_0296
+26053073773273;Belum Bayar;2026-05-26 07:00;Celana Chino;CCN-03;1;175000;175000;175000;0;175000;Kota Medan;Sumatera Utara;Dompet Digital;pembeli_0313
+26054980417167;Belum Bayar;2026-06-17 04:08;Celana Chino;CCN-03;2;175000;175000;350000;0;350000;Kota Bandung;Jawa Barat;Dompet Digital;pembeli_0297
+26055025053029;Belum Bayar;2026-05-26 07:30;Tas Selempang;TSL-05;1;120000;120000;120000;12000;132000;Kota Medan;Sumatera Utara;Dompet Digital;pembeli_0059
+26053391310352;Selesai;2026-05-31 19:44;Celana Chino;CCN-03;2;175000;157500;315000;24000;339000;Kota Makassar;Sulawesi Selatan;Kartu Kredit;pembeli_0291
+26059192149917;Dikirim;2026-05-11 18:05;Kaos Polos Hitam;KPH-01;2;65000;65000;130000;18000;148000;Kab. Sleman;DI Yogyakarta;Kartu Kredit;pembeli_0117
+26059344731606;Selesai;2026-05-28 21:22;Kaos Kaki 3 Pasang;KKK-06;2;35000;35000;70000;24000;94000;Kab. Sleman;DI Yogyakarta;COD;pembeli_0179
+26058350076936;Dikirim;2026-05-28 20:46;Kemeja Flanel;KMF-02;1;145000;145000;145000;24000;169000;Kab. Sleman;DI Yogyakarta;Kartu Kredit;pembeli_0012
+26052016579798;Belum Bayar;2026-05-06 15:25;Topi Baseball;TPB-04;2;45000;45000;90000;18000;108000;Kota Surabaya;Jawa Timur;Kartu Kredit;pembeli_0099
+26058518613393;Selesai;2026-06-09 23:13;Kaos Polos Hitam;KPH-01;2;65000;58500;117000;18000;135000;Kab. Sleman;DI Yogyakarta;COD;pembeli_0065
+26053579784203;Belum Bayar;2026-05-07 01:16;Tas Selempang;TSL-05;2;120000;120000;240000;24000;264000;Kota Medan;Sumatera Utara;COD;pembeli_0202
+26054708777888;Dibatalkan;2026-05-11 06:20;Kaos Kaki 3 Pasang;KKK-06;2;35000;29750;59500;24000;83500;Kota Bandung;Jawa Barat;Kartu Kredit;pembeli_0224
+26052275796927;Dikirim;2026-05-01 07:01;Tas Selempang;TSL-05;1;120000;120000;120000;24000;144000;Kota Medan;Sumatera Utara;Transfer Bank;pembeli_0367
+26052419771739;Selesai;2026-06-08 08:31;Topi Baseball;TPB-04;3;45000;38250;114750;18000;132750;Kota Makassar;Sulawesi Selatan;Dompet Digital;pembeli_0123
+26059212258995;Dibatalkan;2026-05-19 12:18;Kaos Kaki 3 Pasang;KKK-06;1;35000;35000;35000;24000;59000;Kota Jakarta Selatan;DKI Jakarta;Kartu Kredit;pembeli_0357
+26052968085828;Dikirim;2026-05-02 13:30;Kemeja Flanel;KMF-02;3;145000;130500;391500;18000;409500;Kota Medan;Sumatera Utara;Kartu Kredit;pembeli_0180
+26058802248831;Selesai;2026-06-16 01:07;Tas Selempang;TSL-05;1;120000;108000;108000;0;108000;Kota Surabaya;Jawa Timur;Transfer Bank;pembeli_0027
+26051315306201;Dibatalkan;2026-06-02 09:52;Kemeja Flanel;KMF-02;3;145000;145000;435000;18000;453000;Kota Bandung;Jawa Barat;Kartu Kredit;pembeli_0356
+26056072839075;Belum Bayar;2026-06-18 22:04;Kaos Polos Hitam;KPH-01;2;65000;58500;117000;0;117000;Kota Surabaya;Jawa Timur;Kartu Kredit;pembeli_0267
+26052224877320;Selesai;2026-06-25 22:21;Kaos Kaki 3 Pasang;KKK-06;2;35000;29750;59500;12000;71500;Kota Bandung;Jawa Barat;Dompet Digital;pembeli_0084
+26059189636917;Belum Bayar;2026-06-24 07:59;Kaos Polos Hitam;KPH-01;2;65000;55250;110500;18000;128500;Kota Medan;Sumatera Utara;Transfer Bank;pembeli_0103
+26056918478503;Dikirim;2026-06-02 15:17;Tas Selempang;TSL-05;2;120000;120000;240000;0;240000;Kota Makassar;Sulawesi Selatan;Transfer Bank;pembeli_0275
+26051634111195;Dikirim;2026-05-23 17:23;Kaos Kaki 3 Pasang;KKK-06;1;35000;35000;35000;24000;59000;Kota Jakarta Selatan;DKI Jakarta;COD;pembeli_0028
+26054525777987;Dikirim;2026-05-01 01:54;Tas Selempang;TSL-05;3;120000;108000;324000;24000;348000;Kota Jakarta Selatan;DKI Jakarta;Dompet Digital;pembeli_0307
+26059982938873;Dibatalkan;2026-05-24 04:13;Celana Chino;CCN-03;1;175000;175000;175000;0;175000;Kota Makassar;Sulawesi Selatan;Transfer Bank;pembeli_0350
+26052254956539;Selesai;2026-06-01 02:14;Topi Baseball;TPB-04;1;45000;40500;40500;12000;52500;Kota Medan;Sumatera Utara;COD;pembeli_0233
+26056441152057;Dikirim;2026-06-19 10:05;Celana Chino;CCN-03;1;175000;175000;175000;18000;193000;Kab. Sleman;DI Yogyakarta;Kartu Kredit;pembeli_0283
+26056803818566;Belum Bayar;2026-06-19 00:11;Topi Baseball;TPB-04;1;45000;40500;40500;18000;58500;Kota Surabaya;Jawa Timur;COD;pembeli_0296
+26054788299047;Belum Bayar;2026-05-20 09:17;Kaos Kaki 3 Pasang;KKK-06;3;35000;35000;105000;18000;123000;Kab. Sleman;DI Yogyakarta;Kartu Kredit;pembeli_0246
+26051849860327;Belum Bayar;2026-06-18 22:24;Topi Baseball;TPB-04;2;45000;45000;90000;18000;108000;Kab. Sleman;DI Yogyakarta;Transfer Bank;pembeli_0125
+26052253458648;Dikirim;2026-06-27 16:41;Celana Chino;CCN-03;2;175000;175000;350000;18000;368000;Kab. Sleman;DI Yogyakarta;Transfer Bank;pembeli_0248
+26054939168400;Selesai;2026-06-25 19:50;Kemeja Flanel;KMF-02;1;145000;123250;123250;12000;135250;Kota Makassar;Sulawesi Selatan;Transfer Bank;pembeli_0090
+26051910456455;Dikirim;2026-05-22 09:54;Tas Selempang;TSL-05;3;120000;108000;324000;9000;333000;Kota Makassar;Sulawesi Selatan;COD;pembeli_0234
+26053122792758;Selesai;2026-06-14 05:22;Kemeja Flanel;KMF-02;1;145000;130500;130500;12000;142500;Kota Makassar;Sulawesi Selatan;Transfer Bank;pembeli_0093
+26059460867473;Selesai;2026-05-18 18:28;Kemeja Flanel;KMF-02;2;145000;145000;290000;18000;308000;Kota Bandung;Jawa Barat;Dompet Digital;pembeli_0379
+26052139504775;Belum Bayar;2026-05-03 22:42;Kaos Kaki 3 Pasang;KKK-06;1;35000;35000;35000;12000;47000;Kab. Sleman;DI Yogyakarta;Kartu Kredit;pembeli_0036
+26056913469006;Dibatalkan;2026-05-15 05:14;Kaos Kaki 3 Pasang;KKK-06;3;35000;29750;89250;9000;98250;Kota Bandung;Jawa Barat;Dompet Digital;pembeli_0239
+26059457473819;Dikirim;2026-05-15 05:37;Tas Selempang;TSL-05;2;120000;102000;204000;9000;213000;Kota Medan;Sumatera Utara;COD;pembeli_0214
+26052207867491;Selesai;2026-06-17 01:42;Kaos Kaki 3 Pasang;KKK-06;2;35000;29750;59500;12000;71500;Kota Jakarta Selatan;DKI Jakarta;Kartu Kredit;pembeli_0065
+26054739783340;Dibatalkan;2026-05-06 05:06;Topi Baseball;TPB-04;3;45000;40500;121500;0;121500;Kab. Sleman;DI Yogyakarta;Kartu Kredit;pembeli_0279
+26053122625845;Dibatalkan;2026-06-14 18:06;Topi Baseball;TPB-04;1;45000;45000;45000;12000;57000;Kota Surabaya;Jawa Timur;Dompet Digital;pembeli_0054
+26051810689534;Selesai;2026-05-31 19:56;Tas Selempang;TSL-05;3;120000;102000;306000;24000;330000;Kota Surabaya;Jawa Timur;Dompet Digital;pembeli_0165
+26054060100637;Selesai;2026-06-10 23:23;Tas Selempang;TSL-05;2;120000;108000;216000;18000;234000;Kota Medan;Sumatera Utara;COD;pembeli_0362
+26053950459523;Selesai;2026-05-26 09:30;Kemeja Flanel;KMF-02;1;145000;130500;130500;18000;148500;Kota Jakarta Selatan;DKI Jakarta;Dompet Digital;pembeli_0270
+26057634608413;Belum Bayar;2026-06-30 03:22;Celana Chino;CCN-03;1;175000;148750;148750;18000;166750;Kab. Sleman;DI Yogyakarta;Transfer Bank;pembeli_0294
+26056678374532;Selesai;2026-06-18 17:02;Tas Selempang;TSL-05;1;120000;120000;120000;0;120000;Kota Bandung;Jawa Barat;COD;pembeli_0012
+26055334885240;Dikirim;2026-06-23 02:15;Kaos Kaki 3 Pasang;KKK-06;2;35000;29750;59500;12000;71500;Kota Surabaya;Jawa Timur;Dompet Digital;pembeli_0355
+26051409531188;Dikirim;2026-05-15 06:34;Kemeja Flanel;KMF-02;1;145000;130500;130500;9000;139500;Kota Makassar;Sulawesi Selatan;Kartu Kredit;pembeli_0353
+26051626437982;Selesai;2026-05-09 05:16;Kaos Kaki 3 Pasang;KKK-06;2;35000;31500;63000;24000;87000;Kab. Sleman;DI Yogyakarta;Kartu Kredit;pembeli_0059
+26059844398134;Selesai;2026-05-15 22:47;Kaos Polos Hitam;KPH-01;1;65000;65000;65000;24000;89000;Kota Surabaya;Jawa Timur;Transfer Bank;pembeli_0108
+26055770560293;Selesai;2026-05-28 15:06;Kaos Kaki 3 Pasang;KKK-06;1;35000;35000;35000;9000;44000;Kota Bandung;Jawa Barat;COD;pembeli_0377
+26058549988029;Selesai;2026-05-15 10:40;Topi Baseball;TPB-04;3;45000;45000;135000;24000;159000;Kota Surabaya;Jawa Timur;Dompet Digital;pembeli_0316
+26053314990038;Belum Bayar;2026-06-21 08:18;Tas Selempang;TSL-05;1;120000;120000;120000;24000;144000;Kota Bandung;Jawa Barat;COD;pembeli_0249
+26059807810221;Belum Bayar;2026-06-06 23:09;Kaos Kaki 3 Pasang;KKK-06;1;35000;35000;35000;0;35000;Kota Surabaya;Jawa Timur;Dompet Digital;pembeli_0162
+26058946449401;Dikirim;2026-05-28 03:48;Kaos Polos Hitam;KPH-01;1;65000;65000;65000;24000;89000;Kota Makassar;Sulawesi Selatan;Dompet Digital;pembeli_0179
+26059835924920;Selesai;2026-05-25 10:01;Kaos Polos Hitam;KPH-01;2;65000;65000;130000;18000;148000;Kota Medan;Sumatera Utara;Kartu Kredit;pembeli_0291
+26057580915649;Selesai;2026-05-16 01:51;Tas Selempang;TSL-05;3;120000;120000;360000;9000;369000;Kota Surabaya;Jawa Timur;Kartu Kredit;pembeli_0082
+26056152594915;Dibatalkan;2026-05-05 07:57;Topi Baseball;TPB-04;1;45000;40500;40500;9000;49500;Kota Makassar;Sulawesi Selatan;Transfer Bank;pembeli_0124
+26055829918616;Selesai;2026-05-29 18:15;Kaos Polos Hitam;KPH-01;1;65000;58500;58500;24000;82500;Kota Surabaya;Jawa Timur;Kartu Kredit;pembeli_0332
+26054449009324;Selesai;2026-05-14 03:01;Tas Selempang;TSL-05;1;120000;120000;120000;18000;138000;Kota Makassar;Sulawesi Selatan;Transfer Bank;pembeli_0125
+26051081409460;Dibatalkan;2026-06-13 13:50;Kaos Polos Hitam;KPH-01;1;65000;58500;58500;18000;76500;Kota Surabaya;Jawa Timur;COD;pembeli_0320
+26056002761042;Selesai;2026-05-02 04:54;Celana Chino;CCN-03;2;175000;157500;315000;24000;339000;Kab. Sleman;DI Yogyakarta;Dompet Digital;pembeli_0289
+26058273936350;Dikirim;2026-05-11 07:55;Topi Baseball;TPB-04;2;45000;45000;90000;0;90000;Kota Medan;Sumatera Utara;Kartu Kredit;pembeli_0250
+26058525057356;Selesai;2026-06-27 12:53;Celana Chino;CCN-03;1;175000;175000;175000;24000;199000;Kota Makassar;Sulawesi Selatan;Kartu Kredit;pembeli_0352
+26056143432692;Belum Bayar;2026-05-18 12:02;Celana Chino;CCN-03;1;175000;157500;157500;24000;181500;Kota Medan;Sumatera Utara;Kartu Kredit;pembeli_0270
+26053524178992;Dibatalkan;2026-05-04 22:43;Topi Baseball;TPB-04;1;45000;45000;45000;24000;69000;Kota Bandung;Jawa Barat;Transfer Bank;pembeli_0029
+26054299839796;Selesai;2026-05-05 04:37;Kemeja Flanel;KMF-02;1;145000;130500;130500;12000;142500;Kota Surabaya;Jawa Timur;Dompet Digital;pembeli_0138
+26052651205733;Dikirim;2026-05-07 03:55;Topi Baseball;TPB-04;2;45000;40500;81000;12000;93000;Kota Surabaya;Jawa Timur;COD;pembeli_0395
+26053713261614;Belum Bayar;2026-06-24 17:13;Kemeja Flanel;KMF-02;3;145000;145000;435000;0;435000;Kota Bandung;Jawa Barat;Transfer Bank;pembeli_0038
+26059778828485;Selesai;2026-05-25 21:49;Kemeja Flanel;KMF-02;1;145000;145000;145000;24000;169000;Kota Bandung;Jawa Barat;Kartu Kredit;pembeli_0175
+26056518855831;Selesai;2026-06-16 12:31;Kemeja Flanel;KMF-02;1;145000;145000;145000;9000;154000;Kota Medan;Sumatera Utara;COD;pembeli_0216
+26057387758603;Selesai;2026-05-20 23:42;Kemeja Flanel;KMF-02;1;145000;145000;145000;18000;163000;Kab. Sleman;DI Yogyakarta;Kartu Kredit;pembeli_0301
+26051282126864;Dikirim;2026-06-08 03:20;Celana Chino;CCN-03;2;175000;175000;350000;0;350000;Kab. Sleman;DI Yogyakarta;Transfer Bank;pembeli_0040
+26058433492785;Selesai;2026-05-09 09:19;Kaos Kaki 3 Pasang;KKK-06;2;35000;29750;59500;9000;68500;Kota Bandung;Jawa Barat;COD;pembeli_0352
+26058845344454;Dikirim;2026-06-09 00:14;Kaos Kaki 3 Pasang;KKK-06;1;35000;35000;35000;0;35000;Kota Medan;Sumatera Utara;Kartu Kredit;pembeli_0185
+26057734603262;Selesai;2026-05-05 08:45;Kaos Polos Hitam;KPH-01;2;65000;55250;110500;9000;119500;Kota Jakarta Selatan;DKI Jakarta;Transfer Bank;pembeli_0118
+26052418509423;Selesai;2026-06-25 11:42;Kaos Polos Hitam;KPH-01;1;65000;55250;55250;0;55250;Kota Bandung;Jawa Barat;Transfer Bank;pembeli_0365
+26051985169949;Dikirim;2026-06-21 10:32;Kemeja Flanel;KMF-02;2;145000;123250;246500;18000;264500;Kab. Sleman;DI Yogyakarta;Dompet Digital;pembeli_0075
+26054227069850;Belum Bayar;2026-05-18 21:03;Kemeja Flanel;KMF-02;1;145000;145000;145000;12000;157000;Kota Bandung;Jawa Barat;Dompet Digital;pembeli_0245
+26051913268927;Dikirim;2026-06-22 11:11;Kaos Kaki 3 Pasang;KKK-06;1;35000;29750;29750;0;29750;Kota Makassar;Sulawesi Selatan;Dompet Digital;pembeli_0380
+26059008201313;Selesai;2026-05-09 09:28;Celana Chino;CCN-03;1;175000;175000;175000;18000;193000;Kota Jakarta Selatan;DKI Jakarta;Kartu Kredit;pembeli_0045
+26053006666100;Belum Bayar;2026-06-13 08:29;Celana Chino;CCN-03;2;175000;157500;315000;0;315000;Kota Bandung;Jawa Barat;Transfer Bank;pembeli_0081
+26056892084433;Belum Bayar;2026-05-02 18:14;Kaos Kaki 3 Pasang;KKK-06;3;35000;35000;105000;18000;123000;Kota Makassar;Sulawesi Selatan;Dompet Digital;pembeli_0260
+26054455444294;Selesai;2026-05-21 23:10;Celana Chino;CCN-03;2;175000;175000;350000;18000;368000;Kota Surabaya;Jawa Timur;Kartu Kredit;pembeli_0112
+26059362673927;Selesai;2026-05-15 02:59;Kemeja Flanel;KMF-02;1;145000;130500;130500;18000;148500;Kota Bandung;Jawa Barat;Kartu Kredit;pembeli_0185
+26056386130574;Dikirim;2026-06-19 19:04;Kaos Polos Hitam;KPH-01;3;65000;58500;175500;9000;184500;Kota Makassar;Sulawesi Selatan;Kartu Kredit;pembeli_0001
+26057832541331;Belum Bayar;2026-05-08 02:06;Tas Selempang;TSL-05;2;120000;120000;240000;9000;249000;Kota Bandung;Jawa Barat;Kartu Kredit;pembeli_0130
+26058488248091;Selesai;2026-05-16 04:05;Celana Chino;CCN-03;1;175000;148750;148750;9000;157750;Kota Medan;Sumatera Utara;Dompet Digital;pembeli_0083
+26058692538808;Selesai;2026-06-14 22:47;Tas Selempang;TSL-05;1;120000;120000;120000;24000;144000;Kota Jakarta Selatan;DKI Jakarta;Dompet Digital;pembeli_0376
+26052681892635;Belum Bayar;2026-05-02 02:02;Tas Selempang;TSL-05;1;120000;108000;108000;18000;126000;Kab. Sleman;DI Yogyakarta;COD;pembeli_0302
+26052598306596;Selesai;2026-05-25 02:41;Kaos Kaki 3 Pasang;KKK-06;1;35000;31500;31500;12000;43500;Kota Jakarta Selatan;DKI Jakarta;Dompet Digital;pembeli_0105
+26058823916531;Selesai;2026-06-16 23:05;Celana Chino;CCN-03;1;175000;148750;148750;24000;172750;Kota Jakarta Selatan;DKI Jakarta;Dompet Digital;pembeli_0267
+26051068198010;Dikirim;2026-06-03 17:58;Kemeja Flanel;KMF-02;1;145000;123250;123250;0;123250;Kota Jakarta Selatan;DKI Jakarta;Transfer Bank;pembeli_0045
+26051124258364;Selesai;2026-06-30 10:09;Tas Selempang;TSL-05;1;120000;120000;120000;0;120000;Kota Makassar;Sulawesi Selatan;Transfer Bank;pembeli_0233
+26055505927234;Selesai;2026-05-29 16:47;Kaos Kaki 3 Pasang;KKK-06;2;35000;31500;63000;9000;72000;Kab. Sleman;DI Yogyakarta;Dompet Digital;pembeli_0270
+26055815121797;Selesai;2026-06-25 13:39;Tas Selempang;TSL-05;1;120000;102000;102000;24000;126000;Kota Medan;Sumatera Utara;Dompet Digital;pembeli_0207
+26059409692715;Selesai;2026-06-05 06:30;Kemeja Flanel;KMF-02;1;145000;145000;145000;9000;154000;Kab. Sleman;DI Yogyakarta;COD;pembeli_0032
+26052387196491;Dikirim;2026-06-05 09:52;Kaos Kaki 3 Pasang;KKK-06;1;35000;31500;31500;0;31500;Kota Makassar;Sulawesi Selatan;Transfer Bank;pembeli_0317
+26051824132049;Dikirim;2026-05-22 17:20;Tas Selempang;TSL-05;1;120000;120000;120000;0;120000;Kota Bandung;Jawa Barat;Kartu Kredit;pembeli_0177
+26053593810543;Belum Bayar;2026-06-28 19:07;Kaos Kaki 3 Pasang;KKK-06;2;35000;31500;63000;12000;75000;Kota Bandung;Jawa Barat;Kartu Kredit;pembeli_0248
+26059892753146;Belum Bayar;2026-06-03 03:52;Kemeja Flanel;KMF-02;2;145000;130500;261000;12000;273000;Kota Surabaya;Jawa Timur;Transfer Bank;pembeli_0249
+26054599034970;Selesai;2026-06-14 16:54;Kaos Polos Hitam;KPH-01;2;65000;58500;117000;9000;126000;Kota Medan;Sumatera Utara;Transfer Bank;pembeli_0162
+26052120293003;Selesai;2026-05-24 00:48;Topi Baseball;TPB-04;1;45000;45000;45000;12000;57000;Kota Jakarta Selatan;DKI Jakarta;Dompet Digital;pembeli_0326
+26051245919793;Selesai;2026-06-05 05:59;Tas Selempang;TSL-05;1;120000;108000;108000;18000;126000;Kota Bandung;Jawa Barat;Kartu Kredit;pembeli_0368
+26056618261931;Dibatalkan;2026-05-28 16:41;Topi Baseball;TPB-04;2;45000;45000;90000;18000;108000;Kota Makassar;Sulawesi Selatan;Dompet Digital;pembeli_0196
+26058920415971;Belum Bayar;2026-05-18 16:19;Kaos Polos Hitam;KPH-01;1;65000;58500;58500;9000;67500;Kab. Sleman;DI Yogyakarta;Dompet Digital;pembeli_0181
+26056321403489;Dibatalkan;2026-06-05 11:23;Kaos Kaki 3 Pasang;KKK-06;2;35000;31500;63000;18000;81000;Kota Jakarta Selatan;DKI Jakarta;Transfer Bank;pembeli_0305
+26051701290075;Dikirim;2026-05-03 02:50;Topi Baseball;TPB-04;3;45000;45000;135000;18000;153000;Kota Surabaya;Jawa Timur;Kartu Kredit;pembeli_0218
+26052748296745;Selesai;2026-06-17 08:49;Kemeja Flanel;KMF-02;1;145000;123250;123250;0;123250;Kota Bandung;Jawa Barat;COD;pembeli_0049
+26058689356277;Selesai;2026-06-18 23:23;Kemeja Flanel;KMF-02;1;145000;130500;130500;18000;148500;Kota Makassar;Sulawesi Selatan;Dompet Digital;pembeli_0032
+26057645065866;Selesai;2026-06-13 18:39;Tas Selempang;TSL-05;3;120000;120000;360000;24000;384000;Kota Bandung;Jawa Barat;Transfer Bank;pembeli_0341
+26051550686919;Belum Bayar;2026-06-01 05:22;Kemeja Flanel;KMF-02;1;145000;130500;130500;12000;142500;Kota Makassar;Sulawesi Selatan;COD;pembeli_0236
+26058865326770;Belum Bayar;2026-06-23 18:18;Celana Chino;CCN-03;3;175000;175000;525000;9000;534000;Kab. Sleman;DI Yogyakarta;Dompet Digital;pembeli_0372
+26052111456029;Selesai;2026-06-21 10:45;Kaos Polos Hitam;KPH-01;1;65000;65000;65000;9000;74000;Kab. Sleman;DI Yogyakarta;Kartu Kredit;pembeli_0106
+26058033961115;Belum Bayar;2026-05-08 11:40;Kaos Kaki 3 Pasang;KKK-06;2;35000;29750;59500;24000;83500;Kota Bandung;Jawa Barat;COD;pembeli_0314
+26059610633387;Selesai;2026-06-15 14:38;Kaos Polos Hitam;KPH-01;2;65000;58500;117000;0;117000;Kota Makassar;Sulawesi Selatan;Dompet Digital;pembeli_0173
+26055210850457;Selesai;2026-06-06 18:12;Kemeja Flanel;KMF-02;1;145000;123250;123250;9000;132250;Kota Makassar;Sulawesi Selatan;Transfer Bank;pembeli_0094
+26055674252029;Selesai;2026-05-28 03:54;Kaos Polos Hitam;KPH-01;1;65000;65000;65000;9000;74000;Kab. Sleman;DI Yogyakarta;Kartu Kredit;pembeli_0355
+26057348479933;Dibatalkan;2026-06-11 17:26;Kaos Kaki 3 Pasang;KKK-06;2;35000;35000;70000;0;70000;Kota Makassar;Sulawesi Selatan;Dompet Digital;pembeli_0275
+26055360943936;Dikirim;2026-05-09 11:36;Kemeja Flanel;KMF-02;2;145000;130500;261000;12000;273000;Kota Surabaya;Jawa Timur;COD;pembeli_0005
+26056294999352;Dikirim;2026-05-15 05:26;Kaos Polos Hitam;KPH-01;1;65000;65000;65000;18000;83000;Kab. Sleman;DI Yogyakarta;Dompet Digital;pembeli_0358
+26051060629442;Dibatalkan;2026-05-24 09:17;Kemeja Flanel;KMF-02;1;145000;130500;130500;18000;148500;Kota Surabaya;Jawa Timur;Dompet Digital;pembeli_0004
+26056310614578;Belum Bayar;2026-06-29 16:00;Kaos Kaki 3 Pasang;KKK-06;3;35000;35000;105000;24000;129000;Kota Makassar;Sulawesi Selatan;Kartu Kredit;pembeli_0095
+26054200222620;Selesai;2026-05-29 05:09;Tas Selempang;TSL-05;1;120000;120000;120000;9000;129000;Kota Medan;Sumatera Utara;COD;pembeli_0207
+26059407858782;Belum Bayar;2026-05-12 13:45;Kaos Polos Hitam;KPH-01;1;65000;58500;58500;12000;70500;Kota Makassar;Sulawesi Selatan;Transfer Bank;pembeli_0300
+26058872983063;Dikirim;2026-06-14 18:51;Topi Baseball;TPB-04;1;45000;40500;40500;12000;52500;Kota Surabaya;Jawa Timur;Kartu Kredit;pembeli_0282
+26058943065410;Belum Bayar;2026-05-27 17:32;Topi Baseball;TPB-04;1;45000;45000;45000;24000;69000;Kota Surabaya;Jawa Timur;Transfer Bank;pembeli_0062
+26059478219349;Selesai;2026-06-15 13:35;Topi Baseball;TPB-04;2;45000;45000;90000;24000;114000;Kota Makassar;Sulawesi Selatan;Dompet Digital;pembeli_0023
+26058049871549;Dibatalkan;2026-05-10 22:04;Topi Baseball;TPB-04;1;45000;45000;45000;24000;69000;Kota Medan;Sumatera Utara;Dompet Digital;pembeli_0068
+26053882327520;Dikirim;2026-06-21 14:54;Tas Selempang;TSL-05;2;120000;108000;216000;12000;228000;Kota Surabaya;Jawa Timur;Transfer Bank;pembeli_0348
+26055846588041;Selesai;2026-05-22 23:13;Kaos Kaki 3 Pasang;KKK-06;2;35000;31500;63000;9000;72000;Kota Surabaya;Jawa Timur;Transfer Bank;pembeli_0169
+26052881977304;Selesai;2026-05-12 23:05;Kaos Polos Hitam;KPH-01;3;65000;58500;175500;24000;199500;Kota Bandung;Jawa Barat;Transfer Bank;pembeli_0299
+26054909437231;Belum Bayar;2026-06-26 13:35;Celana Chino;CCN-03;1;175000;157500;157500;18000;175500;Kab. Sleman;DI Yogyakarta;Transfer Bank;pembeli_0023
+26055296346028;Dikirim;2026-05-14 18:01;Kaos Kaki 3 Pasang;KKK-06;1;35000;35000;35000;9000;44000;Kota Makassar;Sulawesi Selatan;Dompet Digital;pembeli_0313
+26053052415419;Dikirim;2026-06-12 19:02;Celana Chino;CCN-03;2;175000;148750;297500;9000;306500;Kota Medan;Sumatera Utara;Kartu Kredit;pembeli_0122
+26051282483797;Belum Bayar;2026-05-11 21:43;Kemeja Flanel;KMF-02;2;145000;123250;246500;18000;264500;Kota Bandung;Jawa Barat;COD;pembeli_0382
+26054457643860;Selesai;2026-05-06 19:53;Topi Baseball;TPB-04;1;45000;40500;40500;24000;64500;Kota Jakarta Selatan;DKI Jakarta;Kartu Kredit;pembeli_0388
+26058802019076;Selesai;2026-05-23 19:52;Kaos Kaki 3 Pasang;KKK-06;1;35000;35000;35000;9000;44000;Kota Jakarta Selatan;DKI Jakarta;COD;pembeli_0134
+26059065245683;Selesai;2026-05-14 06:24;Celana Chino;CCN-03;1;175000;148750;148750;18000;166750;Kota Makassar;Sulawesi Selatan;COD;pembeli_0218
+26055564691827;Selesai;2026-06-13 22:30;Celana Chino;CCN-03;3;175000;175000;525000;9000;534000;Kota Surabaya;Jawa Timur;Kartu Kredit;pembeli_0148
+26056101638785;Selesai;2026-05-24 22:53;Kaos Polos Hitam;KPH-01;2;65000;58500;117000;24000;141000;Kota Bandung;Jawa Barat;Transfer Bank;pembeli_0243
+26053202000223;Dibatalkan;2026-06-20 15:41;Topi Baseball;TPB-04;1;45000;40500;40500;18000;58500;Kota Surabaya;Jawa Timur;Dompet Digital;pembeli_0353
+26051802272399;Selesai;2026-06-16 18:35;Kaos Polos Hitam;KPH-01;1;65000;65000;65000;24000;89000;Kota Makassar;Sulawesi Selatan;Transfer Bank;pembeli_0252
+26058654914006;Selesai;2026-05-01 00:18;Celana Chino;CCN-03;1;175000;175000;175000;9000;184000;Kota Surabaya;Jawa Timur;Transfer Bank;pembeli_0065
+26055916031228;Dikirim;2026-05-19 03:29;Kemeja Flanel;KMF-02;1;145000;130500;130500;18000;148500;Kota Jakarta Selatan;DKI Jakarta;Transfer Bank;pembeli_0222
+26058809660784;Dibatalkan;2026-05-07 04:19;Topi Baseball;TPB-04;1;45000;45000;45000;0;45000;Kab. Sleman;DI Yogyakarta;Transfer Bank;pembeli_0392
+26054232833181;Selesai;2026-05-05 06:05;Kaos Kaki 3 Pasang;KKK-06;1;35000;29750;29750;9000;38750;Kota Medan;Sumatera Utara;COD;pembeli_0316
+26054744078256;Dikirim;2026-06-28 03:15;Celana Chino;CCN-03;2;175000;157500;315000;9000;324000;Kota Surabaya;Jawa Timur;COD;pembeli_0275
+26057467693291;Selesai;2026-05-28 01:07;Kemeja Flanel;KMF-02;1;145000;145000;145000;12000;157000;Kota Makassar;Sulawesi Selatan;Transfer Bank;pembeli_0192
+26057509570589;Selesai;2026-06-05 02:01;Kemeja Flanel;KMF-02;2;145000;145000;290000;9000;299000;Kota Jakarta Selatan;DKI Jakarta;Dompet Digital;pembeli_0133
+26057467174034;Selesai;2026-05-24 12:27;Celana Chino;CCN-03;1;175000;175000;175000;0;175000;Kota Surabaya;Jawa Timur;Kartu Kredit;pembeli_0130
+26051797159731;Selesai;2026-05-26 17:26;Tas Selempang;TSL-05;1;120000;120000;120000;9000;129000;Kota Makassar;Sulawesi Selatan;Dompet Digital;pembeli_0278
+26055109292661;Dibatalkan;2026-05-19 15:32;Topi Baseball;TPB-04;2;45000;40500;81000;12000;93000;Kota Jakarta Selatan;DKI Jakarta;Transfer Bank;pembeli_0251
+26057013247439;Selesai;2026-05-14 20:44;Kaos Polos Hitam;KPH-01;1;65000;65000;65000;24000;89000;Kota Jakarta Selatan;DKI Jakarta;COD;pembeli_0363
+26056761196185;Dibatalkan;2026-06-13 13:49;Celana Chino;CCN-03;1;175000;175000;175000;12000;187000;Kota Makassar;Sulawesi Selatan;Dompet Digital;pembeli_0024
+26058705751739;Dikirim;2026-05-05 05:17;Celana Chino;CCN-03;3;175000;148750;446250;0;446250;Kota Bandung;Jawa Barat;Dompet Digital;pembeli_0171
+26052753065807;Selesai;2026-06-04 04:43;Topi Baseball;TPB-04;1;45000;45000;45000;18000;63000;Kota Jakarta Selatan;DKI Jakarta;Dompet Digital;pembeli_0073
+26056787244520;Belum Bayar;2026-05-31 10:00;Celana Chino;CCN-03;2;175000;157500;315000;18000;333000;Kota Makassar;Sulawesi Selatan;Kartu Kredit;pembeli_0010
+26056082376581;Selesai;2026-05-21 17:46;Kaos Polos Hitam;KPH-01;3;65000;65000;195000;9000;204000;Kota Medan;Sumatera Utara;Dompet Digital;pembeli_0280
+26051128827280;Selesai;2026-05-18 02:30;Kaos Polos Hitam;KPH-01;1;65000;65000;65000;24000;89000;Kab. Sleman;DI Yogyakarta;COD;pembeli_0189
+26058878414260;Dikirim;2026-06-19 18:50;Kaos Polos Hitam;KPH-01;1;65000;58500;58500;9000;67500;Kab. Sleman;DI Yogyakarta;Kartu Kredit;pembeli_0255
+26055940264991;Belum Bayar;2026-06-01 03:14;Tas Selempang;TSL-05;1;120000;120000;120000;24000;144000;Kota Bandung;Jawa Barat;COD;pembeli_0100
+26055353714236;Dibatalkan;2026-06-28 06:32;Kaos Polos Hitam;KPH-01;1;65000;65000;65000;0;65000;Kota Bandung;Jawa Barat;Kartu Kredit;pembeli_0289
+26054156197296;Selesai;2026-05-30 14:51;Kemeja Flanel;KMF-02;1;145000;145000;145000;0;145000;Kota Medan;Sumatera Utara;Kartu Kredit;pembeli_0195
+26052725287861;Dibatalkan;2026-05-08 06:12;Kaos Kaki 3 Pasang;KKK-06;2;35000;31500;63000;18000;81000;Kota Jakarta Selatan;DKI Jakarta;Transfer Bank;pembeli_0157
+26051001659747;Selesai;2026-05-24 07:44;Kaos Kaki 3 Pasang;KKK-06;3;35000;35000;105000;12000;117000;Kota Bandung;Jawa Barat;Transfer Bank;pembeli_0290
+26052909195917;Selesai;2026-06-09 06:27;Kaos Kaki 3 Pasang;KKK-06;1;35000;35000;35000;9000;44000;Kota Jakarta Selatan;DKI Jakarta;COD;pembeli_0083
+26057673769162;Dikirim;2026-05-21 13:01;Kemeja Flanel;KMF-02;1;145000;130500;130500;0;130500;Kab. Sleman;DI Yogyakarta;Dompet Digital;pembeli_0159
+26051418897639;Dikirim;2026-06-15 12:03;Kaos Polos Hitam;KPH-01;1;65000;55250;55250;0;55250;Kota Makassar;Sulawesi Selatan;COD;pembeli_0067
+26055987941353;Selesai;2026-05-22 06:52;Tas Selempang;TSL-05;2;120000;120000;240000;18000;258000;Kota Jakarta Selatan;DKI Jakarta;COD;pembeli_0068
+26054360230866;Selesai;2026-06-10 01:47;Kaos Kaki 3 Pasang;KKK-06;1;35000;29750;29750;0;29750;Kab. Sleman;DI Yogyakarta;COD;pembeli_0045
+26052884500496;Dibatalkan;2026-05-26 18:48;Topi Baseball;TPB-04;1;45000;45000;45000;24000;69000;Kota Makassar;Sulawesi Selatan;Dompet Digital;pembeli_0255
+26053992404788;Belum Bayar;2026-06-23 12:08;Kemeja Flanel;KMF-02;1;145000;145000;145000;12000;157000;Kota Makassar;Sulawesi Selatan;Transfer Bank;pembeli_0247
+26055095602119;Dibatalkan;2026-06-22 17:57;Kemeja Flanel;KMF-02;2;145000;145000;290000;0;290000;Kab. Sleman;DI Yogyakarta;Kartu Kredit;pembeli_0390
+26055576441776;Selesai;2026-06-20 23:10;Topi Baseball;TPB-04;1;45000;45000;45000;18000;63000;Kota Makassar;Sulawesi Selatan;Transfer Bank;pembeli_0360
+26056096594861;Selesai;2026-06-03 18:18;Kemeja Flanel;KMF-02;1;145000;145000;145000;18000;163000;Kota Makassar;Sulawesi Selatan;Kartu Kredit;pembeli_0348
+26055552480613;Selesai;2026-05-04 00:12;Kemeja Flanel;KMF-02;2;145000;123250;246500;24000;270500;Kota Bandung;Jawa Barat;Kartu Kredit;pembeli_0189
+26055624586691;Selesai;2026-06-18 07:02;Celana Chino;CCN-03;2;175000;175000;350000;18000;368000;Kota Bandung;Jawa Barat;Transfer Bank;pembeli_0119
+26057181648126;Belum Bayar;2026-05-08 00:49;Kemeja Flanel;KMF-02;1;145000;130500;130500;18000;148500;Kota Bandung;Jawa Barat;COD;pembeli_0066
+26051100816918;Dikirim;2026-06-03 03:20;Tas Selempang;TSL-05;2;120000;102000;204000;24000;228000;Kota Makassar;Sulawesi Selatan;COD;pembeli_0344
+26059734050399;Selesai;2026-05-05 06:57;Kemeja Flanel;KMF-02;3;145000;130500;391500;0;391500;Kota Makassar;Sulawesi Selatan;Transfer Bank;pembeli_0217
+26051776351220;Belum Bayar;2026-06-27 16:51;Kemeja Flanel;KMF-02;2;145000;130500;261000;9000;270000;Kota Bandung;Jawa Barat;Transfer Bank;pembeli_0014
+26053091311851;Dibatalkan;2026-05-13 21:35;Kaos Polos Hitam;KPH-01;3;65000;55250;165750;0;165750;Kab. Sleman;DI Yogyakarta;Kartu Kredit;pembeli_0097
+26051969864830;Selesai;2026-06-27 17:28;Celana Chino;CCN-03;1;175000;157500;157500;12000;169500;Kota Makassar;Sulawesi Selatan;Dompet Digital;pembeli_0208
+26051472451764;Dikirim;2026-06-11 08:28;Tas Selempang;TSL-05;3;120000;102000;306000;18000;324000;Kota Makassar;Sulawesi Selatan;Kartu Kredit;pembeli_0380
+26058287315665;Belum Bayar;2026-06-04 19:23;Tas Selempang;TSL-05;2;120000;120000;240000;18000;258000;Kab. Sleman;DI Yogyakarta;Transfer Bank;pembeli_0254
+26055874647270;Selesai;2026-05-10 22:56;Topi Baseball;TPB-04;2;45000;38250;76500;24000;100500;Kota Bandung;Jawa Barat;Transfer Bank;pembeli_0194
+26058518373040;Selesai;2026-06-29 11:36;Kaos Polos Hitam;KPH-01;1;65000;65000;65000;0;65000;Kota Jakarta Selatan;DKI Jakarta;Dompet Digital;pembeli_0341
+26054584079800;Dibatalkan;2026-05-15 23:52;Kemeja Flanel;KMF-02;2;145000;130500;261000;9000;270000;Kota Surabaya;Jawa Timur;Dompet Digital;pembeli_0283
+26052801333144;Selesai;2026-05-12 13:51;Kaos Polos Hitam;KPH-01;3;65000;55250;165750;9000;174750;Kota Bandung;Jawa Barat;COD;pembeli_0100
+26051571615017;Selesai;2026-05-24 02:28;Kaos Kaki 3 Pasang;KKK-06;1;35000;35000;35000;24000;59000;Kota Makassar;Sulawesi Selatan;Dompet Digital;pembeli_0034
+26052305601450;Dibatalkan;2026-06-13 21:21;Tas Selempang;TSL-05;2;120000;120000;240000;9000;249000;Kota Bandung;Jawa Barat;Kartu Kredit;pembeli_0133
+26058545311860;Selesai;2026-05-08 09:39;Celana Chino;CCN-03;3;175000;148750;446250;24000;470250;Kota Makassar;Sulawesi Selatan;Kartu Kredit;pembeli_0124
+26053337841610;Belum Bayar;2026-05-22 12:00;Celana Chino;CCN-03;2;175000;157500;315000;12000;327000;Kota Jakarta Selatan;DKI Jakarta;Transfer Bank;pembeli_0064
+26052344964371;Belum Bayar;2026-06-19 17:47;Kaos Polos Hitam;KPH-01;1;65000;65000;65000;0;65000;Kota Surabaya;Jawa Timur;COD;pembeli_0227
+26059059534208;Selesai;2026-05-25 14:50;Celana Chino;CCN-03;2;175000;175000;350000;24000;374000;Kota Medan;Sumatera Utara;Kartu Kredit;pembeli_0346
+26053236745713;Selesai;2026-06-27 13:21;Kaos Polos Hitam;KPH-01;2;65000;55250;110500;12000;122500;Kab. Sleman;DI Yogyakarta;Transfer Bank;pembeli_0021
+26052724485277;Selesai;2026-06-18 11:04;Topi Baseball;TPB-04;2;45000;45000;90000;24000;114000;Kota Surabaya;Jawa Timur;COD;pembeli_0309
+26051765591788;Selesai;2026-06-02 17:25;Kemeja Flanel;KMF-02;1;145000;145000;145000;24000;169000;Kota Surabaya;Jawa Timur;Dompet Digital;pembeli_0055
+26051277526549;Selesai;2026-05-20 13:55;Topi Baseball;TPB-04;1;45000;45000;45000;9000;54000;Kota Makassar;Sulawesi Selatan;COD;pembeli_0288
+26055209625225;Belum Bayar;2026-05-17 21:43;Kemeja Flanel;KMF-02;3;145000;123250;369750;0;369750;Kota Medan;Sumatera Utara;Dompet Digital;pembeli_0082
+26059619799040;Selesai;2026-05-14 17:49;Tas Selempang;TSL-05;1;120000;108000;108000;24000;132000;Kota Bandung;Jawa Barat;Kartu Kredit;pembeli_0096
+26052286552742;Selesai;2026-05-03 05:14;Kaos Polos Hitam;KPH-01;2;65000;65000;130000;12000;142000;Kota Medan;Sumatera Utara;Kartu Kredit;pembeli_0366
+26054488401489;Selesai;2026-05-03 01:40;Kemeja Flanel;KMF-02;1;145000;145000;145000;9000;154000;Kota Jakarta Selatan;DKI Jakarta;Transfer Bank;pembeli_0344
+26051963453118;Belum Bayar;2026-05-06 02:32;Kaos Kaki 3 Pasang;KKK-06;2;35000;29750;59500;24000;83500;Kota Surabaya;Jawa Timur;COD;pembeli_0294
+26053633385944;Selesai;2026-06-21 23:06;Kaos Polos Hitam;KPH-01;1;65000;55250;55250;12000;67250;Kota Makassar;Sulawesi Selatan;Dompet Digital;pembeli_0237
+26053404430116;Selesai;2026-05-20 20:43;Topi Baseball;TPB-04;1;45000;45000;45000;18000;63000;Kota Makassar;Sulawesi Selatan;COD;pembeli_0249
+26052167454383;Dibatalkan;2026-06-20 20:29;Tas Selempang;TSL-05;2;120000;120000;240000;9000;249000;Kota Bandung;Jawa Barat;Dompet Digital;pembeli_0204
+26054310615428;Selesai;2026-05-06 06:33;Kaos Kaki 3 Pasang;KKK-06;1;35000;35000;35000;9000;44000;Kota Jakarta Selatan;DKI Jakarta;Transfer Bank;pembeli_0155
+26056918317727;Dibatalkan;2026-06-05 17:42;Kemeja Flanel;KMF-02;3;145000;130500;391500;0;391500;Kota Medan;Sumatera Utara;Kartu Kredit;pembeli_0224
+26057517194093;Dikirim;2026-06-15 12:53;Kemeja Flanel;KMF-02;1;145000;145000;145000;24000;169000;Kota Medan;Sumatera Utara;COD;pembeli_0368
+26058178291079;Selesai;2026-05-03 05:49;Celana Chino;CCN-03;1;175000;175000;175000;18000;193000;Kab. Sleman;DI Yogyakarta;COD;pembeli_0147
+26058632314294;Selesai;2026-05-05 17:36;Kemeja Flanel;KMF-02;1;145000;145000;145000;24000;169000;Kab. Sleman;DI Yogyakarta;COD;pembeli_0162
+26057129393900;Belum Bayar;2026-05-18 07:14;Tas Selempang;TSL-05;3;120000;102000;306000;0;306000;Kota Makassar;Sulawesi Selatan;Kartu Kredit;pembeli_0232
+26059748661338;Dibatalkan;2026-06-13 18:02;Kaos Kaki 3 Pasang;KKK-06;3;35000;35000;105000;0;105000;Kota Surabaya;Jawa Timur;Transfer Bank;pembeli_0196
+26056645368172;Dibatalkan;2026-06-23 12:01;Kaos Polos Hitam;KPH-01;2;65000;65000;130000;12000;142000;Kota Bandung;Jawa Barat;Dompet Digital;pembeli_0063
+26059133389005;Selesai;2026-05-25 04:25;Kaos Polos Hitam;KPH-01;2;65000;58500;117000;9000;126000;Kota Surabaya;Jawa Timur;Kartu Kredit;pembeli_0398
+26058747792754;Selesai;2026-05-11 12:57;Tas Selempang;TSL-05;2;120000;102000;204000;9000;213000;Kab. Sleman;DI Yogyakarta;COD;pembeli_0184
+26058522980553;Belum Bayar;2026-05-20 17:46;Topi Baseball;TPB-04;3;45000;45000;135000;9000;144000;Kota Bandung;Jawa Barat;COD;pembeli_0089
+26058131271333;Selesai;2026-05-03 00:32;Kaos Kaki 3 Pasang;KKK-06;3;35000;31500;94500;24000;118500;Kab. Sleman;DI Yogyakarta;COD;pembeli_0037
+26051302285969;Selesai;2026-05-31 05:16;Kaos Kaki 3 Pasang;KKK-06;1;35000;31500;31500;24000;55500;Kota Bandung;Jawa Barat;Transfer Bank;pembeli_0381
+26051827827215;Selesai;2026-05-15 19:39;Kemeja Flanel;KMF-02;1;145000;130500;130500;12000;142500;Kota Jakarta Selatan;DKI Jakarta;Dompet Digital;pembeli_0087
+26056105821757;Selesai;2026-06-09 04:42;Celana Chino;CCN-03;3;175000;157500;472500;18000;490500;Kota Surabaya;Jawa Timur;Dompet Digital;pembeli_0175
+26053957114164;Dikirim;2026-05-12 16:33;Kaos Kaki 3 Pasang;KKK-06;2;35000;29750;59500;0;59500;Kab. Sleman;DI Yogyakarta;COD;pembeli_0006
+26056457771390;Dikirim;2026-05-15 21:12;Kemeja Flanel;KMF-02;1;145000;123250;123250;24000;147250;Kota Medan;Sumatera Utara;Transfer Bank;pembeli_0342
+26057707465576;Belum Bayar;2026-06-30 04:31;Kemeja Flanel;KMF-02;1;145000;145000;145000;9000;154000;Kota Medan;Sumatera Utara;Kartu Kredit;pembeli_0267
+26055052610442;Selesai;2026-06-13 01:22;Topi Baseball;TPB-04;1;45000;40500;40500;0;40500;Kota Jakarta Selatan;DKI Jakarta;Kartu Kredit;pembeli_0063
+26058514355714;Selesai;2026-06-19 18:38;Topi Baseball;TPB-04;1;45000;45000;45000;12000;57000;Kota Medan;Sumatera Utara;Transfer Bank;pembeli_0032
+26056126698271;Dikirim;2026-05-07 14:34;Topi Baseball;TPB-04;1;45000;45000;45000;9000;54000;Kab. Sleman;DI Yogyakarta;Kartu Kredit;pembeli_0114
+26057936463087;Selesai;2026-05-11 02:00;Kemeja Flanel;KMF-02;2;145000;145000;290000;18000;308000;Kota Jakarta Selatan;DKI Jakarta;COD;pembeli_0070
+26055126662100;Dibatalkan;2026-05-23 17:20;Kemeja Flanel;KMF-02;1;145000;145000;145000;9000;154000;Kota Medan;Sumatera Utara;COD;pembeli_0328
+26059379506004;Belum Bayar;2026-06-14 12:08;Celana Chino;CCN-03;2;175000;175000;350000;0;350000;Kab. Sleman;DI Yogyakarta;Transfer Bank;pembeli_0184
+26057106867745;Dikirim;2026-06-15 14:49;Tas Selempang;TSL-05;2;120000;108000;216000;0;216000;Kota Jakarta Selatan;DKI Jakarta;Kartu Kredit;pembeli_0170
+26058657417417;Selesai;2026-05-21 22:24;Kaos Kaki 3 Pasang;KKK-06;3;35000;35000;105000;9000;114000;Kota Medan;Sumatera Utara;Kartu Kredit;pembeli_0365
+26057660874085;Dikirim;2026-06-25 08:22;Kaos Polos Hitam;KPH-01;1;65000;65000;65000;9000;74000;Kota Jakarta Selatan;DKI Jakarta;Transfer Bank;pembeli_0310

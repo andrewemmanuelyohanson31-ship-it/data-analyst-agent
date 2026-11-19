@@ -60,6 +60,8 @@ with st.sidebar:
     if "state" in ss:
         state: DatasetState = ss.state
         st.caption(f"**{state.name}** · {len(state.current):,} rows × {state.current.shape[1]} columns")
+        for note in state.original.attrs.get("load_notes", []):  # what tidying changed on load, never silent
+            st.caption(f"🧽 {note}")
         st.caption("Versions: " + " → ".join(label for label, _ in state.versions))
         c1, c2 = st.columns(2)
         if c1.button("Undo", disabled=len(state.versions) == 1, use_container_width=True):

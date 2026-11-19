@@ -1,0 +1,161 @@
+Tgl Beli,No. Faktur,Supplier,Nama Barang,Qty,Satuan,Harga Beli,Total,Status Bayar,Jatuh Tempo
+18/06/2026,INV/2606/0001,Toko Grosir Sentosa,Gula 1kg,4,pcs,15500,62000,Lunas,
+06/06/2026,INV/2606/0002,PT Sumber Rejeki,Gula 1kg,4,pcs,15500,62000,Tempo 30 hari,06/07/2026
+18/05/2026,INV/2605/0003,CV Maju Jaya,Minyak Goreng 2L,8,pcs,34000,272000,Tempo 30 hari,17/06/2026
+03/05/2026,INV/2605/0004,Toko Grosir Sentosa,Beras 5kg,29,karung,68000,1972000,Lunas,
+18/05/2026,INV/2605/0005,Toko Grosir Sentosa,Sabun Mandi,27,lusin,40000,1080000,Tempo 14 hari,01/06/2026
+30/05/2026,INV/2605/0006,Toko Grosir Sentosa,Sabun Mandi,24,lusin,40000,960000,Tempo 30 hari,29/06/2026
+09/06/2026,INV/2606/0007,UD Berkah Abadi,Kopi Sachet,5,renceng,11000,55000,Lunas,
+27/05/2026,INV/2605/0008,CV Maju Jaya,Kopi Sachet,27,renceng,11000,297000,Lunas,
+19/05/2026,INV/2605/0009,PT Sumber Rejeki,Beras 5kg,5,karung,68000,340000,Tempo 14 hari,02/06/2026
+01/05/2026,INV/2605/0010,PT Sumber Rejeki,Mie Instan,14,dus,110000,1540000,Tempo 30 hari,31/05/2026
+27/06/2026,INV/2606/0011,Toko Grosir Sentosa,Mie Instan,21,dus,110000,2310000,Lunas,
+03/06/2026,INV/2606/0012,PT Sumber Rejeki,Kopi Sachet,22,renceng,11000,242000,Tempo 30 hari,03/07/2026
+01/05/2026,INV/2605/0013,Toko Grosir Sentosa,Minyak Goreng 2L,12,pcs,34000,408000,Lunas,
+29/06/2026,INV/2606/0014,Toko Grosir Sentosa,Mie Instan,5,dus,110000,550000,Lunas,
+24/05/2026,INV/2605/0015,PT Sumber Rejeki,Beras 5kg,16,karung,68000,1088000,Lunas,
+12/06/2026,INV/2606/0016,PT Sumber Rejeki,Kopi Sachet,4,renceng,11000,44000,Tempo 30 hari,12/07/2026
+26/05/2026,INV/2605/0017,UD Berkah Abadi,Kopi Sachet,17,renceng,11000,187000,Lunas,
+08/05/2026,INV/2605/0018,PT Sumber Rejeki,Minyak Goreng 2L,21,pcs,34000,714000,Tempo 30 hari,07/06/2026
+21/06/2026,INV/2606/0019,UD Berkah Abadi,Gula 1kg,19,pcs,15500,294500,Lunas,
+29/05/2026,INV/2605/0020,CV Maju Jaya,Kopi Sachet,26,renceng,11000,286000,Tempo 14 hari,12/06/2026
+08/06/2026,INV/2606/0021,UD Berkah Abadi,Gula 1kg,29,pcs,15500,449500,Lunas,
+26/05/2026,INV/2605/0022,Toko Grosir Sentosa,Kopi Sachet,14,renceng,11000,154000,Tempo 14 hari,09/06/2026
+20/05/2026,INV/2605/0023,CV Maju Jaya,Kopi Sachet,7,renceng,11000,77000,Tempo 30 hari,19/06/2026
+12/06/2026,INV/2606/0024,Toko Grosir Sentosa,Kopi Sachet,8,renceng,11000,88000,Lunas,
+08/05/2026,INV/2605/0025,UD Berkah Abadi,Gula 1kg,2,pcs,15500,31000,Tempo 30 hari,07/06/2026
+13/05/2026,INV/2605/0026,PT Sumber Rejeki,Kopi Sachet,27,renceng,11000,297000,Lunas,
+12/05/2026,INV/2605/0027,UD Berkah Abadi,Kopi Sachet,17,renceng,11000,187000,Tempo 30 hari,11/06/2026
+05/06/2026,INV/2606/0028,PT Sumber Rejeki,Sabun Mandi,21,lusin,40000,840000,Tempo 14 hari,19/06/2026
+11/06/2026,INV/2606/0029,PT Sumber Rejeki,Gula 1kg,2,pcs,15500,31000,Lunas,
+29/06/2026,INV/2606/0030,PT Sumber Rejeki,Minyak Goreng 2L,19,pcs,34000,646000,Lunas,
+01/05/2026,INV/2605/0031,CV Maju Jaya,Mie Instan,6,dus,110000,660000,Lunas,
+24/06/2026,INV/2606/0032,Toko Grosir Sentosa,Sabun Mandi,13,lusin,40000,520000,Lunas,
+31/05/2026,INV/2605/0033,CV Maju Jaya,Mie Instan,5,dus,110000,550000,Tempo 14 hari,14/06/2026
+26/06/2026,INV/2606/0034,PT Sumber Rejeki,Mie Instan,10,dus,110000,1100000,Lunas,
+30/05/2026,INV/2605/0035,PT Sumber Rejeki,Minyak Goreng 2L,5,pcs,34000,170000,Tempo 30 hari,29/06/2026
+13/05/2026,INV/2605/0036,PT Sumber Rejeki,Kopi Sachet,3,renceng,11000,33000,Tempo 30 hari,12/06/2026
+06/05/2026,INV/2605/0037,CV Maju Jaya,Sabun Mandi,22,lusin,40000,880000,Lunas,
+08/05/2026,INV/2605/0038,Toko Grosir Sentosa,Sabun Mandi,5,lusin,40000,200000,Tempo 30 hari,07/06/2026
+02/05/2026,INV/2605/0039,PT Sumber Rejeki,Mie Instan,24,dus,110000,2640000,Lunas,
+13/05/2026,INV/2605/0040,CV Maju Jaya,Kopi Sachet,7,renceng,11000,77000,Tempo 14 hari,27/05/2026
+06/06/2026,INV/2606/0041,UD Berkah Abadi,Sabun Mandi,3,lusin,40000,120000,Lunas,
+19/05/2026,INV/2605/0042,UD Berkah Abadi,Minyak Goreng 2L,17,pcs,34000,578000,Lunas,
+07/05/2026,INV/2605/0043,UD Berkah Abadi,Minyak Goreng 2L,10,pcs,34000,340000,Tempo 14 hari,21/05/2026
+18/06/2026,INV/2606/0044,UD Berkah Abadi,Sabun Mandi,23,lusin,40000,920000,Tempo 14 hari,02/07/2026
+20/05/2026,INV/2605/0045,Toko Grosir Sentosa,Sabun Mandi,22,lusin,40000,880000,Lunas,
+11/05/2026,INV/2605/0046,PT Sumber Rejeki,Minyak Goreng 2L,5,pcs,34000,170000,Lunas,
+10/06/2026,INV/2606/0047,Toko Grosir Sentosa,Kopi Sachet,16,renceng,11000,176000,Tempo 30 hari,10/07/2026
+24/05/2026,INV/2605/0048,Toko Grosir Sentosa,Minyak Goreng 2L,27,pcs,34000,918000,Tempo 14 hari,07/06/2026
+10/05/2026,INV/2605/0049,Toko Grosir Sentosa,Beras 5kg,11,karung,68000,748000,Lunas,
+09/05/2026,INV/2605/0050,CV Maju Jaya,Minyak Goreng 2L,26,pcs,34000,884000,Lunas,
+23/05/2026,INV/2605/0051,CV Maju Jaya,Gula 1kg,2,pcs,15500,31000,Lunas,
+25/05/2026,INV/2605/0052,PT Sumber Rejeki,Beras 5kg,10,karung,68000,680000,Lunas,
+29/06/2026,INV/2606/0053,CV Maju Jaya,Gula 1kg,18,pcs,15500,279000,Tempo 14 hari,13/07/2026
+30/06/2026,INV/2606/0054,CV Maju Jaya,Beras 5kg,6,karung,68000,408000,Lunas,
+08/05/2026,INV/2605/0055,PT Sumber Rejeki,Minyak Goreng 2L,28,pcs,34000,952000,Tempo 30 hari,07/06/2026
+14/05/2026,INV/2605/0056,UD Berkah Abadi,Mie Instan,10,dus,110000,1100000,Lunas,
+10/05/2026,INV/2605/0057,PT Sumber Rejeki,Beras 5kg,2,karung,68000,136000,Tempo 30 hari,09/06/2026
+24/05/2026,INV/2605/0058,CV Maju Jaya,Sabun Mandi,18,lusin,40000,720000,Lunas,
+22/06/2026,INV/2606/0059,UD Berkah Abadi,Beras 5kg,24,karung,68000,1632000,Tempo 14 hari,06/07/2026
+09/06/2026,INV/2606/0060,CV Maju Jaya,Gula 1kg,24,pcs,15500,372000,Tempo 30 hari,09/07/2026
+08/05/2026,INV/2605/0061,PT Sumber Rejeki,Mie Instan,27,dus,110000,2970000,Tempo 30 hari,07/06/2026
+13/06/2026,INV/2606/0062,PT Sumber Rejeki,Sabun Mandi,26,lusin,40000,1040000,Tempo 14 hari,27/06/2026
+18/06/2026,INV/2606/0063,Toko Grosir Sentosa,Mie Instan,23,dus,110000,2530000,Lunas,
+02/06/2026,INV/2606/0064,CV Maju Jaya,Mie Instan,4,dus,110000,440000,Tempo 30 hari,02/07/2026
+23/05/2026,INV/2605/0065,PT Sumber Rejeki,Mie Instan,15,dus,110000,1650000,Lunas,
+04/05/2026,INV/2605/0066,Toko Grosir Sentosa,Beras 5kg,14,karung,68000,952000,Lunas,
+17/06/2026,INV/2606/0067,UD Berkah Abadi,Beras 5kg,16,karung,68000,1088000,Tempo 14 hari,01/07/2026
+22/05/2026,INV/2605/0068,UD Berkah Abadi,Kopi Sachet,4,renceng,11000,44000,Lunas,
+18/05/2026,INV/2605/0069,UD Berkah Abadi,Beras 5kg,29,karung,68000,1972000,Tempo 30 hari,17/06/2026
+14/05/2026,INV/2605/0070,CV Maju Jaya,Mie Instan,16,dus,110000,1760000,Lunas,
+25/05/2026,INV/2605/0071,UD Berkah Abadi,Kopi Sachet,6,renceng,11000,66000,Lunas,
+27/06/2026,INV/2606/0072,UD Berkah Abadi,Sabun Mandi,6,lusin,40000,240000,Lunas,
+16/05/2026,INV/2605/0073,PT Sumber Rejeki,Gula 1kg,8,pcs,15500,124000,Tempo 14 hari,30/05/2026
+20/06/2026,INV/2606/0074,PT Sumber Rejeki,Mie Instan,6,dus,110000,660000,Lunas,
+01/06/2026,INV/2606/0075,PT Sumber Rejeki,Sabun Mandi,21,lusin,40000,840000,Lunas,
+13/06/2026,INV/2606/0076,UD Berkah Abadi,Kopi Sachet,18,renceng,11000,198000,Tempo 14 hari,27/06/2026
+31/05/2026,INV/2605/0077,UD Berkah Abadi,Beras 5kg,28,karung,68000,1904000,Tempo 30 hari,30/06/2026
+18/06/2026,INV/2606/0078,PT Sumber Rejeki,Sabun Mandi,13,lusin,40000,520000,Lunas,
+28/06/2026,INV/2606/0079,Toko Grosir Sentosa,Beras 5kg,19,karung,68000,1292000,Lunas,
+12/05/2026,INV/2605/0080,UD Berkah Abadi,Minyak Goreng 2L,27,pcs,34000,918000,Lunas,
+08/05/2026,INV/2605/0081,CV Maju Jaya,Gula 1kg,23,pcs,15500,356500,Lunas,
+05/05/2026,INV/2605/0082,CV Maju Jaya,Minyak Goreng 2L,21,pcs,34000,714000,Tempo 14 hari,19/05/2026
+04/06/2026,INV/2606/0083,UD Berkah Abadi,Gula 1kg,27,pcs,15500,418500,Lunas,
+15/06/2026,INV/2606/0084,CV Maju Jaya,Beras 5kg,10,karung,68000,680000,Tempo 14 hari,29/06/2026
+28/06/2026,INV/2606/0085,UD Berkah Abadi,Gula 1kg,25,pcs,15500,387500,Lunas,
+25/06/2026,INV/2606/0086,Toko Grosir Sentosa,Gula 1kg,22,pcs,15500,341000,Tempo 30 hari,25/07/2026
+13/05/2026,INV/2605/0087,CV Maju Jaya,Beras 5kg,15,karung,68000,1020000,Tempo 14 hari,27/05/2026
+01/05/2026,INV/2605/0088,PT Sumber Rejeki,Gula 1kg,3,pcs,15500,46500,Tempo 30 hari,31/05/2026
+01/06/2026,INV/2606/0089,Toko Grosir Sentosa,Gula 1kg,14,pcs,15500,217000,Tempo 30 hari,01/07/2026
+10/06/2026,INV/2606/0090,UD Berkah Abadi,Beras 5kg,12,karung,68000,816000,Lunas,
+24/06/2026,INV/2606/0091,UD Berkah Abadi,Sabun Mandi,23,lusin,40000,920000,Lunas,
+20/05/2026,INV/2605/0092,CV Maju Jaya,Kopi Sachet,26,renceng,11000,286000,Tempo 30 hari,19/06/2026
+28/06/2026,INV/2606/0093,CV Maju Jaya,Minyak Goreng 2L,25,pcs,34000,850000,Lunas,
+02/06/2026,INV/2606/0094,PT Sumber Rejeki,Mie Instan,22,dus,110000,2420000,Tempo 30 hari,02/07/2026
+03/05/2026,INV/2605/0095,CV Maju Jaya,Beras 5kg,29,karung,68000,1972000,Tempo 30 hari,02/06/2026
+16/06/2026,INV/2606/0096,Toko Grosir Sentosa,Sabun Mandi,6,lusin,40000,240000,Lunas,
+22/06/2026,INV/2606/0097,CV Maju Jaya,Minyak Goreng 2L,25,pcs,34000,850000,Lunas,
+12/06/2026,INV/2606/0098,UD Berkah Abadi,Beras 5kg,27,karung,68000,1836000,Tempo 14 hari,26/06/2026
+11/05/2026,INV/2605/0099,PT Sumber Rejeki,Kopi Sachet,14,renceng,11000,154000,Tempo 14 hari,25/05/2026
+29/05/2026,INV/2605/0100,PT Sumber Rejeki,Sabun Mandi,27,lusin,40000,1080000,Tempo 14 hari,12/06/2026
+16/06/2026,INV/2606/0101,PT Sumber Rejeki,Sabun Mandi,5,lusin,40000,200000,Lunas,
+21/06/2026,INV/2606/0102,UD Berkah Abadi,Kopi Sachet,25,renceng,11000,275000,Tempo 14 hari,05/07/2026
+08/05/2026,INV/2605/0103,UD Berkah Abadi,Beras 5kg,7,karung,68000,476000,Tempo 30 hari,07/06/2026
+05/06/2026,INV/2606/0104,PT Sumber Rejeki,Beras 5kg,2,karung,68000,136000,Lunas,
+22/05/2026,INV/2605/0105,UD Berkah Abadi,Sabun Mandi,7,lusin,40000,280000,Tempo 30 hari,21/06/2026
+09/05/2026,INV/2605/0106,PT Sumber Rejeki,Mie Instan,25,dus,110000,2750000,Tempo 14 hari,23/05/2026
+23/05/2026,INV/2605/0107,UD Berkah Abadi,Sabun Mandi,20,lusin,40000,800000,Lunas,
+19/06/2026,INV/2606/0108,Toko Grosir Sentosa,Gula 1kg,7,pcs,15500,108500,Lunas,
+14/06/2026,INV/2606/0109,UD Berkah Abadi,Mie Instan,5,dus,110000,550000,Lunas,
+06/06/2026,INV/2606/0110,CV Maju Jaya,Beras 5kg,29,karung,68000,1972000,Lunas,
+26/06/2026,INV/2606/0111,UD Berkah Abadi,Sabun Mandi,4,lusin,40000,160000,Tempo 14 hari,10/07/2026
+01/05/2026,INV/2605/0112,UD Berkah Abadi,Gula 1kg,18,pcs,15500,279000,Lunas,
+15/05/2026,INV/2605/0113,CV Maju Jaya,Mie Instan,12,dus,110000,1320000,Tempo 30 hari,14/06/2026
+23/05/2026,INV/2605/0114,Toko Grosir Sentosa,Sabun Mandi,21,lusin,40000,840000,Lunas,
+08/05/2026,INV/2605/0115,PT Sumber Rejeki,Minyak Goreng 2L,15,pcs,34000,510000,Lunas,
+04/06/2026,INV/2606/0116,PT Sumber Rejeki,Beras 5kg,25,karung,68000,1700000,Tempo 14 hari,18/06/2026
+12/06/2026,INV/2606/0117,PT Sumber Rejeki,Sabun Mandi,18,lusin,40000,720000,Tempo 14 hari,26/06/2026
+12/06/2026,INV/2606/0118,Toko Grosir Sentosa,Kopi Sachet,26,renceng,11000,286000,Tempo 30 hari,12/07/2026
+16/06/2026,INV/2606/0119,CV Maju Jaya,Minyak Goreng 2L,18,pcs,34000,612000,Tempo 30 hari,16/07/2026
+06/06/2026,INV/2606/0120,PT Sumber Rejeki,Minyak Goreng 2L,28,pcs,34000,952000,Tempo 14 hari,20/06/2026
+21/06/2026,INV/2606/0121,PT Sumber Rejeki,Sabun Mandi,14,lusin,40000,560000,Lunas,
+10/05/2026,INV/2605/0122,PT Sumber Rejeki,Gula 1kg,28,pcs,15500,434000,Tempo 14 hari,24/05/2026
+15/05/2026,INV/2605/0123,UD Berkah Abadi,Mie Instan,9,dus,110000,990000,Tempo 30 hari,14/06/2026
+19/05/2026,INV/2605/0124,CV Maju Jaya,Kopi Sachet,9,renceng,11000,99000,Tempo 30 hari,18/06/2026
+02/06/2026,INV/2606/0125,UD Berkah Abadi,Mie Instan,5,dus,110000,550000,Tempo 14 hari,16/06/2026
+10/05/2026,INV/2605/0126,CV Maju Jaya,Mie Instan,12,dus,110000,1320000,Lunas,
+10/06/2026,INV/2606/0127,UD Berkah Abadi,Kopi Sachet,18,renceng,11000,198000,Tempo 30 hari,10/07/2026
+19/06/2026,INV/2606/0128,Toko Grosir Sentosa,Sabun Mandi,14,lusin,40000,560000,Tempo 30 hari,19/07/2026
+29/06/2026,INV/2606/0129,CV Maju Jaya,Minyak Goreng 2L,20,pcs,34000,680000,Tempo 30 hari,29/07/2026
+28/05/2026,INV/2605/0130,PT Sumber Rejeki,Gula 1kg,15,pcs,15500,232500,Tempo 14 hari,11/06/2026
+08/06/2026,INV/2606/0131,CV Maju Jaya,Minyak Goreng 2L,13,pcs,34000,442000,Tempo 14 hari,22/06/2026
+05/06/2026,INV/2606/0132,Toko Grosir Sentosa,Minyak Goreng 2L,14,pcs,34000,476000,Tempo 30 hari,05/07/2026
+12/05/2026,INV/2605/0133,CV Maju Jaya,Sabun Mandi,11,lusin,40000,440000,Tempo 14 hari,26/05/2026
+15/05/2026,INV/2605/0134,CV Maju Jaya,Sabun Mandi,17,lusin,40000,680000,Tempo 14 hari,29/05/2026
+14/06/2026,INV/2606/0135,PT Sumber Rejeki,Kopi Sachet,2,renceng,11000,22000,Lunas,
+31/05/2026,INV/2605/0136,UD Berkah Abadi,Gula 1kg,16,pcs,15500,248000,Tempo 30 hari,30/06/2026
+26/06/2026,INV/2606/0137,PT Sumber Rejeki,Kopi Sachet,9,renceng,11000,99000,Lunas,
+07/06/2026,INV/2606/0138,Toko Grosir Sentosa,Kopi Sachet,11,renceng,11000,121000,Lunas,
+21/06/2026,INV/2606/0139,CV Maju Jaya,Mie Instan,16,dus,110000,1760000,Tempo 30 hari,21/07/2026
+17/05/2026,INV/2605/0140,UD Berkah Abadi,Kopi Sachet,3,renceng,11000,33000,Tempo 14 hari,31/05/2026
+19/05/2026,INV/2605/0141,PT Sumber Rejeki,Minyak Goreng 2L,5,pcs,34000,170000,Lunas,
+26/06/2026,INV/2606/0142,UD Berkah Abadi,Mie Instan,6,dus,110000,660000,Lunas,
+11/06/2026,INV/2606/0143,UD Berkah Abadi,Minyak Goreng 2L,2,pcs,34000,68000,Tempo 14 hari,25/06/2026
+05/05/2026,INV/2605/0144,UD Berkah Abadi,Mie Instan,25,dus,110000,2750000,Lunas,
+08/05/2026,INV/2605/0145,Toko Grosir Sentosa,Mie Instan,21,dus,110000,2310000,Tempo 14 hari,22/05/2026
+28/06/2026,INV/2606/0146,UD Berkah Abadi,Beras 5kg,2,karung,68000,136000,Tempo 30 hari,28/07/2026
+29/05/2026,INV/2605/0147,CV Maju Jaya,Minyak Goreng 2L,13,pcs,34000,442000,Lunas,
+10/06/2026,INV/2606/0148,PT Sumber Rejeki,Sabun Mandi,7,lusin,40000,280000,Lunas,
+09/06/2026,INV/2606/0149,UD Berkah Abadi,Sabun Mandi,11,lusin,40000,440000,Lunas,
+24/05/2026,INV/2605/0150,Toko Grosir Sentosa,Minyak Goreng 2L,28,pcs,34000,952000,Tempo 14 hari,07/06/2026
+04/06/2026,INV/2606/0151,CV Maju Jaya,Minyak Goreng 2L,28,pcs,34000,952000,Tempo 14 hari,18/06/2026
+06/06/2026,INV/2606/0152,Toko Grosir Sentosa,Sabun Mandi,27,lusin,40000,1080000,Lunas,
+02/05/2026,INV/2605/0153,CV Maju Jaya,Gula 1kg,12,pcs,15500,186000,Tempo 30 hari,01/06/2026
+27/05/2026,INV/2605/0154,CV Maju Jaya,Minyak Goreng 2L,11,pcs,34000,374000,Tempo 14 hari,10/06/2026
+23/05/2026,INV/2605/0155,Toko Grosir Sentosa,Minyak Goreng 2L,24,pcs,34000,816000,Lunas,
+10/06/2026,INV/2606/0156,Toko Grosir Sentosa,Sabun Mandi,5,lusin,40000,200000,Lunas,
+25/06/2026,INV/2606/0157,CV Maju Jaya,Beras 5kg,23,karung,68000,1564000,Lunas,
+03/05/2026,INV/2605/0158,Toko Grosir Sentosa,Minyak Goreng 2L,29,pcs,34000,986000,Lunas,
+23/05/2026,INV/2605/0159,CV Maju Jaya,Minyak Goreng 2L,5,pcs,34000,170000,Lunas,
+05/06/2026,INV/2606/0160,PT Sumber Rejeki,Mie Instan,27,dus,110000,2970000,Lunas,

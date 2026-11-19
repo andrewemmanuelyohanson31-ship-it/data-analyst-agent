@@ -3,16 +3,15 @@ dataset's own columns: no question text, nothing for a model or parser to interp
 """
 from __future__ import annotations
 
+import re
 from dataclasses import dataclass, field
 from typing import Callable
-
-import re
 
 import pandas as pd
 
 from agent.loop import AgentAnswer, Step
-from agent.question import date_column
-from agent.router import GROUPS, MEASURES, _fmt, _pick
+from agent.roles import detect_roles
+from agent.router import _fmt
 from agent.state import DatasetState
 from agent.tools import run_tool
 
@@ -26,22 +25,13 @@ class Action:
     summary: Callable[[list], str] = field(default=lambda results: " ".join(r.text for r in results))
 
 
+NEEDED = ("date", "revenue", "quantity", "profit", "product", "category", "city", "department", "salary", "stock")
+
+
 def _columns(df: pd.DataFrame) -> dict:
-    """The roles the actions need, found from column names (None when missing or ambiguous)."""
-    stock = [c for c in df.columns if ("stok" in str(c).lower() or "stock" in str(c).lower())
-             and pd.api.types.is_numeric_dtype(df[c])]
-    return {
-        "date": date_column(df),
-        "revenue": _pick(df, MEASURES["revenue"][1], numeric=True),
-        "quantity": _pick(df, MEASURES["quantity"][1], numeric=True),
-        "profit": _pick(df, MEASURES["profit"][1], numeric=True),
-        "product": _pick(df, GROUPS["product"][1], numeric=False),
-        "category": _pick(df, GROUPS["category"][1], numeric=False),
-        "city": _pick(df, GROUPS["city"][1], numeric=False),
-        "department": _pick(df, GROUPS["department"][1], numeric=False),
-        "salary": _pick(df, MEASURES["salary"][1], numeric=True),
-        "stock": stock[0] if len(stock) == 1 else None,
-    }
+    """The column for each role the actions need (None when the data has no such column)."""
+    by_role = {role: col for col, role in detect_roles(df).items() if role}
+    return {role: by_role.get(role) for role in NEEDED}
 
 
 def _high_low(r, label=""):
@@ -68,10 +58,11 @@ def available(df: pd.DataFrame) -> list[Action]:
                                     ("clean_missing", {"strategy": "mode"})],
                   _clean_summary)]
     money = c["revenue"] or c["profit"]
+    word = "revenue" if c["revenue"] else "profit"  # label by meaning: "Total revenue", not "Total Subtotal"
     if money:
-        out.append(Action(f"💰 Total {money}", [("aggregate", {"agg": "sum", "column": money})]))
+        out.append(Action(f"💰 Total {word}", [("aggregate", {"agg": "sum", "column": money})]))
     if c["date"] and money:
-        out.append(Action(f"📈 Monthly {money} chart", [("chart", {"kind": "line", "x": "month", "y": money, "agg": "sum"})],
+        out.append(Action(f"📈 Monthly {word} chart", [("chart", {"kind": "line", "x": "month", "y": money, "agg": "sum"})],
                           lambda rs: _high_low(rs[0], f"Monthly {money}. ")))
     if c["product"] and c["quantity"]:
         by_product = {"by": [c["product"]], "column": c["quantity"], "agg": "sum"}
@@ -82,10 +73,10 @@ def available(df: pd.DataFrame) -> list[Action]:
                                      f"{c['quantity']} (table: best to slowest)."))
     group = c["category"] or c["department"] or c["city"] or c["product"]
     if group and money:
-        out.append(Action(f"📊 {money} by {group}", [("chart", {"kind": "bar", "x": group, "y": money, "agg": "sum"})],
+        out.append(Action(f"📊 {word.capitalize()} by {group}", [("chart", {"kind": "bar", "x": group, "y": money, "agg": "sum"})],
                           lambda rs: _high_low(rs[0], f"{money} by {group}. ")))
     elif group and c["salary"]:  # e.g. an employee list: no sales, but pay per group is the usual question
-        out.append(Action(f"📊 Average {c['salary']} by {group}",
+        out.append(Action(f"📊 Average salary by {group}",
                           [("chart", {"kind": "bar", "x": group, "y": c["salary"], "agg": "mean"})],
                           lambda rs: _high_low(rs[0], f"Average {c['salary']} by {group}. ")))
     if c["date"] and money:

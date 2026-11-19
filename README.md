@@ -77,6 +77,35 @@ appear when the data supports them (no stock column, no *Restock list*):
 
 ![Answered by the question parser, shown in the Steps panel](docs/screenshots/parser-steps.jpg)
 
+## Understanding your columns
+
+Real exports don't use tidy column names. When a file loads, the agent works out what every column *means* (its
+role: date, product, quantity, price, revenue, stock, …) from the name **and** the values:
+
+1. **Loading fixes** (`agent/tidy.py`): finds the real header under title rows, removes blank and TOTAL/subtotal
+   rows (otherwise totals are counted twice), turns "Rp 15.000" / "15rb" into numbers, and puts dates written as
+   "1 Mei 2026", "02/05/2026" or US "2/24/2003" into one format. Every change is listed under the file name.
+2. **Names** (`agent/column_names.py`): ~430 common English and Indonesian column names in 42 roles, plus key words
+   inside longer names (*Tgl Beli*, *Harga Setelah Diskon*) and run-together names (`QUANTITYORDERED`).
+3. **Values and arithmetic** (`agent/roles.py`): quantity × price = revenue identifies those three whatever they're
+   called; *Online / Takeaway* values make a column the sales channel even if it's named "Location"; stock reports
+   resolve *Masuk / Keluar*. A guess must fit the values, and each role goes to one column.
+
+The quick-action buttons and the model use these roles, so a POS export with `Qty Keluar` and `Total Penjualan
+(Rp)` gets the same buttons as the samples.
+
+Scored with `python eval/score_roles.py` against a hand-written key (`eval/column_roles.json`):
+
+| Files | Names only | Names + values |
+|---|---|---|
+| 11 files used while building it (3 samples, 5 messy Indonesian files, 3 public datasets) | 74.2% (95/128) | 100% (128/128) |
+| 2 held-out files, scored once at the end | 61.1% (11/18) | **100% (18/18)** |
+
+The messy files (`samples/make_messy.py`: POS export, marketplace orders, stock report, a hand-made shop Excel
+with title rows and "Rp" text, supplier purchases) and the held-out files are synthetic. The three public
+datasets (a dirty cafe log, a retail store log, a US B2B sales sample) aren't in the repo; pass `--real-dir`.
+Caveat: I wrote the held-out names myself, so the real test is still a real export from a shop.
+
 ## What it can do
 
 | Job | Tools |
@@ -208,7 +237,7 @@ Remaining failure: *"Which department has the most employees who left the compan
 ```bash
 pytest
 ```
-102 tests: every tool (normal + bad input + small-model slips), the question parser (right answers, and 15 kinds
+125 tests: every tool (normal + bad input + small-model slips), the question parser (right answers, and 15 kinds
 of question it must hand to the model), dataset versions/undo, the agent loop (with a
 scripted fake model: self-correction, number verification, filter carry-over, step cap), the code sandbox
 (blocked imports/file access, timeout), the report, the eval answer checker, and the Streamlit app driven headlessly.
@@ -220,6 +249,9 @@ app.py              Streamlit UI
 agent/tools.py      the analysis tools + their JSON schemas
 agent/router.py     question parser for frequent questions (no model)
 agent/actions.py    one-click quick actions (no model)
+agent/tidy.py       loading fixes: header row, total rows, Rp text, dates
+agent/roles.py      what each column means, from names + values
+agent/column_names.py  common column names per role
 agent/question.py   finds values and periods named in a question
 agent/loop.py       agent loop (Ollama tool calling, self-correction, guards)
 agent/sandbox.py    restricted fallback code runner

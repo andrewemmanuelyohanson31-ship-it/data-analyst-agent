@@ -31,8 +31,10 @@ class ToolResult:
 # ---------- helpers ----------
 
 def load_file(name: str, data: bytes) -> pd.DataFrame:
+    from agent.tidy import tidy  # local import: tidy is optional for the tools themselves
+
     if name.lower().endswith((".xlsx", ".xls")):
-        return pd.read_excel(io.BytesIO(data))
+        return tidy(pd.read_excel(io.BytesIO(data)))
     for enc in ("utf-8-sig", "latin-1"):
         try:
             text = data.decode(enc)
@@ -41,7 +43,7 @@ def load_file(name: str, data: bytes) -> pd.DataFrame:
             continue
     first = text.splitlines()[0] if text else ""
     sep = max([",", ";", "\t", "|"], key=first.count)
-    return pd.read_csv(io.StringIO(text), sep=sep)
+    return tidy(pd.read_csv(io.StringIO(text), sep=sep))
 
 
 def col(df: pd.DataFrame, name) -> str:

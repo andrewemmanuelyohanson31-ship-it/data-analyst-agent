@@ -83,7 +83,11 @@ def _params(tool: str) -> dict:
 
 
 def schema_summary(df: pd.DataFrame) -> str:
-    cols = "\n".join(f"- {c} ({t}, {df[c].isna().sum()} missing)" for c, t in df.dtypes.astype(str).items())
+    from agent.roles import detect_roles  # local import: roles imports column lists only, keep loop import-light
+
+    roles = detect_roles(df)
+    cols = "\n".join(f"- {c} ({t}, {df[c].isna().sum()} missing{', means: ' + roles[c] if roles.get(c) else ''})"
+                     for c, t in df.dtypes.astype(str).items())
     return f"{len(df)} rows. Columns:\n{cols}\nFirst rows:\n{df.head(5).to_csv(index=False)}"
 
 

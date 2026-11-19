@@ -1,0 +1,301 @@
+Tgl Transaksi,Kode Struk,Lokasi,Produk,Jumlah Item,Harga,Total Bayar,Pembayaran,Pelanggan
+28/06/2026,TRX00001,Warung Cabang,Mie Ayam,4,18000,72000,Cash,Pelanggan 31
+27/06/2026,TRX00002,Warung Cabang,Pangsit Goreng,4,12000,48000,Cash,Pelanggan 34
+09/06/2026,TRX00003,Warung Cabang,Es Teh Jumbo,4,7000,28000,QRIS,Pelanggan 28
+07/05/2026,TRX00004,Warung Cabang,Es Jeruk,2,9000,18000,Cash,Pelanggan 15
+06/06/2026,TRX00005,Warung Pusat,Es Teh Jumbo,2,7000,14000,Transfer,Pelanggan 16
+25/06/2026,TRX00006,Warung Cabang,Es Teh Jumbo,4,7000,28000,Transfer,Pelanggan 23
+10/06/2026,TRX00007,Warung Pusat,Es Jeruk,4,9000,36000,Cash,Pelanggan 18
+22/05/2026,TRX00008,Warung Pusat,Es Jeruk,1,9000,9000,Transfer,Pelanggan 53
+04/05/2026,TRX00009,Warung Cabang,Mie Ayam,2,18000,36000,Transfer,Pelanggan 35
+05/06/2026,TRX00010,Warung Cabang,Mie Ayam,2,18000,36000,Cash,Pelanggan 31
+25/06/2026,TRX00011,Warung Pusat,Bakso Urat,1,25000,25000,Cash,Pelanggan 15
+17/05/2026,TRX00012,Warung Pusat,Bakso Urat,4,25000,100000,Cash,Pelanggan 17
+04/06/2026,TRX00013,Warung Pusat,Mie Ayam,2,18000,36000,QRIS,Pelanggan 46
+29/05/2026,TRX00014,Warung Pusat,Pangsit Goreng,4,12000,48000,Transfer,Pelanggan 14
+12/06/2026,TRX00015,Warung Cabang,Es Jeruk,2,9000,18000,QRIS,Pelanggan 46
+19/05/2026,TRX00016,Warung Pusat,Es Jeruk,3,9000,27000,Transfer,Pelanggan 54
+31/05/2026,TRX00017,Warung Cabang,Mie Ayam,2,18000,36000,Transfer,Pelanggan 40
+28/05/2026,TRX00018,Warung Cabang,Es Jeruk,2,9000,18000,Cash,Pelanggan 25
+08/06/2026,TRX00019,Warung Pusat,Bakso Urat,3,25000,75000,QRIS,Pelanggan 53
+20/05/2026,TRX00020,Warung Cabang,Bakso Urat,1,25000,25000,QRIS,Pelanggan 39
+04/05/2026,TRX00021,Warung Pusat,Es Jeruk,4,9000,36000,Transfer,Pelanggan 5
+22/05/2026,TRX00022,Warung Cabang,Es Teh Jumbo,2,7000,14000,Transfer,Pelanggan 23
+15/05/2026,TRX00023,Warung Pusat,Es Teh Jumbo,2,7000,14000,Transfer,Pelanggan 43
+27/05/2026,TRX00024,Warung Cabang,Es Teh Jumbo,1,7000,7000,Cash,Pelanggan 24
+15/05/2026,TRX00025,Warung Cabang,Pangsit Goreng,4,12000,48000,QRIS,Pelanggan 43
+26/05/2026,TRX00026,Warung Pusat,Mie Ayam,1,18000,18000,QRIS,Pelanggan 40
+22/05/2026,TRX00027,Warung Pusat,Pangsit Goreng,2,12000,24000,Transfer,Pelanggan 3
+25/05/2026,TRX00028,Warung Pusat,Mie Ayam,1,18000,18000,Transfer,Pelanggan 53
+26/05/2026,TRX00029,Warung Cabang,Es Teh Jumbo,2,7000,14000,Transfer,Pelanggan 30
+28/05/2026,TRX00030,Warung Pusat,Pangsit Goreng,2,12000,24000,QRIS,Pelanggan 43
+03/05/2026,TRX00031,Warung Pusat,Pangsit Goreng,4,12000,48000,Transfer,Pelanggan 16
+25/05/2026,TRX00032,Warung Pusat,Mie Ayam,3,18000,54000,Cash,Pelanggan 48
+06/05/2026,TRX00033,Warung Cabang,Pangsit Goreng,4,12000,48000,QRIS,Pelanggan 8
+19/06/2026,TRX00034,Warung Pusat,Es Teh Jumbo,3,7000,21000,QRIS,Pelanggan 39
+02/05/2026,TRX00035,Warung Pusat,Es Teh Jumbo,3,7000,21000,Cash,Pelanggan 31
+23/05/2026,TRX00036,Warung Pusat,Es Teh Jumbo,4,7000,28000,QRIS,Pelanggan 21
+21/05/2026,TRX00037,Warung Pusat,Es Jeruk,2,9000,18000,Cash,Pelanggan 44
+02/06/2026,TRX00038,Warung Cabang,Bakso Urat,3,25000,75000,Transfer,Pelanggan 59
+21/05/2026,TRX00039,Warung Cabang,Es Teh Jumbo,4,7000,28000,Transfer,Pelanggan 37
+16/05/2026,TRX00040,Warung Pusat,Mie Ayam,2,18000,36000,QRIS,Pelanggan 40
+09/06/2026,TRX00041,Warung Cabang,Mie Ayam,3,18000,54000,Cash,Pelanggan 29
+29/05/2026,TRX00042,Warung Cabang,Es Jeruk,2,9000,18000,QRIS,Pelanggan 20
+17/06/2026,TRX00043,Warung Cabang,Es Teh Jumbo,3,7000,21000,QRIS,Pelanggan 58
+08/06/2026,TRX00044,Warung Pusat,Bakso Urat,1,25000,25000,Cash,Pelanggan 27
+07/06/2026,TRX00045,Warung Cabang,Bakso Urat,1,25000,25000,Cash,Pelanggan 34
+30/05/2026,TRX00046,Warung Cabang,Pangsit Goreng,1,12000,12000,QRIS,Pelanggan 1
+06/06/2026,TRX00047,Warung Pusat,Pangsit Goreng,2,12000,24000,QRIS,Pelanggan 14
+17/05/2026,TRX00048,Warung Cabang,Pangsit Goreng,2,12000,24000,QRIS,Pelanggan 52
+22/06/2026,TRX00049,Warung Cabang,Pangsit Goreng,1,12000,12000,Cash,Pelanggan 16
+20/06/2026,TRX00050,Warung Pusat,Es Teh Jumbo,4,7000,28000,Cash,Pelanggan 45
+16/06/2026,TRX00051,Warung Cabang,Es Teh Jumbo,1,7000,7000,Transfer,Pelanggan 48
+23/06/2026,TRX00052,Warung Cabang,Es Teh Jumbo,4,7000,28000,Cash,Pelanggan 36
+29/05/2026,TRX00053,Warung Cabang,Pangsit Goreng,1,12000,12000,QRIS,Pelanggan 54
+22/06/2026,TRX00054,Warung Cabang,Mie Ayam,4,18000,72000,Cash,Pelanggan 23
+16/06/2026,TRX00055,Warung Cabang,Bakso Urat,2,25000,50000,QRIS,Pelanggan 7
+15/05/2026,TRX00056,Warung Cabang,Pangsit Goreng,2,12000,24000,QRIS,Pelanggan 22
+05/06/2026,TRX00057,Warung Cabang,Es Jeruk,4,9000,36000,Transfer,Pelanggan 25
+25/06/2026,TRX00058,Warung Pusat,Es Jeruk,2,9000,18000,QRIS,Pelanggan 8
+31/05/2026,TRX00059,Warung Cabang,Bakso Urat,2,25000,50000,Transfer,Pelanggan 27
+24/05/2026,TRX00060,Warung Pusat,Es Teh Jumbo,1,7000,7000,Cash,Pelanggan 21
+05/05/2026,TRX00061,Warung Cabang,Es Teh Jumbo,4,7000,28000,QRIS,Pelanggan 42
+02/05/2026,TRX00062,Warung Cabang,Mie Ayam,4,18000,72000,Transfer,Pelanggan 7
+01/06/2026,TRX00063,Warung Pusat,Pangsit Goreng,1,12000,12000,Cash,Pelanggan 7
+03/05/2026,TRX00064,Warung Pusat,Mie Ayam,3,18000,54000,Cash,Pelanggan 43
+17/05/2026,TRX00065,Warung Cabang,Es Jeruk,2,9000,18000,QRIS,Pelanggan 11
+10/05/2026,TRX00066,Warung Pusat,Es Jeruk,4,9000,36000,Transfer,Pelanggan 40
+26/05/2026,TRX00067,Warung Cabang,Es Jeruk,3,9000,27000,Transfer,Pelanggan 26
+14/05/2026,TRX00068,Warung Cabang,Mie Ayam,1,18000,18000,Transfer,Pelanggan 32
+11/06/2026,TRX00069,Warung Pusat,Pangsit Goreng,3,12000,36000,QRIS,Pelanggan 51
+27/05/2026,TRX00070,Warung Cabang,Bakso Urat,2,25000,50000,Transfer,Pelanggan 43
+23/06/2026,TRX00071,Warung Pusat,Mie Ayam,3,18000,54000,QRIS,Pelanggan 36
+14/05/2026,TRX00072,Warung Pusat,Es Teh Jumbo,2,7000,14000,Transfer,Pelanggan 46
+19/05/2026,TRX00073,Warung Pusat,Mie Ayam,4,18000,72000,Cash,Pelanggan 43
+05/06/2026,TRX00074,Warung Cabang,Es Teh Jumbo,1,7000,7000,Cash,Pelanggan 19
+08/06/2026,TRX00075,Warung Pusat,Bakso Urat,2,25000,50000,QRIS,Pelanggan 17
+27/06/2026,TRX00076,Warung Cabang,Mie Ayam,1,18000,18000,Transfer,Pelanggan 57
+13/06/2026,TRX00077,Warung Cabang,Mie Ayam,1,18000,18000,Cash,Pelanggan 10
+16/05/2026,TRX00078,Warung Pusat,Bakso Urat,3,25000,75000,QRIS,Pelanggan 24
+23/06/2026,TRX00079,Warung Cabang,Es Teh Jumbo,1,7000,7000,Cash,Pelanggan 2
+17/05/2026,TRX00080,Warung Cabang,Mie Ayam,4,18000,72000,QRIS,Pelanggan 21
+16/06/2026,TRX00081,Warung Cabang,Mie Ayam,4,18000,72000,Cash,Pelanggan 37
+07/05/2026,TRX00082,Warung Pusat,Mie Ayam,3,18000,54000,Transfer,Pelanggan 24
+06/05/2026,TRX00083,Warung Cabang,Bakso Urat,4,25000,100000,QRIS,Pelanggan 55
+07/06/2026,TRX00084,Warung Pusat,Bakso Urat,4,25000,100000,QRIS,Pelanggan 59
+06/06/2026,TRX00085,Warung Cabang,Bakso Urat,4,25000,100000,QRIS,Pelanggan 57
+05/06/2026,TRX00086,Warung Pusat,Es Jeruk,3,9000,27000,Transfer,Pelanggan 46
+11/05/2026,TRX00087,Warung Cabang,Es Jeruk,4,9000,36000,QRIS,Pelanggan 29
+18/05/2026,TRX00088,Warung Cabang,Es Teh Jumbo,4,7000,28000,Transfer,Pelanggan 34
+17/06/2026,TRX00089,Warung Pusat,Es Teh Jumbo,4,7000,28000,Cash,Pelanggan 40
+25/06/2026,TRX00090,Warung Cabang,Bakso Urat,3,25000,75000,Transfer,Pelanggan 31
+16/06/2026,TRX00091,Warung Cabang,Pangsit Goreng,1,12000,12000,Transfer,Pelanggan 20
+04/05/2026,TRX00092,Warung Cabang,Mie Ayam,1,18000,18000,Transfer,Pelanggan 49
+17/05/2026,TRX00093,Warung Cabang,Bakso Urat,1,25000,25000,QRIS,Pelanggan 46
+04/06/2026,TRX00094,Warung Cabang,Pangsit Goreng,2,12000,24000,Cash,Pelanggan 56
+19/06/2026,TRX00095,Warung Pusat,Pangsit Goreng,2,12000,24000,QRIS,Pelanggan 55
+11/06/2026,TRX00096,Warung Cabang,Bakso Urat,4,25000,100000,Cash,Pelanggan 51
+07/06/2026,TRX00097,Warung Cabang,Es Teh Jumbo,1,7000,7000,QRIS,Pelanggan 40
+13/06/2026,TRX00098,Warung Cabang,Es Jeruk,4,9000,36000,Cash,Pelanggan 9
+26/05/2026,TRX00099,Warung Cabang,Pangsit Goreng,3,12000,36000,Transfer,Pelanggan 51
+16/06/2026,TRX00100,Warung Pusat,Es Teh Jumbo,1,7000,7000,Cash,Pelanggan 41
+14/05/2026,TRX00101,Warung Cabang,Es Teh Jumbo,1,7000,7000,Transfer,Pelanggan 37
+12/05/2026,TRX00102,Warung Cabang,Pangsit Goreng,3,12000,36000,Transfer,Pelanggan 21
+10/05/2026,TRX00103,Warung Pusat,Es Teh Jumbo,3,7000,21000,QRIS,Pelanggan 32
+03/06/2026,TRX00104,Warung Pusat,Bakso Urat,1,25000,25000,QRIS,Pelanggan 21
+30/06/2026,TRX00105,Warung Cabang,Es Teh Jumbo,2,7000,14000,Transfer,Pelanggan 45
+29/05/2026,TRX00106,Warung Pusat,Es Jeruk,4,9000,36000,Transfer,Pelanggan 34
+28/06/2026,TRX00107,Warung Pusat,Es Jeruk,3,9000,27000,QRIS,Pelanggan 48
+06/05/2026,TRX00108,Warung Pusat,Bakso Urat,2,25000,50000,QRIS,Pelanggan 3
+22/06/2026,TRX00109,Warung Pusat,Pangsit Goreng,1,12000,12000,QRIS,Pelanggan 5
+25/06/2026,TRX00110,Warung Cabang,Es Jeruk,1,9000,9000,Transfer,Pelanggan 13
+27/06/2026,TRX00111,Warung Pusat,Pangsit Goreng,4,12000,48000,Cash,Pelanggan 25
+20/05/2026,TRX00112,Warung Cabang,Mie Ayam,2,18000,36000,QRIS,Pelanggan 24
+25/05/2026,TRX00113,Warung Pusat,Bakso Urat,3,25000,75000,QRIS,Pelanggan 27
+25/06/2026,TRX00114,Warung Cabang,Es Jeruk,2,9000,18000,Transfer,Pelanggan 57
+06/05/2026,TRX00115,Warung Pusat,Pangsit Goreng,1,12000,12000,QRIS,Pelanggan 13
+18/06/2026,TRX00116,Warung Pusat,Mie Ayam,4,18000,72000,Cash,Pelanggan 29
+09/06/2026,TRX00117,Warung Cabang,Mie Ayam,3,18000,54000,Transfer,Pelanggan 35
+20/06/2026,TRX00118,Warung Cabang,Es Teh Jumbo,3,7000,21000,QRIS,Pelanggan 22
+14/05/2026,TRX00119,Warung Pusat,Pangsit Goreng,3,12000,36000,Transfer,Pelanggan 14
+26/06/2026,TRX00120,Warung Pusat,Pangsit Goreng,3,12000,36000,QRIS,Pelanggan 2
+05/06/2026,TRX00121,Warung Cabang,Es Teh Jumbo,3,7000,21000,QRIS,Pelanggan 3
+22/05/2026,TRX00122,Warung Cabang,Es Teh Jumbo,1,7000,7000,Cash,Pelanggan 37
+04/05/2026,TRX00123,Warung Cabang,Es Teh Jumbo,4,7000,28000,Transfer,Pelanggan 40
+14/05/2026,TRX00124,Warung Cabang,Pangsit Goreng,2,12000,24000,QRIS,Pelanggan 26
+24/05/2026,TRX00125,Warung Pusat,Bakso Urat,2,25000,50000,Transfer,Pelanggan 43
+08/05/2026,TRX00126,Warung Cabang,Mie Ayam,2,18000,36000,QRIS,Pelanggan 59
+04/06/2026,TRX00127,Warung Pusat,Es Jeruk,1,9000,9000,QRIS,Pelanggan 58
+30/06/2026,TRX00128,Warung Cabang,Es Teh Jumbo,3,7000,21000,Cash,Pelanggan 22
+20/06/2026,TRX00129,Warung Pusat,Es Jeruk,2,9000,18000,QRIS,Pelanggan 29
+16/05/2026,TRX00130,Warung Cabang,Es Teh Jumbo,3,7000,21000,QRIS,Pelanggan 58
+16/06/2026,TRX00131,Warung Cabang,Bakso Urat,1,25000,25000,QRIS,Pelanggan 1
+29/06/2026,TRX00132,Warung Cabang,Bakso Urat,4,25000,100000,Transfer,Pelanggan 55
+03/05/2026,TRX00133,Warung Pusat,Es Teh Jumbo,3,7000,21000,QRIS,Pelanggan 43
+09/05/2026,TRX00134,Warung Pusat,Es Jeruk,3,9000,27000,QRIS,Pelanggan 33
+31/05/2026,TRX00135,Warung Cabang,Bakso Urat,2,25000,50000,QRIS,Pelanggan 45
+16/06/2026,TRX00136,Warung Cabang,Es Teh Jumbo,3,7000,21000,Cash,Pelanggan 6
+14/06/2026,TRX00137,Warung Pusat,Bakso Urat,4,25000,100000,Cash,Pelanggan 57
+27/06/2026,TRX00138,Warung Cabang,Mie Ayam,3,18000,54000,QRIS,Pelanggan 48
+11/05/2026,TRX00139,Warung Cabang,Es Jeruk,2,9000,18000,QRIS,Pelanggan 23
+16/05/2026,TRX00140,Warung Cabang,Es Teh Jumbo,2,7000,14000,QRIS,Pelanggan 21
+11/06/2026,TRX00141,Warung Cabang,Es Teh Jumbo,4,7000,28000,Cash,Pelanggan 18
+12/05/2026,TRX00142,Warung Cabang,Es Jeruk,4,9000,36000,Transfer,Pelanggan 12
+25/05/2026,TRX00143,Warung Pusat,Es Teh Jumbo,4,7000,28000,Transfer,Pelanggan 1
+02/05/2026,TRX00144,Warung Pusat,Bakso Urat,2,25000,50000,Cash,Pelanggan 40
+06/05/2026,TRX00145,Warung Cabang,Es Jeruk,1,9000,9000,Cash,Pelanggan 39
+13/05/2026,TRX00146,Warung Pusat,Es Jeruk,3,9000,27000,Transfer,Pelanggan 36
+18/06/2026,TRX00147,Warung Pusat,Pangsit Goreng,4,12000,48000,Cash,Pelanggan 39
+16/05/2026,TRX00148,Warung Pusat,Mie Ayam,2,18000,36000,QRIS,Pelanggan 29
+24/05/2026,TRX00149,Warung Cabang,Mie Ayam,1,18000,18000,Transfer,Pelanggan 20
+05/05/2026,TRX00150,Warung Cabang,Es Teh Jumbo,2,7000,14000,QRIS,Pelanggan 47
+10/06/2026,TRX00151,Warung Pusat,Pangsit Goreng,2,12000,24000,Transfer,Pelanggan 23
+30/05/2026,TRX00152,Warung Pusat,Es Teh Jumbo,4,7000,28000,Cash,Pelanggan 19
+30/06/2026,TRX00153,Warung Cabang,Es Teh Jumbo,3,7000,21000,Transfer,Pelanggan 14
+30/05/2026,TRX00154,Warung Pusat,Pangsit Goreng,4,12000,48000,Transfer,Pelanggan 1
+06/06/2026,TRX00155,Warung Pusat,Es Jeruk,4,9000,36000,Transfer,Pelanggan 11
+15/06/2026,TRX00156,Warung Cabang,Pangsit Goreng,2,12000,24000,Cash,Pelanggan 19
+29/06/2026,TRX00157,Warung Pusat,Mie Ayam,4,18000,72000,Cash,Pelanggan 40
+15/06/2026,TRX00158,Warung Pusat,Pangsit Goreng,4,12000,48000,Transfer,Pelanggan 1
+16/06/2026,TRX00159,Warung Cabang,Bakso Urat,3,25000,75000,QRIS,Pelanggan 21
+30/06/2026,TRX00160,Warung Cabang,Pangsit Goreng,4,12000,48000,QRIS,Pelanggan 9
+18/05/2026,TRX00161,Warung Cabang,Pangsit Goreng,3,12000,36000,QRIS,Pelanggan 26
+26/06/2026,TRX00162,Warung Cabang,Es Jeruk,1,9000,9000,Cash,Pelanggan 34
+30/05/2026,TRX00163,Warung Cabang,Bakso Urat,1,25000,25000,Transfer,Pelanggan 5
+19/06/2026,TRX00164,Warung Pusat,Pangsit Goreng,1,12000,12000,QRIS,Pelanggan 44
+26/05/2026,TRX00165,Warung Cabang,Pangsit Goreng,4,12000,48000,QRIS,Pelanggan 37
+09/06/2026,TRX00166,Warung Pusat,Bakso Urat,3,25000,75000,Transfer,Pelanggan 19
+11/05/2026,TRX00167,Warung Pusat,Pangsit Goreng,3,12000,36000,QRIS,Pelanggan 35
+04/05/2026,TRX00168,Warung Pusat,Es Teh Jumbo,2,7000,14000,QRIS,Pelanggan 6
+02/05/2026,TRX00169,Warung Cabang,Bakso Urat,3,25000,75000,QRIS,Pelanggan 35
+16/05/2026,TRX00170,Warung Cabang,Es Teh Jumbo,1,7000,7000,Cash,Pelanggan 15
+20/06/2026,TRX00171,Warung Cabang,Mie Ayam,3,18000,54000,Cash,Pelanggan 8
+23/05/2026,TRX00172,Warung Pusat,Pangsit Goreng,1,12000,12000,QRIS,Pelanggan 6
+16/06/2026,TRX00173,Warung Cabang,Bakso Urat,1,25000,25000,QRIS,Pelanggan 43
+17/06/2026,TRX00174,Warung Pusat,Mie Ayam,4,18000,72000,Transfer,Pelanggan 43
+09/05/2026,TRX00175,Warung Cabang,Es Jeruk,1,9000,9000,QRIS,Pelanggan 21
+15/05/2026,TRX00176,Warung Pusat,Es Jeruk,3,9000,27000,QRIS,Pelanggan 6
+26/05/2026,TRX00177,Warung Cabang,Mie Ayam,4,18000,72000,Cash,Pelanggan 14
+17/06/2026,TRX00178,Warung Pusat,Bakso Urat,3,25000,75000,Cash,Pelanggan 50
+03/05/2026,TRX00179,Warung Cabang,Mie Ayam,4,18000,72000,Cash,Pelanggan 46
+16/05/2026,TRX00180,Warung Cabang,Mie Ayam,2,18000,36000,Cash,Pelanggan 47
+31/05/2026,TRX00181,Warung Cabang,Pangsit Goreng,3,12000,36000,Transfer,Pelanggan 49
+06/06/2026,TRX00182,Warung Pusat,Mie Ayam,3,18000,54000,Transfer,Pelanggan 50
+06/06/2026,TRX00183,Warung Pusat,Es Teh Jumbo,4,7000,28000,QRIS,Pelanggan 27
+02/05/2026,TRX00184,Warung Pusat,Mie Ayam,4,18000,72000,QRIS,Pelanggan 51
+06/05/2026,TRX00185,Warung Pusat,Es Teh Jumbo,3,7000,21000,QRIS,Pelanggan 55
+04/06/2026,TRX00186,Warung Pusat,Bakso Urat,1,25000,25000,QRIS,Pelanggan 20
+10/05/2026,TRX00187,Warung Cabang,Pangsit Goreng,2,12000,24000,QRIS,Pelanggan 51
+26/05/2026,TRX00188,Warung Cabang,Mie Ayam,3,18000,54000,QRIS,Pelanggan 26
+12/06/2026,TRX00189,Warung Pusat,Es Teh Jumbo,2,7000,14000,Transfer,Pelanggan 56
+22/06/2026,TRX00190,Warung Pusat,Es Jeruk,4,9000,36000,Transfer,Pelanggan 6
+22/05/2026,TRX00191,Warung Pusat,Es Jeruk,1,9000,9000,Cash,Pelanggan 36
+13/05/2026,TRX00192,Warung Cabang,Mie Ayam,4,18000,72000,QRIS,Pelanggan 53
+02/05/2026,TRX00193,Warung Cabang,Pangsit Goreng,2,12000,24000,QRIS,Pelanggan 41
+19/06/2026,TRX00194,Warung Cabang,Bakso Urat,4,25000,100000,QRIS,Pelanggan 53
+18/05/2026,TRX00195,Warung Cabang,Bakso Urat,3,25000,75000,Transfer,Pelanggan 37
+22/06/2026,TRX00196,Warung Cabang,Pangsit Goreng,3,12000,36000,QRIS,Pelanggan 31
+23/06/2026,TRX00197,Warung Cabang,Es Teh Jumbo,4,7000,28000,Cash,Pelanggan 44
+04/05/2026,TRX00198,Warung Cabang,Mie Ayam,3,18000,54000,Cash,Pelanggan 22
+04/06/2026,TRX00199,Warung Pusat,Es Jeruk,2,9000,18000,QRIS,Pelanggan 22
+09/06/2026,TRX00200,Warung Cabang,Mie Ayam,4,18000,72000,QRIS,Pelanggan 45
+15/05/2026,TRX00201,Warung Cabang,Mie Ayam,1,18000,18000,Cash,Pelanggan 5
+21/06/2026,TRX00202,Warung Cabang,Pangsit Goreng,3,12000,36000,Transfer,Pelanggan 51
+15/06/2026,TRX00203,Warung Pusat,Pangsit Goreng,2,12000,24000,QRIS,Pelanggan 31
+10/06/2026,TRX00204,Warung Cabang,Mie Ayam,2,18000,36000,Cash,Pelanggan 59
+17/06/2026,TRX00205,Warung Pusat,Mie Ayam,3,18000,54000,Transfer,Pelanggan 57
+03/06/2026,TRX00206,Warung Cabang,Es Teh Jumbo,4,7000,28000,Transfer,Pelanggan 39
+09/06/2026,TRX00207,Warung Cabang,Bakso Urat,3,25000,75000,Cash,Pelanggan 24
+25/05/2026,TRX00208,Warung Pusat,Mie Ayam,1,18000,18000,Transfer,Pelanggan 4
+19/05/2026,TRX00209,Warung Cabang,Es Teh Jumbo,2,7000,14000,Cash,Pelanggan 57
+26/06/2026,TRX00210,Warung Cabang,Mie Ayam,3,18000,54000,Transfer,Pelanggan 37
+29/05/2026,TRX00211,Warung Pusat,Es Jeruk,2,9000,18000,QRIS,Pelanggan 55
+24/06/2026,TRX00212,Warung Pusat,Bakso Urat,2,25000,50000,Transfer,Pelanggan 26
+20/06/2026,TRX00213,Warung Pusat,Es Teh Jumbo,4,7000,28000,Transfer,Pelanggan 8
+26/06/2026,TRX00214,Warung Pusat,Es Teh Jumbo,2,7000,14000,Cash,Pelanggan 25
+18/05/2026,TRX00215,Warung Cabang,Mie Ayam,3,18000,54000,QRIS,Pelanggan 26
+21/06/2026,TRX00216,Warung Pusat,Pangsit Goreng,3,12000,36000,QRIS,Pelanggan 43
+04/05/2026,TRX00217,Warung Cabang,Es Teh Jumbo,4,7000,28000,QRIS,Pelanggan 22
+16/06/2026,TRX00218,Warung Pusat,Pangsit Goreng,3,12000,36000,QRIS,Pelanggan 23
+13/06/2026,TRX00219,Warung Cabang,Mie Ayam,4,18000,72000,QRIS,Pelanggan 52
+29/06/2026,TRX00220,Warung Cabang,Pangsit Goreng,3,12000,36000,Cash,Pelanggan 30
+14/05/2026,TRX00221,Warung Cabang,Pangsit Goreng,3,12000,36000,Cash,Pelanggan 15
+22/06/2026,TRX00222,Warung Pusat,Pangsit Goreng,3,12000,36000,Cash,Pelanggan 25
+19/05/2026,TRX00223,Warung Pusat,Pangsit Goreng,3,12000,36000,QRIS,Pelanggan 59
+12/05/2026,TRX00224,Warung Cabang,Es Jeruk,3,9000,27000,QRIS,Pelanggan 47
+24/05/2026,TRX00225,Warung Cabang,Mie Ayam,4,18000,72000,QRIS,Pelanggan 53
+13/06/2026,TRX00226,Warung Cabang,Pangsit Goreng,4,12000,48000,QRIS,Pelanggan 5
+25/05/2026,TRX00227,Warung Pusat,Mie Ayam,4,18000,72000,Transfer,Pelanggan 21
+26/05/2026,TRX00228,Warung Pusat,Es Jeruk,1,9000,9000,QRIS,Pelanggan 34
+29/06/2026,TRX00229,Warung Cabang,Pangsit Goreng,1,12000,12000,Cash,Pelanggan 46
+26/06/2026,TRX00230,Warung Pusat,Mie Ayam,1,18000,18000,Cash,Pelanggan 43
+12/06/2026,TRX00231,Warung Cabang,Es Jeruk,4,9000,36000,Cash,Pelanggan 34
+04/05/2026,TRX00232,Warung Cabang,Es Teh Jumbo,2,7000,14000,QRIS,Pelanggan 53
+30/05/2026,TRX00233,Warung Cabang,Es Teh Jumbo,1,7000,7000,Cash,Pelanggan 11
+07/05/2026,TRX00234,Warung Pusat,Mie Ayam,4,18000,72000,Cash,Pelanggan 17
+25/05/2026,TRX00235,Warung Cabang,Bakso Urat,3,25000,75000,Cash,Pelanggan 35
+24/06/2026,TRX00236,Warung Pusat,Pangsit Goreng,4,12000,48000,Cash,Pelanggan 42
+27/05/2026,TRX00237,Warung Cabang,Pangsit Goreng,3,12000,36000,Cash,Pelanggan 3
+20/05/2026,TRX00238,Warung Pusat,Bakso Urat,1,25000,25000,Transfer,Pelanggan 33
+24/05/2026,TRX00239,Warung Cabang,Es Teh Jumbo,4,7000,28000,Cash,Pelanggan 41
+16/06/2026,TRX00240,Warung Cabang,Es Teh Jumbo,2,7000,14000,QRIS,Pelanggan 49
+08/06/2026,TRX00241,Warung Pusat,Es Jeruk,4,9000,36000,Cash,Pelanggan 54
+03/05/2026,TRX00242,Warung Pusat,Es Jeruk,3,9000,27000,Cash,Pelanggan 48
+12/05/2026,TRX00243,Warung Cabang,Pangsit Goreng,3,12000,36000,Transfer,Pelanggan 32
+21/05/2026,TRX00244,Warung Pusat,Pangsit Goreng,4,12000,48000,Cash,Pelanggan 41
+04/05/2026,TRX00245,Warung Pusat,Pangsit Goreng,2,12000,24000,QRIS,Pelanggan 54
+01/05/2026,TRX00246,Warung Cabang,Es Teh Jumbo,1,7000,7000,Cash,Pelanggan 46
+26/05/2026,TRX00247,Warung Cabang,Es Jeruk,4,9000,36000,Transfer,Pelanggan 24
+01/06/2026,TRX00248,Warung Cabang,Mie Ayam,2,18000,36000,QRIS,Pelanggan 56
+17/06/2026,TRX00249,Warung Cabang,Bakso Urat,1,25000,25000,Cash,Pelanggan 17
+16/06/2026,TRX00250,Warung Pusat,Es Jeruk,3,9000,27000,QRIS,Pelanggan 3
+05/06/2026,TRX00251,Warung Cabang,Bakso Urat,2,25000,50000,Transfer,Pelanggan 18
+14/06/2026,TRX00252,Warung Pusat,Mie Ayam,2,18000,36000,Transfer,Pelanggan 43
+19/06/2026,TRX00253,Warung Cabang,Mie Ayam,2,18000,36000,Transfer,Pelanggan 17
+25/06/2026,TRX00254,Warung Cabang,Bakso Urat,4,25000,100000,Transfer,Pelanggan 32
+11/06/2026,TRX00255,Warung Pusat,Bakso Urat,3,25000,75000,Transfer,Pelanggan 52
+19/06/2026,TRX00256,Warung Pusat,Mie Ayam,3,18000,54000,Cash,Pelanggan 1
+04/06/2026,TRX00257,Warung Cabang,Pangsit Goreng,4,12000,48000,Transfer,Pelanggan 14
+14/06/2026,TRX00258,Warung Cabang,Pangsit Goreng,1,12000,12000,Transfer,Pelanggan 39
+07/06/2026,TRX00259,Warung Cabang,Bakso Urat,3,25000,75000,Transfer,Pelanggan 59
+28/05/2026,TRX00260,Warung Cabang,Mie Ayam,2,18000,36000,Cash,Pelanggan 34
+28/05/2026,TRX00261,Warung Cabang,Es Jeruk,4,9000,36000,Transfer,Pelanggan 46
+12/06/2026,TRX00262,Warung Cabang,Es Teh Jumbo,1,7000,7000,QRIS,Pelanggan 23
+19/05/2026,TRX00263,Warung Cabang,Bakso Urat,4,25000,100000,Cash,Pelanggan 59
+29/06/2026,TRX00264,Warung Pusat,Bakso Urat,1,25000,25000,QRIS,Pelanggan 56
+13/05/2026,TRX00265,Warung Cabang,Es Teh Jumbo,2,7000,14000,QRIS,Pelanggan 18
+11/05/2026,TRX00266,Warung Cabang,Es Jeruk,3,9000,27000,Cash,Pelanggan 33
+08/05/2026,TRX00267,Warung Pusat,Pangsit Goreng,4,12000,48000,Cash,Pelanggan 16
+01/05/2026,TRX00268,Warung Pusat,Es Teh Jumbo,2,7000,14000,QRIS,Pelanggan 40
+20/06/2026,TRX00269,Warung Cabang,Bakso Urat,1,25000,25000,QRIS,Pelanggan 2
+30/05/2026,TRX00270,Warung Pusat,Es Teh Jumbo,2,7000,14000,Transfer,Pelanggan 6
+09/06/2026,TRX00271,Warung Cabang,Mie Ayam,1,18000,18000,Transfer,Pelanggan 56
+04/05/2026,TRX00272,Warung Cabang,Bakso Urat,4,25000,100000,Transfer,Pelanggan 34
+07/05/2026,TRX00273,Warung Cabang,Bakso Urat,2,25000,50000,QRIS,Pelanggan 36
+30/05/2026,TRX00274,Warung Pusat,Mie Ayam,3,18000,54000,QRIS,Pelanggan 17
+15/05/2026,TRX00275,Warung Cabang,Mie Ayam,4,18000,72000,Cash,Pelanggan 46
+17/05/2026,TRX00276,Warung Cabang,Es Teh Jumbo,1,7000,7000,Transfer,Pelanggan 6
+20/05/2026,TRX00277,Warung Pusat,Mie Ayam,1,18000,18000,Cash,Pelanggan 19
+09/06/2026,TRX00278,Warung Cabang,Mie Ayam,3,18000,54000,Cash,Pelanggan 20
+14/06/2026,TRX00279,Warung Cabang,Es Jeruk,4,9000,36000,Cash,Pelanggan 8
+27/06/2026,TRX00280,Warung Cabang,Bakso Urat,2,25000,50000,Transfer,Pelanggan 47
+29/05/2026,TRX00281,Warung Cabang,Pangsit Goreng,1,12000,12000,Transfer,Pelanggan 54
+24/06/2026,TRX00282,Warung Pusat,Es Teh Jumbo,1,7000,7000,Cash,Pelanggan 20
+19/05/2026,TRX00283,Warung Pusat,Es Jeruk,3,9000,27000,QRIS,Pelanggan 50
+22/05/2026,TRX00284,Warung Pusat,Bakso Urat,2,25000,50000,Transfer,Pelanggan 51
+12/05/2026,TRX00285,Warung Cabang,Bakso Urat,3,25000,75000,Transfer,Pelanggan 24
+23/06/2026,TRX00286,Warung Cabang,Bakso Urat,2,25000,50000,Cash,Pelanggan 48
+16/06/2026,TRX00287,Warung Pusat,Es Teh Jumbo,2,7000,14000,Cash,Pelanggan 2
+24/05/2026,TRX00288,Warung Pusat,Pangsit Goreng,3,12000,36000,Transfer,Pelanggan 34
+30/05/2026,TRX00289,Warung Cabang,Bakso Urat,1,25000,25000,Transfer,Pelanggan 34
+01/06/2026,TRX00290,Warung Cabang,Pangsit Goreng,3,12000,36000,Transfer,Pelanggan 46
+14/06/2026,TRX00291,Warung Pusat,Es Jeruk,4,9000,36000,Transfer,Pelanggan 57
+06/05/2026,TRX00292,Warung Pusat,Es Teh Jumbo,2,7000,14000,Cash,Pelanggan 43
+16/05/2026,TRX00293,Warung Cabang,Es Teh Jumbo,4,7000,28000,Transfer,Pelanggan 7
+27/05/2026,TRX00294,Warung Cabang,Bakso Urat,3,25000,75000,Cash,Pelanggan 12
+04/05/2026,TRX00295,Warung Pusat,Bakso Urat,1,25000,25000,QRIS,Pelanggan 39
+20/05/2026,TRX00296,Warung Cabang,Es Teh Jumbo,2,7000,14000,Transfer,Pelanggan 4
+26/06/2026,TRX00297,Warung Pusat,Es Jeruk,2,9000,18000,QRIS,Pelanggan 9
+19/05/2026,TRX00298,Warung Cabang,Es Jeruk,1,9000,9000,Cash,Pelanggan 25
+16/06/2026,TRX00299,Warung Cabang,Mie Ayam,2,18000,36000,Transfer,Pelanggan 13
+02/06/2026,TRX00300,Warung Pusat,Mie Ayam,3,18000,54000,Transfer,Pelanggan 15
