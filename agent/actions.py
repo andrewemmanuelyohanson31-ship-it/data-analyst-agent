@@ -25,7 +25,8 @@ class Action:
     summary: Callable[[list], str] = field(default=lambda results: " ".join(r.text for r in results))
 
 
-NEEDED = ("date", "revenue", "quantity", "profit", "product", "category", "city", "department", "salary", "stock")
+NEEDED = ("date", "revenue", "quantity", "profit", "product", "category", "city", "department", "salary", "stock",
+          "supplier")
 
 
 def _columns(df: pd.DataFrame) -> dict:
@@ -64,7 +65,12 @@ def available(df: pd.DataFrame) -> list[Action]:
     if c["date"] and money:
         out.append(Action(f"📈 Monthly {word} chart", [("chart", {"kind": "line", "x": "month", "y": money, "agg": "sum"})],
                           lambda rs: _high_low(rs[0], f"Monthly {money}. ")))
-    if c["product"] and c["quantity"]:
+    purchases = c["supplier"] and not c["revenue"]  # a purchase log: quantities were bought, not sold
+    if c["product"] and c["quantity"] and purchases:
+        out.append(Action("📦 Most bought items", [("group_aggregate", {"by": [c["product"]], "column": c["quantity"],
+                                                                        "agg": "sum"})],
+                          lambda rs: _high_low(rs[0], f"Units bought ({c['quantity']}) per {c['product']}. ")))
+    elif c["product"] and c["quantity"]:
         by_product = {"by": [c["product"]], "column": c["quantity"], "agg": "sum"}
         out.append(Action("🏆 Best sellers", [("group_aggregate", by_product)],
                           lambda rs: _high_low(rs[0], f"Units sold ({c['quantity']}) per {c['product']}. ")))

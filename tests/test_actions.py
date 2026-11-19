@@ -54,3 +54,12 @@ def test_monthly_chart_and_restock():
     chart = run(acts["Monthly revenue chart"], state)
     assert chart.steps[0].result.chart.startswith(b"\x89PNG") and "**2026-05**" in chart.text
     assert "Telur 1kg" in run(acts["Restock list"], state).text
+
+
+def test_purchase_log_gets_bought_not_sold_buttons():
+    from agent.tools import load_file
+
+    path = SAMPLES / "messy" / "pembelian_supplier.csv"
+    names = labels(load_file(path.name, path.read_bytes()))
+    assert "Most bought items" in names
+    assert "Best sellers" not in names and "Slow sellers" not in names  # quantities were bought, not sold
