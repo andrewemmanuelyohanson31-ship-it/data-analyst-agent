@@ -117,7 +117,8 @@ def _for_model(result: ToolResult) -> str:
     if result.table is not None:
         t = result.table
         out += f"\nTable ({len(t)} rows{', first ' + str(MAX_ROWS_TO_MODEL) if len(t) > MAX_ROWS_TO_MODEL else ''}):\n"
-        out += t.head(MAX_ROWS_TO_MODEL).to_csv(index=False)
+        # "|" not ",": in "A,3,30.0" the number check read "3,30.0" as 330 and rejected a correct "30%"
+        out += t.head(MAX_ROWS_TO_MODEL).to_csv(index=False, sep="|", lineterminator="\n")
     return out
 
 

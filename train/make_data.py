@@ -1,6 +1,6 @@
 """Build fine-tuning data: question -> tool call -> tool result -> short answer, in the app's exact chat format.
 
-    python train/make_data.py --n 1500          -> train/data/train.jsonl, train/data/dev.jsonl
+    python train/make_data.py --n 2000          -> train/data/train.jsonl, train/data/dev.jsonl
 
 Every example runs on a freshly generated random table (random column names from agent/column_names.py, English
 or Indonesian questions, sometimes typos), never on the eval datasets, so eval/tasks.json stays a fair test.
@@ -73,8 +73,23 @@ def _name(role: str) -> str:
 
 def make_table():
     """(DataFrame, {role: column}, kind) for one of four kinds of spreadsheet."""
-    kind = R.choice(["sales", "sales", "hr", "people", "yearly"])
+    kind = R.choice(["sales", "sales", "sales", "hr", "people", "yearly", "stock"])
     n = R.randint(150, 900)
+    if kind == "stock":  # one row per product per day: sold that day, stock left at the end of the day
+        roles = {"date": _name("date"), "product": _name("product"), "quantity": _name("quantity"), "stock": _name("stock")}
+        if len(set(roles.values())) < len(roles):
+            return make_table()
+        rows, start = [], pd.Timestamp(f"{R.choice([2024, 2025, 2026])}-{R.randint(1, 9):02d}-01")
+        for p in R.sample(POOL["product"], R.randint(4, 8)):
+            stock, rate = R.randint(40, 400), R.uniform(1, 12)
+            for day in range(R.randint(42, 90)):
+                sold = min(stock, np.random.poisson(rate))
+                stock -= sold
+                if stock < rate * 3 and R.random() < .3:  # sometimes restocked, sometimes left to run low
+                    stock += R.randint(50, 300)
+                rows.append({roles["date"]: (start + pd.Timedelta(days=day)).strftime("%Y-%m-%d"),
+                             roles["product"]: p, roles["quantity"]: sold, roles["stock"]: stock})
+        return pd.DataFrame(rows), roles, kind
     if kind == "yearly":
         years = list(range(R.randint(1990, 2005), R.randint(2018, 2025) + 1))
         roles = {"year": _name("year"), "tickets": _name("tickets"), "box_office": _name("box_office")}
@@ -173,7 +188,8 @@ def one_number(df, roles, kind, idn):
                      [f"What is the {a} {w}{cond}?", f"What's the {a} {w}{cond}?", f"Show me the {a} {w}{cond}."])
     args = {"agg": agg, "column": col, **({"where": where} if where else {})}
 
-    def write(res_text):
+    def write(res):
+        res_text = res.text
         num = res_text.split(": ")[-1].rstrip(".")
         return f"{a.capitalize()} {w}{cond} adalah **{num}**." if idn else f"The {a} {w}{cond} is **{num}**."
     return q, "aggregate", args, getattr(d[col], agg)(), write
@@ -184,7 +200,7 @@ def count_rows(df, roles, kind, idn):
     nn = R.choice({"sales": (["orders", "transactions", "sales"], ["transaksi", "pesanan"]),
                    "hr": (["employees", "people", "staff"], ["karyawan", "pegawai"]),
                    "people": (["people", "customers"], ["orang", "pelanggan"]),
-                   "yearly": (["years"], ["tahun"])}[kind][idn])
+                   "yearly": (["years"], ["tahun"]), "stock": (["rows", "records"], ["baris", "catatan"])}[kind][idn])
     if m and (not g or R.random() < .5):
         mm = R.choice(m)
         col = roles[mm]
@@ -205,7 +221,8 @@ def count_rows(df, roles, kind, idn):
         where = [{"column": roles[gr], "op": "==", "value": v}]
         truth = int((df[roles[gr]] == v).sum())
 
-    def write(res_text):
+    def write(res):
+        res_text = res.text
         num = res_text.split("Count of rows: ")[-1].split(" ")[0]
         return f"Ada **{num}** {nn}." if idn else f"There are **{num}** {nn}."
     return q, "aggregate", {"agg": "count", "where": where}, truth, write
@@ -232,7 +249,8 @@ def best_group(df, roles, kind, idn):
              f"Which {gw} has the {'lowest' if low else 'highest'} average {mw}?")
     s = getattr(df.groupby(gcol)[mcol], agg)()
 
-    def write(res_text):
+    def write(res):
+        res_text = res.text
         name, num = res_text.split("Lowest: " if low else "Highest: ")[-1].split(". ")[0].rstrip(".").rsplit(" = ", 1)
         how = ("total " if agg == "sum" else "rata-rata ") if idn else ("total " if agg == "sum" else "average ")
         return (f"{gw.capitalize()} dengan {how}{mw} {'terendah' if low else 'tertinggi'} adalah **{name}** ({num})." if idn
@@ -242,7 +260,7 @@ def best_group(df, roles, kind, idn):
 
 
 def most_common(df, roles, kind, idn):
-    if not groups_of(roles):
+    if not groups_of(roles) or kind == "stock":  # a stock log has one row per product per day: no favourite
         return None
     gr = R.choice(groups_of(roles))
     col = roles[gr]
@@ -253,13 +271,174 @@ def most_common(df, roles, kind, idn):
                  if idn else [f"What is the most common {gw}?", f"Which {gw} appears most often?"] + ([f"Which {gw} do {who} prefer?"] if chosen else []))
     vc = df[col].value_counts()
 
-    def write(res_text):
+    def write(res):
+        res_text = res.text
         part = res_text.split("most common: ")[-1].split(";")[0]
         return f"{gw.capitalize()} yang paling sering: **{part}**." if idn else f"The most common {gw} is **{part}**."
     return q, "value_counts", {"column": col}, (vc.idxmax(), int(vc.max())), write
 
 
-INTENTS = [one_number, one_number, count_rows, best_group, best_group, most_common]
+MONTHS = (["January", "February", "March", "April", "May", "June", "July", "August", "September", "October",
+           "November", "December"],
+          ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober",
+           "November", "Desember"])
+
+
+def _sales_measure(roles):
+    m = [r for r in ("revenue", "quantity", "profit") if r in roles]
+    return R.choice(m) if m and "date" in roles else None
+
+
+def best_month(df, roles, kind, idn):
+    mm = _sales_measure(roles)
+    if mm is None:
+        return None
+    dcol, mcol, low = roles["date"], roles[mm], R.random() < .3
+    years = sorted(df[dcol].str[:4].unique())
+    where, cond, d = [], "", df
+    if len(years) > 1 and R.random() < .5:
+        y = R.choice(years)
+        where, d = [{"column": dcol, "op": "==", "value": y}], df[df[dcol].str[:4] == y]
+        cond = f" di tahun {y}" if idn else f" in {y}"
+    mw = say(mm, mcol, idn)
+    q = R.choice([f"Bulan apa dengan {mw} {'terendah' if low else 'tertinggi'}{cond}?",
+                  f"Bulan mana yang {mw}-nya paling {'kecil' if low else 'besar'}{cond}?"] if idn else
+                 [f"Which month had the {'lowest' if low else 'highest'} {mw}{cond}?",
+                  f"Which month brought in the {'least' if low else 'most'} {mw}{cond}?"])
+    s = d.groupby(d[dcol].str[:7])[mcol].sum()
+
+    def write(res):
+        name, num = res.text.split("Lowest: " if low else "Highest: ")[-1].split(". ")[0].rstrip(".").rsplit(" = ", 1)
+        return (f"Bulan dengan {mw} {'terendah' if low else 'tertinggi'}{cond} adalah **{name}** ({num})." if idn else
+                f"The month with the {'lowest' if low else 'highest'} {mw}{cond} is **{name}** ({num}).")
+    args = {"by": ["month"], "column": mcol, "agg": "sum", **({"where": where} if where else {})}
+    return q, "group_aggregate", args, ((s.idxmin(), s.min()) if low else (s.idxmax(), s.max())), write
+
+
+def month_total(df, roles, kind, idn):
+    mm = _sales_measure(roles)
+    if mm is None:
+        return None
+    dcol, mcol = roles["date"], roles[mm]
+    ym = R.choice(sorted(df[dcol].str[:7].unique()))
+    name = f"{MONTHS[idn][int(ym[5:]) - 1]} {ym[:4]}"
+    mw = say(mm, mcol, idn)
+    q = R.choice([f"Berapa total {mw} bulan {name}?", f"Total {mw} di bulan {name} berapa?"] if idn else
+                 [f"What was the total {mw} in {name}?", f"How much {mw} did we make in {name}?"])
+
+    def write(res):
+        num = res.text.split(": ")[-1].rstrip(".")
+        return f"Total {mw} bulan {name} adalah **{num}**." if idn else f"The total {mw} in {name} was **{num}**."
+    args = {"agg": "sum", "column": mcol, "where": [{"column": dcol, "op": "==", "value": ym}]}
+    return q, "aggregate", args, df[df[dcol].str[:7] == ym][mcol].sum(), write
+
+
+def share(df, roles, kind, idn):
+    g = groups_of(roles)
+    if not g:
+        return None
+    gr = R.choice(g)
+    gcol = roles[gr]
+    v = R.choice(sorted(df[gcol].unique()))
+    mm = _sales_measure(roles) if R.random() < .5 else None
+    if mm:
+        mw = say(mm, roles[mm], idn)
+        q = R.choice([f"Berapa persen {mw} yang berasal dari {v}?", f"Berapa persen {mw} dari {v}?"] if idn else
+                     [f"What percentage of {mw} comes from {v}?", f"What share of total {mw} is from {v}?"])
+        part, whole = df.loc[df[gcol] == v, roles[mm]].sum(), df[roles[mm]].sum()
+        args = {"by": [gcol], "column": roles[mm], "agg": "sum"}
+    else:
+        nn = R.choice({"sales": (["orders", "transactions"], ["transaksi", "pesanan"]),
+                       "hr": (["employees"], ["karyawan"]), "people": (["people"], ["orang"]),
+                       "stock": (["rows"], ["baris"])}[kind][idn])
+        q = R.choice([f"Berapa persen {nn} yang {v}?", f"Persentase {nn} dengan {v} berapa?"] if idn else
+                     [f"What percentage of {nn} are {v}?"] + ([] if gr in ("gender", "size") else [f"What percent of {nn} have {v}?"]))
+        part, whole = int((df[gcol] == v).sum()), len(df)
+        args = {"by": [gcol], "agg": "count"}
+
+    def write(res):
+        t = res.table
+        row = t[t[gcol].astype(str) == str(v)].iloc[0]
+        return (f"**{v}** menyumbang **{row['share_pct']}%** dari total." if idn else
+                f"**{v}** accounts for **{row['share_pct']}%** of the total.")
+    return q, "group_aggregate", args, round(100 * part / whole, 2), write
+
+
+def busiest_day(df, roles, kind, idn):
+    mm = _sales_measure(roles)
+    if mm is None:
+        return None
+    dcol, mcol, low = roles["date"], roles[mm], R.random() < .35
+    mw = say(mm, mcol, idn)
+    q = R.choice([f"Hari apa yang paling {'sepi' if low else 'ramai'}?", f"Hari apa dengan {mw} paling {'rendah' if low else 'tinggi'}?"]
+                 if idn else [f"Which day of the week is the {'quietest' if low else 'busiest'}?",
+                              f"Which weekday has the {'lowest' if low else 'highest'} {mw}?"])
+    daily = df.groupby(dcol)[mcol].sum()
+    by_day = daily.groupby(pd.to_datetime(daily.index).day_name()).mean()
+
+    def write(res):
+        name, num = res.text.split("Lowest: " if low else "Highest: ")[-1].split(". ")[0].rstrip(".").rsplit(" = ", 1)
+        num = num.split(" (")[0]  # "765,698.77 (+39.1% vs average)" -> the number
+        return (f"Hari paling {'sepi' if low else 'ramai'} adalah **{name}**, rata-rata {num} per hari." if idn else
+                f"The {'quietest' if low else 'busiest'} day is **{name}**, averaging {num} per day.")
+    truth = by_day.idxmin() if low else by_day.idxmax()
+    return q, "weekday_pattern", {"date_column": dcol, "value_column": mcol}, truth, write
+
+
+def _days_left(df, roles):
+    """Independent of the restock tool: stock on the last day / average sold per day over the last 28 days."""
+    d = df.assign(_d=pd.to_datetime(df[roles["date"]])).sort_values("_d", kind="stable")
+    now = d.groupby(roles["product"])[roles["stock"]].last()
+    recent = d[d["_d"] > d["_d"].max() - pd.Timedelta(days=28)]
+    rate = recent.groupby(roles["product"])[roles["quantity"]].sum().reindex(now.index, fill_value=0) / 28
+    left = (now / rate.replace(0, np.nan)).fillna(np.inf)
+    left[now <= 0] = 0
+    return now, left
+
+
+def stock_question(df, roles, kind, idn):
+    if kind != "stock":
+        return None
+    now, left = _days_left(df, roles)
+    args = {"date_column": roles["date"], "product_column": roles["product"], "quantity_column": roles["quantity"],
+            "stock_column": roles["stock"]}
+    ask = R.choice(["left", "first", "list"])
+    if ask == "left":
+        p = R.choice(sorted(now.index))
+        q = R.choice([f"Berapa sisa stok {p} sekarang?", f"Stok {p} tinggal berapa?"] if idn else
+                     [f"How much {p} is left in stock?", f"What's the current stock of {p}?"])
+
+        def write(res):
+            r = res.table.set_index("product").loc[p]
+            return (f"Sisa stok **{p}**: **{r.stock_now:g}** (terjual sekitar {r.avg_sold_per_day:g} per hari)." if idn else
+                    f"**{p}** has **{r.stock_now:g}** left in stock (about {r.avg_sold_per_day:g} sold per day).")
+        return q, "restock", args, float(now[p]), write
+    if ask == "first":
+        q = R.choice(["Produk apa yang paling cepat habis?", "Barang mana yang stoknya habis duluan?"] if idn else
+                      ["Which product will run out first?", "What will sell out first?"])
+
+        def write(res):
+            r = res.table.iloc[0]
+            return (f"Yang paling cepat habis: **{r['product']}** (stok {r.stock_now:g}, {r.days_left:g} hari lagi)." if idn
+                    else f"**{r['product']}** runs out first (stock {r.stock_now:g}, {r.days_left:g} days left).")
+        return q, "restock", args, left.sort_index().idxmin(), write
+    soon = sorted(left[left <= 7].index)
+    if not soon:
+        return None
+    q = R.choice(["Barang apa yang perlu segera di-restock?", "Produk mana yang harus dipesan lagi minggu ini?"] if idn else
+                  ["What do I need to restock soon?", "Which products need restocking this week?"])
+
+    def write(res):
+        t = res.table[res.table.status != "ok"]
+        listing = ", ".join(f"{p} ({d:g} {'hari' if idn else 'days'})" for p, d in zip(t["product"], t.days_left))
+        return f"Perlu segera di-restock: {listing}." if idn else f"Restock soon: {listing}."
+    return q, "restock", args, tuple(soon), write
+
+
+INTENTS = [one_number, one_number, count_rows, best_group, best_group, most_common,
+           best_month, month_total, share, busiest_day, stock_question, stock_question]
+EVAL_QUESTIONS = {" ".join(t["question"].lower().strip("?. ").split())
+                  for t in json.loads((ROOT / "eval" / "tasks.json").read_text(encoding="utf-8"))}
 
 
 def example(seed: int):
@@ -267,15 +446,18 @@ def example(seed: int):
     np.random.seed(seed)
     df, roles, kind = make_table()
     idn = R.random() < .45
-    made = R.choice(INTENTS)(df, roles, kind, idn)
+    intent = stock_question if kind == "stock" and R.random() < .6 else R.choice(INTENTS)
+    made = intent(df, roles, kind, idn)
     if made is None:
         return None
     q, tool, args, truth, write = made
     args = json.loads(json.dumps(args, default=lambda o: o.item() if hasattr(o, "item") else str(o)))  # plain JSON
     q = casual(typo(q))
+    if " ".join(q.lower().strip("?. ").split()) in EVAL_QUESTIONS:
+        return None  # word for word an eval question: keep the test fair
     try:
         res = run_tool(tool, df, args)
-        content, final = _for_model(res), write(res.text)
+        content, final = _for_model(res), write(res)
     except Exception:  # noqa: BLE001 - a bad generated case is simply dropped
         return None
     if not all(is_correct(final, t) for t in (truth if isinstance(truth, tuple) else (truth,))) \
@@ -318,7 +500,7 @@ def render(messages, tools) -> str:
 
 def main():
     p = argparse.ArgumentParser()
-    p.add_argument("--n", type=int, default=1500)
+    p.add_argument("--n", type=int, default=2000)
     p.add_argument("--dev", type=float, default=0.05)
     a = p.parse_args()
     out = ROOT / "train" / "data"

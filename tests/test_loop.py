@@ -140,3 +140,14 @@ def test_model_timeout_gives_an_answer_not_a_hang():
 
     ans = run_agent("What is the median revenue?", state(), SlowModel())
     assert "took longer" in ans.text
+
+
+def test_table_numbers_given_to_the_model_are_readable():
+    import pandas as pd
+
+    from agent.loop import _for_model
+    from agent.numbers import ungrounded_numbers
+    from agent.tools import run_tool
+    df = pd.DataFrame({"city": ["A"] * 3 + ["B"] * 7})
+    content = _for_model(run_tool("group_aggregate", df, {"by": ["city"], "agg": "count"}))
+    assert ungrounded_numbers("A is 30.0% of orders", content) == []  # was read as 330 from "A,3,30.0"
