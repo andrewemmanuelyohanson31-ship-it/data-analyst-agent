@@ -195,3 +195,24 @@ def test_restock_handles_unsorted_rows_and_bad_column(shop):
     with pytest.raises(ToolError, match="not numeric"):
         run_tool("restock", shop, {"date_column": "tanggal", "product_column": "produk",
                                    "quantity_column": "produk", "stock_column": "stok"})
+
+
+def test_filter_matching_nothing_explains_instead_of_nan():
+    d = pd.DataFrame({"YEAR": [2019, 2020, 2021], "BOX": [11.0, 2.0, 3.9], "city": ["A", "B", "C"]})
+    contradiction = [{"column": "YEAR", "op": "==", "value": "2021"}, {"column": "YEAR", "op": "==", "value": "2020"}]
+    with pytest.raises(ToolError, match="contradict.*YEAR"):
+        run_tool("aggregate", d, {"agg": "mean", "column": "BOX", "where": contradiction})
+    with pytest.raises(ToolError, match="has no value 'Z'.*A, B, C"):
+        run_tool("group_aggregate", d, {"by": ["YEAR"], "column": "BOX", "agg": "sum",
+                                        "where": [{"column": "city", "op": "==", "value": "Z"}]})
+    with pytest.raises(ToolError, match="ranges from 2019 to 2021"):
+        run_tool("describe", d, {"where": [{"column": "YEAR", "op": ">", "value": "2030"}]})
+    # still answers: a count of zero, and listing rows
+    assert "Count of rows: 0" in run_tool("aggregate", d, {"agg": "count", "where": contradiction}).text
+    assert run_tool("filter_rows", d, {"where": contradiction}).text.startswith("0 of 3 rows")
+
+
+def test_all_empty_column_is_explained():
+    d = pd.DataFrame({"x": [np.nan, np.nan], "y": [1, 2]})
+    with pytest.raises(ToolError, match="no values"):
+        run_tool("aggregate", d, {"agg": "mean", "column": "x"})

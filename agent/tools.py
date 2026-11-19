@@ -127,6 +127,40 @@ def apply_where(df: pd.DataFrame, where) -> pd.DataFrame:
     return df[mask]
 
 
+def _no_rows_hint(df: pd.DataFrame, where) -> str:
+    """Why a filter matched nothing, in words the model can act on."""
+    conds = [where] if isinstance(where, dict) else list(where or [])
+    hints, eq = [], {}
+    for cond in conds:
+        try:
+            c = col(df, cond["column"])
+        except (ToolError, KeyError, TypeError):
+            continue
+        op, v = cond.get("op", "=="), cond.get("value")
+        if op in ("==", "="):
+            eq.setdefault(c, set()).add(str(v).lower())
+        s = df[c]
+        if pd.api.types.is_numeric_dtype(s):
+            hints.append(f"'{c}' ranges from {_num(s.min()):g} to {_num(s.max()):g}")
+        elif op in ("==", "=") and not s.astype(str).str.lower().str.startswith(str(v).lower()).any():
+            sample = ", ".join(map(str, s.dropna().astype(str).unique()[:8]))
+            hints.append(f"'{c}' has no value {v!r} (it has: {sample}{', …' if s.nunique() > 8 else ''})")
+    for c, vals in eq.items():
+        if len(vals) > 1:  # YEAR == 2021 and YEAR == 2020: no row is both
+            hints.insert(0, f"the conditions contradict: '{c}' can't equal {' and '.join(sorted(vals))} at the "
+                            f"same time (use op 'in' for any of them)")
+    return ("No rows match the filter, so there is nothing to calculate. " + "; ".join(dict.fromkeys(hints))
+            + ". Fix the filter, or call the tool without `where` to use every row.")
+
+
+def _filtered(df: pd.DataFrame, where) -> pd.DataFrame:
+    """apply_where for tools that calculate: an empty result is an error, never an answer of nan."""
+    d = apply_where(df, where)
+    if where and d.empty:
+        raise ToolError(_no_rows_hint(df, where))
+    return d
+
+
 def _png(fig) -> bytes:
     buf = io.BytesIO()
     fig.tight_layout()
@@ -214,7 +248,7 @@ def filter_rows(df, where):
 
 
 def sort_top_n(df, column, n=10, ascending=False, where=None):
-    d = apply_where(df, where)
+    d = _filtered(df, where)
     c = col(d, column)
     out = d.sort_values(c, ascending=str(ascending).lower() == "true").head(int(n))
     return ToolResult(f"{'Bottom' if str(ascending).lower() == 'true' else 'Top'} {len(out)} rows by '{c}'.", table=out)
@@ -248,7 +282,7 @@ def group_aggregate(df, by=None, column=None, agg="sum", where=None):
         return aggregate(df, agg, column, where)
     if agg not in AGGS:
         raise ToolError(f"agg must be one of {', '.join(AGGS)}.")
-    d = _with_virtual(apply_where(df, where), by)
+    d = _with_virtual(_filtered(df, where), by)
     keys = _cols(d, by)
     if agg == "count" and column is None:
         out = d.groupby(keys).size().rename("count")
@@ -281,6 +315,10 @@ def aggregate(df, agg="count", column=None, where=None):
     c = _numeric(d, column) if column else None
     if c is None:
         raise ToolError(f"agg '{agg}' needs a column.")
+    if where and d.empty:  # a count of 0 is an answer; the mean of no rows is not ("nan")
+        raise ToolError(_no_rows_hint(df, where))
+    if d[c].notna().sum() == 0:
+        raise ToolError(f"'{c}' has no values in these {len(d):,} rows (all empty), so its {agg} can't be calculated.")
     value = d[c].agg(agg)
     return ToolResult(f"{agg} of '{c}' over {len(d):,} rows: {value:,.2f}.")
 
@@ -288,21 +326,21 @@ def aggregate(df, agg="count", column=None, where=None):
 def pivot(df, index, columns, values, agg="sum", where=None):
     if agg not in AGGS:
         raise ToolError(f"agg must be one of {', '.join(AGGS)}.")
-    d = apply_where(df, where)
+    d = _filtered(df, where)
     out = pd.pivot_table(d, index=col(d, index), columns=col(d, columns), values=_numeric(d, values), aggfunc=agg)
     return ToolResult(f"Pivot of {agg} of '{col(d, values)}' by '{col(d, index)}' x '{col(d, columns)}'.",
                       table=out.round(2).reset_index())
 
 
 def describe(df, columns=None, where=None):
-    d = apply_where(df, where)
+    d = _filtered(df, where)
     cols = _cols(d, columns)
     out = (d[cols] if cols else d).describe(include="all").T
     return ToolResult(f"Summary statistics for {len(out)} columns over {len(d)} rows.", table=out.reset_index(names="column"))
 
 
 def value_counts(df, column, n=10, where=None):
-    d = apply_where(df, where)
+    d = _filtered(df, where)
     c = col(d, column)
     counts = d[c].value_counts()
     if counts.empty:
@@ -315,7 +353,7 @@ def value_counts(df, column, n=10, where=None):
 
 
 def correlation(df, columns=None, where=None):
-    d = apply_where(df, where)
+    d = _filtered(df, where)
     cols = [_numeric(d, c) for c in _cols(d, columns)] or list(d.select_dtypes("number").columns)
     if len(cols) < 2:
         raise ToolError("Need at least two numeric columns for correlation.")
@@ -326,7 +364,7 @@ def correlation(df, columns=None, where=None):
 
 
 def outliers(df, column, method="iqr", where=None):
-    d = apply_where(df, where)
+    d = _filtered(df, where)
     c = _numeric(d, column)
     s = d[c]
     if method == "iqr":
@@ -356,7 +394,7 @@ def _series(df, date_column, value_column, freq, agg):
 
 
 def time_trend(df, date_column, value_column, freq="M", agg="sum", where=None):
-    s, dc, vc = _series(apply_where(df, where), date_column, value_column, freq, agg)
+    s, dc, vc = _series(_filtered(df, where), date_column, value_column, freq, agg)
     if s.empty:
         return ToolResult("No rows match.")
     out = s.rename(f"{agg}_{vc}").reset_index()
@@ -397,7 +435,7 @@ def _dates(df, date_column):
 
 
 def weekday_pattern(df, date_column, value_column, where=None):
-    d = apply_where(df, where)
+    d = _filtered(df, where)
     vc = _numeric(d, value_column)
     agg = "sum"  # not a parameter: the small model picked "min" here, which answers nothing useful
     dc, dates = _dates(d, date_column)
@@ -442,7 +480,7 @@ def restock(df, date_column, product_column, quantity_column, stock_column, days
 def chart(df, kind, x=None, y=None, agg="sum", where=None):
     if agg not in AGGS:
         raise ToolError(f"agg must be one of {', '.join(AGGS)}.")
-    d = apply_where(df, where)
+    d = _filtered(df, where)
     if x and kind in ("bar", "line"):
         d = _with_virtual(d, [x])  # x='month' / 'bulan' / 'week' / 'year' from the date column
     fig, ax = plt.subplots(figsize=(7, 4))
