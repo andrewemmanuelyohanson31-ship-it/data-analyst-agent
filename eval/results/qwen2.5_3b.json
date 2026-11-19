@@ -1,0 +1,854 @@
+{
+  "summary": {
+    "model": "qwen2.5:3b",
+    "tasks": 84,
+    "success_pct": 98.8,
+    "core": "66/66",
+    "core_heldout": "17/17",
+    "other": "17/18",
+    "avg_steps": 0.99,
+    "avg_seconds": 0.7
+  },
+  "rows": [
+    {
+      "question": "Which city has the highest total revenue?",
+      "expected": "Jakarta",
+      "answer": "The city with the highest revenue is **Jakarta**: 1,161,529,050 (33.43%). Lowest: Denpasar = 202,427,475.",
+      "ok": true,
+      "steps": 1,
+      "seconds": 0.0,
+      "core": true,
+      "heldout": false
+    },
+    {
+      "question": "What is the total revenue?",
+      "expected": "3474602910.0",
+      "answer": "Total revenue: **3,474,602,910.00** (3,025 rows).",
+      "ok": true,
+      "steps": 1,
+      "seconds": 0.0,
+      "core": true,
+      "heldout": false
+    },
+    {
+      "question": "How many orders are in the dataset?",
+      "expected": "3025",
+      "answer": "There are **3,025** orders.",
+      "ok": true,
+      "steps": 1,
+      "seconds": 0.0,
+      "core": true,
+      "heldout": false
+    },
+    {
+      "question": "Which product category sold the most units?",
+      "expected": "Fashion",
+      "answer": "The category with the highest quantity is **Fashion**: 3,232 (30.36%). Lowest: Home = 1,779.",
+      "ok": true,
+      "steps": 1,
+      "seconds": 0.0,
+      "core": true,
+      "heldout": false
+    },
+    {
+      "question": "What is the average revenue per order?",
+      "expected": "1148629.0611570247",
+      "answer": "Average revenue: **1,148,629.06** (3,025 rows).",
+      "ok": true,
+      "steps": 1,
+      "seconds": 0.0,
+      "core": true,
+      "heldout": false
+    },
+    {
+      "question": "Which payment method is used most often?",
+      "expected": "QRIS",
+      "answer": "The payment with the highest count is **QRIS**: 614 (20.3%). Lowest: Bank Transfer = 597.",
+      "ok": true,
+      "steps": 1,
+      "seconds": 0.0,
+      "core": true,
+      "heldout": false
+    },
+    {
+      "question": "How many missing values are in unit_price?",
+      "expected": "46",
+      "answer": "There are 46 missing values in the unit_price column.",
+      "ok": true,
+      "steps": 1,
+      "seconds": 1.5,
+      "core": false,
+      "heldout": false
+    },
+    {
+      "question": "How many duplicate rows are there?",
+      "expected": "25",
+      "answer": "There are 25 duplicate rows in the dataset. After removing them, the dataset now has 3000 rows.",
+      "ok": true,
+      "steps": 1,
+      "seconds": 1.5,
+      "core": false,
+      "heldout": false
+    },
+    {
+      "question": "Which product generated the most revenue in Jakarta?",
+      "expected": "Smartwatch",
+      "answer": "The product with the highest revenue for Jakarta is **Smartwatch**: 349,735,435 (30.11%). Lowest: Cooking Oil 2L = 8,730,055.",
+      "ok": true,
+      "steps": 1,
+      "seconds": 0.0,
+      "core": true,
+      "heldout": false
+    },
+    {
+      "question": "What is the total revenue from Online orders?",
+      "expected": "2024708175.0",
+      "answer": "Total revenue for Online: **2,024,708,175.00** (1,812 rows).",
+      "ok": true,
+      "steps": 1,
+      "seconds": 0.0,
+      "core": true,
+      "heldout": false
+    },
+    {
+      "question": "Which month had the highest total revenue?",
+      "expected": "['2026-01', 'January 2026', 'Jan 2026']",
+      "answer": "The month with the highest revenue is **2026-01**: 337,145,870 (9.7%). Lowest: 2025-02 = 130,212,375.",
+      "ok": true,
+      "steps": 1,
+      "seconds": 0.0,
+      "core": true,
+      "heldout": false
+    },
+    {
+      "question": "What was the total revenue in 2025?",
+      "expected": "2123270055.0",
+      "answer": "Total revenue for 2025: **2,123,270,055.00** (1,845 rows).",
+      "ok": true,
+      "steps": 1,
+      "seconds": 0.0,
+      "core": true,
+      "heldout": false
+    },
+    {
+      "question": "How many outliers are in quantity using the IQR method?",
+      "expected": "6",
+      "answer": "There are 6 outliers in the 'quantity' column using the IQR method. The normal range for quantity is -1.00 to 7.00.",
+      "ok": true,
+      "steps": 1,
+      "seconds": 4.8,
+      "core": false,
+      "heldout": false
+    },
+    {
+      "question": "What is the correlation between quantity and revenue?",
+      "expected": "0.73",
+      "answer": "The strongest correlation is between 'quantity' and 'revenue', with a correlation coefficient of 0.728.",
+      "ok": true,
+      "steps": 1,
+      "seconds": 1.9,
+      "core": false,
+      "heldout": false
+    },
+    {
+      "question": "What is the average customer age?",
+      "expected": "30.83873121869783",
+      "answer": "Average customer age: **30.84** (3,025 rows).",
+      "ok": true,
+      "steps": 1,
+      "seconds": 0.0,
+      "core": true,
+      "heldout": false
+    },
+    {
+      "question": "Which city has the fewest orders?",
+      "expected": "Denpasar",
+      "answer": "The city with the lowest count is **Denpasar**: 177 (5.85%). Highest: Jakarta = 945.",
+      "ok": true,
+      "steps": 1,
+      "seconds": 0.0,
+      "core": true,
+      "heldout": false
+    },
+    {
+      "question": "What percentage of orders were paid with QRIS?",
+      "expected": "20.297520661157026",
+      "answer": "20.3% of the orders were paid with QRIS.",
+      "ok": true,
+      "steps": 1,
+      "seconds": 2.1,
+      "core": false,
+      "heldout": false
+    },
+    {
+      "question": "What is the median unit price of Electronics products?",
+      "expected": "353700.0",
+      "answer": "The median unit price for Electronics products is 353,700.00.",
+      "ok": true,
+      "steps": 1,
+      "seconds": 2.9,
+      "core": false,
+      "heldout": false
+    },
+    {
+      "question": "Which product sold the most units in Surabaya?",
+      "expected": "Power Bank",
+      "answer": "The product with the highest quantity for Surabaya is **Power Bank**: 194 (11.99%). Lowest: Bedsheet Set = 56.",
+      "ok": true,
+      "steps": 1,
+      "seconds": 0.0,
+      "core": true,
+      "heldout": false
+    },
+    {
+      "question": "How many orders had a discount?",
+      "expected": "1484",
+      "answer": "There were 1,484 orders with a discount applied.",
+      "ok": true,
+      "steps": 1,
+      "seconds": 10.6,
+      "core": false,
+      "heldout": false
+    },
+    {
+      "question": "Kota mana dengan total pendapatan (revenue) tertinggi?",
+      "expected": "Jakarta",
+      "answer": "Kota dengan revenue tertinggi: **Jakarta** = 1,161,529,050 (33.43%). Terendah: Denpasar = 202,427,475.",
+      "ok": true,
+      "steps": 1,
+      "seconds": 0.0,
+      "core": true,
+      "heldout": false
+    },
+    {
+      "question": "Berapa jumlah pesanan di Bandung?",
+      "expected": "453",
+      "answer": "Jumlah pesanan untuk Bandung: **453**.",
+      "ok": true,
+      "steps": 1,
+      "seconds": 0.0,
+      "core": true,
+      "heldout": false
+    },
+    {
+      "question": "Which channel has the higher average revenue per order, Online or Store?",
+      "expected": "Store",
+      "answer": "The Store channel has a higher average revenue per order with an average of approximately 1,195,296.57 compared to the Online channel's average of approximately 1,117,388.62.",
+      "ok": true,
+      "steps": 1,
+      "seconds": 3.0,
+      "core": false,
+      "heldout": false
+    },
+    {
+      "question": "What is the largest quantity in a single order?",
+      "expected": "250",
+      "answer": "The largest quantity in a single order is 250.00.",
+      "ok": true,
+      "steps": 1,
+      "seconds": 1.5,
+      "core": false,
+      "heldout": false
+    },
+    {
+      "question": "What is the total revenue of the Groceries category?",
+      "expected": "230186640.0",
+      "answer": "Total revenue for Groceries: **230,186,640.00** (747 rows).",
+      "ok": true,
+      "steps": 1,
+      "seconds": 0.0,
+      "core": true,
+      "heldout": false
+    },
+    {
+      "question": "Which department has the highest average monthly salary?",
+      "expected": "Engineering",
+      "answer": "The department with the highest average monthly salary idr is **Engineering**: 16,419,811.32. Lowest: Sales = 10,118,644.07.",
+      "ok": true,
+      "steps": 1,
+      "seconds": 0.0,
+      "core": true,
+      "heldout": false
+    },
+    {
+      "question": "How many employees left the company?",
+      "expected": "57",
+      "answer": "57 employees left the company.",
+      "ok": true,
+      "steps": 1,
+      "seconds": 1.8,
+      "core": true,
+      "heldout": false
+    },
+    {
+      "question": "What is the average performance score?",
+      "expected": "3.3827225130890053",
+      "answer": "Average performance score: **3.38** (400 rows).",
+      "ok": true,
+      "steps": 1,
+      "seconds": 0.0,
+      "core": true,
+      "heldout": false
+    },
+    {
+      "question": "Which department has the most employees?",
+      "expected": "['Product', 'Marketing']",
+      "answer": "The department with the highest count is **Marketing**: 65 (16.25%). Lowest: Finance = 46.",
+      "ok": true,
+      "steps": 1,
+      "seconds": 0.0,
+      "core": true,
+      "heldout": false
+    },
+    {
+      "question": "What is the correlation between years of experience and monthly salary?",
+      "expected": "0.87",
+      "answer": "The strongest correlation is between years of experience and monthly salary, with a correlation coefficient of 0.874.",
+      "ok": true,
+      "steps": 1,
+      "seconds": 2.1,
+      "core": false,
+      "heldout": false
+    },
+    {
+      "question": "What is the average monthly salary of employees in Jakarta?",
+      "expected": "13337309.64467005",
+      "answer": "Average monthly salary idr for Jakarta: **13,337,309.64** (197 rows).",
+      "ok": true,
+      "steps": 1,
+      "seconds": 0.0,
+      "core": true,
+      "heldout": false
+    },
+    {
+      "question": "How many employees work remotely (city is Remote)?",
+      "expected": "71",
+      "answer": "There are 71 employees working remotely.",
+      "ok": true,
+      "steps": 1,
+      "seconds": 7.7,
+      "core": false,
+      "heldout": false
+    },
+    {
+      "question": "Which department has the most employees who left the company?",
+      "expected": "['Product']",
+      "answer": "I couldn't get a verified answer. Try rephrasing the question or naming the column.",
+      "ok": false,
+      "steps": 0,
+      "seconds": 2.7,
+      "core": false,
+      "heldout": false
+    },
+    {
+      "question": "What is the median years of experience in Engineering?",
+      "expected": "4.2",
+      "answer": "The median years of experience for employees in the Engineering department is 4.2 years.",
+      "ok": true,
+      "steps": 1,
+      "seconds": 2.2,
+      "core": false,
+      "heldout": false
+    },
+    {
+      "question": "How many employees have a missing performance score?",
+      "expected": "18",
+      "answer": "There are 18 employees with a missing performance score.",
+      "ok": true,
+      "steps": 1,
+      "seconds": 1.4,
+      "core": false,
+      "heldout": false
+    },
+    {
+      "question": "Departemen mana yang rata-rata gajinya paling rendah?",
+      "expected": "Sales",
+      "answer": "Departemen dengan rata-rata monthly salary idr terendah: **Sales** = 10,118,644.07. Tertinggi: Engineering = 16,419,811.32.",
+      "ok": true,
+      "steps": 1,
+      "seconds": 0.0,
+      "core": true,
+      "heldout": false
+    },
+    {
+      "question": "What is the highest monthly salary?",
+      "expected": "37200000.0",
+      "answer": "Highest monthly salary idr: **37,200,000.00** (400 rows).",
+      "ok": true,
+      "steps": 1,
+      "seconds": 0.0,
+      "core": false,
+      "heldout": false
+    },
+    {
+      "question": "What is the average training hours of employees who left the company?",
+      "expected": "37.63157894736842",
+      "answer": "The average training hours for employees who left the company is 40.50, and for those who stayed it is 37.63.",
+      "ok": true,
+      "steps": 1,
+      "seconds": 2.5,
+      "core": false,
+      "heldout": false
+    },
+    {
+      "question": "How many employees have more than 10 years of experience?",
+      "expected": "24",
+      "answer": "There are 24 employees with more than 10 years of experience.",
+      "ok": true,
+      "steps": 1,
+      "seconds": 8.1,
+      "core": false,
+      "heldout": false
+    },
+    {
+      "question": "Which city has the highest average performance score?",
+      "expected": "Jakarta",
+      "answer": "The city with the highest average performance score is **Jakarta**: 3.42. Lowest: Bandung = 3.27.",
+      "ok": true,
+      "steps": 1,
+      "seconds": 0.0,
+      "core": false,
+      "heldout": false
+    },
+    {
+      "question": "Produk apa yang paling laris?",
+      "expected": "Mie Instan Goreng",
+      "answer": "Produk dengan terjual tertinggi: **Mie Instan Goreng** = 8,692 (21.86%). Terendah: Sarden Kaleng = 74.",
+      "ok": true,
+      "steps": 1,
+      "seconds": 0.0,
+      "core": true,
+      "heldout": false
+    },
+    {
+      "question": "Which product sells the fewest units?",
+      "expected": "Sarden Kaleng",
+      "answer": "The product with the lowest terjual is **Sarden Kaleng**: 74 (0.19%). Highest: Mie Instan Goreng = 8,692.",
+      "ok": true,
+      "steps": 1,
+      "seconds": 0.0,
+      "core": true,
+      "heldout": false
+    },
+    {
+      "question": "Berapa total laba bulan Maret 2026?",
+      "expected": "9797000",
+      "answer": "Total laba untuk 2026-03: **9,797,000.00** (465 baris).",
+      "ok": true,
+      "steps": 1,
+      "seconds": 0.0,
+      "core": true,
+      "heldout": false
+    },
+    {
+      "question": "Which category makes the most profit?",
+      "expected": "Sembako",
+      "answer": "The category with the highest laba is **Sembako**: 24,725,500 (44.38%). Lowest: Bumbu = 1,622,000.",
+      "ok": true,
+      "steps": 1,
+      "seconds": 0.0,
+      "core": true,
+      "heldout": false
+    },
+    {
+      "question": "What is the total revenue?",
+      "expected": "390099500",
+      "answer": "Total pendapatan: **390,099,500.00** (2,715 rows).",
+      "ok": true,
+      "steps": 1,
+      "seconds": 0.0,
+      "core": true,
+      "heldout": false
+    },
+    {
+      "question": "Which day of the week has the highest average daily revenue?",
+      "expected": "Saturday",
+      "answer": "The busiest day is **Saturday (Sabtu)**, averaging 2,695,461.54 per day (+25.2% vs average).",
+      "ok": true,
+      "steps": 1,
+      "seconds": 0.0,
+      "core": true,
+      "heldout": false
+    },
+    {
+      "question": "Hari apa penjualan paling sepi?",
+      "expected": "['Tuesday', 'Selasa']",
+      "answer": "Hari paling sepi: **Tuesday (Selasa)**, rata-rata 1,768,730.77 per hari (-17.9% dari rata-rata).",
+      "ok": true,
+      "steps": 1,
+      "seconds": 0.0,
+      "core": true,
+      "heldout": false
+    },
+    {
+      "question": "Which product will run out of stock first?",
+      "expected": "Telur 1kg",
+      "answer": "First to run out: **Telur 1kg** (stock 0, 0 days left).",
+      "ok": true,
+      "steps": 1,
+      "seconds": 0.0,
+      "core": true,
+      "heldout": false
+    },
+    {
+      "question": "Berapa banyak produk yang harus segera di-restock minggu ini?",
+      "expected": "7",
+      "answer": "**7** produk perlu segera di-restock (habis dalam 7 hari): Telur 1kg (0 hari), Minyak Goreng 2L (1.1 hari), Sabun Mandi (4.3 hari), Kopi Sachet (5.1 hari), Kecap Manis (5.7 hari), Garam 250g (6.3 hari), Beras 5kg (6.6 hari).",
+      "ok": true,
+      "steps": 1,
+      "seconds": 0.0,
+      "core": true,
+      "heldout": false
+    },
+    {
+      "question": "Berapa sisa stok Minyak Goreng 2L sekarang?",
+      "expected": "11",
+      "answer": "Sisa stok **Minyak Goreng 2L** sekarang: **11** (terjual sekitar 10.25 per hari, cukup untuk 1.1 hari).",
+      "ok": true,
+      "steps": 1,
+      "seconds": 0.0,
+      "core": true,
+      "heldout": false
+    },
+    {
+      "question": "Which month had the highest revenue?",
+      "expected": "['2026-05', 'May', 'Mei']",
+      "answer": "The month with the highest pendapatan is **2026-05**: 69,767,000 (17.88%). Lowest: 2026-02 = 59,828,000.",
+      "ok": true,
+      "steps": 1,
+      "seconds": 0.0,
+      "core": true,
+      "heldout": false
+    },
+    {
+      "question": "Produk mana yang memberi laba paling besar?",
+      "expected": "Beras 5kg",
+      "answer": "Produk dengan laba tertinggi: **Beras 5kg** = 8,344,000 (14.98%). Terendah: Sarden Kaleng = 185,000.",
+      "ok": true,
+      "steps": 1,
+      "seconds": 0.0,
+      "core": true,
+      "heldout": false
+    },
+    {
+      "question": "Kategori apa yang pendapatannya paling kecil?",
+      "expected": "Groceries",
+      "answer": "Kategori dengan revenue terendah: **Groceries** = 230,186,640 (6.62%). Tertinggi: Electronics = 1,678,677,100.",
+      "ok": true,
+      "steps": 1,
+      "seconds": 0.0,
+      "core": true,
+      "heldout": true
+    },
+    {
+      "question": "How much revenue did Bandung generate?",
+      "expected": "473343540.0",
+      "answer": "Total revenue for Bandung: **473,343,540.00** (453 rows).",
+      "ok": true,
+      "steps": 1,
+      "seconds": 0.0,
+      "core": true,
+      "heldout": true
+    },
+    {
+      "question": "Total penjualan tahun 2026 berapa?",
+      "expected": "[np.float64(1351332855.0), np.int64(4144)]",
+      "answer": "Total revenue untuk 2026: **1,351,332,855.00** (1,180 baris).",
+      "ok": true,
+      "steps": 1,
+      "seconds": 0.0,
+      "core": true,
+      "heldout": true
+    },
+    {
+      "question": "Which product has the lowest total revenue in Medan?",
+      "expected": "Cooking Oil 2L",
+      "answer": "The product with the lowest revenue for Medan is **Cooking Oil 2L**: 2,979,300 (0.74%). Highest: Smartwatch = 156,188,350.",
+      "ok": true,
+      "steps": 1,
+      "seconds": 0.0,
+      "core": true,
+      "heldout": true
+    },
+    {
+      "question": "Berapa rata-rata revenue per pesanan di Surabaya?",
+      "expected": "1011060.0931098696",
+      "answer": "Rata-rata revenue untuk Surabaya: **1,011,060.09** (537 baris).",
+      "ok": true,
+      "steps": 1,
+      "seconds": 0.0,
+      "core": true,
+      "heldout": true
+    },
+    {
+      "question": "Which payment method brings in the most revenue?",
+      "expected": "E-Wallet",
+      "answer": "The payment with the highest revenue is **E-Wallet**: 833,572,535 (23.99%). Lowest: QRIS = 576,379,715.",
+      "ok": true,
+      "steps": 1,
+      "seconds": 0.0,
+      "core": true,
+      "heldout": true
+    },
+    {
+      "question": "Bulan apa dengan pendapatan tertinggi di tahun 2025?",
+      "expected": "['2025-08', 'August', 'Agustus']",
+      "answer": "Bulan dengan revenue tertinggi untuk 2025: **2025-08** = 256,275,345 (12.07%). Terendah: 2025-02 = 130,212,375.",
+      "ok": true,
+      "steps": 1,
+      "seconds": 0.0,
+      "core": true,
+      "heldout": true
+    },
+    {
+      "question": "How many orders were placed in March 2026?",
+      "expected": "206",
+      "answer": "There are **206** orders for 2026-03.",
+      "ok": true,
+      "steps": 1,
+      "seconds": 0.0,
+      "core": true,
+      "heldout": true
+    },
+    {
+      "question": "Which city has the most employees?",
+      "expected": "Jakarta",
+      "answer": "The city with the highest count is **Jakarta**: 197 (49.25%). Lowest: Bandung = 56.",
+      "ok": true,
+      "steps": 1,
+      "seconds": 0.0,
+      "core": true,
+      "heldout": true
+    },
+    {
+      "question": "Berapa jumlah karyawan di departemen Marketing?",
+      "expected": "65",
+      "answer": "Jumlah karyawan untuk Marketing: **65**.",
+      "ok": true,
+      "steps": 1,
+      "seconds": 0.0,
+      "core": true,
+      "heldout": true
+    },
+    {
+      "question": "What was the total profit in May 2026?",
+      "expected": "9984600",
+      "answer": "Total laba for 2026-05: **9,984,600.00** (465 rows).",
+      "ok": true,
+      "steps": 1,
+      "seconds": 0.0,
+      "core": true,
+      "heldout": true
+    },
+    {
+      "question": "Kategori mana yang paling sedikit terjual?",
+      "expected": "Bumbu",
+      "answer": "Kategori dengan terjual terendah: **Bumbu** = 1,015 (2.55%). Tertinggi: Minuman = 20,847.",
+      "ok": true,
+      "steps": 1,
+      "seconds": 0.0,
+      "core": true,
+      "heldout": true
+    },
+    {
+      "question": "Berapa pendapatan dari Teh Botol?",
+      "expected": "25340000",
+      "answer": "Total pendapatan untuk Teh Botol: **25,340,000.00** (181 baris).",
+      "ok": true,
+      "steps": 1,
+      "seconds": 0.0,
+      "core": true,
+      "heldout": true
+    },
+    {
+      "question": "Which product earns the most revenue?",
+      "expected": "Beras 5kg",
+      "answer": "The product with the highest pendapatan is **Beras 5kg**: 89,400,000 (22.92%). Lowest: Sarden Kaleng = 888,000.",
+      "ok": true,
+      "steps": 1,
+      "seconds": 0.0,
+      "core": true,
+      "heldout": true
+    },
+    {
+      "question": "Produk apa yang paling banyak terjual di bulan Juni 2026?",
+      "expected": "Mie Instan Goreng",
+      "answer": "Produk dengan terjual tertinggi untuk 2026-06: **Mie Instan Goreng** = 1,386 (21.65%). Terendah: Sarden Kaleng = 12.",
+      "ok": true,
+      "steps": 1,
+      "seconds": 0.0,
+      "core": true,
+      "heldout": true
+    },
+    {
+      "question": "Apa saja produk yang stoknya hampir habis?",
+      "expected": "Minyak Goreng 2L",
+      "answer": "Produk yang perlu segera di-restock: Telur 1kg (0 hari), Minyak Goreng 2L (1.1 hari), Sabun Mandi (4.3 hari), Kopi Sachet (5.1 hari), Kecap Manis (5.7 hari), Garam 250g (6.3 hari), Beras 5kg (6.6 hari).",
+      "ok": true,
+      "steps": 1,
+      "seconds": 0.0,
+      "core": true,
+      "heldout": true
+    },
+    {
+      "question": "Hari apa toko paling ramai?",
+      "expected": "['Saturday', 'Sabtu']",
+      "answer": "Hari paling ramai: **Saturday (Sabtu)**, rata-rata 2,695,461.54 per hari (+25.2% dari rata-rata).",
+      "ok": true,
+      "steps": 1,
+      "seconds": 0.0,
+      "core": true,
+      "heldout": true
+    },
+    {
+      "question": "Which city brought in the least revenue?",
+      "expected": "Denpasar",
+      "answer": "The city with the lowest revenue is **Denpasar**: 202,427,475 (5.83%). Highest: Jakarta = 1,161,529,050.",
+      "ok": true,
+      "steps": 1,
+      "seconds": 0.0,
+      "core": true,
+      "heldout": false
+    },
+    {
+      "question": "What's the total quantity sold in Semarang?",
+      "expected": "1428",
+      "answer": "Total quantity for Semarang: **1,428.00** (309 rows).",
+      "ok": true,
+      "steps": 1,
+      "seconds": 0.0,
+      "core": true,
+      "heldout": false
+    },
+    {
+      "question": "Produk apa dengan penjualan tertinggi di Denpasar?",
+      "expected": "['Smartwatch', 'Cooking Oil 2L']",
+      "answer": "Produk dengan revenue tertinggi untuk Denpasar: **Smartwatch** = 81,110,800 (40.07%). Terendah: Rice 5kg = 2,145,500.",
+      "ok": true,
+      "steps": 1,
+      "seconds": 0.0,
+      "core": true,
+      "heldout": false
+    },
+    {
+      "question": "How many orders came from Makassar?",
+      "expected": "212",
+      "answer": "There are **212** orders for Makassar.",
+      "ok": true,
+      "steps": 1,
+      "seconds": 0.0,
+      "core": true,
+      "heldout": false
+    },
+    {
+      "question": "Average revenue per order for Electronics?",
+      "expected": "1767028.5263157894",
+      "answer": "Average revenue for Electronics: **1,767,028.53** (950 rows).",
+      "ok": true,
+      "steps": 1,
+      "seconds": 0.0,
+      "core": true,
+      "heldout": false
+    },
+    {
+      "question": "Total pendapatan bulan Januari 2026 berapa?",
+      "expected": "337145870.0",
+      "answer": "Total revenue untuk 2026-01: **337,145,870.00** (186 baris).",
+      "ok": true,
+      "steps": 1,
+      "seconds": 0.0,
+      "core": true,
+      "heldout": false
+    },
+    {
+      "question": "Which payment method is least used?",
+      "expected": "Bank Transfer",
+      "answer": "The payment with the lowest count is **Bank Transfer**: 597 (19.74%). Highest: QRIS = 614.",
+      "ok": true,
+      "steps": 1,
+      "seconds": 0.0,
+      "core": true,
+      "heldout": false
+    },
+    {
+      "question": "Which department pays the lowest average salary?",
+      "expected": "Sales",
+      "answer": "The department with the lowest average monthly salary idr is **Sales**: 10,118,644.07. Highest: Engineering = 16,419,811.32.",
+      "ok": true,
+      "steps": 1,
+      "seconds": 0.0,
+      "core": true,
+      "heldout": false
+    },
+    {
+      "question": "How many employees are in Surabaya?",
+      "expected": "76",
+      "answer": "There are **76** employees for Surabaya.",
+      "ok": true,
+      "steps": 1,
+      "seconds": 0.0,
+      "core": true,
+      "heldout": false
+    },
+    {
+      "question": "Rata-rata gaji karyawan di Bandung berapa?",
+      "expected": "12855357.142857144",
+      "answer": "Rata-rata monthly salary idr untuk Bandung: **12,855,357.14** (56 baris).",
+      "ok": true,
+      "steps": 1,
+      "seconds": 0.0,
+      "core": true,
+      "heldout": false
+    },
+    {
+      "question": "Berapa total keuntungan bulan Februari 2026?",
+      "expected": "8476900",
+      "answer": "Total laba untuk 2026-02: **8,476,900.00** (420 baris).",
+      "ok": true,
+      "steps": 1,
+      "seconds": 0.0,
+      "core": true,
+      "heldout": false
+    },
+    {
+      "question": "Which category brings the most revenue?",
+      "expected": "Sembako",
+      "answer": "The category with the highest pendapatan is **Sembako**: 239,912,000 (61.5%). Lowest: Bumbu = 8,105,000.",
+      "ok": true,
+      "steps": 1,
+      "seconds": 0.0,
+      "core": true,
+      "heldout": false
+    },
+    {
+      "question": "Berapa unit Kopi Sachet yang terjual?",
+      "expected": "8003",
+      "answer": "Total terjual untuk Kopi Sachet: **8,003.00** (181 baris).",
+      "ok": true,
+      "steps": 1,
+      "seconds": 0.0,
+      "core": true,
+      "heldout": false
+    },
+    {
+      "question": "What products should I restock?",
+      "expected": "Minyak Goreng 2L",
+      "answer": "Restock soon: Telur 1kg (0 days), Minyak Goreng 2L (1.1 days), Sabun Mandi (4.3 days), Kopi Sachet (5.1 days), Kecap Manis (5.7 days), Garam 250g (6.3 days), Beras 5kg (6.6 days).",
+      "ok": true,
+      "steps": 1,
+      "seconds": 0.0,
+      "core": true,
+      "heldout": false
+    },
+    {
+      "question": "Produk apa yang paling jarang laku?",
+      "expected": "Sarden Kaleng",
+      "answer": "Produk dengan terjual terendah: **Sarden Kaleng** = 74 (0.19%). Tertinggi: Mie Instan Goreng = 8,692.",
+      "ok": true,
+      "steps": 1,
+      "seconds": 0.0,
+      "core": true,
+      "heldout": false
+    }
+  ]
+}

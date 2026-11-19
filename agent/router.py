@@ -46,6 +46,9 @@ MEASURES = {  # concept: (words in questions, regex for column names)
     "salary": ({"salary", "gaji", "upah", "monthly"}, r"salary|gaji|upah"),
     "age": ({"age", "umur", "usia"}, r"age|umur|usia"),
 }
+# question words that are verbs/adjectives: show them as a noun in the answer
+DISPLAY = {w: {"en": "units sold", "id": "terjual"} for w in ("laris", "laku", "sold", "sell", "sells", "selling", "unit", "units")}
+DISPLAY["monthly"] = {"en": "salary", "id": "gaji"}
 GROUPS = {  # concept: (words, regex for column names)
     "city": ({"city", "cities", "kota"}, r"city|kota"),
     "product": ({"product", "products", "produk", "item", "items", "barang"}, r"product|produk|item|barang"),
@@ -140,7 +143,8 @@ def plan(question: str, df: pd.DataFrame) -> Plan | None:
             measure = _pick(df, regex, numeric=True)
             if measure is None:
                 return None
-            measure_word = str(measure).replace("_", " ")
+            word = sorted(ws & vocab)[0]  # say it the way the question did: "profit", not the column "laba"
+            measure_word = DISPLAY.get(word, {}).get("id" if idn else "en", word) if word in DISPLAY else word
             used |= (ws & vocab) | _name_words(measure)
             break
     if measure is None:  # a numeric column named outright: "performance score", "training hours"

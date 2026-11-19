@@ -38,6 +38,21 @@ question ─► parser understands every word? ── yes ─► tested tool ─
 returned (English and Indonesian number formats, "juta"/"miliar"/"billion"). If one doesn't match, the answer
 is replaced by the tool's own verified summary, with a warning. Every answer also shows the table/chart it came from.
 
+## In the browser
+
+Tested in the real app (`streamlit run app.py`) on the `toko_sembako.csv` sample, 2026-11-19:
+
+| Question | Answer | Path | Time |
+|---|---|---|---|
+| *Produk apa yang harus segera di-restock?* | 7 products: Telur 1kg (sold out), Minyak Goreng 2L (1.1 days), … | parser | 0.03 s |
+| *Hari apa penjualan paling sepi?* | Tuesday (Selasa), −17.9% vs average | parser | instant |
+| *Which category makes the most profit?* | Sembako, 24,725,500 (44.38%) | parser | 0.02 s |
+| *Show the monthly revenue trend as a line chart* | Correct monthly totals (peak May, 69,767,000), but as a **table, not a chart** | model | ~20 s |
+
+![Restock answer](docs/screenshots/restock-answer.jpg)
+
+![Answered by the question parser, shown in the Steps panel](docs/screenshots/parser-steps.jpg)
+
 ## What it can do
 
 | Job | Tools |
