@@ -24,6 +24,7 @@ ALIASES = {
     "weight": ["berat", "berat badan", "bobot"], "height": ["tinggi", "tinggi badan"], "age": ["umur", "usia"],
     "size": ["ukuran"], "gender": ["jenis kelamin", "kelamin", "sex"], "color": ["warna", "colour"],
     "price": ["harga"], "salary": ["gaji"], "score": ["nilai", "skor"], "city": ["kota"], "region": ["wilayah"],
+    "ticket": ["tiket"], "tickets": ["tiket"], "sold": ["terjual"], "year": ["tahun"],
 }
 for _en, _ids in list(ALIASES.items()):
     for _id in _ids:

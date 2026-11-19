@@ -16,7 +16,7 @@ BULAN.update({m: i for i, m in enumerate(["january", "february", "march", "april
                                           "september", "october", "november", "december"], 1)})
 BULAN.update({"aug": 8, "oct": 10, "dec": 12, "des": 12, "agt": 8, "ags": 8})
 TOTAL_WORDS = re.compile(r"^\s*(grand\s*)?(sub\s*)?total\b|^\s*jumlah\s*$|^\s*total\s*keseluruhan", re.I)
-MONEY = re.compile(r"^\s*(rp\.?|idr)?\s*-?[\d.,]+\s*(rb|ribu|k|jt|juta|m)?\s*$", re.I)
+MONEY = re.compile(r"^\s*(rp\.?|idr|us\$|usd|\$)?\s*-?[\d.,]+\s*(rb|ribu|k|jt|juta|m)?\s*$", re.I)
 TIME_ONLY = re.compile(r"^\s*\d{1,2}[:.]\d{2}([:.]\d{2})?\s*$")
 
 
@@ -45,12 +45,12 @@ def parse_money(value) -> float | None:
     if m := re.search(r"(rb|ribu|k|jt|juta|m)\s*$", s):
         mult = {"rb": 1e3, "ribu": 1e3, "k": 1e3, "jt": 1e6, "juta": 1e6, "m": 1e6}[m.group(1)]
         s = s[: m.start()]
-    s = re.sub(r"^(rp\.?|idr)\s*", "", s).strip()
+    s = re.sub(r"^(rp\.?|idr|us\$|usd|\$)\s*", "", s).strip()
     neg = s.startswith("-")
     s = s.lstrip("-")
     if re.fullmatch(r"\d{1,3}(\.\d{3})+(,\d+)?", s):  # Indonesian 15.000 / 1.250.000,50
         s = s.replace(".", "").replace(",", ".")
-    elif re.fullmatch(r"\d{1,3}(,\d{3})+(\.\d+)?", s):  # English 15,000.50
+    elif re.fullmatch(r"\d{1,3}(,\d{2,3})*,\d{3}(\.\d+)?", s):  # English 15,000.50 and Indian 42,37,74,881
         s = s.replace(",", "")
     elif re.fullmatch(r"\d+,\d{1,2}", s):  # decimal comma 1,5
         s = s.replace(",", ".")
@@ -106,6 +106,11 @@ def tidy(df: pd.DataFrame) -> pd.DataFrame:
         df = df.iloc[header + 1:].set_axis(cols, axis=1).reset_index(drop=True)
         notes.append(f"used row {header + 2} as the header (the rows above it were titles)")
 
+    empty = [c for c in df.columns if str(c).startswith("Unnamed") and df[c].isna().all()]
+    if empty:  # a trailing comma on every line makes an empty, nameless column
+        df = df.drop(columns=empty)
+        notes.append(f"removed {len(empty)} empty column{'s' if len(empty) > 1 else ''} without a name")
+
     blank = df.isna().all(axis=1)
     text = df.select_dtypes(exclude="number").astype(str)
     is_total = text.apply(lambda col: col.str.match(TOTAL_WORDS)).any(axis=1) & (df.notna().sum(axis=1) <= 4)
@@ -137,7 +142,7 @@ def tidy(df: pd.DataFrame) -> pd.DataFrame:
         written = vals[money.notna()].astype(str).str.contains(r"[^\d.\-]").any()
         bad = int(money.isna().sum())
         if written:
-            notes.append(f"'{c}': amounts written as text (Rp, rb, dots) -> numbers")
+            notes.append(f"'{c}': amounts written as text (currency signs, separators) -> numbers")
         if bad:
             notes.append(f"'{c}': {bad} values that aren't numbers (e.g. {vals[money.isna()].iloc[0]!r}) left empty")
     df.attrs["load_notes"] = notes

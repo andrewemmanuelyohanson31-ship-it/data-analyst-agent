@@ -131,3 +131,12 @@ def test_asking_to_clean_may_change_the_data():
     st = state()
     run_agent("Remove the duplicate rows", st, model)
     assert len(st.versions) == 2
+
+
+def test_model_timeout_gives_an_answer_not_a_hang():
+    class SlowModel:
+        def chat(self, messages, tools):
+            raise TimeoutError("timed out")
+
+    ans = run_agent("What is the median revenue?", state(), SlowModel())
+    assert "took longer" in ans.text

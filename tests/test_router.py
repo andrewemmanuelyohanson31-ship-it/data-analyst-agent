@@ -178,3 +178,37 @@ def test_group_column_ties(cars):
     assert plan("Which company sold the most cars?", cars).args == {"by": ["Company"], "agg": "count", "where": None}
     assert plan("Which dealer region has the highest total sales?", cars).args["by"] == ["Dealer_Region"]
     assert plan("Which dealer sold the most cars?", cars).args["by"] == ["Dealer_Name"]  # "dealer": the name column
+
+
+@pytest.fixture(scope="module")
+def yearly():
+    # a yearly summary like a box-office table: money as "$" text, Indian digit grouping, a trailing comma
+    from agent.tools import load_file
+    lines = ["YEAR,TICKETS SOLD,TOTAL BOX OFFICE,AVERAGE TICKET PRICE,"]
+    for y, t, p in [(2021, "42,37,74,881", 9.16), (2020, "22,36,38,958", 9.16), (2019, "1,22,85,41,629", 9.16),
+                    (2018, "1,31,15,36,128", 9.11), (2017, "1,22,56,39,761", 8.97), (2016, "1,30,25,56,378", 8.65)]:
+        tickets = int(t.replace(",", ""))
+        lines.append(f'{y},"{t}","${round(tickets * p):,}",${p},')
+    return load_file("yearly.csv", "\n".join(lines).encode())
+
+
+def test_yearly_table_loads_as_numbers(yearly):
+    assert list(yearly.columns) == ["YEAR", "TICKETS SOLD", "TOTAL BOX OFFICE", "AVERAGE TICKET PRICE"]
+    assert yearly["TICKETS SOLD"].iloc[0] == 423_774_881 and yearly["AVERAGE TICKET PRICE"].iloc[0] == 9.16
+
+
+@pytest.mark.parametrize("q,expected", [
+    ("How many tickets were sold in 2018?", 1_311_536_128),
+    ("Which year sold the fewest tickets?", "**2020**"),
+    ("What is the average ticket price across all years?", None),  # mean, never the sum of averages
+    ("What is the highest average ticket price?", 9.16),
+])
+def test_yearly_questions(yearly, q, expected):
+    from eval.run_eval import is_correct
+    text = answer(q, yearly)[0]
+    if expected is None:
+        assert is_correct(text, yearly["AVERAGE TICKET PRICE"].mean()) and "2018.0" not in text
+    elif isinstance(expected, str):
+        assert expected in text, text
+    else:
+        assert is_correct(text, expected), text

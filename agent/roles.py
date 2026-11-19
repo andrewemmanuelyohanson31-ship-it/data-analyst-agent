@@ -140,9 +140,23 @@ def _equations(df: pd.DataFrame, nums: list) -> list[tuple]:
                         dd = d[disc].reindex(rows.index).fillna(0)
                         ok = ok | _close(rows[a] * rows[b] - dd, rows[c])
             if ok.mean() >= 0.8 and rows[c].abs().sum() > 0:
-                qty, price = (a, b) if _small_ints(d[a]) and not _small_ints(d[b]) else (b, a)
-                found.append((qty, price, c))
+                found.append((*_qty_price(d, a, b), c))
     return found
+
+
+def _qty_price(d: pd.DataFrame, a, b) -> tuple:
+    """Which of two multiplied columns is the quantity: the column's own name first ("AVERAGE TICKET PRICE" is a
+    price), then whole numbers vs decimals (1.3 billion tickets are still whole), then the smaller values."""
+    for x, y in ((a, b), (b, a)):
+        guess = _name_guess(x)
+        if isinstance(guess, tuple) and guess[0] in ("price", "cost"):
+            return y, x
+        if isinstance(guess, tuple) and guess[0] == "quantity":
+            return x, y
+    whole = {c: bool((d[c].dropna() == d[c].dropna().round()).all()) for c in (a, b)}
+    if whole[a] != whole[b]:
+        return (a, b) if whole[a] else (b, a)
+    return (a, b) if d[a].median() <= d[b].median() else (b, a)
 
 
 def _small_ints(s: pd.Series) -> bool:

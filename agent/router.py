@@ -24,7 +24,7 @@ FILLER = set("""
 what which who is are was were the a an of in on for from by with did does do has have had to at this that these those
 there it its me show tell give our my your all how much many total sum overall per each daily data dataset
 generate generated generates make makes made bring brings brought earn earns earned gave gives produce produces get
-got placed came come comes pay pays paid s wear wears wearing than people
+got placed came come comes pay pays paid s wear wears wearing than people across years sepanjang
 apa yang mana berapa siapa di dari ke pada dengan untuk ini itu saja ada adalah kah punya kita saya kami toko harian
 memberi memberikan menghasilkan dapat sebesar seluruh semua keseluruhan nilai sekarang saat dalam memakai pakai
 badan orang
@@ -83,6 +83,7 @@ GROUPS = {
     "cashier": {"cashier", "cashiers", "kasir"},
 }
 HOW_MANY = re.compile(r"\bhow many\b|\bberapa (banyak|jumlah|kali)\b", re.I)
+YEAR_GROUP = re.compile(r"\b(which|what) year\b|\btahun (apa|berapa|mana)\b", re.I)
 MONTH_GROUP = re.compile(r"\b(which|what) month\b|\bbulan (apa|mana)\b", re.I)
 DAY_GROUP = re.compile(r"\b(which|what) day\b|\bday of (the )?week\b|\bweekday\b|\bhari (apa|mana)\b", re.I)
 RESTOCK = re.compile(r"restock|re-stock|reorder|run(s|ning)? out|kehabisan|\bhabis\b", re.I)
@@ -101,7 +102,7 @@ FREQ = [  # (regex, x for the chart tool): first match wins; no match = monthly
 ]
 CHART_WORDS = set("""chart charts graph plot grafik diagram visualize visualise visualisasi trend trends tren line bar as draw
 buat buatkan tampilkan gambar gambarkan over time monthly bulanan bulan month weekly mingguan minggu week daily harian
-hari day yearly annual tahunan tahun year""".split())
+hari day yearly annual tahunan tahun year years the""".split())
 # not for the parser: comparisons, statistics it doesn't do, and anything that asks to CHANGE the data
 VETO = re.compile(r"\b(or|atau|vs|versus|compare|bandingkan|correlation|korelasi|outliers?|forecast|prediksi|ramal|"
                   r"clean|bersihkan|remove|hapus|buang|delete|drop|fill|isi|between|antara|median|without|tanpa|"
@@ -170,7 +171,10 @@ def plan(question: str, df: pd.DataFrame) -> Plan | None:
     period = mentioned_period(question)
     dc = col_of.get("date") or date_column(df)
     if period:
-        if dc is None:
+        if dc is None and col_of.get("year") and re.fullmatch(r"\d{4}", period):
+            conds = conds + [{"column": col_of["year"], "op": "==", "value": period}]  # a yearly table: YEAR == 2005
+            period = None
+        elif dc is None:
             return None
         used |= {w for w in ws if w in MONTHS or re.fullmatch(r"20\d\d(-\d\d)?", w)} | {"bulan", "tahun", "month", "year"}
 
@@ -200,13 +204,15 @@ def plan(question: str, df: pd.DataFrame) -> Plan | None:
             name = next((n for n in column_names(c) if n not in NAME_STOP and re.search(rf"\b{re.escape(n)}\b", q)),
                         None)
             if name:
-                matches.append((len(name), c, name))
+                hits = sum(1 for n in column_names(c) if n not in NAME_STOP and " " not in n
+                           and re.search(rf"\b{re.escape(n)}\b", q))
+                matches.append((hits, len(name), c, name))  # more of the column's words named, then longest name
         if matches:
-            best = max(m[0] for m in matches)
-            top = [m for m in matches if m[0] == best]
+            best = max(m[:2] for m in matches)
+            top = [m for m in matches if m[:2] == best]
             if len(top) > 1:
                 return None  # "harga" fits both harga_modal and harga_jual: let the model ask or decide
-            _, measure, measure_word = top[0]
+            _, _, measure, measure_word = top[0]
             used |= _name_words(measure) | set(measure_word.split())
     for w in words:  # "oldest" = highest age, "lightest" = lowest weight
         if w in SUPERLATIVES:
@@ -218,12 +224,16 @@ def plan(question: str, df: pd.DataFrame) -> Plan | None:
                 measure_word = concept
                 if measure is None:
                     return None
-    avg = bool(ws & AVG)
+    # "average" inside the column's own name (AVERAGE TICKET PRICE) isn't a request to average
+    avg = bool((ws_meas - (_name_words(measure) if measure is not None else set())) & AVG)
+    # a column that already IS an average (AVERAGE TICKET PRICE) must never be summed: 27 averages added up is noise
+    avg_col = measure is not None and bool(_name_words(measure) & AVG)
     used |= ws & AVG
     # "how many orders had a discount" counts rows that have it, it isn't the sum of the discount column;
     # "how many units were sold" is fine: a quantity is already a count
-    if measure is not None and HOW_MANY.search(question) and measure != col_of.get("quantity"):
-        return None
+    money = {col_of.get(r) for r in ("revenue", "profit", "cost", "discount", "shipping", "price", "salary")}
+    if measure is not None and HOW_MANY.search(question) and measure in money - {None}:
+        return None  # but "how many tickets were sold in 2021" sums a count column: fine
 
     if (RESTOCK.search(question) or ws & STOCK) and col_of.get("stock"):
         return _stock_plan(question, ws, used | STOCK_WORDS, col_of, values, idn)
@@ -232,6 +242,9 @@ def plan(question: str, df: pd.DataFrame) -> Plan | None:
     if MONTH_GROUP.search(question):
         group, group_word = "month", "bulan" if idn else "month"
         used |= {"month", "bulan"}
+    elif YEAR_GROUP.search(question):  # "which year ...": the year column, or the year of the date column
+        group, group_word = col_of.get("year") or "year", "tahun" if idn else "year"
+        used |= {"year", "tahun"}
     elif DAY_GROUP.search(question):
         group, group_word = "weekday", "hari"
         used |= {"day", "week", "weekday", "hari", "of"}
@@ -250,6 +263,8 @@ def plan(question: str, df: pd.DataFrame) -> Plan | None:
                 s = df[c]
                 if pd.api.types.is_numeric_dtype(s) or c in values or c == measure or s.nunique() > 50:
                     continue
+                if s.nunique() == s.notna().sum() and len(s) > 5:
+                    continue  # every value different: an ID or text-as-number column, not a category
                 hit = next((n for n in column_names(c)
                             if n not in NAME_STOP and re.search(rf"\b{re.escape(n)}\b", q_rest)), None)
                 if hit:
@@ -311,7 +326,7 @@ def plan(question: str, df: pd.DataFrame) -> Plan | None:
     if group is not None:
         if direction is None or (measure is None and (not counting or group == "month")):
             return None
-        agg = "mean" if avg else ("count" if measure is None else "sum")
+        agg = "mean" if avg or avg_col else ("count" if measure is None else "sum")
         args = {"by": [group], "agg": agg, "where": where}
         if measure is not None:
             args["column"] = measure
@@ -322,7 +337,7 @@ def plan(question: str, df: pd.DataFrame) -> Plan | None:
         return Plan("group_aggregate", args, lambda r: _group_answer(r, group, group_word, what, direction, idn, filters))
 
     if measure is not None:
-        agg = "mean" if avg else {"top": "max", "bottom": "min"}.get(direction, "sum")
+        agg = "mean" if avg else {"top": "max", "bottom": "min"}.get(direction, "mean" if avg_col else "sum")
         return Plan("aggregate", {"agg": agg, "column": measure, "where": where},
                     lambda r: _scalar_answer(r, agg, measure_word, idn, filters, None))
     if counting and direction is None:
@@ -350,10 +365,13 @@ def _chart_plan(question, col_of, ws, used, group, group_word, measure, measure_
         kind, x = "bar", group
         title = (f"{measure_word} per {group_word}") if idn else f"{measure_word} by {group_word}"
     else:
-        if dc is None:
+        year_col = col_of.get("year")
+        if dc is None and year_col is None:
             return None
-        kind, x = "line", time_x or dc
+        kind, x = "line", (time_x or dc) if dc is not None else year_col  # a yearly table: x = its year column
         period_word = {"week": ("mingguan", "weekly"), "year": ("tahunan", "yearly"), "month": ("bulanan", "monthly")}
+        if dc is None:
+            time_x = "year"  # the x-axis is the year column
         title = (f"{measure_word} {period_word.get(time_x, ('harian', 'daily'))[0]}" if idn else
                  f"{period_word.get(time_x, ('harian', 'daily'))[1]} {measure_word}")
     args = {"kind": kind, "x": x, "y": measure, "agg": agg, "where": filters or None}
@@ -363,7 +381,7 @@ def _chart_plan(question, col_of, ws, used, group, group_word, measure, measure_
         if t is None or t.empty:
             return "Tidak ada data yang cocok." if idn else "No rows match."
         key, val = t.columns[0], t.columns[1]
-        hi, lo = t.loc[t[val].idxmax()], t.loc[t[val].idxmin()]
+        hi, lo = (t.loc[[i]].to_dict("records")[0] for i in (t[val].idxmax(), t[val].idxmin()))  # keep 2018 an int
         w = _where_text(filters, idn)
         if idn:
             return (f"Grafik {'garis' if kind == 'line' else 'batang'} {title}{w}. Tertinggi: **{hi[key]}** = "
@@ -445,7 +463,9 @@ def _group_answer(r, group, group_word, what, direction, idn, filters):
         return "Tidak ada data yang cocok." if idn else "No rows match."
     key = t.columns[0]
     val = next(c for c in t.columns[1:] if c != "share_pct")
-    row, other = (t.iloc[0], t.iloc[-1]) if direction == "top" else (t.iloc[-1], t.iloc[0])
+    # one dict per row, not t.iloc[i]: a row Series would turn the year 2018 into 2018.0 next to float values
+    first, last = t.iloc[[0]].to_dict("records")[0], t.iloc[[-1]].to_dict("records")[0]
+    row, other = (first, last) if direction == "top" else (last, first)
     share = f" ({row['share_pct']}%)" if "share_pct" in t.columns else ""
     w = _where_text(filters, idn)
     if idn:

@@ -16,6 +16,7 @@ from agent.state import DatasetState
 from agent.tools import TOOLS, ToolError, ToolResult, run_tool, tool_schemas
 
 DEFAULT_MODEL = "qwen2.5:3b"
+MODEL_TIMEOUT = 90  # seconds per model call (the first call also loads the model into memory)
 MAX_ROWS_TO_MODEL = 20
 
 SYSTEM = """You are a careful data analyst. A pandas DataFrame is loaded; its schema is below.
@@ -55,12 +56,14 @@ class OllamaModel:
         import ollama
 
         self.model = model or os.getenv("OLLAMA_MODEL", DEFAULT_MODEL)
-        self.client = ollama.Client(host=host or os.getenv("OLLAMA_HOST"))
+        # timeout: a model stuck generating once froze a question for 20+ minutes; give up and say so instead
+        self.client = ollama.Client(host=host or os.getenv("OLLAMA_HOST"), timeout=MODEL_TIMEOUT)
 
     def chat(self, messages, tools):
         # num_ctx: Ollama defaults to 4096 and silently truncates; prompt + tool schemas alone are ~3.6k tokens.
+        # num_predict: answers are 1-3 sentences or one tool call; a cap stops endless generation
         msg = self.client.chat(model=self.model, messages=messages, tools=tools,
-                               options={"temperature": 0, "num_ctx": 8192}).message
+                               options={"temperature": 0, "num_ctx": 8192, "num_predict": 600}).message
         calls = [{"name": c.function.name, "arguments": dict(c.function.arguments or {})} for c in (msg.tool_calls or [])]
         return {"content": msg.content or "", "tool_calls": calls}
 
@@ -134,7 +137,15 @@ def run_agent(question: str, state: DatasetState, model: ChatModel, history: lis
     evidence = question  # everything the model was shown; answer numbers must appear here
     active_where = None
     while len(steps) < max_steps:
-        reply = model.chat(messages, tools)
+        try:
+            reply = model.chat(messages, tools)
+        except Exception as e:  # noqa: BLE001 - a timeout or a crashed model: answer, don't hang or blow up the app
+            if "timed out" not in str(e).lower() and "timeout" not in type(e).__name__.lower():
+                raise
+            done = next((s.result.text for s in reversed(steps) if s.result), "")
+            return AgentAnswer(f"The model took longer than {MODEL_TIMEOUT} s and was stopped. "
+                               + (f"Last result: {done}" if done else "Try a simpler question or a quick action."),
+                               steps)
         calls = reply["tool_calls"] or ([c] if (c := _text_tool_call(reply["content"])) else [])
         if not calls:
             text = reply["content"].strip()
