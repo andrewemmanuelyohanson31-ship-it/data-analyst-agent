@@ -68,7 +68,7 @@ def test_weekday_and_stock(toko):
 @pytest.mark.parametrize("q", [
     "Give me an overview of this data",
     "Clean the missing values and remove duplicates",
-    "Show the monthly revenue trend as a line chart",
+    "Show the revenue trend or the forecast",
     "Forecast revenue for the next 3 months",
     "How many employees left the company?",
     "Which channel has the higher average revenue per order, Online or Store?",
@@ -92,3 +92,19 @@ def test_ambiguous_measure_goes_to_the_model(toko):
 def test_language_detection():
     assert indonesian("Produk apa yang paling laris?")
     assert not indonesian("Which product sells the most?")
+
+
+def test_trend_chart_is_a_line_chart(sales, toko):
+    text, tool, args, result = answer("Show the monthly revenue trend as a line chart", sales)
+    assert tool == "chart" and args["kind"] == "line" and args["x"] == "month" and args["y"] == "revenue"
+    assert result.chart.startswith(b"\x89PNG") and len(result.table) == sales.order_date.str[:7].nunique()
+    _, _, args, _ = answer("Buat grafik penjualan mingguan", toko)
+    assert args["x"] == "week" and args["y"] == "pendapatan"
+    _, _, args, _ = answer("Show the daily revenue trend in March 2026", sales)
+    assert args["x"] == "order_date" and args["where"] == [{"column": "order_date", "op": "==", "value": "2026-03"}]
+
+
+def test_chart_by_group_is_a_bar_chart(sales):
+    text, _, args, result = answer("Chart revenue by city", sales)
+    assert args["kind"] == "bar" and args["x"] == "city"
+    assert f"**{sales.groupby('city').revenue.sum().idxmax()}**" in text and result.chart

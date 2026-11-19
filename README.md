@@ -47,7 +47,31 @@ Tested in the real app (`streamlit run app.py`) on the `toko_sembako.csv` sample
 | *Produk apa yang harus segera di-restock?* | 7 products: Telur 1kg (sold out), Minyak Goreng 2L (1.1 days), … | parser | 0.03 s |
 | *Hari apa penjualan paling sepi?* | Tuesday (Selasa), −17.9% vs average | parser | instant |
 | *Which category makes the most profit?* | Sembako, 24,725,500 (44.38%) | parser | 0.02 s |
-| *Show the monthly revenue trend as a line chart* | Correct monthly totals (peak May, 69,767,000), but as a **table, not a chart** | model | ~20 s |
+| *Show the monthly revenue trend as a line chart* | **Line chart** by month + table (peak May, 69,767,000) | parser | instant |
+
+The chart question first went to the model, which returned the right numbers as a table but no chart. Fixed:
+the parser now handles chart requests ("monthly / weekly / daily trend", "*grafik penjualan mingguan*", "revenue
+by city"), the chart tool groups by `month` / `week` / `year` itself and shows plain numbers on the axis, and the
+model is told to always call the chart tool when a chart is asked for.
+
+### Quick actions
+
+The sidebar has one-click buttons for the most common jobs. A button doesn't send any text: it runs its tool
+directly, with arguments built from the dataset's own columns, so there is nothing to interpret. Buttons only
+appear when the data supports them (no stock column, no *Restock list*):
+
+| Button | Runs |
+|---|---|
+| 📋 Overview | `profile` |
+| 🧹 Clean data | `drop_duplicates`, fill numbers with the median, text with the most common value (Undo works; nothing changes → *"Nothing to clean"*) |
+| 💰 Total *revenue* | `aggregate` sum |
+| 📈 Monthly *revenue* chart | `chart` line by month |
+| 🏆 Best sellers / 🐢 Slow sellers | `group_aggregate` units sold per product |
+| 📊 *revenue* by *category* | `chart` bar (for employee data: average salary by department) |
+| 📅 Busy & quiet days | `weekday_pattern` |
+| 📦 Restock list | `restock` |
+
+![Quick actions in the sidebar, monthly chart](docs/screenshots/quick-actions-chart.jpg)
 
 ![Restock answer](docs/screenshots/restock-answer.jpg)
 
@@ -149,7 +173,7 @@ python eval/run_eval.py --model qwen2.5:3b
 
 | Model | Size | Core (frequent) | Other | All | Avg time / question | Hardware |
 |---|---|---|---|---|---|---|
-| qwen2.5:3b | 1.9 GB | **100%** (66/66) | 17/18 | **98.8%** (83/84) | 0.7 s | GTX 1650 4 GB, i5-9400F, 16 GB RAM |
+| qwen2.5:3b | 1.9 GB | **100%** (66/66) | 16–17/18 | **97.6–98.8%** (82–83/84) | 0.7–1.2 s | GTX 1650 4 GB, i5-9400F, 16 GB RAM |
 
 Core answers come from the parser, so they're deterministic: identical in every run (the "other" questions go to the
 model and can vary by a question between runs).
@@ -184,7 +208,7 @@ Remaining failure: *"Which department has the most employees who left the compan
 ```bash
 pytest
 ```
-92 tests: every tool (normal + bad input + small-model slips), the question parser (right answers, and 15 kinds
+102 tests: every tool (normal + bad input + small-model slips), the question parser (right answers, and 15 kinds
 of question it must hand to the model), dataset versions/undo, the agent loop (with a
 scripted fake model: self-correction, number verification, filter carry-over, step cap), the code sandbox
 (blocked imports/file access, timeout), the report, the eval answer checker, and the Streamlit app driven headlessly.
@@ -195,6 +219,7 @@ scripted fake model: self-correction, number verification, filter carry-over, st
 app.py              Streamlit UI
 agent/tools.py      the analysis tools + their JSON schemas
 agent/router.py     question parser for frequent questions (no model)
+agent/actions.py    one-click quick actions (no model)
 agent/question.py   finds values and periods named in a question
 agent/loop.py       agent loop (Ollama tool calling, self-correction, guards)
 agent/sandbox.py    restricted fallback code runner

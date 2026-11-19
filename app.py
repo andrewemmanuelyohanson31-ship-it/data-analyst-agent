@@ -4,6 +4,8 @@ from pathlib import Path
 
 import streamlit as st
 
+from agent.actions import available
+from agent.actions import run as run_action
 from agent.loop import DEFAULT_MODEL, AgentAnswer, OllamaModel, run_agent
 from agent.report import build_report
 from agent.state import DatasetState
@@ -68,6 +70,13 @@ with st.sidebar:
         if ss.turns:
             st.download_button("Export report (HTML)", build_report(state.name, ss.turns),
                                f"report_{Path(state.name).stem}.html", use_container_width=True)
+    if "state" in ss:
+        # one-click actions: tools run directly with this dataset's columns, nothing for the model to interpret
+        st.subheader("Quick actions")
+        for action in available(ss.state.current):
+            if st.button(action.label, key=f"action_{action.label}", use_container_width=True):
+                ss.turns.append((action.label, run_action(action, ss.state)))
+                st.rerun()
     model_name = st.text_input("Ollama model", value=os.getenv("OLLAMA_MODEL", DEFAULT_MODEL))
 
 # ---------- chat ----------

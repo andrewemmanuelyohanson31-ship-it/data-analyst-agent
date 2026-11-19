@@ -43,12 +43,11 @@ MEASURES = {  # concept: (words in questions, regex for column names)
     "quantity": ({"units", "unit", "sold", "sell", "sells", "selling", "terjual", "quantity", "qty", "laku", "laris"},
                  r"quantity|qty|terjual|units|sold"),
     "profit": ({"profit", "laba", "untung", "keuntungan"}, r"profit|laba|untung"),
-    "salary": ({"salary", "gaji", "upah", "monthly"}, r"salary|gaji|upah"),
+    "salary": ({"salary", "gaji", "upah"}, r"salary|gaji|upah"),
     "age": ({"age", "umur", "usia"}, r"age|umur|usia"),
 }
 # question words that are verbs/adjectives: show them as a noun in the answer
 DISPLAY = {w: {"en": "units sold", "id": "terjual"} for w in ("laris", "laku", "sold", "sell", "sells", "selling", "unit", "units")}
-DISPLAY["monthly"] = {"en": "salary", "id": "gaji"}
 GROUPS = {  # concept: (words, regex for column names)
     "city": ({"city", "cities", "kota"}, r"city|kota"),
     "product": ({"product", "products", "produk", "item", "items", "barang"}, r"product|produk|item|barang"),
@@ -66,8 +65,18 @@ STOCK_WORDS = {"restock", "re-stock", "reorder", "run", "runs", "running", "out"
                "minggu", "week", "soon", "di-restock", "direstock", "stok", "stock", "products", "produk", "product",
                "sisa", "persediaan", "left", "low", "items", "barang", "jumlah", "banyak", "many", "should", "i", "what",
                "which", "do", "apa", "saja", "yang", "mana"}
+CHART = re.compile(r"\b(chart|graph|plot|grafik|diagram|visuali[sz]e|visualisasi|trends?|tren)\b", re.I)
+FREQ = [  # (regex, x for the chart tool): first match wins; no match = monthly
+    (re.compile(r"\b(daily|harian|per (hari|day)|each day)\b", re.I), None),  # None = the date column itself
+    (re.compile(r"\b(weekly|mingguan|per (minggu|week))\b", re.I), "week"),
+    (re.compile(r"\b(yearly|annual|tahunan|per (tahun|year))\b", re.I), "year"),
+    (re.compile(r"\b(monthly|bulanan|per (bulan|month))\b", re.I), "month"),
+]
+CHART_WORDS = set("""chart charts graph plot grafik diagram visualize visualise visualisasi trend trends tren line bar as draw
+buat buatkan tampilkan gambar gambarkan over time monthly bulanan bulan month weekly mingguan minggu week daily harian
+hari day yearly annual tahunan tahun year""".split())
 VETO = re.compile(r"\b(or|atau|vs|versus|compare|bandingkan|percent|percentage|persen|correlation|korelasi|outliers?|"
-                  r"missing|kosong|duplicates?|duplikat|trend|tren|forecast|prediksi|ramal|chart|grafik|plot|clean|"
+                  r"missing|kosong|duplicates?|duplikat|forecast|prediksi|ramal|clean|"
                   r"bersihkan|more than|less than|lebih dari|kurang dari|between|antara|median|without|tanpa|except|"
                   r"kecuali|not|bukan|tidak|left the|keluar)\b|[<>%]", re.I)
 
@@ -83,7 +92,8 @@ def _words(q: str) -> list[str]:
 
 def indonesian(q: str) -> bool:
     w = set(_words(q))
-    return bool(w & {"apa", "mana", "berapa", "yang", "paling", "dari", "bulan", "hari", "saja"}) and \
+    return bool(w & {"apa", "mana", "berapa", "yang", "paling", "dari", "bulan", "hari", "saja", "grafik", "buat",
+                     "buatkan", "tampilkan", "bulanan", "mingguan", "harian", "tahunan"}) and \
         not (w & {"what", "which", "how"})
 
 
@@ -188,6 +198,9 @@ def plan(question: str, df: pd.DataFrame) -> Plan | None:
             _, group, group_word = found[0]
     counting = bool(ws & (COUNT_NOUNS | COUNT_WORDS))
     used |= ws & (COUNT_NOUNS | COUNT_WORDS)
+    if CHART.search(question):
+        return _chart_plan(question, df, ws, used | CHART_WORDS, group, group_word, measure, measure_word, avg,
+                           values, period, dc, idn)
 
     if group in values:
         if direction is not None:
@@ -231,6 +244,48 @@ def plan(question: str, df: pd.DataFrame) -> Plan | None:
         return Plan("aggregate", {"agg": "count", "where": where},
                     lambda r: _scalar_answer(r, "count", None, idn, filters, noun))
     return None
+
+
+def _chart_plan(question, df, ws, used, group, group_word, measure, measure_word, avg, values, period, dc, idn):
+    """'monthly revenue trend' -> line chart by month; 'revenue by city chart' -> bar chart by city."""
+    if [w for w in ws - used if not w.isdigit()] or group in values:
+        return None
+    if measure is None:  # "show the sales trend" / "grafik penjualan": default to the revenue column
+        measure = _pick(df, MEASURES["revenue"][1], numeric=True)
+        measure_word = "pendapatan" if idn else "revenue"
+    if measure is None:
+        return None
+    filters = [{"column": c, "op": "==", "value": v} for c, v in values.items()]
+    if period:
+        filters.append({"column": dc, "op": "==", "value": period})
+    agg = "mean" if avg else "sum"
+    time_x = next((x for rx, x in FREQ if rx.search(question)), "month")
+    if group not in (None, "month", "weekday") and not any(rx.search(question) for rx, _ in FREQ):
+        kind, x = "bar", group
+        title = (f"{measure_word} per {group_word}") if idn else f"{measure_word} by {group_word}"
+    else:
+        if dc is None:
+            return None
+        kind, x = "line", time_x or dc
+        period_word = {"week": ("mingguan", "weekly"), "year": ("tahunan", "yearly"), "month": ("bulanan", "monthly")}
+        title = (f"{measure_word} {period_word.get(time_x, ('harian', 'daily'))[0]}" if idn else
+                 f"{period_word.get(time_x, ('harian', 'daily'))[1]} {measure_word}")
+    args = {"kind": kind, "x": x, "y": measure, "agg": agg, "where": filters or None}
+
+    def render(r):
+        t = r.table
+        if t is None or t.empty:
+            return "Tidak ada data yang cocok." if idn else "No rows match."
+        key, val = t.columns[0], t.columns[1]
+        hi, lo = t.loc[t[val].idxmax()], t.loc[t[val].idxmin()]
+        w = _where_text(filters, idn)
+        if idn:
+            return (f"Grafik {'garis' if kind == 'line' else 'batang'} {title}{w}. Tertinggi: **{hi[key]}** = "
+                    f"{_fmt(hi[val])}; terendah: {lo[key]} = {_fmt(lo[val])}.")
+        return (f"{'Line' if kind == 'line' else 'Bar'} chart of {title}{w}. Highest: **{hi[key]}** = {_fmt(hi[val])}; "
+                f"lowest: {lo[key]} = {_fmt(lo[val])}.")
+
+    return Plan("chart", args, render)
 
 
 def _where_text(filters, idn):

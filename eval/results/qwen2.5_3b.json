@@ -2,12 +2,12 @@
   "summary": {
     "model": "qwen2.5:3b",
     "tasks": 84,
-    "success_pct": 98.8,
+    "success_pct": 97.6,
     "core": "66/66",
     "core_heldout": "17/17",
-    "other": "17/18",
+    "other": "16/18",
     "avg_steps": 0.99,
-    "avg_seconds": 0.7
+    "avg_seconds": 1.2
   },
   "rows": [
     {
@@ -43,7 +43,7 @@
     {
       "question": "Which product category sold the most units?",
       "expected": "Fashion",
-      "answer": "The category with the highest quantity is **Fashion**: 3,232 (30.36%). Lowest: Home = 1,779.",
+      "answer": "The category with the highest units sold is **Fashion**: 3,232 (30.36%). Lowest: Home = 1,779.",
       "ok": true,
       "steps": 1,
       "seconds": 0.0,
@@ -76,7 +76,7 @@
       "answer": "There are 46 missing values in the unit_price column.",
       "ok": true,
       "steps": 1,
-      "seconds": 1.5,
+      "seconds": 23.6,
       "core": false,
       "heldout": false
     },
@@ -86,7 +86,7 @@
       "answer": "There are 25 duplicate rows in the dataset. After removing them, the dataset now has 3000 rows.",
       "ok": true,
       "steps": 1,
-      "seconds": 1.5,
+      "seconds": 1.6,
       "core": false,
       "heldout": false
     },
@@ -133,10 +133,10 @@
     {
       "question": "How many outliers are in quantity using the IQR method?",
       "expected": "6",
-      "answer": "There are 6 outliers in the 'quantity' column using the IQR method. The normal range for quantity is -1.00 to 7.00.",
+      "answer": "There are 6 outliers in the 'quantity' column using the IQR method. The outlier values are: 250, 250, 250, 250, 250, and 250. The normal range for the 'quantity' column is -1.00 to 7.00.",
       "ok": true,
       "steps": 1,
-      "seconds": 4.8,
+      "seconds": 5.8,
       "core": false,
       "heldout": false
     },
@@ -153,7 +153,7 @@
     {
       "question": "What is the average customer age?",
       "expected": "30.83873121869783",
-      "answer": "Average customer age: **30.84** (3,025 rows).",
+      "answer": "Average age: **30.84** (3,025 rows).",
       "ok": true,
       "steps": 1,
       "seconds": 0.0,
@@ -176,7 +176,7 @@
       "answer": "20.3% of the orders were paid with QRIS.",
       "ok": true,
       "steps": 1,
-      "seconds": 2.1,
+      "seconds": 2.0,
       "core": false,
       "heldout": false
     },
@@ -186,14 +186,14 @@
       "answer": "The median unit price for Electronics products is 353,700.00.",
       "ok": true,
       "steps": 1,
-      "seconds": 2.9,
+      "seconds": 2.2,
       "core": false,
       "heldout": false
     },
     {
       "question": "Which product sold the most units in Surabaya?",
       "expected": "Power Bank",
-      "answer": "The product with the highest quantity for Surabaya is **Power Bank**: 194 (11.99%). Lowest: Bedsheet Set = 56.",
+      "answer": "The product with the highest units sold for Surabaya is **Power Bank**: 194 (11.99%). Lowest: Bedsheet Set = 56.",
       "ok": true,
       "steps": 1,
       "seconds": 0.0,
@@ -203,17 +203,17 @@
     {
       "question": "How many orders had a discount?",
       "expected": "1484",
-      "answer": "There were 1,484 orders with a discount applied.",
+      "answer": "There were 1,484 orders that had a discount.",
       "ok": true,
       "steps": 1,
-      "seconds": 10.6,
+      "seconds": 11.8,
       "core": false,
       "heldout": false
     },
     {
       "question": "Kota mana dengan total pendapatan (revenue) tertinggi?",
       "expected": "Jakarta",
-      "answer": "Kota dengan revenue tertinggi: **Jakarta** = 1,161,529,050 (33.43%). Terendah: Denpasar = 202,427,475.",
+      "answer": "Kota dengan pendapatan tertinggi: **Jakarta** = 1,161,529,050 (33.43%). Terendah: Denpasar = 202,427,475.",
       "ok": true,
       "steps": 1,
       "seconds": 0.0,
@@ -233,10 +233,10 @@
     {
       "question": "Which channel has the higher average revenue per order, Online or Store?",
       "expected": "Store",
-      "answer": "The Store channel has a higher average revenue per order with an average of approximately 1,195,296.57 compared to the Online channel's average of approximately 1,117,388.62.",
+      "answer": "The Store channel has a higher average revenue per order with an average of approximately 1,195,297 compared to the Online channel's average of approximately 1,117,389.",
       "ok": true,
       "steps": 1,
-      "seconds": 3.0,
+      "seconds": 2.9,
       "core": false,
       "heldout": false
     },
@@ -246,7 +246,7 @@
       "answer": "The largest quantity in a single order is 250.00.",
       "ok": true,
       "steps": 1,
-      "seconds": 1.5,
+      "seconds": 1.7,
       "core": false,
       "heldout": false
     },
@@ -263,7 +263,7 @@
     {
       "question": "Which department has the highest average monthly salary?",
       "expected": "Engineering",
-      "answer": "The department with the highest average monthly salary idr is **Engineering**: 16,419,811.32. Lowest: Sales = 10,118,644.07.",
+      "answer": "The department with the highest average salary is **Engineering**: 16,419,811.32. Lowest: Sales = 10,118,644.07.",
       "ok": true,
       "steps": 1,
       "seconds": 0.0,
@@ -276,7 +276,7 @@
       "answer": "57 employees left the company.",
       "ok": true,
       "steps": 1,
-      "seconds": 1.8,
+      "seconds": 21.2,
       "core": true,
       "heldout": false
     },
@@ -303,17 +303,17 @@
     {
       "question": "What is the correlation between years of experience and monthly salary?",
       "expected": "0.87",
-      "answer": "The strongest correlation is between years of experience and monthly salary, with a correlation coefficient of 0.874.",
+      "answer": "The correlation between years of experience and monthly salary is 0.874, indicating a strong positive relationship.",
       "ok": true,
       "steps": 1,
-      "seconds": 2.1,
+      "seconds": 2.0,
       "core": false,
       "heldout": false
     },
     {
       "question": "What is the average monthly salary of employees in Jakarta?",
       "expected": "13337309.64467005",
-      "answer": "Average monthly salary idr for Jakarta: **13,337,309.64** (197 rows).",
+      "answer": "Average salary for Jakarta: **13,337,309.64** (197 rows).",
       "ok": true,
       "steps": 1,
       "seconds": 0.0,
@@ -326,7 +326,7 @@
       "answer": "There are 71 employees working remotely.",
       "ok": true,
       "steps": 1,
-      "seconds": 7.7,
+      "seconds": 7.8,
       "core": false,
       "heldout": false
     },
@@ -353,7 +353,7 @@
     {
       "question": "How many employees have a missing performance score?",
       "expected": "18",
-      "answer": "There are 18 employees with a missing performance score.",
+      "answer": "There are 18 missing performance scores in the dataset.",
       "ok": true,
       "steps": 1,
       "seconds": 1.4,
@@ -363,7 +363,7 @@
     {
       "question": "Departemen mana yang rata-rata gajinya paling rendah?",
       "expected": "Sales",
-      "answer": "Departemen dengan rata-rata monthly salary idr terendah: **Sales** = 10,118,644.07. Tertinggi: Engineering = 16,419,811.32.",
+      "answer": "Departemen dengan rata-rata gaji terendah: **Sales** = 10,118,644.07. Tertinggi: Engineering = 16,419,811.32.",
       "ok": true,
       "steps": 1,
       "seconds": 0.0,
@@ -373,7 +373,7 @@
     {
       "question": "What is the highest monthly salary?",
       "expected": "37200000.0",
-      "answer": "Highest monthly salary idr: **37,200,000.00** (400 rows).",
+      "answer": "Highest salary: **37,200,000.00** (400 rows).",
       "ok": true,
       "steps": 1,
       "seconds": 0.0,
@@ -393,10 +393,10 @@
     {
       "question": "How many employees have more than 10 years of experience?",
       "expected": "24",
-      "answer": "There are 24 employees with more than 10 years of experience.",
-      "ok": true,
+      "answer": "There are 20 employees with more than 10 years of experience. The highest number of employees with such experience is 3.00 years, which includes 3 employees. The lowest number is 1.00 year, with 1 employee having exactly 1 year of experience.",
+      "ok": false,
       "steps": 1,
-      "seconds": 8.1,
+      "seconds": 4.9,
       "core": false,
       "heldout": false
     },
@@ -423,7 +423,7 @@
     {
       "question": "Which product sells the fewest units?",
       "expected": "Sarden Kaleng",
-      "answer": "The product with the lowest terjual is **Sarden Kaleng**: 74 (0.19%). Highest: Mie Instan Goreng = 8,692.",
+      "answer": "The product with the lowest units sold is **Sarden Kaleng**: 74 (0.19%). Highest: Mie Instan Goreng = 8,692.",
       "ok": true,
       "steps": 1,
       "seconds": 0.0,
@@ -443,7 +443,7 @@
     {
       "question": "Which category makes the most profit?",
       "expected": "Sembako",
-      "answer": "The category with the highest laba is **Sembako**: 24,725,500 (44.38%). Lowest: Bumbu = 1,622,000.",
+      "answer": "The category with the highest profit is **Sembako**: 24,725,500 (44.38%). Lowest: Bumbu = 1,622,000.",
       "ok": true,
       "steps": 1,
       "seconds": 0.0,
@@ -453,7 +453,7 @@
     {
       "question": "What is the total revenue?",
       "expected": "390099500",
-      "answer": "Total pendapatan: **390,099,500.00** (2,715 rows).",
+      "answer": "Total revenue: **390,099,500.00** (2,715 rows).",
       "ok": true,
       "steps": 1,
       "seconds": 0.0,
@@ -513,7 +513,7 @@
     {
       "question": "Which month had the highest revenue?",
       "expected": "['2026-05', 'May', 'Mei']",
-      "answer": "The month with the highest pendapatan is **2026-05**: 69,767,000 (17.88%). Lowest: 2026-02 = 59,828,000.",
+      "answer": "The month with the highest revenue is **2026-05**: 69,767,000 (17.88%). Lowest: 2026-02 = 59,828,000.",
       "ok": true,
       "steps": 1,
       "seconds": 0.0,
@@ -533,7 +533,7 @@
     {
       "question": "Kategori apa yang pendapatannya paling kecil?",
       "expected": "Groceries",
-      "answer": "Kategori dengan revenue terendah: **Groceries** = 230,186,640 (6.62%). Tertinggi: Electronics = 1,678,677,100.",
+      "answer": "Kategori dengan pendapatan terendah: **Groceries** = 230,186,640 (6.62%). Tertinggi: Electronics = 1,678,677,100.",
       "ok": true,
       "steps": 1,
       "seconds": 0.0,
@@ -553,7 +553,7 @@
     {
       "question": "Total penjualan tahun 2026 berapa?",
       "expected": "[np.float64(1351332855.0), np.int64(4144)]",
-      "answer": "Total revenue untuk 2026: **1,351,332,855.00** (1,180 baris).",
+      "answer": "Total penjualan untuk 2026: **1,351,332,855.00** (1,180 baris).",
       "ok": true,
       "steps": 1,
       "seconds": 0.0,
@@ -593,7 +593,7 @@
     {
       "question": "Bulan apa dengan pendapatan tertinggi di tahun 2025?",
       "expected": "['2025-08', 'August', 'Agustus']",
-      "answer": "Bulan dengan revenue tertinggi untuk 2025: **2025-08** = 256,275,345 (12.07%). Terendah: 2025-02 = 130,212,375.",
+      "answer": "Bulan dengan pendapatan tertinggi untuk 2025: **2025-08** = 256,275,345 (12.07%). Terendah: 2025-02 = 130,212,375.",
       "ok": true,
       "steps": 1,
       "seconds": 0.0,
@@ -633,7 +633,7 @@
     {
       "question": "What was the total profit in May 2026?",
       "expected": "9984600",
-      "answer": "Total laba for 2026-05: **9,984,600.00** (465 rows).",
+      "answer": "Total profit for 2026-05: **9,984,600.00** (465 rows).",
       "ok": true,
       "steps": 1,
       "seconds": 0.0,
@@ -663,7 +663,7 @@
     {
       "question": "Which product earns the most revenue?",
       "expected": "Beras 5kg",
-      "answer": "The product with the highest pendapatan is **Beras 5kg**: 89,400,000 (22.92%). Lowest: Sarden Kaleng = 888,000.",
+      "answer": "The product with the highest revenue is **Beras 5kg**: 89,400,000 (22.92%). Lowest: Sarden Kaleng = 888,000.",
       "ok": true,
       "steps": 1,
       "seconds": 0.0,
@@ -723,7 +723,7 @@
     {
       "question": "Produk apa dengan penjualan tertinggi di Denpasar?",
       "expected": "['Smartwatch', 'Cooking Oil 2L']",
-      "answer": "Produk dengan revenue tertinggi untuk Denpasar: **Smartwatch** = 81,110,800 (40.07%). Terendah: Rice 5kg = 2,145,500.",
+      "answer": "Produk dengan penjualan tertinggi untuk Denpasar: **Smartwatch** = 81,110,800 (40.07%). Terendah: Rice 5kg = 2,145,500.",
       "ok": true,
       "steps": 1,
       "seconds": 0.0,
@@ -753,7 +753,7 @@
     {
       "question": "Total pendapatan bulan Januari 2026 berapa?",
       "expected": "337145870.0",
-      "answer": "Total revenue untuk 2026-01: **337,145,870.00** (186 baris).",
+      "answer": "Total pendapatan untuk 2026-01: **337,145,870.00** (186 baris).",
       "ok": true,
       "steps": 1,
       "seconds": 0.0,
@@ -773,7 +773,7 @@
     {
       "question": "Which department pays the lowest average salary?",
       "expected": "Sales",
-      "answer": "The department with the lowest average monthly salary idr is **Sales**: 10,118,644.07. Highest: Engineering = 16,419,811.32.",
+      "answer": "The department with the lowest average salary is **Sales**: 10,118,644.07. Highest: Engineering = 16,419,811.32.",
       "ok": true,
       "steps": 1,
       "seconds": 0.0,
@@ -793,7 +793,7 @@
     {
       "question": "Rata-rata gaji karyawan di Bandung berapa?",
       "expected": "12855357.142857144",
-      "answer": "Rata-rata monthly salary idr untuk Bandung: **12,855,357.14** (56 baris).",
+      "answer": "Rata-rata gaji untuk Bandung: **12,855,357.14** (56 baris).",
       "ok": true,
       "steps": 1,
       "seconds": 0.0,
@@ -803,7 +803,7 @@
     {
       "question": "Berapa total keuntungan bulan Februari 2026?",
       "expected": "8476900",
-      "answer": "Total laba untuk 2026-02: **8,476,900.00** (420 baris).",
+      "answer": "Total keuntungan untuk 2026-02: **8,476,900.00** (420 baris).",
       "ok": true,
       "steps": 1,
       "seconds": 0.0,
@@ -813,7 +813,7 @@
     {
       "question": "Which category brings the most revenue?",
       "expected": "Sembako",
-      "answer": "The category with the highest pendapatan is **Sembako**: 239,912,000 (61.5%). Lowest: Bumbu = 8,105,000.",
+      "answer": "The category with the highest revenue is **Sembako**: 239,912,000 (61.5%). Lowest: Bumbu = 8,105,000.",
       "ok": true,
       "steps": 1,
       "seconds": 0.0,

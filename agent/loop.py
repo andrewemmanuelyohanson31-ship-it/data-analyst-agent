@@ -31,6 +31,7 @@ Answer the user's question by calling tools. Rules:
 - If the question asks for the lowest / fewest / smallest, use the "Lowest" part of the result.
 - Use exact column names from the schema.
 - Use one tool call when one is enough. Use `where` filters instead of separate filter steps.
+- If the question asks for a chart, graph, plot or grafik, you MUST call the chart tool (a table is not a chart).
 - Use run_python only if no other tool can do it.
 - After you have the result, answer in 1-3 short sentences in the same language as the question (English or Indonesian).
 

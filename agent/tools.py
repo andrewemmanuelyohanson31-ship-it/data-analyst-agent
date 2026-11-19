@@ -11,6 +11,7 @@ import matplotlib
 
 matplotlib.use("Agg")  # no GUI backend; charts are rendered to PNG bytes
 import matplotlib.pyplot as plt
+import matplotlib.ticker  # noqa: F401  (axis number format)
 import numpy as np
 import pandas as pd
 
@@ -221,7 +222,7 @@ AGGS = ("sum", "mean", "count", "min", "max", "median")
 
 
 VIRTUAL = {"month": "M", "bulan": "M", "year": "Y", "tahun": "Y", "quarter": "Q", "kuartal": "Q",
-           "weekday": "D", "day_of_week": "D", "hari": "D"}
+           "weekday": "D", "day_of_week": "D", "hari": "D", "week": "W", "minggu": "W"}
 
 
 def _with_virtual(d, by):
@@ -235,7 +236,8 @@ def _with_virtual(d, by):
     dates = pd.to_datetime(d[date_col], errors="coerce")
     derived = {"M": dates.dt.strftime("%Y-%m"), "Y": dates.dt.strftime("%Y"),
                "Q": dates.dt.year.astype("Int64").astype(str) + "-Q" + dates.dt.quarter.astype("Int64").astype(str),
-               "D": dates.dt.day_name().map(lambda x: f"{x} ({HARI[x]})" if x in HARI else x)}
+               "D": dates.dt.day_name().map(lambda x: f"{x} ({HARI[x]})" if x in HARI else x),
+               "W": dates.dt.strftime("%G-W%V")}
     return d.assign(**{n: derived[VIRTUAL[str(n).strip().lower()]] for n in missing})
 
 
@@ -439,14 +441,19 @@ def chart(df, kind, x=None, y=None, agg="sum", where=None):
     if agg not in AGGS:
         raise ToolError(f"agg must be one of {', '.join(AGGS)}.")
     d = apply_where(df, where)
+    if x and kind in ("bar", "line"):
+        d = _with_virtual(d, [x])  # x='month' / 'bulan' / 'week' / 'year' from the date column
     fig, ax = plt.subplots(figsize=(7, 4))
+    data = None
     try:
         if kind == "bar":
             xc = col(d, x)
             data = d[xc].value_counts().head(15) if y is None else d.groupby(xc)[_numeric(d, y)].agg(agg).sort_values(ascending=False).head(15)
             data.plot.bar(ax=ax)
         elif kind == "line":
-            d[_numeric(d, y)].groupby(d[col(d, x)]).agg(agg).plot.line(ax=ax, marker="o")
+            data = d[_numeric(d, y)].groupby(d[col(d, x)]).agg(agg)
+            data.plot.line(ax=ax, marker="o")
+            ax.tick_params(axis="x", labelrotation=45)
         elif kind == "hist":
             d[_numeric(d, x or y)].plot.hist(ax=ax, bins=30)
         elif kind == "scatter":
@@ -472,7 +479,14 @@ def chart(df, kind, x=None, y=None, agg="sum", where=None):
         plt.close(fig)
         raise
     ax.set_title(f"{kind}: {y or ''} {'by ' + str(x) if x and y else x or ''}".strip())
-    return ToolResult(f"{kind} chart created.", chart=_png(fig))
+    if kind in ("bar", "line"):  # 70,000,000 instead of "7.0 1e7"
+        ax.yaxis.set_major_formatter(matplotlib.ticker.FuncFormatter(lambda v, _: f"{v:,.0f}"))
+    if data is None or data.empty:
+        return ToolResult(f"{kind} chart created.", chart=_png(fig))
+    label = f"{agg} of '{y}'" if y else "count"
+    return ToolResult(f"{kind} chart of {label} by '{x}', {len(data)} points. Highest: {data.idxmax()} = {data.max():,.2f}. "
+                      f"Lowest: {data.idxmin()} = {data.min():,.2f}.",
+                      table=data.rename(label).reset_index(), chart=_png(fig))
 
 
 # ---------- registry ----------
@@ -544,7 +558,8 @@ TOOLS: dict[str, tuple[Callable, dict]] = {
                  "days": {"type": "integer", "description": "days of recent sales to average (default 28)"},
                  "warn_days": {"type": "integer", "description": "flag products running out within this many days (default 7)"}},
                 ["date_column", "product_column", "quantity_column", "stock_column"])),
-    "chart": (chart, _schema("chart", "Draw a chart. bar: x category (y optional, aggregated). line: x vs y. hist: x numeric. scatter: x,y numeric. box: y numeric, x optional group. heatmap: correlations.",
+    "chart": (chart, _schema("chart", "Draw a chart (grafik). bar: x category (y optional, aggregated). line: x vs y. hist: x numeric. scatter: x,y numeric. box: y numeric, x optional group. heatmap: correlations. "
+              "Trend over time: kind='line', x='month' (or 'week', 'year', or the date column for daily), y=the value, agg='sum'.",
               {"kind": _enum("bar", "line", "hist", "scatter", "box", "heatmap"), "x": _STR, "y": _STR, "agg": _AGG, "where": _WHERE}, ["kind"])),
 }
 

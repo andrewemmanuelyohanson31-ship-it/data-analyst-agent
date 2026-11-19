@@ -25,3 +25,15 @@ def test_sample_question_flow(monkeypatch):
     at.chat_input[0].set_value("which city has the highest revenue?").run()
     assert not at.exception
     assert any("**Jakarta**" in m.value for m in at.markdown)  # answered by the question parser
+
+
+def test_quick_action_buttons(monkeypatch):
+    monkeypatch.setattr(agent.loop, "OllamaModel", FakeOllama)
+    at = AppTest.from_file(APP, default_timeout=30).run()
+    at.selectbox[0].select("toko_sembako.csv").run()
+    labels = [b.label for b in at.button]
+    assert any("Restock list" in label for label in labels) and any("Clean data" in label for label in labels)
+    next(b for b in at.button if "Restock list" in b.label).click().run()
+    assert not at.exception
+    assert any("Telur 1kg" in m.value for m in at.markdown)
+    assert any("one-click action" in c.value for c in at.caption)
