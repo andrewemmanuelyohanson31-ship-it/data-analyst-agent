@@ -83,6 +83,9 @@ GROUPS = {
     "cashier": {"cashier", "cashiers", "kasir"},
 }
 HOW_MANY = re.compile(r"\bhow many\b|\bberapa (banyak|jumlah|kali)\b", re.I)
+PER_PERIOD = re.compile(r"\bper (years?|tahun|months?|bulan|weeks?|minggu|days?|hari)\b", re.I)
+PERIOD_OF = {"year": "year", "years": "year", "tahun": "year", "month": "month", "months": "month", "bulan": "month",
+             "week": "week", "weeks": "week", "minggu": "week", "day": "day", "days": "day", "hari": "day"}
 YEAR_GROUP = re.compile(r"\b(which|what) year\b|\btahun (apa|berapa|mana)\b", re.I)
 MONTH_GROUP = re.compile(r"\b(which|what) month\b|\bbulan (apa|mana)\b", re.I)
 DAY_GROUP = re.compile(r"\b(which|what) day\b|\bday of (the )?week\b|\bweekday\b|\bhari (apa|mana)\b", re.I)
@@ -305,6 +308,9 @@ def plan(question: str, df: pd.DataFrame) -> Plan | None:
 
     if PERCENT.search(question):
         used |= {"percent", "percentage", "persen", "persentase", "proportion", "share"}
+    per = PER_PERIOD.search(question)  # "average revenue per month", "rata-rata laba per tahun"
+    if per:
+        used |= {"per", per.group(1).lower(), "number"}
     if [w for w in ws - used if not w.isdigit()]:
         return None  # a word we don't understand may change the meaning: let the model handle it
 
@@ -315,6 +321,11 @@ def plan(question: str, df: pd.DataFrame) -> Plan | None:
 
     if PERCENT.search(question):  # "what percentage of people wear size L" / "berapa persen pendapatan dari GoFood"
         return _share_plan(values, filters, measure, measure_word, idn)
+    if per:
+        if group is not None:
+            return None  # "per month per store": two breakdowns at once, let the model handle it
+        return _per_period_plan(PERIOD_OF[per.group(1).lower()], col_of, dc, measure, measure_word, avg, avg_col,
+                                counting, where, filters, idn)
 
     if group == "weekday":
         m = measure or col_of.get("revenue")
@@ -397,6 +408,42 @@ def _where_text(filters, idn):
         return ""
     parts = [str(f["value"]) if f["op"] == "==" else f"{f['column']} {f['op']} {f['value']}" for f in filters]
     return (" untuk " if idn else " for ") + ", ".join(parts)
+
+
+def _per_period_plan(kind, col_of, dc, measure, measure_word, avg, avg_col, counting, where, filters, idn):
+    """'average X per month' = total X in each month, then the average of those totals (a plain mean of rows is
+    wrong for a sales log; for a table with one row per year it gives the same number)."""
+    if not (avg or avg_col):
+        return None  # "total sales per month" is a breakdown, not one number
+    if kind == "year" and col_of.get("year"):
+        key = col_of["year"]  # a yearly table
+    elif dc is not None:
+        key = dc if kind == "day" else kind  # virtual year/month/week from the date column
+    else:
+        return None
+    if measure is None and not counting:
+        return None
+    agg = "mean" if avg_col else ("count" if measure is None else "sum")  # an average column is averaged, not summed
+    args = {"by": [key], "agg": agg, "where": where}
+    if measure is not None:
+        args["column"] = measure
+    name = {"year": ("tahun", "years"), "month": ("bulan", "months"), "week": ("minggu", "weeks"),
+            "day": ("hari", "days")}[kind]
+
+    def render(r):
+        t = r.table
+        k = t.columns[0]
+        val = next(c for c in t.columns[1:] if c != "share_pct")
+        recs = t.to_dict("records")
+        hi, lo = max(recs, key=lambda x: x[val]), min(recs, key=lambda x: x[val])
+        what = measure_word or ("jumlah" if idn else "count")
+        w = _where_text(filters, idn)
+        if idn:
+            return (f"Rata-rata {what} per {name[0]}{w}: **{_fmt(t[val].mean())}** (dari {len(t)} {name[0]}). "
+                    f"Tertinggi: {hi[k]} = {_fmt(hi[val])}; terendah: {lo[k]} = {_fmt(lo[val])}.")
+        return (f"Average {what} per {kind}{w}: **{_fmt(t[val].mean())}** (over {len(t)} {name[1]}). "
+                f"Highest: {hi[k]} = {_fmt(hi[val])}; lowest: {lo[k]} = {_fmt(lo[val])}.")
+    return Plan("group_aggregate", args, render)
 
 
 def _duplicates_plan(idn):

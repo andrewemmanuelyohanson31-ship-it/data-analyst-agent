@@ -212,3 +212,13 @@ def test_yearly_questions(yearly, q, expected):
         assert expected in text, text
     else:
         assert is_correct(text, expected), text
+
+
+def test_average_per_period(toko, yearly):
+    from eval.run_eval import is_correct
+    monthly = toko.groupby(toko.tanggal.str[:7]).laba.sum().mean()
+    assert is_correct(answer("Berapa rata-rata laba per bulan?", toko)[0], monthly)  # totals per month, averaged
+    assert not is_correct(answer("Berapa rata-rata laba per bulan?", toko)[0], toko.laba.mean())  # not a row mean
+    assert is_correct(answer("What is the average ticket price per year?", yearly)[0],
+                      yearly["AVERAGE TICKET PRICE"].mean())  # an average column is averaged, never summed
+    assert plan("What is the total revenue per month?", toko) is None  # a breakdown, not one number
