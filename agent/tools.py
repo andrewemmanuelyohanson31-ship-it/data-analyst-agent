@@ -361,6 +361,61 @@ def forecast(df, date_column, value_column, freq="M", periods=3, method="linear"
                       table=out)
 
 
+DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+HARI = dict(zip(DAYS, ["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"]))  # model mistranslated days itself
+
+
+def _dates(df, date_column):
+    dc = col(df, date_column)
+    dates = pd.to_datetime(df[dc], errors="coerce")
+    if dates.isna().all():
+        raise ToolError(f"Column '{dc}' does not contain dates.")
+    return dc, dates
+
+
+def weekday_pattern(df, date_column, value_column, where=None):
+    d = apply_where(df, where)
+    vc = _numeric(d, value_column)
+    agg = "sum"  # not a parameter: the small model picked "min" here, which answers nothing useful
+    dc, dates = _dates(d, date_column)
+    # one value per calendar day first, so a weekday with more rows per day isn't counted twice
+    daily = d[vc].groupby(dates.dt.normalize()).agg(agg)
+    per = daily.groupby(daily.index.day_name()).agg(["mean", "size"]).reindex(DAYS).dropna()
+    if per.empty:
+        return ToolResult("No rows match.")
+    avg = per["mean"].mean()
+    out = pd.DataFrame({"weekday": [f"{d} ({HARI[d]})" for d in per.index], f"avg_daily_{agg}_{vc}": per["mean"].round(2).values,
+                        "days": per["size"].astype(int).values, "vs_average_pct": ((per["mean"] / avg - 1) * 100).round(1).values})
+    val = out.columns[1]
+    top, low = out.loc[out[val].idxmax()], out.loc[out[val].idxmin()]
+    return ToolResult(f"Average daily {agg} of '{vc}' by day of week. Highest: {top.weekday} = {top[val]:,.2f} "
+                      f"({top.vs_average_pct:+.1f}% vs average). Lowest: {low.weekday} = {low[val]:,.2f} "
+                      f"({low.vs_average_pct:+.1f}% vs average).", table=out)
+
+
+def restock(df, date_column, product_column, quantity_column, stock_column, days=28, warn_days=7):
+    dc, dates = _dates(df, date_column)
+    pc, qc, sc = col(df, product_column), _numeric(df, quantity_column), _numeric(df, stock_column)
+    days, warn_days = int(days), int(warn_days)
+    d = df.assign(_date=dates).dropna(subset=["_date"]).sort_values("_date", kind="stable")
+    stock = d.groupby(pc)[sc].last()  # each product's stock on its latest date
+    recent = d[d["_date"] > d["_date"].max() - pd.Timedelta(days=days)]
+    per_day = (recent.groupby(pc)[qc].sum() / days).reindex(stock.index, fill_value=0)
+    left = (stock / per_day.replace(0, np.nan)).fillna(np.inf)  # never sells -> never runs out
+    left[stock <= 0] = 0
+    out = pd.DataFrame({"product": stock.index, "stock_now": stock.values, "avg_sold_per_day": per_day.round(2).values,
+                        "days_left": left.round(1).values})
+    out["status"] = np.select([out.stock_now <= 0, out.days_left <= warn_days], ["out of stock", "restock now"], "ok")
+    out = out.sort_values(["days_left", "product"]).reset_index(drop=True)
+    soon = out[out.status != "ok"]
+    first = out.iloc[0]
+    listed = ", ".join(f"{r.product} ({r.days_left:g} days)" for r in soon.itertuples())
+    return ToolResult(f"Based on sales in the last {days} days. {len(soon)} of {len(out)} products run out within "
+                      f"{warn_days} days{': ' + listed if listed else ''}. First to run out: {first['product']} "
+                      f"(stock {first.stock_now:g}, sells about {first.avg_sold_per_day:g} per day, {first.days_left:g} days left).",
+                      table=out)
+
+
 def chart(df, kind, x=None, y=None, agg="sum", where=None):
     if agg not in AGGS:
         raise ToolError(f"agg must be one of {', '.join(AGGS)}.")
@@ -435,13 +490,15 @@ TOOLS: dict[str, tuple[Callable, dict]] = {
     "group_aggregate": (group_aggregate, _schema("group_aggregate",
                         "Compare groups: which city/department/product has the highest or lowest total, average or count. "
                         "Reports highest and lowest. E.g. 'which city has the most revenue' -> by=['city'], column='revenue', agg='sum'; "
-                        "'which department has the most employees' -> by=['department'], agg='count'.",
+                        "'which department has the most employees' -> by=['department'], agg='count'; "
+                        "'produk paling laris' / 'which product sells the fewest units' -> by=['produk'], column='terjual', agg='sum'.",
                         {"by": _COLS, "column": _STR, "agg": _AGG, "where": _WHERE}, ["by", "agg"])),
     "aggregate": (aggregate, _schema("aggregate",
                   "One overall number: total, average, count, min, max, median. "
                   "E.g. 'total revenue' -> agg='sum', column='revenue'; 'how many orders' -> agg='count'; "
                   "'how many employees left' -> agg='count', where=[{column:'left_company', op:'==', value:'Yes'}]; "
-                  "'how many missing values in X' -> agg='count', column='X' (reports filled and missing).",
+                  "'how many missing values in X' -> agg='count', column='X' (reports filled and missing); "
+                  "'total laba bulan Maret 2026' -> agg='sum', column='laba', where=[{column:'tanggal', op:'==', value:'2026-03'}].",
                   {"agg": _AGG, "column": _STR, "where": _WHERE}, ["agg"])),
     "pivot": (pivot, _schema("pivot", "Pivot table: rows = index, columns = columns, cells = agg of values.",
               {"index": _STR, "columns": _STR, "values": _STR, "agg": _AGG, "where": _WHERE}, ["index", "columns", "values"])),
@@ -456,6 +513,18 @@ TOOLS: dict[str, tuple[Callable, dict]] = {
     "forecast": (forecast, _schema("forecast", "Forecast future totals of a value over time.",
                  {"date_column": _STR, "value_column": _STR, "freq": _enum(*FREQS), "periods": _INT, "method": _enum("linear", "moving_average")},
                  ["date_column", "value_column"])),
+    "weekday_pattern": (weekday_pattern, _schema("weekday_pattern",
+                        "Which day of the week is busiest or quietest (hari apa paling ramai / sepi), e.g. to pick a promo day. "
+                        "Averages the daily total for each weekday; reports highest and lowest.",
+                        {"date_column": _STR, "value_column": _STR, "where": _WHERE}, ["date_column", "value_column"])),
+    "restock": (restock, _schema("restock",
+                "Stock planning (kapan harus restock, stok habis): for each product, current stock, average sold per day "
+                "and days until it runs out. Needs a date, product, quantity sold and stock column. "
+                "Use for 'which product runs out first', 'what do I need to restock', 'how much stock is left'.",
+                {"date_column": _STR, "product_column": _STR, "quantity_column": _STR, "stock_column": _STR,
+                 "days": {"type": "integer", "description": "days of recent sales to average (default 28)"},
+                 "warn_days": {"type": "integer", "description": "flag products running out within this many days (default 7)"}},
+                ["date_column", "product_column", "quantity_column", "stock_column"])),
     "chart": (chart, _schema("chart", "Draw a chart. bar: x category (y optional, aggregated). line: x vs y. hist: x numeric. scatter: x,y numeric. box: y numeric, x optional group. heatmap: correlations.",
               {"kind": _enum("bar", "line", "hist", "scatter", "box", "heatmap"), "x": _STR, "y": _STR, "agg": _AGG, "where": _WHERE}, ["kind"])),
 }

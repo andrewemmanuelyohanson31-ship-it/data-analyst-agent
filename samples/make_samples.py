@@ -61,7 +61,42 @@ def employees(n=400) -> pd.DataFrame:
     return df
 
 
+TOKO = [  # (produk, kategori, harga_modal, harga_jual, average units sold per day)
+    ("Beras 5kg", "Sembako", 68_000, 75_000, 6), ("Minyak Goreng 2L", "Sembako", 34_000, 38_000, 9),
+    ("Gula Pasir 1kg", "Sembako", 15_500, 18_000, 7), ("Telur 1kg", "Sembako", 27_000, 30_000, 10),
+    ("Mie Instan Goreng", "Makanan", 2_900, 3_500, 45), ("Roti Tawar", "Makanan", 13_000, 16_000, 6),
+    ("Sarden Kaleng", "Makanan", 9_500, 12_000, 0.4), ("Kopi Sachet", "Minuman", 1_200, 1_500, 40),
+    ("Teh Botol", "Minuman", 3_800, 5_000, 25), ("Air Mineral 600ml", "Minuman", 2_600, 3_500, 35),
+    ("Susu Kental Manis", "Minuman", 10_500, 13_000, 4), ("Kecap Manis", "Bumbu", 9_000, 11_000, 3),
+    ("Garam 250g", "Bumbu", 2_500, 3_500, 2), ("Sabun Mandi", "Kebersihan", 3_500, 4_500, 5),
+    ("Deterjen 800g", "Kebersihan", 19_000, 23_000, 3),
+]
+WEEKDAY_FACTOR = [0.95, 0.85, 0.9, 0.95, 1.05, 1.3, 1.25]  # Mon..Sun: weekends are busier
+# owner stopped reordering these in June -> Telur is sold out by the end, Minyak is running low
+FORGOT_RESTOCK = {"Telur 1kg": pd.Timestamp("2026-06-12"), "Minyak Goreng 2L": pd.Timestamp("2026-06-22")}
+
+
+def toko() -> pd.DataFrame:
+    """Daily stock log of a small Indonesian shop (warung): one row per product per day, Jan-Jun 2026."""
+    r = np.random.default_rng(7)  # own generator, so the other samples (and their eval answers) don't change
+    rows = []
+    for produk, kategori, modal, jual, mean in TOKO:
+        full, reorder = max(int(mean * 14), 10), max(int(mean * 4), 3)
+        stock = full
+        for day in pd.date_range("2026-01-01", "2026-06-30", freq="D"):
+            payday = 1.2 if day.day >= 25 or day.day <= 2 else 1.0
+            sold = min(int(r.poisson(mean * WEEKDAY_FACTOR[day.day_of_week] * payday)), stock)
+            stock -= sold
+            if stock < reorder and day < FORGOT_RESTOCK.get(produk, pd.Timestamp.max):
+                stock = full  # restocked at closing time
+            rows.append({"tanggal": day.date().isoformat(), "produk": produk, "kategori": kategori, "terjual": sold,
+                         "harga_modal": modal, "harga_jual": jual, "pendapatan": sold * jual,
+                         "laba": sold * (jual - modal), "stok_akhir": stock})
+    return pd.DataFrame(rows).sort_values(["tanggal", "produk"]).reset_index(drop=True)
+
+
 if __name__ == "__main__":
     sales().to_csv(OUT / "sales_id.csv", index=False)
     employees().to_csv(OUT / "employees.csv", index=False)
-    print("wrote", OUT / "sales_id.csv", OUT / "employees.csv")
+    toko().to_csv(OUT / "toko_sembako.csv", index=False)
+    print("wrote", OUT / "sales_id.csv", OUT / "employees.csv", OUT / "toko_sembako.csv")

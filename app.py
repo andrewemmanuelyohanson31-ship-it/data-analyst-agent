@@ -73,6 +73,8 @@ if "state" not in ss:
     st.info("Upload a CSV/Excel file or pick a sample dataset in the sidebar to start.")
     st.markdown("Try: *“which city had the highest revenue?”*, *“clean the missing values”*, "
                 "*“show monthly revenue trend”*, *“kota mana dengan penjualan tertinggi?”*")
+    st.markdown("For a shop (sample **toko_sembako.csv**): *“produk apa yang harus segera di-restock?”*, "
+                "*“hari apa penjualan paling sepi?”*, *“produk mana yang paling jarang terjual?”*")
     st.stop()
 
 with st.expander("Preview data", expanded=not ss.turns):

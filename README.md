@@ -11,7 +11,7 @@ small local model through [Ollama](https://ollama.com). No API key, no data leav
 ## Why it works on a small model
 
 Small models (3B parameters) are bad at writing long pandas code, but good at **choosing a tool and filling
-in its arguments**. So the agent gets 16 tested analysis tools and only writes its own code as a last resort:
+in its arguments**. So the agent gets 18 tested analysis tools and only writes its own code as a last resort:
 
 ```
 question ─► model picks a tool + arguments ─► tested pandas code runs ─► result back to model ─► answer
@@ -34,6 +34,7 @@ is replaced by the tool's own verified summary, with a warning. Every answer als
 | Describe | `describe`, `value_counts` |
 | Relationships | `correlation`, `outliers` (IQR / z-score) |
 | Time | `time_trend` (day/week/month/quarter/year, growth %), `forecast` (linear / moving average) |
+| Shop (SME) | `weekday_pattern` — busiest / quietest day of the week (e.g. to pick a promo day); `restock` — days of stock left per product, what to reorder now |
 | Charts | `chart` — bar, line, histogram, scatter, box, heatmap |
 | Anything else | `run_python` — model-written pandas in a separate process with a 10 s limit and an import/file-access blocklist |
 | Share | Export the whole session as one HTML report; download the cleaned CSV |
@@ -89,10 +90,24 @@ On a stronger machine, use a bigger model: `ollama pull qwen2.5:7b` and type it 
 - `sales_id.csv` — 3,025 Indonesian retail orders (7 cities, 4 categories, IDR prices), with **deliberate dirt**:
   46 missing prices, 30 missing ages, 25 duplicate rows, 6 bulk-order outliers.
 - `employees.csv` — 400 employees (department, salary, experience, performance, attrition).
+- `toko_sembako.csv` — 6 months of a small shop's daily stock log, in Indonesian, the way a warung or POS export
+  looks: `tanggal, produk, kategori, terjual, harga_modal, harga_jual, pendapatan, laba, stok_akhir` for 15
+  products. Built in: busier weekends and paydays, one slow seller, and two products the owner forgot to reorder.
+
+### For small shops
+
+Questions shop owners actually ask, answered from a stock log like `toko_sembako.csv`:
+
+| Question | What the agent does |
+|---|---|
+| *Produk apa yang harus segera di-restock?* | `restock`: stock now ÷ average sold per day over the last 28 days → days left; flags anything under 7 days |
+| *Hari apa penjualan paling sepi?* / *best day for a promo?* | `weekday_pattern`: average daily total per weekday, highest and lowest, % vs average |
+| *Produk mana yang paling jarang terjual?* | `group_aggregate` lowest: slow movers |
+| *Berapa laba bulan Maret?* | `aggregate` with a month filter |
 
 ## Evaluation
 
-40 questions with known answers (25 sales, 15 HR, 3 in Indonesian) in `eval/tasks.json`.
+52 questions with known answers (25 sales, 15 HR, 12 shop; 9 in Indonesian) in `eval/tasks.json`.
 Expected answers are pandas expressions, so they're always computed from the actual data. For "which X…"
 questions the name must be right **and** any figure quoted must be X's real value.
 
@@ -102,7 +117,11 @@ python eval/run_eval.py --model qwen2.5:3b
 
 | Model | Size | Correct | Avg steps | Avg time / question | Hardware |
 |---|---|---|---|---|---|
-| qwen2.5:3b | 1.9 GB | **87.5%** (35/40) | 1.05 | 3.3 s | GTX 1650 4 GB, i5-9400F, 16 GB RAM |
+| qwen2.5:3b | 1.9 GB | **84.6%** (44/52) | 1.04 | 5.0 s | GTX 1650 4 GB, i5-9400F, 16 GB RAM |
+
+By set: original sales + HR 34–35/40, shop 9–10/12. Two runs of the same code both scored 44/52, but 4
+questions flipped between them: even at temperature 0, Ollama on a GPU isn't fully deterministic, so treat a
+single run as ±2–4 questions.
 
 **How it got there** — each step came from reading the agent's step traces on the failures:
 
@@ -110,17 +129,19 @@ python eval/run_eval.py --model qwen2.5:3b
 |---|---|---|
 | First run (3 questions) | 33% | No tool for a single overall number; model did maths in its head |
 | + `aggregate` tool, number verification, 8k context | 62.5% | Ollama's default 4k context was silently cutting off the tool list |
-| + tolerate small-model slips | 87.5% | Filters carry over between steps; results state highest **and** lowest, filled **and** missing; `column`/`columns` and list-wrapped names accepted; year filters on date columns |
+| + tolerate small-model slips | 87.5% (of 40) | Filters carry over between steps; results state highest **and** lowest, filled **and** missing; `column`/`columns` and list-wrapped names accepted; year filters on date columns |
+| + 12 shop questions, `weekday_pattern`, `restock` | 75.0% (of 52) | Shop logs have one row per product per day: the model picked `max`/`min` for "most/least sold", and two old questions lost their filter |
+| + prompt: "most/least = sum" (also in Indonesian), "filter every condition in the question"; tool gives Indonesian day names | 84.6% | The model had mistranslated "Tuesday" to *Senin* itself. Tried next: guidance on the shared `agg` parameter → 78.8%, reverted |
 
-Remaining failures: picking an exact date instead of a whole year, quoting the grand total instead of the
-group's value, and one non-answer.
+Remaining failures: "most profit" still sometimes read as the single largest row (`max`), "which month" questions
+grouped by a column that doesn't exist, and small filter slips.
 
 ## Tests
 
 ```bash
 pytest
 ```
-60 tests: every tool (normal + bad input + small-model slips), dataset versions/undo, the agent loop (with a
+64 tests: every tool (normal + bad input + small-model slips), dataset versions/undo, the agent loop (with a
 scripted fake model: self-correction, number verification, filter carry-over, step cap), the code sandbox
 (blocked imports/file access, timeout), the report, the eval answer checker, and the Streamlit app driven headlessly.
 

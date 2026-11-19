@@ -148,3 +148,50 @@ def test_pivot_value_counts_describe_sort(df):
     assert run_tool("value_counts", df, {"column": "city"}).table.iloc[0]["count"] == 3
     assert len(run_tool("describe", df, {"columns": ["qty"]}).table) == 1
     assert run_tool("sort_top_n", df, {"column": "qty", "n": 2}).table["qty"].tolist() == [6, 4]
+
+
+@pytest.fixture
+def shop():
+    # 2 weeks of a tiny shop log; Saturday 2026-06-06 and 2026-06-13 are busy, B never sells, C sold out
+    days = pd.date_range("2026-06-01", "2026-06-14", freq="D")
+    rows = []
+    for i, d in enumerate(days):
+        sold_a = 10 if d.day_name() == "Saturday" else 2
+        rows += [{"tanggal": d.date().isoformat(), "produk": "A", "terjual": sold_a, "stok": 100 - i},
+                 {"tanggal": d.date().isoformat(), "produk": "B", "terjual": 0, "stok": 5},
+                 {"tanggal": d.date().isoformat(), "produk": "C", "terjual": 1, "stok": max(3 - i, 0)}]
+    return pd.DataFrame(rows)
+
+
+def test_weekday_pattern_averages_daily_totals(shop):
+    r = run_tool("weekday_pattern", shop, {"date_column": "tanggal", "value_column": "terjual"})
+    t = r.table.set_index("weekday")
+    assert t.loc["Saturday (Sabtu)", "avg_daily_sum_terjual"] == 11  # A 10 + C 1, per day, not per row
+    assert t.loc["Saturday (Sabtu)", "days"] == 2
+    assert "Highest: Saturday (Sabtu) = 11.00" in r.text and "Lowest:" in r.text
+
+
+def test_weekday_pattern_needs_dates(shop):
+    with pytest.raises(ToolError, match="does not contain dates"):
+        run_tool("weekday_pattern", shop, {"date_column": "produk", "value_column": "terjual"})
+
+
+def test_restock_days_left_and_status(shop):
+    r = run_tool("restock", shop, {"date_column": "tanggal", "product_column": "produk",
+                                   "quantity_column": "terjual", "stock_column": "stok", "days": 7})
+    t = r.table.set_index("product")
+    assert t.loc["A", "stock_now"] == 87  # latest date's stock
+    assert t.loc["A", "avg_sold_per_day"] == round((10 + 2 * 6) / 7, 2)
+    assert t.loc["C", "status"] == "out of stock" and t.loc["C", "days_left"] == 0
+    assert t.loc["B", "status"] == "ok" and np.isinf(t.loc["B", "days_left"])  # never sells -> never runs out
+    assert r.table.iloc[0]["product"] == "C"
+    assert "First to run out: C" in r.text
+
+
+def test_restock_handles_unsorted_rows_and_bad_column(shop):
+    r = run_tool("restock", shop.sample(frac=1, random_state=0),
+                 {"date_column": "tanggal", "product_column": "produk", "quantity_column": "terjual", "stock_column": "stok"})
+    assert r.table.set_index("product").loc["A", "stock_now"] == 87
+    with pytest.raises(ToolError, match="not numeric"):
+        run_tool("restock", shop, {"date_column": "tanggal", "product_column": "produk",
+                                   "quantity_column": "produk", "stock_column": "stok"})
