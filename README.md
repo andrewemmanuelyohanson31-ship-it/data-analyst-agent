@@ -23,7 +23,8 @@ question ─► model picks a tool + arguments ─► tested pandas code runs �
 which day", restock and "how much stock is left" are answered by a deterministic question parser
 (`agent/router.py`): it matches the question against the data's own column names and values plus English and
 Indonesian synonyms (*paling laris*, *pendapatan*, *bulan Maret 2026*…), runs the tested tool and writes the
-answer from a template. Answered in ~0.04 s, nothing for the model to misread. It is strict on purpose: if
+answer from a template. Answered in ~0.01 s (the first question on a new file also spends 0.2–0.6 s working
+out its columns), nothing for the model to misread. It is strict on purpose: if
 **any** word in the question is not understood (*"…employees who **left** the company"*), it hands the question
 to the model unchanged. Steps panel: *"answered by the question parser"*.
 
@@ -91,7 +92,7 @@ role: date, product, quantity, price, revenue, stock, …) from the name **and**
    called; *Online / Takeaway* values make a column the sales channel even if it's named "Location"; stock reports
    resolve *Masuk / Keluar*. A guess must fit the values, and each role goes to one column.
 
-The quick-action buttons and the model use these roles, so a POS export with `Qty Keluar` and `Total Penjualan
+The question parser, the quick-action buttons and the model all use these roles, so a POS export with `Qty Keluar` and `Total Penjualan
 (Rp)` gets the same buttons as the samples.
 
 Scored with `python eval/score_roles.py` against a hand-written key (`eval/column_roles.json`):
@@ -190,8 +191,8 @@ Questions shop owners actually ask, answered from a stock log like `toko_sembako
 
 ## Evaluation
 
-84 questions with known answers (sales, HR and shop data; English and Indonesian) in `eval/tasks.json`.
-66 are marked **core**: the frequent kinds of question (totals, counts, averages, top/bottom group, filtered by a
+96 questions with known answers (sales, HR and shop data plus 12 on the messy files; English and Indonesian) in
+`eval/tasks.json`. 78 are marked **core**: the frequent kinds of question (totals, counts, averages, top/bottom group, filtered by a
 named city/product/month, which month/day, restock, stock left). Expected answers are pandas expressions, so
 they're always computed from the actual data. For "which X…" questions the name must be right **and** any figure
 quoted must be X's real value.
@@ -202,7 +203,7 @@ python eval/run_eval.py --model qwen2.5:3b
 
 | Model | Size | Core (frequent) | Other | All | Avg time / question | Hardware |
 |---|---|---|---|---|---|---|
-| qwen2.5:3b | 1.9 GB | **100%** (66/66) | 16–17/18 | **97.6–98.8%** (82–83/84) | 0.7–1.2 s | GTX 1650 4 GB, i5-9400F, 16 GB RAM |
+| qwen2.5:3b | 1.9 GB | **100%** (78/78) | 16–17/18 | **97.9%** (94/96) | 1.2 s | GTX 1650 4 GB, i5-9400F, 16 GB RAM |
 
 Core answers come from the parser, so they're deterministic: identical in every run (the "other" questions go to the
 model and can vary by a question between runs).
@@ -228,6 +229,7 @@ coverage grows.
 | + 17 held-out phrasings | core 72.5% (37/51) | Held-out core 10/17: the prompt fixes had been fitted to the eval questions |
 | + argument repair from the question (filters, `max`→`sum`) | core 76.5% | The model's errors were too varied: wrong tool, `2025` as `2025-01-01`, invented names, misread tables. It also broke a percentage question; removed |
 | + **question parser** for frequent questions, `group_aggregate` by `month`/`bulan`/`year` | core **100%**, all 98.8% (of 84) | Model no longer involved in core answers |
+| + parser finds columns by **role** (names + values) instead of by name; 12 questions on the messy files | core 100% (78/78), all 97.9% (of 96) | On the messy files the old parser answered 1 of 12 questions; with roles 11/12, then 12/12 after adding *busiest / quietest* |
 
 Remaining failure: *"Which department has the most employees who left the company?"*: the parser hands it over
 ("left" changes the meaning) and the 3B model can't combine the yes/no filter with the count.
@@ -237,7 +239,7 @@ Remaining failure: *"Which department has the most employees who left the compan
 ```bash
 pytest
 ```
-125 tests: every tool (normal + bad input + small-model slips), the question parser (right answers, and 15 kinds
+126 tests: every tool (normal + bad input + small-model slips), the question parser (right answers, and 15 kinds
 of question it must hand to the model), dataset versions/undo, the agent loop (with a
 scripted fake model: self-correction, number verification, filter carry-over, step cap), the code sandbox
 (blocked imports/file access, timeout), the report, the eval answer checker, and the Streamlit app driven headlessly.

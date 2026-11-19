@@ -14,7 +14,8 @@ from typing import Callable
 import pandas as pd
 
 from agent.question import MONTHS, date_column, mentioned_period, mentioned_values
-from agent.tools import _date_like, run_tool
+from agent.roles import detect_roles
+from agent.tools import run_tool
 
 # ---- vocabulary (English + Indonesian) ----
 
@@ -26,10 +27,10 @@ got placed came come comes pay pays paid s
 apa yang mana berapa siapa di dari ke pada dengan untuk ini itu saja ada adalah kah punya kita saya kami toko harian
 memberi memberikan menghasilkan dapat sebesar seluruh semua keseluruhan nilai sekarang saat dalam
 """.split())
-TOP = {"most", "highest", "biggest", "largest", "best", "top", "tertinggi", "terbesar", "terbanyak", "terlaris",
-       "teratas", "ramai", "teramai"}
-BOTTOM = {"least", "lowest", "fewest", "smallest", "worst", "terendah", "terkecil", "tersedikit", "sepi", "jarang",
-          "tersepi"}
+TOP = {"most", "highest", "biggest", "largest", "best", "top", "busiest", "tertinggi", "terbesar", "terbanyak",
+       "terlaris", "teratas", "ramai", "teramai"}
+BOTTOM = {"least", "lowest", "fewest", "smallest", "worst", "quietest", "slowest", "terendah", "terkecil",
+          "tersedikit", "sepi", "jarang", "tersepi"}
 PALING = {"tinggi": "top", "besar": "top", "banyak": "top", "laris": "top", "ramai": "top", "laku": "top",
           "sering": "top", "rendah": "bottom", "kecil": "bottom", "sedikit": "bottom", "sepi": "bottom",
           "jarang": "bottom"}
@@ -37,25 +38,33 @@ AVG = {"average", "avg", "mean", "rata", "rata-rata", "rerata"}
 COUNT_NOUNS = {"orders", "order", "pesanan", "transaksi", "transactions", "transaction", "rows", "baris", "employees",
                "employee", "karyawan", "pegawai", "staff", "customers", "pelanggan", "records"}
 COUNT_WORDS = {"jumlah", "banyak", "used", "often", "frequently", "common", "popular", "sering", "digunakan", "dipakai"}
-MEASURES = {  # concept: (words in questions, regex for column names)
-    "revenue": ({"revenue", "pendapatan", "penjualan", "omzet", "omset", "sales", "income", "pemasukan"},
-                r"revenue|pendapatan|omzet|omset|^sales$|penjualan"),
-    "quantity": ({"units", "unit", "sold", "sell", "sells", "selling", "terjual", "quantity", "qty", "laku", "laris"},
-                 r"quantity|qty|terjual|units|sold"),
-    "profit": ({"profit", "laba", "untung", "keuntungan"}, r"profit|laba|untung"),
-    "salary": ({"salary", "gaji", "upah"}, r"salary|gaji|upah"),
-    "age": ({"age", "umur", "usia"}, r"age|umur|usia"),
+# Question words -> column role. Which column has that role comes from agent/roles.py (names + values), so the
+# parser works on any export, not just files whose columns happen to be called "revenue" or "produk".
+MEASURES = {
+    "revenue": {"revenue", "pendapatan", "penjualan", "omzet", "omset", "sales", "income", "pemasukan"},
+    "quantity": {"units", "unit", "sold", "sell", "sells", "selling", "terjual", "quantity", "qty", "laku", "laris"},
+    "profit": {"profit", "laba", "untung", "keuntungan"},
+    "cost": {"cost", "costs", "modal", "hpp"},
+    "discount": {"discount", "discounts", "diskon", "potongan"},
+    "shipping": {"shipping", "ongkir"},
+    "salary": {"salary", "gaji", "upah"},
+    "age": {"age", "umur", "usia"},
 }
 # question words that are verbs/adjectives: show them as a noun in the answer
 DISPLAY = {w: {"en": "units sold", "id": "terjual"} for w in ("laris", "laku", "sold", "sell", "sells", "selling", "unit", "units")}
-GROUPS = {  # concept: (words, regex for column names)
-    "city": ({"city", "cities", "kota"}, r"city|kota"),
-    "product": ({"product", "products", "produk", "item", "items", "barang"}, r"product|produk|item|barang"),
-    "category": ({"category", "categories", "kategori"}, r"category|kategori"),
-    "department": ({"department", "departments", "departemen", "divisi"}, r"department|departemen|divisi"),
-    "payment": ({"payment", "pembayaran", "metode", "method"}, r"payment|pembayaran"),
-    "channel": ({"channel", "channels", "saluran"}, r"channel|saluran"),
+GROUPS = {
+    "city": {"city", "cities", "kota"},
+    "product": {"product", "products", "produk", "item", "items", "barang", "menu"},
+    "category": {"category", "categories", "kategori"},
+    "department": {"department", "departments", "departemen", "divisi"},
+    "payment": {"payment", "pembayaran", "metode", "method"},
+    "channel": {"channel", "channels", "saluran"},
+    "store": {"store", "stores", "outlet", "outlets", "cabang", "branch", "branches", "gerai"},
+    "customer": {"customer", "customers", "pelanggan", "pembeli", "buyer", "buyers"},
+    "supplier": {"supplier", "suppliers", "pemasok", "vendor", "vendors"},
+    "cashier": {"cashier", "cashiers", "kasir"},
 }
+HOW_MANY = re.compile(r"\bhow many\b|\bberapa (banyak|jumlah|kali)\b", re.I)
 MONTH_GROUP = re.compile(r"\b(which|what) month\b|\bbulan (apa|mana)\b", re.I)
 DAY_GROUP = re.compile(r"\b(which|what) day\b|\bday of (the )?week\b|\bweekday\b|\bhari (apa|mana)\b", re.I)
 RESTOCK = re.compile(r"restock|re-stock|reorder|run(s|ning)? out|kehabisan|\bhabis\b", re.I)
@@ -97,12 +106,6 @@ def indonesian(q: str) -> bool:
         not (w & {"what", "which", "how"})
 
 
-def _pick(df, regex, numeric):
-    cols = [c for c in df.columns if re.search(regex, str(c), re.I)
-            and (pd.api.types.is_numeric_dtype(df[c]) == numeric) and not _date_like(df[c])]
-    return cols[0] if len(cols) == 1 else None  # none or ambiguous (harga_modal vs harga_jual): let the model decide
-
-
 def _fmt(v) -> str:
     v = float(v)
     return f"{v:,.0f}" if v.is_integer() else f"{v:,.2f}"
@@ -128,11 +131,12 @@ def plan(question: str, df: pd.DataFrame) -> Plan | None:
     used = set(FILLER)
     idn = indonesian(question)
 
+    col_of = {role: c for c, role in detect_roles(df).items() if role}
     values = mentioned_values(question, df)
     for v in values.values():
         used |= set(_words(v))
     period = mentioned_period(question)
-    dc = date_column(df)
+    dc = col_of.get("date") or date_column(df)
     if period:
         if dc is None:
             return None
@@ -148,11 +152,9 @@ def plan(question: str, df: pd.DataFrame) -> Plan | None:
             used |= {"paling", words[i + 1]}
 
     measure, measure_word = None, None
-    for vocab, regex in MEASURES.values():
-        if ws & vocab:
-            measure = _pick(df, regex, numeric=True)
-            if measure is None:
-                return None
+    for role, vocab in MEASURES.items():
+        if ws & vocab and col_of.get(role):
+            measure = col_of[role]
             word = sorted(ws & vocab)[0]  # say it the way the question did: "profit", not the column "laba"
             measure_word = DISPLAY.get(word, {}).get("id" if idn else "en", word) if word in DISPLAY else word
             used |= (ws & vocab) | _name_words(measure)
@@ -167,10 +169,13 @@ def plan(question: str, df: pd.DataFrame) -> Plan | None:
                 break
     avg = bool(ws & AVG)
     used |= ws & AVG
+    # "how many orders had a discount" counts rows that have it, it isn't the sum of the discount column;
+    # "how many units were sold" is fine: a quantity is already a count
+    if measure is not None and HOW_MANY.search(question) and measure != col_of.get("quantity"):
+        return None
 
-    stock_cols = [c for c in df.columns if re.search(r"stok|stock", str(c), re.I) and pd.api.types.is_numeric_dtype(df[c])]
-    if (RESTOCK.search(question) or ws & STOCK) and stock_cols:
-        return _stock_plan(question, df, ws, used | STOCK_WORDS, stock_cols[0], values, idn)
+    if (RESTOCK.search(question) or ws & STOCK) and col_of.get("stock"):
+        return _stock_plan(question, ws, used | STOCK_WORDS, col_of, values, idn)
 
     group, group_word = None, None
     if MONTH_GROUP.search(question):
@@ -181,12 +186,10 @@ def plan(question: str, df: pd.DataFrame) -> Plan | None:
         used |= {"day", "week", "weekday", "hari", "of"}
     else:
         found = []  # (position, column, word)
-        for vocab, regex in GROUPS.values():
+        for role, vocab in GROUPS.items():
             hits = [(i, w) for i, w in enumerate(words) if w in vocab]
-            if hits:
-                c = _pick(df, regex, numeric=False)
-                if c is None:
-                    return None
+            if hits and col_of.get(role):  # no such column here: the word may still be a value ("Store" orders)
+                c = col_of[role]
                 found.append((hits[0][0], c, hits[0][1]))
                 used |= {w for _, w in hits} | _name_words(c)
         found.sort()
@@ -199,7 +202,7 @@ def plan(question: str, df: pd.DataFrame) -> Plan | None:
     counting = bool(ws & (COUNT_NOUNS | COUNT_WORDS))
     used |= ws & (COUNT_NOUNS | COUNT_WORDS)
     if CHART.search(question):
-        return _chart_plan(question, df, ws, used | CHART_WORDS, group, group_word, measure, measure_word, avg,
+        return _chart_plan(question, col_of, ws, used | CHART_WORDS, group, group_word, measure, measure_word, avg,
                            values, period, dc, idn)
 
     if group in values:
@@ -216,7 +219,7 @@ def plan(question: str, df: pd.DataFrame) -> Plan | None:
     where = filters or None
 
     if group == "weekday":
-        m = measure or _pick(df, MEASURES["revenue"][1], numeric=True)
+        m = measure or col_of.get("revenue")
         if dc is None or m is None or direction is None:
             return None
         return Plan("weekday_pattern", {"date_column": dc, "value_column": m, "where": where},
@@ -246,12 +249,12 @@ def plan(question: str, df: pd.DataFrame) -> Plan | None:
     return None
 
 
-def _chart_plan(question, df, ws, used, group, group_word, measure, measure_word, avg, values, period, dc, idn):
+def _chart_plan(question, col_of, ws, used, group, group_word, measure, measure_word, avg, values, period, dc, idn):
     """'monthly revenue trend' -> line chart by month; 'revenue by city chart' -> bar chart by city."""
     if [w for w in ws - used if not w.isdigit()] or group in values:
         return None
     if measure is None:  # "show the sales trend" / "grafik penjualan": default to the revenue column
-        measure = _pick(df, MEASURES["revenue"][1], numeric=True)
+        measure = col_of.get("revenue")
         measure_word = "pendapatan" if idn else "revenue"
     if measure is None:
         return None
@@ -336,10 +339,8 @@ def _scalar_answer(r, agg, measure_word, idn, filters, noun):
     return f"{label} {measure_word}{w}: **{value}** ({rows} {'baris' if idn else 'rows'})."
 
 
-def _stock_plan(question, df, ws, used, stock_col, values, idn):
-    dc = date_column(df)
-    product = _pick(df, GROUPS["product"][1], numeric=False)
-    qty = _pick(df, MEASURES["quantity"][1], numeric=True)
+def _stock_plan(question, ws, used, col_of, values, idn):
+    dc, product, qty, stock_col = (col_of.get(r) for r in ("date", "product", "quantity", "stock"))
     if dc is None or product is None or qty is None:
         return None
     if [w for w in ws - used if not w.isdigit()]:

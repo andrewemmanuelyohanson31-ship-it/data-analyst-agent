@@ -20,6 +20,14 @@ sys.path.insert(0, str(ROOT))
 from agent.numbers import close, numbers_in  # noqa: E402  (needs ROOT on sys.path)
 
 
+def load_dataset(name: str) -> pd.DataFrame:
+    """Load a sample exactly as the app does (tidying included), from samples/ or samples/messy/."""
+    from agent.tools import load_file
+
+    path = next(p for p in (ROOT / "samples" / name, ROOT / "samples" / "messy" / name) if p.exists())
+    return load_file(name, path.read_bytes())
+
+
 def is_correct(answer: str, expected) -> bool:
     options = expected if isinstance(expected, list) else [expected]
     for exp in options:
@@ -48,7 +56,7 @@ def main():
     rows = []
     for i, t in enumerate(tasks, 1):
         if t["dataset"] not in data:
-            data[t["dataset"]] = pd.read_csv(ROOT / "samples" / t["dataset"])
+            data[t["dataset"]] = load_dataset(t["dataset"])
         df = data[t["dataset"]]
         expected = eval(t["expected"], {"df": df, "pd": pd, "np": np})  # trusted: expressions from our own tasks.json
         t0 = time.perf_counter()

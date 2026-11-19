@@ -6,7 +6,7 @@ import pandas as pd
 import pytest
 
 from agent.numbers import numbers_in
-from eval.run_eval import is_correct
+from eval.run_eval import is_correct, load_dataset
 
 ROOT = Path(__file__).resolve().parent.parent
 
@@ -56,6 +56,30 @@ def test_every_task_expression_evaluates():
     """Guards against typos in tasks.json: each expected expression must run on its dataset."""
     tasks = json.loads((ROOT / "eval" / "tasks.json").read_text(encoding="utf-8"))
     assert len(tasks) >= 40
+    data = {}
     for t in tasks:
-        df = pd.read_csv(ROOT / "samples" / t["dataset"])
+        df = data.setdefault(t["dataset"], load_dataset(t["dataset"]))  # as the app loads it, messy files too
         eval(t["expected"], {"df": df, "pd": pd, "np": np})
+
+
+def test_parser_answers_every_core_question_correctly():
+    """The frequent questions don't touch the model, so this is deterministic: the parser answers them, and right."""
+    from agent.router import answer
+
+    tasks = [t for t in json.loads((ROOT / "eval" / "tasks.json").read_text(encoding="utf-8")) if t.get("core")]
+    data, wrong, unanswered = {}, [], []
+    for t in tasks:
+        df = data.setdefault(t["dataset"], load_dataset(t["dataset"]))
+        env = {"df": df, "pd": pd, "np": np}
+        got = answer(t["question"], df)
+        if got is None:
+            unanswered.append(t["question"])
+            continue
+        ok = is_correct(got[0], eval(t["expected"], env))
+        if ok and t.get("value") and numbers_in(got[0]):
+            ok = is_correct(got[0], eval(t["value"], env))
+        if not ok:
+            wrong.append((t["question"], got[0]))
+    assert wrong == []
+    # "how many employees LEFT the company" is deliberately handed to the model ("left" changes the meaning)
+    assert unanswered == ["How many employees left the company?"]

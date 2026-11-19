@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import itertools
 import re
+import weakref
 
 import pandas as pd
 
@@ -155,7 +156,22 @@ def _channel_like(s: pd.Series) -> bool:
     return len(v) > 0 and v.isin(CHANNEL_WORDS).mean() >= 0.8
 
 
+_CACHE: dict[int, tuple] = {}  # id(df) -> (weak reference, roles); tools never change a DataFrame in place
+
+
 def detect_roles(df: pd.DataFrame) -> dict:
+    """Roles for every column; computed once per DataFrame (each cleaned version is a new object)."""
+    hit = _CACHE.get(id(df))
+    if hit and hit[0]() is df:
+        return dict(hit[1])
+    roles = _detect(df)
+    if len(_CACHE) > 64:
+        _CACHE.clear()
+    _CACHE[id(df)] = (weakref.ref(df), roles)
+    return dict(roles)
+
+
+def _detect(df: pd.DataFrame) -> dict:
     kinds = {c: _kind(df[c]) for c in df.columns}
     claims: dict = {}  # column -> (role, strength, rank)
 
