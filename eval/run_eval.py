@@ -46,6 +46,7 @@ def main():
     p = argparse.ArgumentParser()
     p.add_argument("--model", default="qwen2.5:3b")
     p.add_argument("--limit", type=int, default=0, help="run only the first N tasks")
+    p.add_argument("--no-parser", action="store_true", help="send every question to the model (measures the model alone)")
     args = p.parse_args()
 
     tasks = json.loads((ROOT / "eval" / "tasks.json").read_text(encoding="utf-8"))
@@ -61,7 +62,7 @@ def main():
         expected = eval(t["expected"], {"df": df, "pd": pd, "np": np})  # trusted: expressions from our own tasks.json
         t0 = time.perf_counter()
         try:
-            ans = run_agent(t["question"], DatasetState(df.copy(), t["dataset"]), model)
+            ans = run_agent(t["question"], DatasetState(df.copy(), t["dataset"]), model, use_parser=not args.no_parser)
             text, steps = ans.text, len(ans.steps)
         except Exception as e:
             text, steps = f"CRASH: {e}", 0
@@ -75,13 +76,13 @@ def main():
 
     res = pd.DataFrame(rows)
     subset = lambda m: f"{int(res.ok[m].sum())}/{int(m.sum())}"  # noqa: E731
-    summary = {"model": args.model, "tasks": len(res), "success_pct": round(res.ok.mean() * 100, 1),
+    summary = {"model": args.model, "parser": not args.no_parser, "tasks": len(res), "success_pct": round(res.ok.mean() * 100, 1),
                "core": subset(res.core), "core_heldout": subset(res.heldout), "other": subset(~res.core),
                "avg_steps": round(res.steps.mean(), 2), "avg_seconds": round(res.seconds.mean(), 1)}
     print("\n" + json.dumps(summary, indent=2))
     out = ROOT / "eval" / "results"
     out.mkdir(exist_ok=True)
-    (out / f"{args.model.replace(':', '_')}.json").write_text(json.dumps({"summary": summary, "rows": rows}, indent=2), encoding="utf-8")
+    (out / f"{args.model.replace(':', '_')}{'_no_parser' if args.no_parser else ''}.json").write_text(json.dumps({"summary": summary, "rows": rows}, indent=2), encoding="utf-8")
 
 
 if __name__ == "__main__":

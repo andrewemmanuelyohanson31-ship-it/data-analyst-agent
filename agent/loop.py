@@ -122,9 +122,9 @@ def _for_model(result: ToolResult) -> str:
 
 
 def run_agent(question: str, state: DatasetState, model: ChatModel, history: list[dict] | None = None,
-              max_steps: int = 6) -> AgentAnswer:
+              max_steps: int = 6, use_parser: bool = True) -> AgentAnswer:
     t0 = time.perf_counter()
-    if (routed := route(question, state.current)) is not None:  # frequent question types: no model needed
+    if use_parser and (routed := route(question, state.current)) is not None:  # frequent question types: no model needed
         text, tool, args, result = routed
         step = Step(tool, args, result, seconds=time.perf_counter() - t0,
                     fixes=["answered by the question parser (agent/router.py), no model call"])
