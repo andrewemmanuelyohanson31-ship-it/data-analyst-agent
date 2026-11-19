@@ -61,11 +61,14 @@ def main():
         ok = is_correct(text, expected)
         if ok and t.get("value") and numbers_in(text):  # "which X" answers: a quoted figure must also be X's real value
             ok = is_correct(text, eval(t["value"], {"df": df, "pd": pd, "np": np}))
-        rows.append({"question": t["question"], "expected": str(expected), "answer": text, "ok": ok, "steps": steps, "seconds": round(secs, 1)})
+        rows.append({"question": t["question"], "expected": str(expected), "answer": text, "ok": ok, "steps": steps,
+                     "seconds": round(secs, 1), "core": t.get("core", False), "heldout": t.get("heldout", False)})
         print(f"[{i}/{len(tasks)}] {'PASS' if ok else 'FAIL'} {secs:5.1f}s  {t['question']}\n      -> {text[:140]}")
 
     res = pd.DataFrame(rows)
+    subset = lambda m: f"{int(res.ok[m].sum())}/{int(m.sum())}"  # noqa: E731
     summary = {"model": args.model, "tasks": len(res), "success_pct": round(res.ok.mean() * 100, 1),
+               "core": subset(res.core), "core_heldout": subset(res.heldout), "other": subset(~res.core),
                "avg_steps": round(res.steps.mean(), 2), "avg_seconds": round(res.seconds.mean(), 1)}
     print("\n" + json.dumps(summary, indent=2))
     out = ROOT / "eval" / "results"

@@ -36,6 +36,8 @@ def show_answer(ans: AgentAnswer):
             for i, s in enumerate(ans.steps, 1):
                 st.markdown(f"**{i}. `{s.tool}`** · {s.seconds:.2f}s")
                 st.json(s.args, expanded=False)
+                for fix in s.fixes:
+                    st.caption(f"🔧 {fix}")
                 st.caption(f"Error: {s.error}" if s.error else s.result.text)
 
 

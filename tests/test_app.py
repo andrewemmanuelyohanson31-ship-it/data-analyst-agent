@@ -24,4 +24,4 @@ def test_sample_question_flow(monkeypatch):
     assert not at.exception and "3,025 rows" in at.sidebar.caption[0].value
     at.chat_input[0].set_value("which city has the highest revenue?").run()
     assert not at.exception
-    assert any("Jakarta has the highest revenue." in m.value for m in at.markdown)
+    assert any("**Jakarta**" in m.value for m in at.markdown)  # answered by the question parser

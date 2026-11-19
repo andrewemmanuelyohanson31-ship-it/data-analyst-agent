@@ -220,12 +220,31 @@ def sort_top_n(df, column, n=10, ascending=False, where=None):
 AGGS = ("sum", "mean", "count", "min", "max", "median")
 
 
+VIRTUAL = {"month": "M", "bulan": "M", "year": "Y", "tahun": "Y", "quarter": "Q", "kuartal": "Q",
+           "weekday": "D", "day_of_week": "D", "hari": "D"}
+
+
+def _with_virtual(d, by):
+    """Group by 'month'/'bulan'/'year'/... even when the data only has a date column: derive it."""
+    names = [by] if isinstance(by, str) else list(by)
+    lookup = {str(c).strip().lower() for c in d.columns}
+    missing = [n for n in names if str(n).strip().lower() not in lookup and str(n).strip().lower() in VIRTUAL]
+    date_col = next((c for c in d.columns if _date_like(d[c])), None)
+    if not missing or date_col is None:
+        return d
+    dates = pd.to_datetime(d[date_col], errors="coerce")
+    derived = {"M": dates.dt.strftime("%Y-%m"), "Y": dates.dt.strftime("%Y"),
+               "Q": dates.dt.year.astype("Int64").astype(str) + "-Q" + dates.dt.quarter.astype("Int64").astype(str),
+               "D": dates.dt.day_name().map(lambda x: f"{x} ({HARI[x]})" if x in HARI else x)}
+    return d.assign(**{n: derived[VIRTUAL[str(n).strip().lower()]] for n in missing})
+
+
 def group_aggregate(df, by=None, column=None, agg="sum", where=None):
     if not by:  # small models call this for one overall number
         return aggregate(df, agg, column, where)
     if agg not in AGGS:
         raise ToolError(f"agg must be one of {', '.join(AGGS)}.")
-    d = apply_where(df, where)
+    d = _with_virtual(apply_where(df, where), by)
     keys = _cols(d, by)
     if agg == "count" and column is None:
         out = d.groupby(keys).size().rename("count")

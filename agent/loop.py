@@ -11,6 +11,7 @@ from typing import Protocol
 import pandas as pd
 
 from agent.numbers import ungrounded_numbers
+from agent.router import answer as route
 from agent.state import DatasetState
 from agent.tools import TOOLS, ToolError, ToolResult, run_tool, tool_schemas
 
@@ -66,6 +67,7 @@ class Step:
     result: ToolResult | None = None
     error: str | None = None
     seconds: float = 0.0
+    fixes: list[str] = field(default_factory=list)  # notes shown in the Steps panel, e.g. answered by the question parser
 
 
 @dataclass
@@ -109,6 +111,12 @@ def _for_model(result: ToolResult) -> str:
 
 def run_agent(question: str, state: DatasetState, model: ChatModel, history: list[dict] | None = None,
               max_steps: int = 6) -> AgentAnswer:
+    t0 = time.perf_counter()
+    if (routed := route(question, state.current)) is not None:  # frequent question types: no model needed
+        text, tool, args, result = routed
+        step = Step(tool, args, result, seconds=time.perf_counter() - t0,
+                    fixes=["answered by the question parser (agent/router.py), no model call"])
+        return AgentAnswer(text, [step])
     messages = [{"role": "system", "content": SYSTEM.format(schema=schema_summary(state.current))},
                 *(history or []), {"role": "user", "content": question}]
     steps: list[Step] = []

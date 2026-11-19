@@ -1,7 +1,16 @@
 import pandas as pd
+import pytest
 
+import agent.loop
 from agent.loop import AgentAnswer, run_agent, schema_summary
 from agent.state import DatasetState
+
+
+@pytest.fixture(autouse=True)
+def no_router(request, monkeypatch):
+    """These tests drive the model loop; the question parser would answer their simple questions first."""
+    if "router" not in request.node.name:
+        monkeypatch.setattr(agent.loop, "route", lambda question, df: None)
 
 
 class FakeModel:
@@ -94,3 +103,16 @@ def test_filter_carries_over_to_next_tool():
 def test_schema_summary_lists_columns():
     s = schema_summary(state().current)
     assert "city" in s and "1 missing" in s
+
+
+def test_router_answers_frequent_question_without_model():
+    model = FakeModel()  # no scripted replies: calling the model would fail the test
+    ans = run_agent("Which city has the highest total revenue?", state(), model)
+    assert "**Jakarta**" in ans.text and model.seen == []
+    assert ans.steps[0].tool == "group_aggregate" and "question parser" in ans.steps[0].fixes[0]
+
+
+def test_router_falls_back_to_model_when_unsure():
+    model = FakeModel(call("profile"), say("The data has 3 rows."))
+    ans = run_agent("Give me an overview of this data", state(), model)
+    assert len(model.seen) == 2 and ans.steps[0].tool == "profile"

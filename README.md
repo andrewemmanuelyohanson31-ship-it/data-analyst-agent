@@ -19,6 +19,21 @@ question ─► model picks a tool + arguments ─► tested pandas code runs �
                      └──── error message (self-correct) ◄┘     (max 6 steps)
 ```
 
+**Frequent questions skip the model.** Totals, counts, averages, "which X has the most/least Y", "which month /
+which day", restock and "how much stock is left" are answered by a deterministic question parser
+(`agent/router.py`): it matches the question against the data's own column names and values plus English and
+Indonesian synonyms (*paling laris*, *pendapatan*, *bulan Maret 2026*…), runs the tested tool and writes the
+answer from a template. Answered in ~0.04 s, nothing for the model to misread. It is strict on purpose: if
+**any** word in the question is not understood (*"…employees who **left** the company"*), it hands the question
+to the model unchanged. Steps panel: *"answered by the question parser"*.
+
+```
+question ─► parser understands every word? ── yes ─► tested tool ─► template answer
+                         │ no
+                         ▼
+                   the model loop below
+```
+
 **No made-up numbers:** every number in the model's answer is checked against what the tools actually
 returned (English and Indonesian number formats, "juta"/"miliar"/"billion"). If one doesn't match, the answer
 is replaced by the tool's own verified summary, with a warning. Every answer also shows the table/chart it came from.
@@ -107,21 +122,31 @@ Questions shop owners actually ask, answered from a stock log like `toko_sembako
 
 ## Evaluation
 
-52 questions with known answers (25 sales, 15 HR, 12 shop; 9 in Indonesian) in `eval/tasks.json`.
-Expected answers are pandas expressions, so they're always computed from the actual data. For "which X…"
-questions the name must be right **and** any figure quoted must be X's real value.
+84 questions with known answers (sales, HR and shop data; English and Indonesian) in `eval/tasks.json`.
+66 are marked **core**: the frequent kinds of question (totals, counts, averages, top/bottom group, filtered by a
+named city/product/month, which month/day, restock, stock left). Expected answers are pandas expressions, so
+they're always computed from the actual data. For "which X…" questions the name must be right **and** any figure
+quoted must be X's real value.
 
 ```bash
 python eval/run_eval.py --model qwen2.5:3b
 ```
 
-| Model | Size | Correct | Avg steps | Avg time / question | Hardware |
-|---|---|---|---|---|---|
-| qwen2.5:3b | 1.9 GB | **84.6%** (44/52) | 1.04 | 5.0 s | GTX 1650 4 GB, i5-9400F, 16 GB RAM |
+| Model | Size | Core (frequent) | Other | All | Avg time / question | Hardware |
+|---|---|---|---|---|---|---|
+| qwen2.5:3b | 1.9 GB | **100%** (66/66) | 17/18 | **98.8%** (83/84) | 0.7 s | GTX 1650 4 GB, i5-9400F, 16 GB RAM |
 
-By set: original sales + HR 34–35/40, shop 9–10/12. Two runs of the same code both scored 44/52, but 4
-questions flipped between them: even at temperature 0, Ollama on a GPU isn't fully deterministic, so treat a
-single run as ±2–4 questions.
+Core answers come from the parser, so they're deterministic: identical in every run (the "other" questions go to the
+model and can vary by a question between runs).
+
+**Is the parser just fitted to the eval?** Checked twice:
+- 17 core questions were written as new phrasings *before* the parser existed (held-out): 17/17.
+- After that, 15 more brand-new questions were scored once, untouched: the parser answered 10 and got **10/10
+  right**; the other 5 had words it didn't know ("brought", "came", "pays", "should I") and went to the model.
+  Those words were then added (15/15) and the questions joined the eval as ordinary core tasks.
+
+So on unfamiliar wording the parser stays correct and gives up rather than guessing; adding vocabulary is how its
+coverage grows.
 
 **How it got there** — each step came from reading the agent's step traces on the failures:
 
@@ -131,17 +156,21 @@ single run as ±2–4 questions.
 | + `aggregate` tool, number verification, 8k context | 62.5% | Ollama's default 4k context was silently cutting off the tool list |
 | + tolerate small-model slips | 87.5% (of 40) | Filters carry over between steps; results state highest **and** lowest, filled **and** missing; `column`/`columns` and list-wrapped names accepted; year filters on date columns |
 | + 12 shop questions, `weekday_pattern`, `restock` | 75.0% (of 52) | Shop logs have one row per product per day: the model picked `max`/`min` for "most/least sold", and two old questions lost their filter |
-| + prompt: "most/least = sum" (also in Indonesian), "filter every condition in the question"; tool gives Indonesian day names | 84.6% | The model had mistranslated "Tuesday" to *Senin* itself. Tried next: guidance on the shared `agg` parameter → 78.8%, reverted |
+| + prompt rules ("most/least = sum", "filter every condition"), Indonesian day names | 84.6% (of 52) | Further prompt tweaks only moved ±3 questions around (one dropped it to 78.8%) |
+| + 17 held-out phrasings | core 72.5% (37/51) | Held-out core 10/17: the prompt fixes had been fitted to the eval questions |
+| + argument repair from the question (filters, `max`→`sum`) | core 76.5% | The model's errors were too varied: wrong tool, `2025` as `2025-01-01`, invented names, misread tables. It also broke a percentage question; removed |
+| + **question parser** for frequent questions, `group_aggregate` by `month`/`bulan`/`year` | core **100%**, all 98.8% (of 84) | Model no longer involved in core answers |
 
-Remaining failures: "most profit" still sometimes read as the single largest row (`max`), "which month" questions
-grouped by a column that doesn't exist, and small filter slips.
+Remaining failure: *"Which department has the most employees who left the company?"*: the parser hands it over
+("left" changes the meaning) and the 3B model can't combine the yes/no filter with the count.
 
 ## Tests
 
 ```bash
 pytest
 ```
-64 tests: every tool (normal + bad input + small-model slips), dataset versions/undo, the agent loop (with a
+92 tests: every tool (normal + bad input + small-model slips), the question parser (right answers, and 15 kinds
+of question it must hand to the model), dataset versions/undo, the agent loop (with a
 scripted fake model: self-correction, number verification, filter carry-over, step cap), the code sandbox
 (blocked imports/file access, timeout), the report, the eval answer checker, and the Streamlit app driven headlessly.
 
@@ -150,11 +179,13 @@ scripted fake model: self-correction, number verification, filter carry-over, st
 ```
 app.py              Streamlit UI
 agent/tools.py      the analysis tools + their JSON schemas
+agent/router.py     question parser for frequent questions (no model)
+agent/question.py   finds values and periods named in a question
 agent/loop.py       agent loop (Ollama tool calling, self-correction, guards)
 agent/sandbox.py    restricted fallback code runner
 agent/state.py      dataset versions + undo
 agent/report.py     HTML report export
-eval/               40-question benchmark
+eval/               84-question benchmark (66 core)
 samples/            sample dataset generator
 docs/superpowers/   design and implementation plan
 ```
