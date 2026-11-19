@@ -116,3 +116,18 @@ def test_router_falls_back_to_model_when_unsure():
     model = FakeModel(call("profile"), say("The data has 3 rows."))
     ans = run_agent("Give me an overview of this data", state(), model)
     assert len(model.seen) == 2 and ans.steps[0].tool == "profile"
+
+
+def test_question_cannot_change_the_data():
+    model = FakeModel(call("drop_duplicates"), call("profile"), say("There are 3 rows."))
+    st = state()
+    ans = run_agent("How many duplicate rows are there?", st, model)
+    assert ans.steps[0].error and "changes the dataset" in ans.steps[0].error
+    assert len(st.versions) == 1  # nothing was removed
+
+
+def test_asking_to_clean_may_change_the_data():
+    model = FakeModel(call("drop_duplicates"), say("Done."))
+    st = state()
+    run_agent("Remove the duplicate rows", st, model)
+    assert len(st.versions) == 2

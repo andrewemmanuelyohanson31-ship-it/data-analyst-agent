@@ -157,6 +157,19 @@ streamlit run app.py
 ```
 Your browser opens. Upload a CSV/Excel file, or pick a sample dataset in the sidebar.
 
+**Or use it like an app (no terminal).** Once, from the project folder:
+
+| | Command | Creates |
+|---|---|---|
+| Windows | `.venv\Scripts\python launch.py --install` | a **Data Analyst Agent** shortcut on the Desktop |
+| macOS | `python3 launch.py --install` | **Data Analyst Agent.app** in `~/Applications` (and sets up `.venv` the first time) |
+
+Then just double-click it. It starts Ollama if needed (the app also works without it: frequent questions and
+quick actions don't use the model), starts the app in the background and opens it in its own window (Edge or Chrome
+"app mode"; Safari-only Macs get a normal window). Double-clicking again reopens the window instead of starting a
+second copy. Stop it with **⏻ Quit app** in the sidebar. Logs: `logs/`. On a Mac, the first launch may need
+right-click → **Open** because the app isn't signed.
+
 Try:
 - *Give me an overview of this data*
 - *Clean the missing values and remove duplicates*

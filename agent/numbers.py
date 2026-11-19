@@ -15,7 +15,8 @@ def numbers_in(text: str) -> list[float]:
     for t, scale in NUM.findall(text):
         mult = SCALES.get(scale.lower(), 1) if scale else 1
         if re.fullmatch(r"\d{1,3}(?:,\d{3})+(?:\.\d+)?", t):  # English thousands: 1,234,567.8
-            cands = [t.replace(",", "")] + ([t.replace(",", ".")] if t.count(",") == 1 and "." not in t else [])
+            # only the thousands reading: "24,812" read as 24.812 once let a made-up count pass as matching "24.82%"
+            cands = [t.replace(",", "")]
         elif re.fullmatch(r"\d{1,3}(?:\.\d{3})+(?:,\d+)?", t):  # Indonesian thousands: 1.234.567,8
             cands = [t.replace(".", "").replace(",", ".")] + ([t] if t.count(".") == 1 and "," not in t else [])
         else:  # plain: 12.5 or Indonesian decimal comma 12,5

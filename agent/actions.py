@@ -10,7 +10,7 @@ from typing import Callable
 import pandas as pd
 
 from agent.loop import AgentAnswer, Step
-from agent.roles import detect_roles
+from agent.roles import columns_by_role
 from agent.router import _fmt
 from agent.state import DatasetState
 from agent.tools import run_tool
@@ -31,7 +31,7 @@ NEEDED = ("date", "revenue", "quantity", "profit", "product", "category", "city"
 
 def _columns(df: pd.DataFrame) -> dict:
     """The column for each role the actions need (None when the data has no such column)."""
-    by_role = {role: col for col, role in detect_roles(df).items() if role}
+    by_role = columns_by_role(df)
     return {role: by_role.get(role) for role in NEEDED}
 
 

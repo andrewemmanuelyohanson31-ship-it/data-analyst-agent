@@ -38,7 +38,11 @@ Answer the user's question by calling tools. Rules:
 Dataset schema:
 {schema}"""
 
-NUDGE = "You answered with numbers without calling a tool. Call the right tool first, then answer from its result."
+CHANGES_DATA = {"clean_missing", "drop_duplicates", "convert_types", "rename_drop_columns"}
+ASKS_TO_CHANGE = re.compile(r"\b(clean|bersih\w*|remove|hapus|buang|delete|drop|fill|isi|convert|ubah|rename|ganti|"
+                            r"fix|perbaiki|dedupe|deduplicate)\b", re.I)
+
+NUDGE ="You answered with numbers without calling a tool. Call the right tool first, then answer from its result."
 
 
 class ChatModel(Protocol):
@@ -158,6 +162,10 @@ def run_agent(question: str, state: DatasetState, model: ChatModel, history: lis
             step = Step(call["name"], args)
             t0 = time.perf_counter()
             try:
+                if call["name"] in CHANGES_DATA and not ASKS_TO_CHANGE.search(question):
+                    # "how many duplicates?" once ran drop_duplicates: a question must never change the data
+                    raise ToolError(f"{call['name']} changes the dataset, but the question only asks for information. "
+                                    "Use a read-only tool instead (profile reports duplicate rows and missing values).")
                 step.result = run_tool(call["name"], state.current, args)
                 if step.result.new_df is not None:
                     state.apply(call["name"], step.result.new_df)

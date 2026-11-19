@@ -13,8 +13,9 @@ from typing import Callable
 
 import pandas as pd
 
-from agent.question import MONTHS, date_column, mentioned_period, mentioned_values
-from agent.roles import detect_roles
+from agent.question import (MONTHS, column_names, date_column, mentioned_conditions, mentioned_period,
+                            mentioned_values)
+from agent.roles import columns_by_role
 from agent.tools import run_tool
 
 # ---- vocabulary (English + Indonesian) ----
@@ -23,20 +24,37 @@ FILLER = set("""
 what which who is are was were the a an of in on for from by with did does do has have had to at this that these those
 there it its me show tell give our my your all how much many total sum overall per each daily data dataset
 generate generated generates make makes made bring brings brought earn earns earned gave gives produce produces get
-got placed came come comes pay pays paid s
+got placed came come comes pay pays paid s wear wears wearing than people
 apa yang mana berapa siapa di dari ke pada dengan untuk ini itu saja ada adalah kah punya kita saya kami toko harian
-memberi memberikan menghasilkan dapat sebesar seluruh semua keseluruhan nilai sekarang saat dalam
+memberi memberikan menghasilkan dapat sebesar seluruh semua keseluruhan nilai sekarang saat dalam memakai pakai
+badan orang
 """.split())
-TOP = {"most", "highest", "biggest", "largest", "best", "top", "busiest", "tertinggi", "terbesar", "terbanyak",
+TOP = {"most", "highest", "biggest", "largest", "best", "top", "busiest", "maximum", "max", "tertinggi", "terbesar", "terbanyak",
        "terlaris", "teratas", "ramai", "teramai"}
-BOTTOM = {"least", "lowest", "fewest", "smallest", "worst", "quietest", "slowest", "terendah", "terkecil",
+BOTTOM = {"least", "lowest", "fewest", "smallest", "worst", "quietest", "slowest", "minimum", "min", "terendah", "terkecil",
           "tersedikit", "sepi", "jarang", "tersepi"}
 PALING = {"tinggi": "top", "besar": "top", "banyak": "top", "laris": "top", "ramai": "top", "laku": "top",
           "sering": "top", "rendah": "bottom", "kecil": "bottom", "sedikit": "bottom", "sepi": "bottom",
           "jarang": "bottom"}
 AVG = {"average", "avg", "mean", "rata", "rata-rata", "rerata"}
+# "oldest" = the highest value of the age column, "lightest" = the lowest weight, ...
+SUPERLATIVES = {"oldest": ("age", "top"), "youngest": ("age", "bottom"), "tallest": ("height", "top"),
+                "shortest": ("height", "bottom"), "heaviest": ("weight", "top"), "lightest": ("weight", "bottom"),
+                "tertua": ("age", "top"), "termuda": ("age", "bottom"), "terpendek": ("height", "bottom"),
+                "terberat": ("weight", "top"), "teringan": ("weight", "bottom")}
+DUPLICATES = re.compile(r"\b(duplicates?|duplicated|duplikat|dobel|double)\b", re.I)
+MISSING = re.compile(r"\b(missing|kosong|hilang|empty|blank|null)\b", re.I)
+PERCENT = re.compile(r"\b(percent|percentage|persen|persentase|proportion|share)\b|%", re.I)
+COUNT_ASK = re.compile(r"\bhow many\b|\bberapa\b|\bjumlah\b|\bcount\b", re.I)
+NAME_STOP = {"monthly", "daily", "total", "number", "id", "idr", "rp", "no", "nama", "name", "kode", "code"}
 COUNT_NOUNS = {"orders", "order", "pesanan", "transaksi", "transactions", "transaction", "rows", "baris", "employees",
-               "employee", "karyawan", "pegawai", "staff", "customers", "pelanggan", "records"}
+               "employee", "karyawan", "pegawai", "staff", "customers", "pelanggan", "records", "people", "persons",
+               "orang",
+               # what one row often IS: "how many cars", "price of cars sold in Pasco"
+               "car", "cars", "vehicle", "vehicles", "mobil", "motor", "motors", "motorcycle", "motorcycles",
+               "house", "houses", "rumah", "ticket", "tickets", "tiket", "book", "books", "buku", "property",
+               "properties", "laptop", "laptops", "phone", "phones"}
+SALES_VERBS = {"sold", "sell", "sells", "selling", "bought", "buy", "buys", "purchased", "terjual", "dibeli", "laku"}
 COUNT_WORDS = {"jumlah", "banyak", "used", "often", "frequently", "common", "popular", "sering", "digunakan", "dipakai"}
 # Question words -> column role. Which column has that role comes from agent/roles.py (names + values), so the
 # parser works on any export, not just files whose columns happen to be called "revenue" or "produk".
@@ -84,10 +102,10 @@ FREQ = [  # (regex, x for the chart tool): first match wins; no match = monthly
 CHART_WORDS = set("""chart charts graph plot grafik diagram visualize visualise visualisasi trend trends tren line bar as draw
 buat buatkan tampilkan gambar gambarkan over time monthly bulanan bulan month weekly mingguan minggu week daily harian
 hari day yearly annual tahunan tahun year""".split())
-VETO = re.compile(r"\b(or|atau|vs|versus|compare|bandingkan|percent|percentage|persen|correlation|korelasi|outliers?|"
-                  r"missing|kosong|duplicates?|duplikat|forecast|prediksi|ramal|clean|"
-                  r"bersihkan|more than|less than|lebih dari|kurang dari|between|antara|median|without|tanpa|except|"
-                  r"kecuali|not|bukan|tidak|left the|keluar)\b|[<>%]", re.I)
+# not for the parser: comparisons, statistics it doesn't do, and anything that asks to CHANGE the data
+VETO = re.compile(r"\b(or|atau|vs|versus|compare|bandingkan|correlation|korelasi|outliers?|forecast|prediksi|ramal|"
+                  r"clean|bersihkan|remove|hapus|buang|delete|drop|fill|isi|between|antara|median|without|tanpa|"
+                  r"except|kecuali|not|bukan|tidak|left the|keluar)\b", re.I)
 
 
 def _words(q: str) -> list[str]:
@@ -102,7 +120,8 @@ def _words(q: str) -> list[str]:
 def indonesian(q: str) -> bool:
     w = set(_words(q))
     return bool(w & {"apa", "mana", "berapa", "yang", "paling", "dari", "bulan", "hari", "saja", "grafik", "buat",
-                     "buatkan", "tampilkan", "bulanan", "mingguan", "harian", "tahunan"}) and \
+                     "buatkan", "tampilkan", "bulanan", "mingguan", "harian", "tahunan", "rata-rata", "untuk",
+                     "dengan", "ukuran", "orang", "jumlah", "persen"}) and \
         not (w & {"what", "which", "how"})
 
 
@@ -131,10 +150,23 @@ def plan(question: str, df: pd.DataFrame) -> Plan | None:
     used = set(FILLER)
     idn = indonesian(question)
 
-    col_of = {role: c for c, role in detect_roles(df).items() if role}
+    col_of = columns_by_role(df)
     values = mentioned_values(question, df)
-    for v in values.values():
-        used |= set(_words(v))
+    for c, v in values.items():
+        used |= {w + suffix for w in _words(v) for suffix in ("", "s", "es")}  # "SUVs", "sedans"
+        used |= {w for n in column_names(c) for w in n.split()} & ws  # "size" in "size M", "ukuran" in "ukuran L"
+    conds, pieces = mentioned_conditions(question, df)  # "age under 30", "taller than 180 cm"
+    rest = question.lower()
+    for piece in pieces:
+        used |= set(_words(piece))
+        rest = rest.replace(piece, " ")
+    ws_meas = set(_words(rest))  # words outside the conditions: "age" in "age under 30" is not what's averaged
+    if len(values) + len(conds) >= 2:  # "size M and age under 30": "and" joins filters; elsewhere it may ask two things
+        used |= {"and", "dan"}
+    if DUPLICATES.search(question):  # "how many duplicate rows": count them, never remove them
+        return _duplicates_plan(idn) if COUNT_ASK.search(question) and not values and not conds else None
+    if MISSING.search(question):
+        return _missing_plan(question, df, idn, values, conds) if COUNT_ASK.search(question) else None
     period = mentioned_period(question)
     dc = col_of.get("date") or date_column(df)
     if period:
@@ -153,20 +185,39 @@ def plan(question: str, df: pd.DataFrame) -> Plan | None:
 
     measure, measure_word = None, None
     for role, vocab in MEASURES.items():
-        if ws & vocab and col_of.get(role):
+        if ws_meas & vocab and col_of.get(role):
             measure = col_of[role]
-            word = sorted(ws & vocab)[0]  # say it the way the question did: "profit", not the column "laba"
+            word = sorted(ws_meas & vocab)[0]  # say it the way the question did: "profit", not the column "laba"
             measure_word = DISPLAY.get(word, {}).get("id" if idn else "en", word) if word in DISPLAY else word
-            used |= (ws & vocab) | _name_words(measure)
+            used |= (ws_meas & vocab) | _name_words(measure)
             break
-    if measure is None:  # a numeric column named outright: "performance score", "training hours"
-        q = " ".join(words)
+    if measure is None:  # a numeric column named outright or by an alias: "training hours", "berat badan"
+        q = " ".join(_words(rest))
+        matches = []  # (length of the matching name, column, name): longest, most specific match wins
         for c in df.columns:
-            name = str(c).lower().replace("_", " ")
-            if pd.api.types.is_numeric_dtype(df[c]) and re.search(rf"\b{re.escape(name)}\b", q):
-                measure, measure_word = c, name
-                used |= _name_words(c)
-                break
+            if not pd.api.types.is_numeric_dtype(df[c]):
+                continue
+            name = next((n for n in column_names(c) if n not in NAME_STOP and re.search(rf"\b{re.escape(n)}\b", q)),
+                        None)
+            if name:
+                matches.append((len(name), c, name))
+        if matches:
+            best = max(m[0] for m in matches)
+            top = [m for m in matches if m[0] == best]
+            if len(top) > 1:
+                return None  # "harga" fits both harga_modal and harga_jual: let the model ask or decide
+            _, measure, measure_word = top[0]
+            used |= _name_words(measure) | set(measure_word.split())
+    for w in words:  # "oldest" = highest age, "lightest" = lowest weight
+        if w in SUPERLATIVES:
+            concept, direction = SUPERLATIVES[w]
+            used.add(w)
+            if measure is None:
+                measure = next((c for c in df.columns if pd.api.types.is_numeric_dtype(df[c])
+                                and concept in column_names(c)), None)
+                measure_word = concept
+                if measure is None:
+                    return None
     avg = bool(ws & AVG)
     used |= ws & AVG
     # "how many orders had a discount" counts rows that have it, it isn't the sum of the discount column;
@@ -192,6 +243,28 @@ def plan(question: str, df: pd.DataFrame) -> Plan | None:
                 c = col_of[role]
                 found.append((hits[0][0], c, hits[0][1]))
                 used |= {w for _, w in hits} | _name_words(c)
+        if not found:  # any category column named in the question: "which size ...", "dealer region ..."
+            q_rest = " ".join(_words(rest))
+            cands = []  # (length of the matching name, is a *name* column, column, name)
+            for c in df.columns:
+                s = df[c]
+                if pd.api.types.is_numeric_dtype(s) or c in values or c == measure or s.nunique() > 50:
+                    continue
+                hit = next((n for n in column_names(c)
+                            if n not in NAME_STOP and re.search(rf"\b{re.escape(n)}\b", q_rest)), None)
+                if hit:
+                    is_name = bool({"name", "nama"} & set(str(c).lower().replace("_", " ").split()))
+                    cands.append((len(hit), is_name, c, hit))
+            if cands:
+                # longest match wins ("dealer region" -> Dealer_Region); a tie on "dealer" goes to Dealer_Name
+                best = max(cands)[:2]
+                top = [x for x in cands if x[:2] == best]
+                if len(top) > 1:
+                    return None
+                _, _, c, hit = top[0]
+                first = hit.split()[0]
+                found.append((words.index(first) if first in words else 0, c, hit))
+                used |= set(hit.split())
         found.sort()
         if len(found) == 2 and found[1][0] - found[0][0] == 1:
             found = [found[0] if idn else found[1]]  # "kategori produk" = kategori; "product category" = category
@@ -201,6 +274,11 @@ def plan(question: str, df: pd.DataFrame) -> Plan | None:
             _, group, group_word = found[0]
     counting = bool(ws & (COUNT_NOUNS | COUNT_WORDS))
     used |= ws & (COUNT_NOUNS | COUNT_WORDS)
+    if not col_of.get("quantity") and ws & SALES_VERBS:  # one row per sale: "sold the most cars" counts rows
+        used |= ws & SALES_VERBS
+        counting = counting or measure is None
+    if HOW_MANY.search(question) and measure is None:  # "how many sedans were sold": nothing to add up, count rows
+        counting = True
     if CHART.search(question):
         return _chart_plan(question, col_of, ws, used | CHART_WORDS, group, group_word, measure, measure_word, avg,
                            values, period, dc, idn)
@@ -210,13 +288,18 @@ def plan(question: str, df: pd.DataFrame) -> Plan | None:
             return None  # "which city ... Jakarta" is contradictory
         group = None  # "karyawan di departemen Marketing": the group word only describes the filter
 
+    if PERCENT.search(question):
+        used |= {"percent", "percentage", "persen", "persentase", "proportion", "share"}
     if [w for w in ws - used if not w.isdigit()]:
         return None  # a word we don't understand may change the meaning: let the model handle it
 
-    filters = [{"column": c, "op": "==", "value": v} for c, v in values.items()]
+    filters = [{"column": c, "op": "==", "value": v} for c, v in values.items()] + conds
     if period:
         filters.append({"column": dc, "op": "==", "value": period})
     where = filters or None
+
+    if PERCENT.search(question):  # "what percentage of people wear size L" / "berapa persen pendapatan dari GoFood"
+        return _share_plan(values, filters, measure, measure_word, idn)
 
     if group == "weekday":
         m = measure or col_of.get("revenue")
@@ -294,7 +377,66 @@ def _chart_plan(question, col_of, ws, used, group, group_word, measure, measure_
 def _where_text(filters, idn):
     if not filters:
         return ""
-    return (" untuk " if idn else " for ") + ", ".join(str(f["value"]) for f in filters)
+    parts = [str(f["value"]) if f["op"] == "==" else f"{f['column']} {f['op']} {f['value']}" for f in filters]
+    return (" untuk " if idn else " for ") + ", ".join(parts)
+
+
+def _duplicates_plan(idn):
+    def render(r):
+        n = f"{int(re.search(r'([\d,]+) duplicate rows', r.text).group(1).replace(',', '')):,}"
+        if idn:
+            return (f"Ada **{n}** baris duplikat (sama persis di semua kolom). Data tidak diubah; tekan **Clean data** "
+                    f"kalau ingin menghapusnya.")
+        return (f"There are **{n}** duplicate rows (identical in every column). Nothing was changed; use **Clean data** "
+                f"if you want to remove them.")
+    return Plan("profile", {}, render)
+
+
+def _missing_plan(question, df, idn, values, conds):
+    """'how many rows have a missing height' -> count of empty cells in that column (or in all columns)."""
+    q = " ".join(_words(question))
+    cols = [c for c in df.columns if any(n not in NAME_STOP and re.search(rf"\b{re.escape(n)}\b", q)
+                                         for n in column_names(c))]
+    where = [{"column": c, "op": "==", "value": v} for c, v in values.items()] + conds
+    if len(cols) > 1 or (not cols and where):
+        return None
+    if not cols:
+        def total(r):
+            n = re.search(r"([\d,]+) missing values", r.text).group(1)
+            return f"Total sel kosong: **{n}**." if idn else f"There are **{n}** missing (empty) values in total."
+        return Plan("profile", {}, total)
+    col = cols[0]
+
+    def render(r):
+        m = re.search(r"over ([\d,]+) rows: ([\d,]+) filled, ([\d,]+) missing", r.text)
+        rows, missing = m.group(1), m.group(3)
+        w = _where_text(where, idn)
+        return (f"**{missing}** baris tidak punya nilai '{col}'{w} (dari {rows} baris)." if idn else
+                f"**{missing}** rows have no '{col}' value{w} (out of {rows} rows).")
+    return Plan("aggregate", {"agg": "count", "column": col, "where": where or None}, render)
+
+
+def _share_plan(values, filters, measure, measure_word, idn):
+    """Share of rows (or of a measure's total) for the ONE value the question names."""
+    if len(values) != 1:
+        return None
+    col, val = next(iter(values.items()))
+    others = [f for f in filters if f["column"] != col]
+    args = {"by": [col], "agg": "sum" if measure is not None else "count", "where": others or None}
+    if measure is not None:
+        args["column"] = measure
+
+    def render(r):
+        t = r.table
+        row = t[t[col].astype(str) == str(val)]
+        if row.empty or "share_pct" not in t.columns:
+            return "Tidak ada data yang cocok." if idn else "No rows match."
+        n, total, pct = row.iloc[0][t.columns[1]], t[t.columns[1]].sum(), row.iloc[0]["share_pct"]
+        what = (measure_word or "") if measure is not None else ("baris" if idn else "rows")
+        w = _where_text(others, idn)
+        return (f"**{val}**: **{pct}%** dari total {what}{w} ({_fmt(n)} dari {_fmt(total)})." if idn else
+                f"**{val}**: **{pct}%** of all {what}{w} ({_fmt(n)} of {_fmt(total)}).")
+    return Plan("group_aggregate", args, render)
 
 
 def _group_answer(r, group, group_word, what, direction, idn, filters):

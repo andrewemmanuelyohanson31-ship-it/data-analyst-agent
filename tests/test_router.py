@@ -108,3 +108,73 @@ def test_chart_by_group_is_a_bar_chart(sales):
     text, _, args, result = answer("Chart revenue by city", sales)
     assert args["kind"] == "bar" and args["x"] == "city"
     assert f"**{sales.groupby('city').revenue.sum().idxmax()}**" in text and result.chart
+
+
+@pytest.fixture(scope="module")
+def sizes():
+    import numpy as np
+    r = np.random.default_rng(0)
+    n = 400
+    return pd.DataFrame({"weight": r.integers(45, 90, n), "age": r.integers(18, 70, n).astype(float),
+                         "height": r.normal(165, 7, n).round(1), "size": r.choice(["S", "M", "L", "XL", "XXXL"], n)})
+
+
+@pytest.mark.parametrize("q,expected", [
+    ("What is the average age for size M?", lambda d: d[d["size"] == "M"].age.mean()),
+    ("Berapa rata-rata berat badan untuk ukuran L?", lambda d: d[d["size"] == "L"].weight.mean()),
+    ("How many people wear size XL?", lambda d: (d["size"] == "XL").sum()),
+    ("What is the maximum weight for size S?", lambda d: d[d["size"] == "S"].weight.max()),
+    ("What is the average weight of people older than 50?", lambda d: d[d.age > 50].weight.mean()),
+    ("How many people are taller than 170 cm?", lambda d: (d.height > 170).sum()),
+    ("What is the average weight for size M and age under 30?",
+     lambda d: d[(d["size"] == "M") & (d.age < 30)].weight.mean()),
+    ("What percentage of people wear size L?", lambda d: (d["size"] == "L").mean() * 100),
+    ("What is the oldest age?", lambda d: d.age.max()),
+])
+def test_short_values_conditions_and_percentages(sizes, q, expected):
+    from agent.numbers import numbers_in
+    from eval.run_eval import is_correct
+    text = answer(q, sizes)[0]
+    assert is_correct(text, float(expected(sizes))), text
+    assert numbers_in(text)
+
+
+def test_short_value_needs_its_column_name(sizes):
+    from agent.question import mentioned_values
+    assert mentioned_values("What is the average weight for size M?", sizes) == {"size": "M"}
+    assert mentioned_values("I am a student", sizes) == {}  # "a"/"M" alone are just words
+
+
+def test_indonesian_without_question_word():
+    assert indonesian("Rata-rata berat badan untuk ukuran M?")
+    assert not indonesian("What is the average weight for size M?")
+
+
+@pytest.fixture(scope="module")
+def cars():
+    import numpy as np
+    r = np.random.default_rng(1)
+    n = 300
+    return pd.DataFrame({
+        "Date": pd.date_range("2023-01-01", periods=n, freq="D").strftime("%Y-%m-%d"),
+        "Company": r.choice(["Ford", "Honda", "Toyota"], n), "Body Style": r.choice(["SUV", "Sedan", "Hatchback"], n),
+        "Dealer_Name": r.choice(["Alpha Motors", "Beta Cars"], n), "Dealer_No": r.choice(["111-1", "222-2"], n),
+        "Dealer_Region": r.choice(["Austin", "Pasco"], n), "Price ($)": r.integers(10, 60, n) * 1000})
+
+
+@pytest.mark.parametrize("q,expected", [
+    ("How many cars were sold?", lambda d: len(d)),  # one row = one car
+    ("How many cars did Toyota sell?", lambda d: (d.Company == "Toyota").sum()),
+    ("How many SUVs were sold in Austin?", lambda d: ((d["Body Style"] == "SUV") & (d.Dealer_Region == "Austin")).sum()),
+    ("What is the total revenue?", lambda d: d["Price ($)"].sum()),  # no revenue column: sum of prices
+    ("What is the average price of cars sold in Pasco?", lambda d: d[d.Dealer_Region == "Pasco"]["Price ($)"].mean()),
+])
+def test_one_row_per_sale(cars, q, expected):
+    from eval.run_eval import is_correct
+    assert is_correct(answer(q, cars)[0], float(expected(cars)))
+
+
+def test_group_column_ties(cars):
+    assert plan("Which company sold the most cars?", cars).args == {"by": ["Company"], "agg": "count", "where": None}
+    assert plan("Which dealer region has the highest total sales?", cars).args["by"] == ["Dealer_Region"]
+    assert plan("Which dealer sold the most cars?", cars).args["by"] == ["Dealer_Name"]  # "dealer": the name column

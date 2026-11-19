@@ -83,3 +83,8 @@ def test_parser_answers_every_core_question_correctly():
     assert wrong == []
     # "how many employees LEFT the company" is deliberately handed to the model ("left" changes the meaning)
     assert unanswered == ["How many employees left the company?"]
+
+
+def test_made_up_count_is_not_grounded_by_a_percentage():
+    from agent.numbers import ungrounded_numbers
+    assert ungrounded_numbers("24,812 people wear size M.", "M (29712, 24.82%)") == ["24,812"]

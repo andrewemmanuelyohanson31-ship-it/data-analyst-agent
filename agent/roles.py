@@ -171,6 +171,15 @@ def detect_roles(df: pd.DataFrame) -> dict:
     return dict(roles)
 
 
+def columns_by_role(df: pd.DataFrame) -> dict:
+    """{role: column}. When every row is one sale (a price, but no quantity or revenue column, e.g. one car per row),
+    the price column also serves as revenue: total sales = sum of prices."""
+    by_role = {role: col for col, role in detect_roles(df).items() if role}
+    if "revenue" not in by_role and "quantity" not in by_role and "price" in by_role:
+        by_role["revenue"] = by_role["price"]
+    return by_role
+
+
 def _detect(df: pd.DataFrame) -> dict:
     kinds = {c: _kind(df[c]) for c in df.columns}
     claims: dict = {}  # column -> (role, strength, rank)

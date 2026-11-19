@@ -1,8 +1,10 @@
 """Streamlit UI. Run: streamlit run app.py"""
 import os
+import threading
 from pathlib import Path
 
 import streamlit as st
+import streamlit.components.v1 as components
 
 from agent.actions import available
 from agent.actions import run as run_action
@@ -80,6 +82,16 @@ with st.sidebar:
                 ss.turns.append((action.label, run_action(action, ss.state)))
                 st.rerun()
     model_name = st.text_input("Ollama model", value=os.getenv("OLLAMA_MODEL", DEFAULT_MODEL))
+    if os.getenv("DAA_LAUNCHER"):  # started from the desktop launcher: there's no terminal to stop it from
+        if st.button("⏻ Quit app", use_container_width=True):
+            st.success("The app has stopped. You can close this window.")
+            # Streamlit would then pop up "Connection error … restart it in your terminal": hide that, and close
+            # the window (browsers allow it for the launcher's app window; in a normal tab the message stays)
+            st.markdown("<style>[data-testid='stDialog'], [data-testid='stStatusWidget'] {display: none !important}"
+                        "</style>", unsafe_allow_html=True)
+            components.html("<script>setTimeout(function(){try{window.top.close()}catch(e){}}, 400)</script>",
+                            height=0)
+            threading.Timer(1.0, lambda: os._exit(0)).start()  # let the message reach the browser first
 
 # ---------- chat ----------
 if "state" not in ss:
