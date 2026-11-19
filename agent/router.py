@@ -15,6 +15,7 @@ import pandas as pd
 
 from agent.question import (MONTHS, column_names, date_column, mentioned_conditions, mentioned_period,
                             mentioned_values)
+from agent.fuzzy import normalize
 from agent.roles import columns_by_role
 from agent.tools import run_tool
 
@@ -585,14 +586,33 @@ def _stock_plan(question, ws, used, col_of, values, idn):
     return Plan("restock", args, render)
 
 
+def _vocabulary(df: pd.DataFrame) -> tuple[set, set]:
+    """(every word the parser understands for this data, the content words a synonym may map to)."""
+    content = set().union(*MEASURES.values(), *GROUPS.values(), TOP, BOTTOM, AVG, SUPERLATIVES, COUNT_NOUNS)
+    for c in df.columns:
+        content |= {w for n in column_names(c) for w in n.split() if len(w) > 2}
+    known = content | FILLER | COUNT_WORDS | SALES_VERBS | CHART_WORDS | STOCK_WORDS | set(PALING) | {"paling"}
+    for c in df.columns:
+        s = df[c]
+        if not pd.api.types.is_numeric_dtype(s) and s.nunique() <= 50:
+            known |= {w for v in s.dropna().astype(str).unique() for w in _words(v)}
+    return known, content
+
+
 def answer(question: str, df: pd.DataFrame):
     """(text, tool, args, ToolResult) or None. Tool errors also return None so the model can try instead."""
-    p = plan(question, df)
+    p, notes = plan(question, df), []
+    if p is None and not VETO.search(question):  # second chance (never for a deliberate refusal like "median")
+        rewritten, notes = normalize(question, *_vocabulary(df))
+        p = plan(rewritten, df) if notes else None
     if p is None:
         return None
     args = {k: v for k, v in p.args.items() if v is not None}
     try:
         result = run_tool(p.tool, df, args)
-        return p.render(result), p.tool, args, result
+        text = p.render(result)
+        if notes:  # say what was reinterpreted, so a wrong guess is visible
+            text += f" _(Read {', '.join(notes)}.)_"
+        return text, p.tool, args, result
     except Exception:  # noqa: BLE001 - any failure here just means "let the model handle it"
         return None

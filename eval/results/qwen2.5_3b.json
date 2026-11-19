@@ -16,7 +16,7 @@
       "answer": "The city with the highest revenue is **Jakarta**: 1,161,529,050 (33.43%). Lowest: Denpasar = 202,427,475.",
       "ok": true,
       "steps": 1,
-      "seconds": 0.3,
+      "seconds": 0.2,
       "core": true,
       "heldout": false
     },
@@ -76,7 +76,7 @@
       "answer": "**46** rows have no 'unit_price' value (out of 3,025 rows).",
       "ok": true,
       "steps": 1,
-      "seconds": 0.3,
+      "seconds": 0.2,
       "core": false,
       "heldout": false
     },
@@ -86,7 +86,7 @@
       "answer": "There are **25** duplicate rows (identical in every column). Nothing was changed; use **Clean data** if you want to remove them.",
       "ok": true,
       "steps": 1,
-      "seconds": 0.5,
+      "seconds": 0.2,
       "core": false,
       "heldout": false
     },
@@ -96,7 +96,7 @@
       "answer": "The product with the highest revenue for Jakarta is **Smartwatch**: 349,735,435 (30.11%). Lowest: Cooking Oil 2L = 8,730,055.",
       "ok": true,
       "steps": 1,
-      "seconds": 0.6,
+      "seconds": 0.2,
       "core": true,
       "heldout": false
     },
@@ -106,7 +106,7 @@
       "answer": "Total revenue for Online: **2,024,708,175.00** (1,812 rows).",
       "ok": true,
       "steps": 1,
-      "seconds": 0.5,
+      "seconds": 0.2,
       "core": true,
       "heldout": false
     },
@@ -116,7 +116,7 @@
       "answer": "The month with the highest revenue is **2026-01**: 337,145,870 (9.7%). Lowest: 2025-02 = 130,212,375.",
       "ok": true,
       "steps": 1,
-      "seconds": 0.6,
+      "seconds": 0.2,
       "core": true,
       "heldout": false
     },
@@ -126,7 +126,7 @@
       "answer": "Total revenue for 2025: **2,123,270,055.00** (1,845 rows).",
       "ok": true,
       "steps": 1,
-      "seconds": 0.4,
+      "seconds": 0.2,
       "core": true,
       "heldout": false
     },
@@ -146,7 +146,7 @@
       "answer": "The strongest correlation is between 'quantity' and 'revenue' with a correlation coefficient of 0.728.",
       "ok": true,
       "steps": 1,
-      "seconds": 2.6,
+      "seconds": 2.2,
       "core": false,
       "heldout": false
     },
@@ -246,7 +246,7 @@
       "answer": "The largest quantity in a single order is 250.00.",
       "ok": true,
       "steps": 1,
-      "seconds": 1.8,
+      "seconds": 7.0,
       "core": false,
       "heldout": false
     },
@@ -326,7 +326,7 @@
       "answer": "There are 71 employees working remotely.",
       "ok": true,
       "steps": 1,
-      "seconds": 8.0,
+      "seconds": 10.4,
       "core": false,
       "heldout": false
     },
@@ -336,7 +336,7 @@
       "answer": "I couldn't get a verified answer. Try rephrasing the question or naming the column.",
       "ok": false,
       "steps": 0,
-      "seconds": 2.7,
+      "seconds": 2.8,
       "core": false,
       "heldout": false
     },
@@ -396,7 +396,7 @@
       "answer": "There are 24 employees with more than 10 years of experience.",
       "ok": true,
       "steps": 1,
-      "seconds": 8.3,
+      "seconds": 8.2,
       "core": false,
       "heldout": false
     },
@@ -466,7 +466,7 @@
       "answer": "The busiest day is **Saturday (Sabtu)**, averaging 2,695,461.54 per day (+25.2% vs average).",
       "ok": true,
       "steps": 1,
-      "seconds": 0.3,
+      "seconds": 0.4,
       "core": true,
       "heldout": false
     },
@@ -476,7 +476,7 @@
       "answer": "Hari paling sepi: **Tuesday (Selasa)**, rata-rata 1,768,730.77 per hari (-17.9% dari rata-rata).",
       "ok": true,
       "steps": 1,
-      "seconds": 0.4,
+      "seconds": 0.3,
       "core": true,
       "heldout": false
     },
@@ -486,7 +486,7 @@
       "answer": "First to run out: **Telur 1kg** (stock 0, 0 days left).",
       "ok": true,
       "steps": 1,
-      "seconds": 0.5,
+      "seconds": 0.3,
       "core": true,
       "heldout": false
     },
@@ -496,7 +496,7 @@
       "answer": "**7** produk perlu segera di-restock (habis dalam 7 hari): Telur 1kg (0 hari), Minyak Goreng 2L (1.1 hari), Sabun Mandi (4.3 hari), Kopi Sachet (5.1 hari), Kecap Manis (5.7 hari), Garam 250g (6.3 hari), Beras 5kg (6.6 hari).",
       "ok": true,
       "steps": 1,
-      "seconds": 0.4,
+      "seconds": 0.3,
       "core": true,
       "heldout": false
     },
@@ -506,7 +506,7 @@
       "answer": "Sisa stok **Minyak Goreng 2L** sekarang: **11** (terjual sekitar 10.25 per hari, cukup untuk 1.1 hari).",
       "ok": true,
       "steps": 1,
-      "seconds": 0.5,
+      "seconds": 0.3,
       "core": true,
       "heldout": false
     },
@@ -516,7 +516,7 @@
       "answer": "The month with the highest revenue is **2026-05**: 69,767,000 (17.88%). Lowest: 2026-02 = 59,828,000.",
       "ok": true,
       "steps": 1,
-      "seconds": 0.4,
+      "seconds": 0.3,
       "core": true,
       "heldout": false
     },
@@ -526,7 +526,7 @@
       "answer": "Produk dengan laba tertinggi: **Beras 5kg** = 8,344,000 (14.98%). Terendah: Sarden Kaleng = 185,000.",
       "ok": true,
       "steps": 1,
-      "seconds": 0.4,
+      "seconds": 0.3,
       "core": true,
       "heldout": false
     },
@@ -666,7 +666,7 @@
       "answer": "The product with the highest revenue is **Beras 5kg**: 89,400,000 (22.92%). Lowest: Sarden Kaleng = 888,000.",
       "ok": true,
       "steps": 1,
-      "seconds": 0.4,
+      "seconds": 0.3,
       "core": true,
       "heldout": true
     },
@@ -676,7 +676,7 @@
       "answer": "Produk dengan terjual tertinggi untuk 2026-06: **Mie Instan Goreng** = 1,386 (21.65%). Terendah: Sarden Kaleng = 12.",
       "ok": true,
       "steps": 1,
-      "seconds": 0.4,
+      "seconds": 0.3,
       "core": true,
       "heldout": true
     },
@@ -686,7 +686,7 @@
       "answer": "Produk yang perlu segera di-restock: Telur 1kg (0 hari), Minyak Goreng 2L (1.1 hari), Sabun Mandi (4.3 hari), Kopi Sachet (5.1 hari), Kecap Manis (5.7 hari), Garam 250g (6.3 hari), Beras 5kg (6.6 hari).",
       "ok": true,
       "steps": 1,
-      "seconds": 0.4,
+      "seconds": 0.3,
       "core": true,
       "heldout": true
     },
@@ -766,7 +766,7 @@
       "answer": "The payment with the lowest count is **Bank Transfer**: 597 (19.74%). Highest: QRIS = 614.",
       "ok": true,
       "steps": 1,
-      "seconds": 0.3,
+      "seconds": 0.2,
       "core": true,
       "heldout": false
     },
@@ -806,7 +806,7 @@
       "answer": "Total keuntungan untuk 2026-02: **8,476,900.00** (420 baris).",
       "ok": true,
       "steps": 1,
-      "seconds": 0.6,
+      "seconds": 0.3,
       "core": true,
       "heldout": false
     },
@@ -816,7 +816,7 @@
       "answer": "The category with the highest revenue is **Sembako**: 239,912,000 (61.5%). Lowest: Bumbu = 8,105,000.",
       "ok": true,
       "steps": 1,
-      "seconds": 0.6,
+      "seconds": 0.3,
       "core": true,
       "heldout": false
     },
@@ -826,7 +826,7 @@
       "answer": "Total terjual untuk Kopi Sachet: **8,003.00** (181 baris).",
       "ok": true,
       "steps": 1,
-      "seconds": 0.6,
+      "seconds": 0.3,
       "core": true,
       "heldout": false
     },
@@ -836,7 +836,7 @@
       "answer": "Restock soon: Telur 1kg (0 days), Minyak Goreng 2L (1.1 days), Sabun Mandi (4.3 days), Kopi Sachet (5.1 days), Kecap Manis (5.7 days), Garam 250g (6.3 days), Beras 5kg (6.6 days).",
       "ok": true,
       "steps": 1,
-      "seconds": 0.8,
+      "seconds": 0.3,
       "core": true,
       "heldout": false
     },
@@ -846,7 +846,7 @@
       "answer": "Produk dengan terjual terendah: **Sarden Kaleng** = 74 (0.19%). Tertinggi: Mie Instan Goreng = 8,692.",
       "ok": true,
       "steps": 1,
-      "seconds": 0.8,
+      "seconds": 0.3,
       "core": true,
       "heldout": false
     },
@@ -916,7 +916,7 @@
       "answer": "Produk dengan terjual tertinggi: **Kaos Kaki 3 Pasang** = 202 (19.9%). Terendah: Topi Baseball = 142.",
       "ok": true,
       "steps": 1,
-      "seconds": 0.7,
+      "seconds": 0.6,
       "core": true,
       "heldout": false
     },
@@ -926,7 +926,7 @@
       "answer": "The city with the highest revenue is **Kota Surabaya**: 16,743,250 (18.36%). Lowest: Kota Jakarta Selatan = 12,235,500.",
       "ok": true,
       "steps": 1,
-      "seconds": 0.7,
+      "seconds": 0.6,
       "core": true,
       "heldout": false
     },
@@ -936,7 +936,7 @@
       "answer": "Total ongkir: **7,905,000.00** (600 baris).",
       "ok": true,
       "steps": 1,
-      "seconds": 0.7,
+      "seconds": 0.6,
       "core": true,
       "heldout": false
     },
@@ -956,7 +956,7 @@
       "answer": "Barang dengan terjual tertinggi: **Beras 5kg** = 75 (15.86%). Terendah: Rokok = 41.",
       "ok": true,
       "steps": 1,
-      "seconds": 0.1,
+      "seconds": 0.0,
       "core": true,
       "heldout": false
     },
