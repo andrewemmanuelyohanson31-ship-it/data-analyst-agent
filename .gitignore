@@ -5,3 +5,5 @@ __pycache__/
 eval/results/
 logs/
 train/data/
+*.gguf
+train/Modelfile
