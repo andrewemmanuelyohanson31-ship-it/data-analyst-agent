@@ -1,6 +1,6 @@
 """Build fine-tuning data: question -> tool call -> tool result -> short answer, in the app's exact chat format.
 
-    python train/make_data.py --n 2000          -> train/data/train.jsonl, train/data/dev.jsonl
+    python train/make_data.py --n 2400          -> train/data/train.jsonl, train/data/dev.jsonl
 
 Every example runs on a freshly generated random table (random column names from agent/column_names.py, English
 or Indonesian questions, sometimes typos), never on the eval datasets, so eval/tasks.json stays a fair test.
@@ -25,7 +25,7 @@ sys.path.insert(0, str(ROOT / "eval"))
 from agent.column_names import ROLES  # noqa: E402
 from agent.loop import SYSTEM, _for_model, schema_summary  # noqa: E402
 from agent.numbers import ungrounded_numbers  # noqa: E402
-from agent.tools import run_tool, tool_schemas  # noqa: E402
+from agent.tools import ToolError, run_tool, tool_schemas  # noqa: E402
 from run_eval import is_correct  # noqa: E402
 
 R = random.Random()
@@ -122,6 +122,9 @@ def make_table():
         data[roles["salary"]] = np.random.randint(40, 300, n) * 100000.0
         data[roles["experience"]] = np.random.randint(0, 30, n)
         data[roles["performance"]] = np.random.randint(1, 6, n)
+        if R.random() < .6:
+            roles["attrition"] = _name("attrition")
+            data[roles["attrition"]] = np.where(np.random.random(n) < R.uniform(.08, .25), "Yes", "No")
     else:
         for r in ("age", "weight", "height"):
             roles[r] = _name(r)
@@ -130,7 +133,13 @@ def make_table():
         data[roles["height"]] = np.random.randint(145, 195, n)
     if len(set(roles.values())) < len(roles):  # two roles drew the same name
         return make_table()
-    return pd.DataFrame(data), roles, kind
+    df = pd.DataFrame(data)
+    if R.random() < .4:  # real exports have gaps and repeated rows
+        c = roles[R.choice([r for r in roles if r in MEASURES])]
+        df[c] = df[c].astype(float)
+        df.loc[df.sample(R.randint(1, max(2, n // 20)), random_state=R.randint(0, 999)).index, c] = np.nan
+        df = pd.concat([df, df.sample(R.randint(1, 30), random_state=R.randint(0, 999))], ignore_index=True)
+    return df, roles, kind
 
 
 def say(role, col, idn):
@@ -201,10 +210,19 @@ def count_rows(df, roles, kind, idn):
                    "hr": (["employees", "people", "staff"], ["karyawan", "pegawai"]),
                    "people": (["people", "customers"], ["orang", "pelanggan"]),
                    "yearly": (["years"], ["tahun"]), "stock": (["rows", "records"], ["baris", "catatan"])}[kind][idn])
-    if m and (not g or R.random() < .5):
+    if R.random() < .2:  # no condition at all: count every row, never invent a filter
+        q = R.choice([f"Berapa jumlah {nn} seluruhnya?", f"Ada berapa {nn} total?"] if idn else
+                     [f"How many {nn} are there in total?", f"How many {nn} are in the data?", f"Total number of {nn}?"])
+        where, truth = [], len(df)
+    elif "attrition" in roles and R.random() < .5:
+        q = R.choice([f"Berapa {nn} yang resign?", f"Ada berapa {nn} yang keluar dari perusahaan?"] if idn else
+                     [f"How many {nn} have left?", f"How many {nn} quit the company?", f"Number of {nn} who resigned?"])
+        where = [{"column": roles["attrition"], "op": "==", "value": "Yes"}]
+        truth = int((df[roles["attrition"]] == "Yes").sum())
+    elif m and (not g or R.random() < .5):
         mm = R.choice(m)
         col = roles[mm]
-        thr = float(np.percentile(df[col], R.choice([25, 50, 75])))
+        thr = float(np.percentile(df[col].dropna(), R.choice([25, 50, 75])))
         digits = len(str(int(abs(thr)))) - 2  # a round threshold, like people write: 949,204,562 -> 950,000,000
         thr = int(round(thr, -digits)) if digits > 0 else int(round(thr))
         op = R.choice([">", "<"])
@@ -225,7 +243,7 @@ def count_rows(df, roles, kind, idn):
         res_text = res.text
         num = res_text.split("Count of rows: ")[-1].split(" ")[0]
         return f"Ada **{num}** {nn}." if idn else f"There are **{num}** {nn}."
-    return q, "aggregate", {"agg": "count", "where": where}, truth, write
+    return q, "aggregate", {"agg": "count", **({"where": where} if where else {})}, truth, write
 
 
 def best_group(df, roles, kind, idn):
@@ -242,8 +260,13 @@ def best_group(df, roles, kind, idn):
                       f"{gw.capitalize()} apa dengan total {mw} {'terendah' if low else 'tertinggi'}?"] if idn else
                      [f"Which {gw} has the {'lowest' if low else 'highest'} total {mw}?",
                       f"Which {gw} brings in the {'least' if low else 'most'} {mw}?"])
-        if mm == "quantity" and not low and R.random() < .5:
-            q = f"{gw.capitalize()} apa yang paling laris?" if idn else f"What is the best-selling {gw}?"
+        if mm == "quantity" and R.random() < .6:  # "paling laris": the measure is implied, it's the units sold
+            G = gw.capitalize()
+            q = R.choice(([f"{G} apa yang paling jarang laku?", f"{G} apa yang paling sedikit terjual?"] if low else
+                          [f"{G} apa yang paling laris?", f"{G} apa yang paling banyak terjual?", f"{G} mana yang paling laku?"])
+                         if idn else
+                         ([f"Which {gw} sells the least?", f"What is the least popular {gw}?"] if low else
+                          [f"What is the best-selling {gw}?", f"Which {gw} sells the most?", f"What's our most popular {gw}?"]))
     else:
         q = (f"{gw.capitalize()} mana yang rata-rata {mw}-nya paling {'rendah' if low else 'tinggi'}?" if idn else
              f"Which {gw} has the {'lowest' if low else 'highest'} average {mw}?")
@@ -276,6 +299,29 @@ def most_common(df, roles, kind, idn):
         part = res_text.split("most common: ")[-1].split(";")[0]
         return f"{gw.capitalize()} yang paling sering: **{part}**." if idn else f"The most common {gw} is **{part}**."
     return q, "value_counts", {"column": col}, (vc.idxmax(), int(vc.max())), write
+
+
+def data_quality(df, roles, kind, idn):
+    dup = int(df.duplicated().sum())
+    gaps = [c for c in df.columns if df[c].isna().any()]
+    if gaps and R.random() < .5:
+        c = R.choice(gaps)
+        role = next(r for r, v in roles.items() if v == c)
+        w = say(role, c, idn)
+        q = R.choice([f"Berapa data kosong di kolom {c}?", f"Ada berapa {w} yang kosong?"] if idn else
+                     [f"How many missing values are in {c}?", f"How many rows have no {w}?", f"How many {w} values are missing?"])
+
+        def write(res):
+            n = res.table.set_index("column").loc[c, "missing"]
+            return f"Ada **{n}** data kosong di kolom {c}." if idn else f"**{n}** rows have a missing {c}."
+        return q, "profile", {}, int(df[c].isna().sum()), write
+    q = R.choice(["Ada berapa baris duplikat?", "Apakah ada data yang dobel?"] if idn else
+                 ["Are there any duplicate rows?", "How many rows are duplicated?", "Is anything entered twice?"])
+
+    def write(res):
+        n = res.text.split(" duplicate rows")[0].split(", ")[-1]
+        return f"Ada **{n}** baris duplikat." if idn else f"There are **{n}** duplicate rows."
+    return q, "profile", {}, dup, write
 
 
 MONTHS = (["January", "February", "March", "April", "May", "June", "July", "August", "September", "October",
@@ -436,9 +482,25 @@ def stock_question(df, roles, kind, idn):
 
 
 INTENTS = [one_number, one_number, count_rows, best_group, best_group, most_common,
-           best_month, month_total, share, busiest_day, stock_question, stock_question]
+           best_month, month_total, share, busiest_day, stock_question, stock_question, data_quality]
 EVAL_QUESTIONS = {" ".join(t["question"].lower().strip("?. ").split())
                   for t in json.loads((ROOT / "eval" / "tasks.json").read_text(encoding="utf-8"))}
+
+
+def _slip(tool, args, df):
+    """A mistake small models really make: forget the column, or guess a column name that isn't in the data."""
+    if tool not in ("aggregate", "group_aggregate") or "column" not in args:
+        return None
+    guess = next((g for g in R.sample(["revenue", "sales", "total", "amount", "quantity", "qty", "value"], 7)
+                  if g not in df.columns), None)
+    options = [{k: v for k, v in args.items() if k != "column"}, {**args, "column": guess}]
+    if tool == "group_aggregate":
+        options.append({**args, "by": [str(args["by"][0]).lower().replace(" ", "_") + "_name"]})
+    return R.choice(options)
+
+
+def _call(tool, args):
+    return {"role": "assistant", "content": "", "tool_calls": [{"type": "function", "function": {"name": tool, "arguments": args}}]}
 
 
 def example(seed: int):
@@ -463,12 +525,15 @@ def example(seed: int):
     if not all(is_correct(final, t) for t in (truth if isinstance(truth, tuple) else (truth,))) \
             or ungrounded_numbers(final, q + "\n" + content):
         return None  # the tool or the writer got it wrong: never train on it
-    return {"messages": [
-        {"role": "system", "content": SYSTEM.format(schema=schema_summary(df))},
-        {"role": "user", "content": q},
-        {"role": "assistant", "content": "", "tool_calls": [{"type": "function", "function": {"name": tool, "arguments": args}}]},
-        {"role": "tool", "content": content},
-        {"role": "assistant", "content": final}]}
+    msgs = [{"role": "system", "content": SYSTEM.format(schema=schema_summary(df))}, {"role": "user", "content": q}]
+    wrong = _slip(tool, args, df) if R.random() < .2 else None
+    if wrong:  # teach recovery: read the error, fix the call, then answer (round 1 gave up after an error)
+        try:
+            run_tool(tool, df, wrong)
+        except ToolError as e:  # same message the app's loop sends back
+            msgs += [_call(tool, wrong), {"role": "tool", "content": f"ERROR: {e} Fix the arguments and try again."}]
+    return {"messages": msgs + [_call(tool, args), {"role": "tool", "content": content},
+                                {"role": "assistant", "content": final}]}
 
 
 NL = "\n"
@@ -500,7 +565,7 @@ def render(messages, tools) -> str:
 
 def main():
     p = argparse.ArgumentParser()
-    p.add_argument("--n", type=int, default=2000)
+    p.add_argument("--n", type=int, default=2400)
     p.add_argument("--dev", type=float, default=0.05)
     a = p.parse_args()
     out = ROOT / "train" / "data"

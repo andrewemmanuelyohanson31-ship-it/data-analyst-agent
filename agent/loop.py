@@ -151,7 +151,8 @@ def run_agent(question: str, state: DatasetState, model: ChatModel, history: lis
         if not calls:
             text = reply["content"].strip()
             ok_steps = [s for s in steps if s.error is None]
-            bad = ungrounded_numbers(text, evidence)
+            # a template slot left unfilled ("**{agg}** employees left") hides a missing number from the check
+            bad = ungrounded_numbers(text, evidence) + re.findall(r"\{\w+\}", text)
             if (not text or bad) and not ok_steps and not nudged:
                 nudged = True
                 messages += [{"role": "assistant", "content": text}, {"role": "user", "content": NUDGE}]

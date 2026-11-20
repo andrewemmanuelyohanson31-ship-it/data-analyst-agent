@@ -151,3 +151,9 @@ def test_table_numbers_given_to_the_model_are_readable():
     df = pd.DataFrame({"city": ["A"] * 3 + ["B"] * 7})
     content = _for_model(run_tool("group_aggregate", df, {"by": ["city"], "agg": "count"}))
     assert ungrounded_numbers("A is 30.0% of orders", content) == []  # was read as 330 from "A,3,30.0"
+
+
+def test_unfilled_placeholder_is_not_shown_as_the_answer():
+    m = FakeModel(call("aggregate", agg="count"), say("**{agg}** rows."))
+    ans = run_agent("how many rows?", state(), m)
+    assert "{agg}" not in ans.text and "3" in ans.text  # falls back to the verified tool output
